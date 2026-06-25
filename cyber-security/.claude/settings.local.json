@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"d:/softwares-apps-webs/learning-hub/cyber-security/netmon\" && mkdir -p core capture analysis storage discovery export ui display utils exports && echo done)",
+      "Bash(python3 -c ' *)",
+      "Bash(python -c ' *)",
+      "Bash(python3 -m py_compile main.py config.py core/*.py storage/*.py analysis/*.py capture/*.py discovery/*.py export/*.py ui/*.py display/*.py utils/*.py)",
+      "Bash(python3 -c \"import scapy, rich, psutil; print\\('scapy', scapy.VERSION if hasattr\\(scapy,'VERSION'\\) else 'ok'\\); print\\('rich ok'\\); print\\('psutil', psutil.__version__\\)\")",
+      "Bash(python3 -c \"import rich; print\\('rich', rich.__version__\\)\")",
+      "Bash(python3 -c \"import psutil; print\\('psutil', psutil.__version__\\)\")",
+      "Bash(pip3 --version)",
+      "Bash(python3 -m venv .venv_check)",
+      "Bash(./.venv_check/Scripts/python.exe -m pip install --quiet --disable-pip-version-check rich psutil scapy)",
+      "Bash(./.venv_check/Scripts/python.exe -c ' *)",
+      "Bash(PYTHONIOENCODING=utf-8 ./.venv_check/Scripts/python.exe -c ' *)",
+      "Bash(./.venv/Scripts/python.exe -c ' *)",
+      "Bash(python -m py_compile main.py config.py core/*.py storage/*.py analysis/*.py capture/*.py discovery/*.py export/*.py ui/*.py display/*.py utils/*.py)",
+      "Bash(../.venv/Scripts/python.exe -c ' *)",
+      "Bash(\"../.venv/Scripts/python.exe\" -m py_compile main.py config.py core/*.py storage/*.py analysis/*.py capture/*.py discovery/*.py export/*.py ui/*.py display/*.py utils/*.py)",
+      "Bash(PYTHONIOENCODING=utf-8 ../.venv/Scripts/python.exe -c ' *)",
+      "Bash(\"../.venv/Scripts/python.exe\" -m py_compile main.py ui/device_tree.py)",
+      "Bash(\"../.venv/Scripts/python.exe\" -m py_compile discovery/arp_scan.py)",
+      "Bash(\"../.venv/Scripts/python.exe\" -m py_compile config.py utils/net.py)",
+      "Bash(\"../.venv/Scripts/python.exe\" -m py_compile display/tables.py)",
+      "Bash(\"../.venv/Scripts/python.exe\" -m py_compile display/renderer.py)",
+      "Bash(\"../.venv/Scripts/python.exe\" -m py_compile storage/db.py)",
+      "Bash(\"../.venv/Scripts/python.exe\" -m py_compile discovery/passive_listener.py)",
+      "Bash(mkdir -p \"d:/softwares-apps-webs/learning-hub/cyber-security/.vscode\")"
+    ],
+    "additionalDirectories": [
+      "d:\\softwares-apps-webs\\learning-hub\\cyber-security\\netmon",
+      "d:\\softwares-apps-webs\\learning-hub\\cyber-security"
+    ]
+  }
+}

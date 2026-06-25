@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Testing Prep — Alby Tomy</title>
+
+  <!-- Google Fonts: Inter for UI, JetBrains Mono for code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- All styles in one file -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navigation bar ─────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="container">
+      <span class="nav-brand">
+        <span class="dot"></span>
+        AI Testing Prep
+      </span>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pages/quiz.html">Interview Q&amp;A</a></li>
+        <li><a href="pages/project.html">Project Deep Dive</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Main content ───────────────────────────────────── -->
+  <main class="page-wrap">
+    <div class="container">
+
+      <!-- Hero -->
+      <div class="page-header">
+        <h1>
+          Interview Prep<br />
+          <span class="gradient-text">AI Testing &amp; RAG Systems</span>
+        </h1>
+        <p class="subtitle">
+          Everything you need to ace your AI testing interview — 40 questions,
+          project deep dive, and answer frameworks. Built for Alby Tomy.
+        </p>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="num">40</div>
+          <div class="lbl">Questions</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">6</div>
+          <div class="lbl">Topics</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">3</div>
+          <div class="lbl">Difficulty levels</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">7</div>
+          <div class="lbl">Project Q&amp;As</div>
+        </div>
+      </div>
+
+      <!-- Navigation cards -->
+      <div class="home-grid">
+
+        <a class="home-card" href="pages/quiz.html">
+          <div class="hc-icon">🧠</div>
+          <div class="hc-title">Interview Q&amp;A</div>
+          <div class="hc-desc">
+            40 questions across 6 topics — RAG Fundamentals, LLM Evaluation, Prompt Testing,
+            Agentic AI, Retrieval Validation, and AI in Practice. Filter by topic and difficulty.
+            Track your progress as you mark questions known.
+          </div>
+          <span class="hc-link">Start practising →</span>
+        </a>
+
+        <a class="home-card" href="pages/project.html">
+          <div class="hc-icon">🔬</div>
+          <div class="hc-title">Project Deep Dive</div>
+          <div class="hc-desc">
+            Full breakdown of the AI Testing Framework project on your resume — what it is,
+            how to explain the architecture, what each bullet point means, and how to answer
+            7 project-specific interview questions.
+          </div>
+          <span class="hc-link">Explore the project →</span>
+        </a>
+
+      </div>
+
+      <!-- How to use this -->
+      <div class="section-heading" style="margin-top: 48px;">How to use this</div>
+      <div class="card">
+        <p style="color: var(--muted); font-size: 14px; line-height: 1.8;">
+          <strong style="color: var(--text);">Step 1 — Project page first.</strong>
+          Before touching the Q&amp;A, read the Project Deep Dive page fully. You need to
+          own that project description before answering any questions about it.<br /><br />
+          <strong style="color: var(--text);">Step 2 — Easy questions, all topics.</strong>
+          Filter by "Easy" and go through all 40. These form your base — get them solid.<br /><br />
+          <strong style="color: var(--text);">Step 3 — Mark what you know.</strong>
+          As you get comfortable with a question, mark it as "Known." This lets you
+          focus remaining time on the ones that still feel shaky.<br /><br />
+          <strong style="color: var(--text);">Step 4 — Medium → Hard.</strong>
+          Work through Medium and Hard questions. These are the ones that actually
+          differentiate you from other candidates.<br /><br />
+          <strong style="color: var(--text);">Step 5 — Connect to your real work.</strong>
+          Every answer should reference something you've actually built — LangChain, ChromaDB,
+          Pytest, Jenkins, MCP. Interviewers trust specifics.
+        </p>
+      </div>
+
+      <!-- Topics overview -->
+      <div class="section-heading">Topics covered</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px;">
+        <div class="card-sm">
+          <strong style="font-size: 13px;">RAG Fundamentals</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">
+            Embeddings, chunking, vector DBs, hybrid retrieval, BM25 vs dense search.
+          </p>
+        </div>
+        <div class="card-sm">
+          <strong style="font-size: 13px;">LLM Evaluation</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">
+            RAGAS metrics, hallucination detection, LLM-as-judge, groundedness scoring.
+          </p>
+        </div>
+        <div class="card-sm">
+          <strong style="font-size: 13px;">Prompt Testing</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">
+            Injection attacks, sensitivity, jailbreaks, few-shot prompting, regression testing.
+          </p>
+        </div>
+        <div class="card-sm">
+          <strong style="font-size: 13px;">Agentic AI</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">
+            MCP tool validation, trajectory evaluation, mock tool layers, multi-agent systems.
+          </p>
+        </div>
+        <div class="card-sm">
+          <strong style="font-size: 13px;">Retrieval Validation</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">
+            Precision vs recall, context leakage, abstention testing, semantic gap problem.
+          </p>
+        </div>
+        <div class="card-sm">
+          <strong style="font-size: 13px;">AI in Practice</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">
+            CI/CD integration, non-determinism, red-teaming, production monitoring strategy.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

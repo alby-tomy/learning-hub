@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Research — UI/UX Path</title>
+  <meta name="description" content="Learn to plan and run interviews, surveys, and contextual inquiries that produce evidence instead of opinions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/colors.css">
+  <link rel="stylesheet" href="../css/module-detail.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<defs>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 9l-2 6-6 2 2-6 6-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="14,6 20,12 14,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><line x1="20" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="10,6 4,12 10,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><line x1="6" y1="18" x2="18" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="9,6 18,6 18,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/><line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="8,12.5 11,15.5 16,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="5,9 12,16 19,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="18,3 18,7.5 13.5,7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="6,21 6,16.5 10.5,16.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-package" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 8v9l9 4 9-4V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="12" y1="12" x2="12" y2="21" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="12,7 12,12 16,14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="7,10 12,15 17,10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M3 5c2-1 5-1 7 0v14c-2-1-5-1-7 0V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M21 5c-2-1-5-1-7 0v14c2-1 5-1 7 0V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+<symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 9c-1.7 0-3 1.3-3 3v3h4v-6zm0 0c0-2 1-3.5 3-4M17 9c-1.7 0-3 1.3-3 3v3h4v-6zm0 0c0-2 1-3.5 3-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="3,7 12,13 21,7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-9.3-9C1.4 8 2.7 5 6 5c2 0 3.3 1 4.5 2.5C11.7 6 13 5 15 5c3.3 0 4.6 3 4.6 6-2.3 4.5-9.3 9-9.3 9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12,3 21,8 12,13 3,8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="3,13 12,18 21,13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-package-check" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 8v9l9 4 9-4V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="9,15 11,17 15,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="8" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 12c2.6 0.3 4.5 2 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="13" x2="21" y2="13" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-accessibility" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6" fill="currentColor" stroke="none"/><path d="M4 9h16M12 9v6M12 15l-3 6M12 15l3 6M8 11l4 1 4-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5h3V4zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5h-3V4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 8 0 1 0 0 16c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-3.3-4-6-9-6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7.5" cy="10.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="9" cy="7" r="1.1" fill="currentColor" stroke="none"/><circle cx="13" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-microscope" viewBox="0 0 24 24"><path d="M9 19h8M11 19v-3.5M8 15.5h6a3 3 0 0 0 0-6h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 9.5 13.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="12" y="3.5" width="4" height="2.2" rx="0.6" transform="rotate(35 14 4.6)" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="5" y1="19" x2="17" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><polygon points="3,6 9,4 15,6 21,4 21,18 15,20 9,18 3,20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="9" y1="4" x2="9" y2="18" stroke="currentColor" stroke-width="1.8"/><line x1="15" y1="6" x2="15" y2="20" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="14" y1="7" x2="17" y2="10" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="11" height="18" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="15" y="9" width="6" height="12" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="7" y1="7" x2="9" y2="7" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="11" x2="9" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="11" x2="13" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="15" x2="9" y2="15" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="15" x2="13" y2="15" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 9,22 20,9 13,9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-test-tube" viewBox="0 0 24 24"><path d="M9 3l9 9-4.5 4.5a4 4 0 0 1-5.6 0v0a4 4 0 0 1 0-5.6L13 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="7" y1="13" x2="11" y2="13" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="11" y1="18.5" x2="13" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-3 2-3-2c-1-1-2-3-2-5 0-4 2-8 5-10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9" r="1.4" fill="currentColor" stroke="none"/><path d="M9 17l-2.5 3M15 17l2.5 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M7 22l-4-4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 13v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.3.2.5.6.5 1V16h6v-1.1c0-.4.2-.8.5-1A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 6H5a2 2 0 0 0 0 4h2.3M16 6h3a2 2 0 0 1 0 4h-2.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 19h6M12 14v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><polyline points="9,5 16,12 9,19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+  <a href="../index.html#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header glass">
+    <nav class="navbar container">
+      <div class="nav-left">
+        <button type="button" class="nav-back" aria-label="Go back"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></button>
+        <a href="../index.html" class="nav-logo">
+          <span class="nav-logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+          UI/UX Path
+        </a>
+      </div>
+      <ul class="nav-links" style="list-style:none; display:flex;">
+        <a href="../index.html">Home</a>
+        <a href="../modules.html" aria-current="page">Modules</a>
+        <a href="../schedule.html">Schedule</a>
+        <a href="../resources.html">Resources</a>
+        <a href="../about.html">About</a>
+      </ul>
+      <a href="../modules.html" class="nav-cta btn btn-primary btn-sm">Start Learning</a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span class="icon-menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></span>
+        <span class="icon-close" style="display:none"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></span>
+      </button>
+    </nav>
+    <div class="nav-mobile-panel">
+      <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../modules.html">Modules</a></li>
+          <li><a href="../schedule.html">Schedule</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="module-hero">
+      <div class="module-hero-glow" style="background: radial-gradient(60% 100% at 30% 0%, var(--amber), transparent 70%);"></div>
+      <div class="container module-hero-inner reveal">
+        <div class="module-hero-badges">
+          <span class="module-hero-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-microscope"></use></svg></span>
+          <span class="badge bg-amber-soft text-amber">Module M03</span>
+          <span class="badge bg-amber-soft text-amber">Day 3–5</span>
+        </div>
+        <h1>User Research</h1>
+        <p class="accent-underline bg-amber"></p>
+        <p class="tagline">Stop guessing what users want — go ask them.</p>
+      </div>
+    </section>
+
+    <div class="container module-detail-layout">
+      <div class="module-main">
+        <section>
+          <h2 class="reveal">Learning Objectives</h2>
+          <ul class="objectives-grid">
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Distinguish qualitative from quantitative research methods</span></li>
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Write open-ended interview questions free of leading bias</span></li>
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Run a contextual inquiry session in a user's real environment</span></li>
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Synthesize interview notes into an evidence-based persona</span></li>
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Recognize when a survey is the wrong tool for the question</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="reveal">Core Concepts</h2>
+          <div class="content-block reveal">
+              <h3>Pick the method, then the question</h3>
+              <p>Interviews uncover the 'why', surveys quantify the 'how many', and contextual inquiry reveals the gap between what people say and what they actually do.</p>
+              
+            </div>
+            <div class="content-block reveal">
+              <h3>Personas built from evidence, not vibes</h3>
+              <p>A persona is only useful if every trait traces back to a real quote or observation. Decorative personas with stock photos and invented hobbies actively mislead a team.</p>
+              <ul><li><span class="dot bg-amber"></span>Goals — what they're trying to accomplish</li><li><span class="dot bg-amber"></span>Frustrations — where the current experience fails them</li><li><span class="dot bg-amber"></span>Behaviors — what they actually do, observed not reported</li><li><span class="dot bg-amber"></span>Quote — a real line from a transcript</li></ul>
+            </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Concept Deep Dive</h2>
+          <p class="deep-dive-intro reveal">User research replaces assumptions with evidence. The method you choose depends entirely on the question you're asking.</p>
+            <nav class="deep-dive-toc reveal" aria-label="Jump to a topic">
+              <p class="toc-label text-amber"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg> Jump to a topic</p>
+              <ul>
+                <li><a href="#topic-1-qualitative-vs-quantitative-pick-the-right-tool" class="text-amber">1. Qualitative vs. Quantitative</a></li>
+              <li><a href="#topic-2-interviews-ask-without-leading" class="text-amber">2. Interviews</a></li>
+              <li><a href="#topic-3-contextual-inquiry-watch-don-t-just-ask" class="text-amber">3. Contextual Inquiry</a></li>
+              <li><a href="#topic-4-personas-built-from-evidence-not-vibes" class="text-amber">4. Personas</a></li>
+              </ul>
+            </nav>
+            <div class="deep-dive-section reveal" id="topic-1-qualitative-vs-quantitative-pick-the-right-tool">
+              <h3>1. Qualitative vs. Quantitative — Pick the Right Tool</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">What happens here:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Qualitative (interviews, contextual inquiry) answers why</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Quantitative (surveys, analytics) answers how many</span></li></ul>
+              </div>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">Key rule:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>A survey can't tell you why users are confused — only an interview can</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-comparison cols-2"><div class="comparison-col">
+        <p class="comparison-heading text-amber">Qualitative</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Interviews</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Contextual inquiry</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Answers why</span></li></ul>
+      </div><div class="comparison-col">
+        <p class="comparison-heading text-amber">Quantitative</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Surveys</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Analytics</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Answers how many</span></li></ul>
+      </div></div></div>
+              <div class="callout border-amber">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">Analytics shows 40% of users drop off at checkout (quantitative). An interview reveals they don't trust the shipping cost shown so late (qualitative).</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-microscope"></use></svg></span><span class="diagram-chip">40% drop-off</span><span class="diagram-chip">Shipping cost distrust</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">Knowing which method actually answers your question, instead of defaulting to a survey because it's easy</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-2-interviews-ask-without-leading">
+              <h3>2. Interviews — Ask Without Leading</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">What happens here:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Write open-ended questions ("How did that feel?" not "Wasn't that confusing?")</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Let silence sit — don't fill gaps for the participant</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Capture direct quotes, not paraphrases</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-flow"><span class="flow-step bg-amber-soft text-amber">Ask open-ended</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Let silence sit</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Capture quotes</span></div></div>
+              <div class="callout border-amber">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">Instead of "Don't you find this slow?" ask "Walk me through what happened when you tapped that."</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-microscope"></use></svg></span><span class="diagram-chip">"Walk me through it"</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">Unbiased insight instead of a confirmation of what you already believed</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-3-contextual-inquiry-watch-don-t-just-ask">
+              <h3>3. Contextual Inquiry — Watch, Don't Just Ask</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">What happens here:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Observe users in their real environment</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Notice the gap between what people say and what they do</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-comparison cols-2"><div class="comparison-col">
+        <p class="comparison-heading text-amber">What they say</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>"I always read the terms"</span></li></ul>
+      </div><div class="comparison-col">
+        <p class="comparison-heading text-amber">What they do</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Scrolls past in 2 seconds</span></li></ul>
+      </div></div></div>
+              <div class="callout border-amber">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">A user says they "always read the terms" — contextual inquiry shows they scroll past it in under 2 seconds every time.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-microscope"></use></svg></span><span class="diagram-chip">Say vs. do gap</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">Friction points users wouldn't think to mention in an interview room</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-4-personas-built-from-evidence-not-vibes">
+              <h3>4. Personas — Built From Evidence, Not Vibes</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">What happens here:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Every trait traces back to a real quote or observation</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Structure: Goals, Frustrations, Behaviors, Quote</span></li></ul>
+              </div>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">Key rule:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>No stock photos, no invented hobbies — a decorative persona actively misleads a team</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-flow"><span class="flow-step bg-amber-soft text-amber">Goals</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Frustrations</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Behaviors</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Quote</span></div></div>
+              <div class="callout border-amber">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">A persona's "Frustrations" field should quote a real transcript line, not summarize a guess.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-microscope"></use></svg></span><span class="diagram-chip">Real transcript line</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">A reference the whole team trusts because it's traceable to real people</span>
+              </p>
+            </div>
+            <div class="deep-dive-loop reveal" style="--accent:var(--amber)">
+              <h3 class="text-amber"><svg class="icon" aria-hidden="true"><use href="#i-repeat"></use></svg> The Research Loop</h3>
+              <p>Research isn't a one-time phase — a surprising interview finding can send you back to revise your research questions, and personas get revised as new sessions contradict old assumptions.</p>
+            </div>
+            <div class="deep-dive-flow reveal">
+              <h3 class="text-amber"><svg class="icon" aria-hidden="true"><use href="#i-lightbulb"></use></svg> Simple Real-World Flow</h3>
+              <ol>
+                <li><span class="step-num bg-amber-soft text-amber">1</span><span>Analytics shows a drop-off (Quantitative signal)</span></li>
+              <li><span class="step-num bg-amber-soft text-amber">2</span><span>Interview 5–8 users about that specific step (Qualitative)</span></li>
+              <li><span class="step-num bg-amber-soft text-amber">3</span><span>Watch one or two complete the task live (Contextual Inquiry)</span></li>
+              <li><span class="step-num bg-amber-soft text-amber">4</span><span>Synthesize into an evidence-backed persona (Personas)</span></li>
+              <li><span class="step-num bg-amber-soft text-amber">5</span><span>Hand findings to the Define stage of the next project</span></li>
+              </ol>
+            </div>
+            <div class="deep-dive-takeaways reveal" style="background: color-mix(in srgb, var(--amber) 8%, var(--surface));">
+              <h3 class="text-amber"><svg class="icon" aria-hidden="true"><use href="#i-trophy"></use></svg> Key Takeaways</h3>
+              <ul>
+                <li><span class="dot bg-amber"></span><span>Match the method to the question — don't default to surveys</span></li>
+              <li><span class="dot bg-amber"></span><span>Open-ended questions reveal what closed questions hide</span></li>
+              <li><span class="dot bg-amber"></span><span>What people say and what they do are often different things</span></li>
+              <li><span class="dot bg-amber"></span><span>A persona is only as good as the evidence behind it</span></li>
+              </ul>
+            </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Quick Concept Check</h2>
+          <div class="flip-grid">
+            <button type="button" class="flip-card" aria-pressed="false">
+              <div class="flip-card-inner">
+                <div class="flip-card-front border-amber-soft">
+                  <p>What is Contextual Inquiry?</p>
+                  <span class="flip-hint text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rotate"></use></svg> Click to flip</span>
+                </div>
+                <div class="flip-card-back border-amber">
+                  <p>A research method where you observe and interview someone in the actual environment where they'd use the product, surfacing friction they wouldn't think to mention in an interview room.</p>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="flip-card" aria-pressed="false">
+              <div class="flip-card-inner">
+                <div class="flip-card-front border-amber-soft">
+                  <p>What's a leading question?</p>
+                  <span class="flip-hint text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rotate"></use></svg> Click to flip</span>
+                </div>
+                <div class="flip-card-back border-amber">
+                  <p>"Don't you find this confusing?" assumes the answer. "How did that feel?" lets the participant tell you.</p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">See It In Practice</h2>
+          <div class="tabs">
+            <div class="tabs-list" role="tablist">
+              <button type="button" class="tab-btn active" data-tab="theory" role="tab" aria-selected="true">Theory</button>
+              <button type="button" class="tab-btn" data-tab="example" role="tab" aria-selected="false">Example</button>
+              <button type="button" class="tab-btn" data-tab="exercise" role="tab" aria-selected="false">Exercise</button>
+            </div>
+            <div class="tab-panel active" data-tab="theory">User research is the systematic study of target users' needs and behaviors through observation, task analysis, and other feedback methods.</div>
+            <div class="tab-panel" data-tab="example">A banking app assumed users wanted faster transfers. Interviews revealed the real anxiety was uncertainty about whether a transfer had gone through — leading to a status-tracking feature instead of a speed boost.</div>
+            <div class="tab-panel" data-tab="exercise">Write five open-ended interview questions about how someone manages their weekly groceries, without using the word 'app' once.</div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Common Questions</h2>
+          <div class="accordion-group">
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-question">How many interviews are 'enough'?</span>
+                <span class="chevron"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+              </button>
+              <div class="accordion-panel">
+                <p>Research on usability patterns suggests 5 users surface roughly 85% of major issues. For broader behavioral research, aim for 8–12 before patterns stop changing.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-question">Can I research and design at the same time?</span>
+                <span class="chevron"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+              </button>
+              <div class="accordion-panel">
+                <p>You can run discovery research in parallel with iterating on existing flows, but avoid researching a concept you're emotionally attached to shipping — the bias shows.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="reveal">
+          <div class="exercise-card" style="--accent:var(--amber)">
+              <div class="exercise-card-head">
+                <span class="icon-circle bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg></span>
+                <h3>Today's Exercise</h3>
+              </div>
+              <p class="exercise-title">Five-Question Micro Interview</p>
+              <p class="exercise-desc">Interview a classmate for 10 minutes about a routine task. Avoid yes/no questions and leading language. Capture three direct quotes.</p>
+              <div class="exercise-grid">
+                <div>
+                  <p class="label"><svg class="icon" aria-hidden="true"><use href="#i-package"></use></svg> Materials</p>
+                  <ul><li>Notebook or notes app</li><li>A willing partner</li><li>A recorder (optional)</li></ul>
+                </div>
+                <div>
+                  <p class="label"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> Time estimate</p>
+                  <p class="value">25 minutes</p>
+                  <p class="deliverable-label">Deliverable</p>
+                  <p class="value">Three verbatim quotes + one surprising finding, written up.</p>
+                </div>
+              </div>
+              <button type="button" class="btn bg-amber" style="color:var(--bg);"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg> Download Template</button>
+            </div>
+        </section>
+      </div>
+
+      <aside class="module-sidebar">
+            <div class="sidebar-block">
+              <p class="sidebar-label"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg> Recommended Reading</p>
+              <div class="reading-item">
+                <p class="title">Just Enough Research</p>
+                <p class="source">Erika Hall</p>
+              </div>
+              <div class="reading-item">
+                <p class="title">The User Experience Team of One</p>
+                <p class="source">Leah Buley</p>
+              </div>
+            </div>
+            <div class="sidebar-block">
+              <p class="sidebar-label"><svg class="icon" aria-hidden="true"><use href="#i-wrench"></use></svg> Tools</p>
+              <div class="tool-pills">
+                <a href="../resources.html" class="tool-pill bg-amber-soft text-amber">Figma</a>
+                <a href="../resources.html" class="tool-pill bg-amber-soft text-amber">FigJam</a>
+              </div>
+            </div>
+            <div class="sidebar-block">
+              <p class="sidebar-label">Related Modules</p>
+              <a href="design-thinking.html" class="related-module-link">
+                <span class="icon-circle bg-teal-soft text-teal"><svg class="icon" aria-hidden="true"><use href="#i-brain"></use></svg></span>
+                <span>Design Thinking</span>
+              </a>
+              <a href="ui-fundamentals.html" class="related-module-link">
+                <span class="icon-circle bg-violet-soft text-violet"><svg class="icon" aria-hidden="true"><use href="#i-palette"></use></svg></span>
+                <span>UI Fundamentals</span>
+              </a>
+            </div>
+          </aside>
+    </div>
+
+    <div class="container module-nav-grid">
+      <a href="ui-fundamentals.html" class="nav-card" style="--accent:var(--violet)">
+            <span class="icon-circle bg-violet-soft text-violet"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></span>
+            <span class="nav-card-text">
+              <p class="label">Previous Module</p>
+              <p class="title">UI Fundamentals</p>
+            </span>
+            <span class="icon-circle bg-violet-soft text-violet"><svg class="icon" aria-hidden="true"><use href="#i-palette"></use></svg></span>
+          </a>
+      <a href="information-architecture.html" class="nav-card next" style="--accent:var(--pink)">
+            
+            <span class="nav-card-text">
+              <p class="label">Next Module</p>
+              <p class="title">Information Architecture</p>
+            </span>
+            <span class="icon-circle bg-pink-soft text-pink"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+          </a>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a href="../index.html" class="nav-logo">
+        <span class="nav-logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+        UI/UX Path
+      </a>
+      <ul class="footer-links" style="list-style:none;">
+        <li><a href="../modules.html">Modules</a></li>
+        <li><a href="../schedule.html">Schedule</a></li>
+        <li><a href="../resources.html">Resources</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" aria-label="Community forum"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></a>
+        <a href="#" aria-label="Website"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></a>
+        <a href="#" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 UI/UX Path · Internal Design Training</div>
+  </footer>
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/reveal.js" defer></script>
+  <script src="../js/accordion.js" defer></script>
+  <script src="../js/tabs.js" defer></script>
+  <script src="../js/flip-card.js" defer></script>
+</body>
+</html>

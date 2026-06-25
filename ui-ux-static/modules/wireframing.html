@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframing — UI/UX Path</title>
+  <meta name="description" content="Practice the lo-fi to hi-fi progression and timeboxed ideation methods like Crazy 8s.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/colors.css">
+  <link rel="stylesheet" href="../css/module-detail.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<defs>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 9l-2 6-6 2 2-6 6-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="14,6 20,12 14,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><line x1="20" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="10,6 4,12 10,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><line x1="6" y1="18" x2="18" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="9,6 18,6 18,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/><line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="8,12.5 11,15.5 16,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="5,9 12,16 19,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="18,3 18,7.5 13.5,7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="6,21 6,16.5 10.5,16.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-package" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 8v9l9 4 9-4V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="12" y1="12" x2="12" y2="21" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="12,7 12,12 16,14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="7,10 12,15 17,10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M3 5c2-1 5-1 7 0v14c-2-1-5-1-7 0V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M21 5c-2-1-5-1-7 0v14c2-1 5-1 7 0V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+<symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 9c-1.7 0-3 1.3-3 3v3h4v-6zm0 0c0-2 1-3.5 3-4M17 9c-1.7 0-3 1.3-3 3v3h4v-6zm0 0c0-2 1-3.5 3-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="3,7 12,13 21,7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-9.3-9C1.4 8 2.7 5 6 5c2 0 3.3 1 4.5 2.5C11.7 6 13 5 15 5c3.3 0 4.6 3 4.6 6-2.3 4.5-9.3 9-9.3 9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12,3 21,8 12,13 3,8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="3,13 12,18 21,13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-package-check" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 8v9l9 4 9-4V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="9,15 11,17 15,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="8" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 12c2.6 0.3 4.5 2 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="13" x2="21" y2="13" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-accessibility" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6" fill="currentColor" stroke="none"/><path d="M4 9h16M12 9v6M12 15l-3 6M12 15l3 6M8 11l4 1 4-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5h3V4zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5h-3V4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 8 0 1 0 0 16c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-3.3-4-6-9-6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7.5" cy="10.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="9" cy="7" r="1.1" fill="currentColor" stroke="none"/><circle cx="13" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-microscope" viewBox="0 0 24 24"><path d="M9 19h8M11 19v-3.5M8 15.5h6a3 3 0 0 0 0-6h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 9.5 13.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="12" y="3.5" width="4" height="2.2" rx="0.6" transform="rotate(35 14 4.6)" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="5" y1="19" x2="17" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><polygon points="3,6 9,4 15,6 21,4 21,18 15,20 9,18 3,20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="9" y1="4" x2="9" y2="18" stroke="currentColor" stroke-width="1.8"/><line x1="15" y1="6" x2="15" y2="20" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="14" y1="7" x2="17" y2="10" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="11" height="18" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="15" y="9" width="6" height="12" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="7" y1="7" x2="9" y2="7" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="11" x2="9" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="11" x2="13" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="15" x2="9" y2="15" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="15" x2="13" y2="15" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 9,22 20,9 13,9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-test-tube" viewBox="0 0 24 24"><path d="M9 3l9 9-4.5 4.5a4 4 0 0 1-5.6 0v0a4 4 0 0 1 0-5.6L13 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="7" y1="13" x2="11" y2="13" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="11" y1="18.5" x2="13" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-3 2-3-2c-1-1-2-3-2-5 0-4 2-8 5-10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9" r="1.4" fill="currentColor" stroke="none"/><path d="M9 17l-2.5 3M15 17l2.5 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M7 22l-4-4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 13v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.3.2.5.6.5 1V16h6v-1.1c0-.4.2-.8.5-1A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 6H5a2 2 0 0 0 0 4h2.3M16 6h3a2 2 0 0 1 0 4h-2.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 19h6M12 14v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><polyline points="9,5 16,12 9,19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+  <a href="../index.html#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header glass">
+    <nav class="navbar container">
+      <div class="nav-left">
+        <button type="button" class="nav-back" aria-label="Go back"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></button>
+        <a href="../index.html" class="nav-logo">
+          <span class="nav-logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+          UI/UX Path
+        </a>
+      </div>
+      <ul class="nav-links" style="list-style:none; display:flex;">
+        <a href="../index.html">Home</a>
+        <a href="../modules.html" aria-current="page">Modules</a>
+        <a href="../schedule.html">Schedule</a>
+        <a href="../resources.html">Resources</a>
+        <a href="../about.html">About</a>
+      </ul>
+      <a href="../modules.html" class="nav-cta btn btn-primary btn-sm">Start Learning</a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span class="icon-menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></span>
+        <span class="icon-close" style="display:none"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></span>
+      </button>
+    </nav>
+    <div class="nav-mobile-panel">
+      <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../modules.html">Modules</a></li>
+          <li><a href="../schedule.html">Schedule</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="module-hero">
+      <div class="module-hero-glow" style="background: radial-gradient(60% 100% at 30% 0%, var(--emerald), transparent 70%);"></div>
+      <div class="container module-hero-inner reveal">
+        <div class="module-hero-badges">
+          <span class="module-hero-icon bg-emerald-soft text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-pencil"></use></svg></span>
+          <span class="badge bg-emerald-soft text-emerald">Module M05</span>
+          <span class="badge bg-emerald-soft text-emerald">Day 6–7</span>
+        </div>
+        <h1>Wireframing</h1>
+        <p class="accent-underline bg-emerald"></p>
+        <p class="tagline">Move fast and break paper, not pixels.</p>
+      </div>
+    </section>
+
+    <div class="container module-detail-layout">
+      <div class="module-main">
+        <section>
+          <h2 class="reveal">Learning Objectives</h2>
+          <ul class="objectives-grid">
+            <li class="objective-item reveal"><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Explain why low fidelity speeds up early-stage feedback</span></li>
+            <li class="objective-item reveal"><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Run a Crazy 8s session solo or with a group</span></li>
+            <li class="objective-item reveal"><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Know which fidelity level matches which stage of a project</span></li>
+            <li class="objective-item reveal"><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Translate a wireframe into a mid-fi Figma layout</span></li>
+            <li class="objective-item reveal"><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Critique a wireframe for content priority before visual polish</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="reveal">Core Concepts</h2>
+          <div class="content-block reveal">
+              <h3>Fidelity is a dial, not a destination</h3>
+              <p>Low fidelity protects bad ideas from premature attachment — it's faster to throw away a box-and-line sketch than a polished mockup. Raise fidelity only once the structure is validated.</p>
+              
+            </div>
+            <div class="content-block reveal">
+              <h3>The three stops</h3>
+              <p>Each stop in the fidelity ladder answers a different question.</p>
+              <ul><li><span class="dot bg-emerald"></span>Lo-fi — does the structure and flow make sense?</li><li><span class="dot bg-emerald"></span>Mid-fi — does the layout and content hierarchy work at real scale?</li><li><span class="dot bg-emerald"></span>Hi-fi — does the visual design and interaction feel finished?</li></ul>
+            </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Concept Deep Dive</h2>
+          <p class="deep-dive-intro reveal">Wireframing is about fidelity as a dial, not a destination — match the level of polish to the question you're actually trying to answer.</p>
+            <nav class="deep-dive-toc reveal" aria-label="Jump to a topic">
+              <p class="toc-label text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg> Jump to a topic</p>
+              <ul>
+                <li><a href="#topic-1-lo-fi-validate-structure-and-flow" class="text-emerald">1. Lo-fi</a></li>
+              <li><a href="#topic-2-crazy-8s-force-divergence" class="text-emerald">2. Crazy 8s</a></li>
+              <li><a href="#topic-3-mid-fi-validate-layout-at-real-scale" class="text-emerald">3. Mid-fi</a></li>
+              <li><a href="#topic-4-hi-fi-validate-the-finished-feel" class="text-emerald">4. Hi-fi</a></li>
+              </ul>
+            </nav>
+            <div class="deep-dive-section reveal" id="topic-1-lo-fi-validate-structure-and-flow">
+              <h3>1. Lo-fi — Validate Structure and Flow</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-emerald">What happens here:</p>
+                <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Paper sketches or boxes-and-lines</span></li><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>No color, no real copy, no temptation to polish</span></li></ul>
+              </div>
+              <div class="deep-dive-group">
+                <p class="group-label text-emerald">Key rule:</p>
+                <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Paper is faster to throw away than a polished mockup — that's the point</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-scale"><div class="scale-col">
+        <div class="scale-bar bg-emerald" style="height:35%;opacity:0.35"></div>
+        <p class="scale-label">Lo-fi</p>
+        
+      </div><div class="scale-col">
+        <div class="scale-bar bg-emerald" style="height:67.5%;opacity:0.675"></div>
+        <p class="scale-label">Mid-fi</p>
+        
+      </div><div class="scale-col">
+        <div class="scale-bar bg-emerald" style="height:100%;opacity:1"></div>
+        <p class="scale-label">Hi-fi</p>
+        
+      </div></div></div>
+              <div class="callout border-emerald">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">A box-and-line sketch of a checkout flow gets redrawn in five minutes when a reviewer says "the order summary should come first" — a Figma redo would take an hour.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-emerald-soft text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-pencil"></use></svg></span><span class="diagram-chip">5-min redraw</span><span class="diagram-chip">vs. 1hr Figma redo</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">Confidence the flow makes sense before investing in detail</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-2-crazy-8s-force-divergence">
+              <h3>2. Crazy 8s — Force Divergence</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-emerald">What happens here:</p>
+                <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Fold paper into 8 panels</span></li><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Sketch 8 different ideas for one screen in 8 minutes — one minute each</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-flow"><span class="flow-step bg-emerald-soft text-emerald">1</span><span class="flow-connector text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-emerald-soft text-emerald">2</span><span class="flow-connector text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-emerald-soft text-emerald">3</span><span class="flow-connector text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-emerald-soft text-emerald">4</span><span class="flow-connector text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-emerald-soft text-emerald">5</span><span class="flow-connector text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-emerald-soft text-emerald">6</span><span class="flow-connector text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-emerald-soft text-emerald">7</span><span class="flow-connector text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-emerald-soft text-emerald">8</span></div></div>
+              <div class="callout border-emerald">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">Five designers ran Crazy 8s on a checkout screen and produced 40 sketches in 8 minutes; three unrelated sketches were later combined into the final flow.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-emerald-soft text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-pencil"></use></svg></span><span class="diagram-chip">40 sketches</span><span class="diagram-chip">8 minutes</span><span class="diagram-chip">5 designers</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">Volume and variety, before anyone gets attached to one idea</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-3-mid-fi-validate-layout-at-real-scale">
+              <h3>3. Mid-fi — Validate Layout at Real Scale</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-emerald">What happens here:</p>
+                <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Real content lengths (not "Lorem Ipsum")</span></li><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Real component states: empty, error, loading</span></li><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Still grayscale — no final colors or imagery yet</span></li></ul>
+              </div>
+              <div class="deep-dive-group">
+                <p class="group-label text-emerald">Key rule:</p>
+                <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>If it only works with perfect placeholder text, it doesn't actually work</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-comparison cols-2"><div class="comparison-col">
+        <p class="comparison-heading text-emerald">Placeholder text</p>
+        <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Looks fine</span></li></ul>
+      </div><div class="comparison-col">
+        <p class="comparison-heading text-emerald">Real content</p>
+        <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Breaks layout</span></li></ul>
+      </div></div></div>
+              <div class="callout border-emerald">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">A card layout that looked fine with a 2-word product name broke completely once a real 40-character name was dropped in.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-emerald-soft text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-pencil"></use></svg></span><span class="diagram-chip">40-character product name</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">A layout proven against messy real-world content</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-4-hi-fi-validate-the-finished-feel">
+              <h3>4. Hi-fi — Validate the Finished Feel</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-emerald">What happens here:</p>
+                <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Apply final visual design and interaction polish</span></li><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>This is where the color/type rules from UI Fundamentals get applied</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-comparison cols-2"><div class="comparison-col">
+        <p class="comparison-heading text-emerald">Grayscale mid-fi</p>
+        <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Structure only</span></li></ul>
+      </div><div class="comparison-col">
+        <p class="comparison-heading text-emerald">Final hi-fi</p>
+        <ul><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Teal CTA</span></li><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Type scale</span></li><li><svg class="icon text-emerald" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Spacing tokens</span></li></ul>
+      </div></div></div>
+              <div class="callout border-emerald">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">The grayscale mid-fi checkout screen gets its final teal CTA, type scale, and spacing tokens applied.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-emerald-soft text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-pencil"></use></svg></span><span class="diagram-chip">Ready to prototype</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">A screen ready for prototyping and testing</span>
+              </p>
+            </div>
+            <div class="deep-dive-loop reveal" style="--accent:var(--emerald)">
+              <h3 class="text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-repeat"></use></svg> The Fidelity Loop</h3>
+              <p>You don't move lo-fi to mid-fi to hi-fi once — a mid-fi layout failure can send you back to lo-fi structure, and real content discovered in mid-fi can break an idea that looked great in lo-fi.</p>
+            </div>
+            <div class="deep-dive-flow reveal">
+              <h3 class="text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-lightbulb"></use></svg> Simple Real-World Flow</h3>
+              <ol>
+                <li><span class="step-num bg-emerald-soft text-emerald">1</span><span>Run Crazy 8s on a screen (Lo-fi divergence)</span></li>
+              <li><span class="step-num bg-emerald-soft text-emerald">2</span><span>Pick the strongest 1–2 sketches</span></li>
+              <li><span class="step-num bg-emerald-soft text-emerald">3</span><span>Rebuild with real content and component states (Mid-fi)</span></li>
+              <li><span class="step-num bg-emerald-soft text-emerald">4</span><span>Apply final visual design (Hi-fi)</span></li>
+              <li><span class="step-num bg-emerald-soft text-emerald">5</span><span>Move to Prototyping</span></li>
+              </ol>
+            </div>
+            <div class="deep-dive-takeaways reveal" style="background: color-mix(in srgb, var(--emerald) 8%, var(--surface));">
+              <h3 class="text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-trophy"></use></svg> Key Takeaways</h3>
+              <ul>
+                <li><span class="dot bg-emerald"></span><span>Low fidelity protects ideas from premature attachment</span></li>
+              <li><span class="dot bg-emerald"></span><span>Crazy 8s trades perfectionism for volume, on purpose</span></li>
+              <li><span class="dot bg-emerald"></span><span>Real content breaks layouts that placeholder text hides</span></li>
+              <li><span class="dot bg-emerald"></span><span>Never skip straight to hi-fi — it creates false confidence early</span></li>
+              </ul>
+            </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Quick Concept Check</h2>
+          <div class="flip-grid">
+            <button type="button" class="flip-card" aria-pressed="false">
+              <div class="flip-card-inner">
+                <div class="flip-card-front border-emerald-soft">
+                  <p>What is Crazy 8s?</p>
+                  <span class="flip-hint text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-rotate"></use></svg> Click to flip</span>
+                </div>
+                <div class="flip-card-back border-emerald">
+                  <p>Fold a sheet into 8 sections and sketch 8 distinct variations of one screen in 8 minutes — one minute per idea, forcing divergence over perfectionism.</p>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="flip-card" aria-pressed="false">
+              <div class="flip-card-inner">
+                <div class="flip-card-front border-emerald-soft">
+                  <p>Why sketch on paper before Figma?</p>
+                  <span class="flip-hint text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-rotate"></use></svg> Click to flip</span>
+                </div>
+                <div class="flip-card-back border-emerald">
+                  <p>Paper has no snapping, no components, no temptation to polish — it keeps the team focused on structure and flow instead of pixel alignment.</p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">See It In Practice</h2>
+          <div class="tabs">
+            <div class="tabs-list" role="tablist">
+              <button type="button" class="tab-btn active" data-tab="theory" role="tab" aria-selected="true">Theory</button>
+              <button type="button" class="tab-btn" data-tab="example" role="tab" aria-selected="false">Example</button>
+              <button type="button" class="tab-btn" data-tab="exercise" role="tab" aria-selected="false">Exercise</button>
+            </div>
+            <div class="tab-panel active" data-tab="theory">Wireframing is the process of arranging content and interface elements to accomplish a goal, at a level of fidelity matched to the questions you're trying to answer.</div>
+            <div class="tab-panel" data-tab="example">A checkout redesign ran Crazy 8s with five PMs and designers, producing 40 sketches in 8 minutes — three unrelated sketches were later combined into the final flow.</div>
+            <div class="tab-panel" data-tab="exercise">Run a personal Crazy 8s on a screen from an app you use daily — sketch 8 alternate layouts for its home screen in 8 minutes flat.</div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Common Questions</h2>
+          <div class="accordion-group">
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-question">Can I skip lo-fi and go straight to Figma?</span>
+                <span class="chevron"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+              </button>
+              <div class="accordion-panel">
+                <p>You can, but teams that skip it tend to anchor on the first idea that looks good rather than the idea that works best — Figma's polish creates false confidence early.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-question">How detailed should a mid-fi wireframe be?</span>
+                <span class="chevron"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+              </button>
+              <div class="accordion-panel">
+                <p>Real content lengths, real component states (empty, error, loading), and roughly accurate spacing — but still grayscale, no final colors or imagery.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="reveal">
+          <div class="exercise-card" style="--accent:var(--emerald)">
+              <div class="exercise-card-head">
+                <span class="icon-circle bg-emerald-soft text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg></span>
+                <h3>Today's Exercise</h3>
+              </div>
+              <p class="exercise-title">Crazy 8s Sprint</p>
+              <p class="exercise-desc">Fold paper into 8 panels. In exactly 8 minutes, sketch 8 different layout ideas for a single screen (one app home screen, one task). No erasing, no second-guessing.</p>
+              <div class="exercise-grid">
+                <div>
+                  <p class="label"><svg class="icon" aria-hidden="true"><use href="#i-package"></use></svg> Materials</p>
+                  <ul><li>Paper</li><li>Pen or marker</li><li>A timer</li></ul>
+                </div>
+                <div>
+                  <p class="label"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> Time estimate</p>
+                  <p class="value">15 minutes</p>
+                  <p class="deliverable-label">Deliverable</p>
+                  <p class="value">Photo of the completed 8-panel sketch sheet.</p>
+                </div>
+              </div>
+              <button type="button" class="btn bg-emerald" style="color:var(--bg);"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg> Download Template</button>
+            </div>
+        </section>
+      </div>
+
+      <aside class="module-sidebar">
+            <div class="sidebar-block">
+              <p class="sidebar-label"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg> Recommended Reading</p>
+              <div class="reading-item">
+                <p class="title">Sprint</p>
+                <p class="source">Jake Knapp</p>
+              </div>
+              <div class="reading-item">
+                <p class="title">Paper Prototyping</p>
+                <p class="source">Carolyn Snyder</p>
+              </div>
+            </div>
+            <div class="sidebar-block">
+              <p class="sidebar-label"><svg class="icon" aria-hidden="true"><use href="#i-wrench"></use></svg> Tools</p>
+              <div class="tool-pills">
+                <a href="../resources.html" class="tool-pill bg-emerald-soft text-emerald">Figma</a>
+                <a href="../resources.html" class="tool-pill bg-emerald-soft text-emerald">FigJam</a>
+              </div>
+            </div>
+            <div class="sidebar-block">
+              <p class="sidebar-label">Related Modules</p>
+              <a href="design-thinking.html" class="related-module-link">
+                <span class="icon-circle bg-teal-soft text-teal"><svg class="icon" aria-hidden="true"><use href="#i-brain"></use></svg></span>
+                <span>Design Thinking</span>
+              </a>
+              <a href="ui-fundamentals.html" class="related-module-link">
+                <span class="icon-circle bg-violet-soft text-violet"><svg class="icon" aria-hidden="true"><use href="#i-palette"></use></svg></span>
+                <span>UI Fundamentals</span>
+              </a>
+            </div>
+          </aside>
+    </div>
+
+    <div class="container module-nav-grid">
+      <a href="information-architecture.html" class="nav-card" style="--accent:var(--pink)">
+            <span class="icon-circle bg-pink-soft text-pink"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></span>
+            <span class="nav-card-text">
+              <p class="label">Previous Module</p>
+              <p class="title">Information Architecture</p>
+            </span>
+            <span class="icon-circle bg-pink-soft text-pink"><svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg></span>
+          </a>
+      <a href="design-systems.html" class="nav-card next" style="--accent:var(--teal)">
+            
+            <span class="nav-card-text">
+              <p class="label">Next Module</p>
+              <p class="title">Design Systems</p>
+            </span>
+            <span class="icon-circle bg-teal-soft text-teal"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+          </a>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a href="../index.html" class="nav-logo">
+        <span class="nav-logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+        UI/UX Path
+      </a>
+      <ul class="footer-links" style="list-style:none;">
+        <li><a href="../modules.html">Modules</a></li>
+        <li><a href="../schedule.html">Schedule</a></li>
+        <li><a href="../resources.html">Resources</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" aria-label="Community forum"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></a>
+        <a href="#" aria-label="Website"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></a>
+        <a href="#" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 UI/UX Path · Internal Design Training</div>
+  </footer>
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/reveal.js" defer></script>
+  <script src="../js/accordion.js" defer></script>
+  <script src="../js/tabs.js" defer></script>
+  <script src="../js/flip-card.js" defer></script>
+</body>
+</html>

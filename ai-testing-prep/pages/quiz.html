@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interview Q&amp;A — AI Testing Prep</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- One level up from pages/ -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="nav-brand" href="../index.html" style="text-decoration:none;">
+        <span class="dot"></span>
+        AI Testing Prep
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="quiz.html" class="active">Interview Q&amp;A</a></li>
+        <li><a href="project.html">Project Deep Dive</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Main content ───────────────────────────────────── -->
+  <main class="page-wrap">
+    <div class="container">
+
+      <!-- Page header -->
+      <div class="page-header">
+        <h1>Interview Q&amp;A</h1>
+        <p class="subtitle">
+          40 questions across 6 AI testing topics. Click any question to reveal the answer.
+          Mark questions as Known to track your progress.
+        </p>
+      </div>
+
+      <!-- Progress stats -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="num" id="stat-total">40</div>
+          <div class="lbl">Total</div>
+        </div>
+        <div class="stat-box">
+          <div class="num" id="stat-known">0</div>
+          <div class="lbl">Known</div>
+        </div>
+        <div class="stat-box">
+          <div class="num" id="stat-pct">0%</div>
+          <div class="lbl">Progress</div>
+        </div>
+        <div class="stat-box">
+          <div class="num" id="stat-left">40</div>
+          <div class="lbl">To review</div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-wrap">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+
+      <!-- Topic filters -->
+      <div class="section-heading">Filter by topic</div>
+      <div class="filter-row" id="topic-filters">
+        <!-- Built by quiz.js -->
+      </div>
+
+      <!-- Difficulty filters -->
+      <div class="section-heading" style="margin-top: 16px;">Filter by difficulty</div>
+      <div class="filter-row" id="diff-filters">
+        <!-- Built by quiz.js -->
+      </div>
+
+      <!-- Question list -->
+      <div id="q-list" style="margin-top: 20px;">
+        <!-- Built by quiz.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <!--
+    Script load order matters:
+    1. data.js   — defines QUESTIONS (the raw data)
+    2. quiz.js   — reads QUESTIONS and builds the UI
+  -->
+  <script src="../js/data.js"></script>
+  <script src="../js/quiz.js"></script>
+
+  <!--
+    toggleCard() and toggleKnown() are called from onclick attributes
+    in the HTML that quiz.js generates. They need to be on window scope.
+    quiz.js defines them at the top level so they're automatically global.
+  -->
+
+</body>
+</html>

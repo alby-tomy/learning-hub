@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule — UI/UX Path</title>
+  <meta name="description" content="Day-by-day schedule for the 2-week UI/UX bootcamp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/colors.css">
+  <link rel="stylesheet" href="css/schedule.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<defs>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 9l-2 6-6 2 2-6 6-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="14,6 20,12 14,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><line x1="20" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="10,6 4,12 10,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><line x1="6" y1="18" x2="18" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="9,6 18,6 18,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/><line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="8,12.5 11,15.5 16,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="5,9 12,16 19,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="18,3 18,7.5 13.5,7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="6,21 6,16.5 10.5,16.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-package" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 8v9l9 4 9-4V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="12" y1="12" x2="12" y2="21" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="12,7 12,12 16,14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="7,10 12,15 17,10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M3 5c2-1 5-1 7 0v14c-2-1-5-1-7 0V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M21 5c-2-1-5-1-7 0v14c2-1 5-1 7 0V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+<symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 9c-1.7 0-3 1.3-3 3v3h4v-6zm0 0c0-2 1-3.5 3-4M17 9c-1.7 0-3 1.3-3 3v3h4v-6zm0 0c0-2 1-3.5 3-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="3,7 12,13 21,7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-9.3-9C1.4 8 2.7 5 6 5c2 0 3.3 1 4.5 2.5C11.7 6 13 5 15 5c3.3 0 4.6 3 4.6 6-2.3 4.5-9.3 9-9.3 9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12,3 21,8 12,13 3,8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="3,13 12,18 21,13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-package-check" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 8v9l9 4 9-4V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="9,15 11,17 15,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="8" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 12c2.6 0.3 4.5 2 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="13" x2="21" y2="13" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-accessibility" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6" fill="currentColor" stroke="none"/><path d="M4 9h16M12 9v6M12 15l-3 6M12 15l3 6M8 11l4 1 4-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5h3V4zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5h-3V4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 8 0 1 0 0 16c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-3.3-4-6-9-6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7.5" cy="10.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="9" cy="7" r="1.1" fill="currentColor" stroke="none"/><circle cx="13" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-microscope" viewBox="0 0 24 24"><path d="M9 19h8M11 19v-3.5M8 15.5h6a3 3 0 0 0 0-6h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 9.5 13.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="12" y="3.5" width="4" height="2.2" rx="0.6" transform="rotate(35 14 4.6)" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="5" y1="19" x2="17" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><polygon points="3,6 9,4 15,6 21,4 21,18 15,20 9,18 3,20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="9" y1="4" x2="9" y2="18" stroke="currentColor" stroke-width="1.8"/><line x1="15" y1="6" x2="15" y2="20" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="14" y1="7" x2="17" y2="10" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="11" height="18" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="15" y="9" width="6" height="12" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="7" y1="7" x2="9" y2="7" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="11" x2="9" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="11" x2="13" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="15" x2="9" y2="15" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="15" x2="13" y2="15" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 9,22 20,9 13,9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-test-tube" viewBox="0 0 24 24"><path d="M9 3l9 9-4.5 4.5a4 4 0 0 1-5.6 0v0a4 4 0 0 1 0-5.6L13 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="7" y1="13" x2="11" y2="13" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="11" y1="18.5" x2="13" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-3 2-3-2c-1-1-2-3-2-5 0-4 2-8 5-10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9" r="1.4" fill="currentColor" stroke="none"/><path d="M9 17l-2.5 3M15 17l2.5 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M7 22l-4-4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 13v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.3.2.5.6.5 1V16h6v-1.1c0-.4.2-.8.5-1A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 6H5a2 2 0 0 0 0 4h2.3M16 6h3a2 2 0 0 1 0 4h-2.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 19h6M12 14v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><polyline points="9,5 16,12 9,19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+  <a href="index.html#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header glass">
+    <nav class="navbar container">
+      <div class="nav-left">
+        <button type="button" class="nav-back" aria-label="Go back"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></button>
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+          UI/UX Path
+        </a>
+      </div>
+      <ul class="nav-links" style="list-style:none; display:flex;">
+        <a href="index.html">Home</a>
+        <a href="modules.html">Modules</a>
+        <a href="schedule.html" aria-current="page">Schedule</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </ul>
+      <a href="modules.html" class="nav-cta btn btn-primary btn-sm">Start Learning</a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span class="icon-menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></span>
+        <span class="icon-close" style="display:none"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></span>
+      </button>
+    </nav>
+    <div class="nav-mobile-panel">
+      <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="modules.html">Modules</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </header>
+  <main id="main-content">
+    <div class="container page-head reveal">
+      <p class="eyebrow text-teal">Day-by-day</p>
+      <h1>Two weeks, fourteen focused days</h1>
+      <p>Tap any day to see its full agenda and time breakdown — theory, workshop, peer review, and Q&amp;A.</p>
+    </div>
+
+    <div class="container schedule-layout">
+      <section>
+        <div class="section-heading reveal">
+          <p class="eyebrow text-teal">Week 1</p>
+          <h2 class="text-teal">Foundations</h2>
+        </div>
+        <div style="margin-top:24px;">
+          <div class="day-card reveal" data-delay="0.00">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-teal-soft text-teal">
+                <span class="day-of">Day</span>
+                <span class="day-num">1</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Monday</span>
+                <span class="module-title">Design Thinking</span>
+                <span class="focus">Kickoff + Empathize stage</span>
+              </span>
+              <span class="chevron text-teal"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Empathy Interviews: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Empathy Interviews · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/design-thinking.html" class="day-card-link text-teal">Open M01 — Design Thinking →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.04">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-teal-soft text-teal">
+                <span class="day-of">Day</span>
+                <span class="day-num">2</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Tuesday</span>
+                <span class="module-title">Design Thinking</span>
+                <span class="focus">Define + Ideate stages</span>
+              </span>
+              <span class="chevron text-teal"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="POV & Ideation Lab: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>POV & Ideation Lab · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/design-thinking.html" class="day-card-link text-teal">Open M01 — Design Thinking →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.08">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-violet-soft text-violet">
+                <span class="day-of">Day</span>
+                <span class="day-num">3</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Wednesday</span>
+                <span class="module-title">UI Fundamentals</span>
+                <span class="focus">Color theory + type scale</span>
+              </span>
+              <span class="chevron text-violet"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Type Scale Build: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Type Scale Build · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/ui-fundamentals.html" class="day-card-link text-violet">Open M02 — UI Fundamentals →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.12">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-violet-soft text-violet">
+                <span class="day-of">Day</span>
+                <span class="day-num">4</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Thursday</span>
+                <span class="module-title">UI Fundamentals</span>
+                <span class="focus">Visual hierarchy critique</span>
+              </span>
+              <span class="chevron text-violet"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Grayscale Rebuild: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Grayscale Rebuild · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/ui-fundamentals.html" class="day-card-link text-violet">Open M02 — UI Fundamentals →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.16">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-amber-soft text-amber">
+                <span class="day-of">Day</span>
+                <span class="day-num">5</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Friday</span>
+                <span class="module-title">User Research</span>
+                <span class="focus">Interviews + persona synthesis</span>
+              </span>
+              <span class="chevron text-amber"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Micro Interviews: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Micro Interviews · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/user-research.html" class="day-card-link text-amber">Open M03 — User Research →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.20">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-pink-soft text-pink">
+                <span class="day-of">Day</span>
+                <span class="day-num">6</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Saturday</span>
+                <span class="module-title">Information Architecture</span>
+                <span class="focus">Sitemaps + card sorting</span>
+              </span>
+              <span class="chevron text-pink"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Card Sort Session: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Card Sort Session · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/information-architecture.html" class="day-card-link text-pink">Open M04 — Information Architecture →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.24">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-emerald-soft text-emerald">
+                <span class="day-of">Day</span>
+                <span class="day-num">7</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Sunday</span>
+                <span class="module-title">Wireframing</span>
+                <span class="focus">Crazy 8s + week 1 showcase</span>
+              </span>
+              <span class="chevron text-emerald"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Crazy 8s Sprint: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Crazy 8s Sprint · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/wireframing.html" class="day-card-link text-emerald">Open M05 — Wireframing →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading reveal">
+          <p class="eyebrow text-violet">Week 2</p>
+          <h2 class="text-violet">Application</h2>
+        </div>
+        <div style="margin-top:24px;">
+          <div class="day-card reveal" data-delay="0.00">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-teal-soft text-teal">
+                <span class="day-of">Day</span>
+                <span class="day-num">8</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Monday</span>
+                <span class="module-title">Design Systems</span>
+                <span class="focus">Tokens + component anatomy</span>
+              </span>
+              <span class="chevron text-teal"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Token Audit: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Token Audit · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/design-systems.html" class="day-card-link text-teal">Open M06 — Design Systems →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.04">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-teal-soft text-teal">
+                <span class="day-of">Day</span>
+                <span class="day-num">9</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Tuesday</span>
+                <span class="module-title">Design Systems</span>
+                <span class="focus">Variants + Figma libraries</span>
+              </span>
+              <span class="chevron text-teal"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Component Build: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Component Build · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/design-systems.html" class="day-card-link text-teal">Open M06 — Design Systems →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.08">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-violet-soft text-violet">
+                <span class="day-of">Day</span>
+                <span class="day-num">10</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Wednesday</span>
+                <span class="module-title">Prototyping</span>
+                <span class="focus">Flows + Smart Animate</span>
+              </span>
+              <span class="chevron text-violet"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Clickable Flow Build: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Clickable Flow Build · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/prototyping.html" class="day-card-link text-violet">Open M07 — Prototyping →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.12">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-violet-soft text-violet">
+                <span class="day-of">Day</span>
+                <span class="day-num">11</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Thursday</span>
+                <span class="module-title">Prototyping</span>
+                <span class="focus">Micro-interactions polish</span>
+              </span>
+              <span class="chevron text-violet"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Motion Lab: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Motion Lab · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/prototyping.html" class="day-card-link text-violet">Open M07 — Prototyping →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.16">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-orange-soft text-orange">
+                <span class="day-of">Day</span>
+                <span class="day-num">12</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Friday</span>
+                <span class="module-title">Usability Testing</span>
+                <span class="focus">Moderated test sessions</span>
+              </span>
+              <span class="chevron text-orange"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Mini Moderated Tests: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Mini Moderated Tests · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/usability-testing.html" class="day-card-link text-orange">Open M08 — Usability Testing →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.20">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-pink-soft text-pink">
+                <span class="day-of">Day</span>
+                <span class="day-num">13</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Saturday</span>
+                <span class="module-title">Mobile & Responsive</span>
+                <span class="focus">Breakpoints + touch targets</span>
+              </span>
+              <span class="chevron text-pink"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Breakpoint Reflow: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Breakpoint Reflow · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/mobile-responsive.html" class="day-card-link text-pink">Open M09 — Mobile & Responsive →</a>
+              </div>
+            </div>
+          </div>
+          <div class="day-card reveal" data-delay="0.24">
+            <button type="button" class="day-card-trigger" aria-expanded="false">
+              <span class="day-box bg-amber-soft text-amber">
+                <span class="day-of">Day</span>
+                <span class="day-num">14</span>
+              </span>
+              <span class="day-info">
+                <span class="weekday">Sunday</span>
+                <span class="module-title">Handoff & Portfolio</span>
+                <span class="focus">Dev Mode handoff + Demo Day</span>
+              </span>
+              <span class="chevron text-amber"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+            </button>
+            <div class="day-card-panel">
+              <div class="day-card-panel-inner">
+                <div class="timeline-bar"><span style="width:27.27%; background:var(--violet);" title="Morning Theory: 9:00 – 10:30"></span><span style="width:36.36%; background:var(--teal);" title="Capstone Demo Day: 10:30 – 12:30"></span><span style="width:18.18%; background:var(--gray);" title="Lunch: 12:30 – 13:30"></span><span style="width:9.09%; background:var(--amber);" title="Peer Review: 13:30 – 14:00"></span><span style="width:9.09%; background:var(--pink);" title="Q&A: 14:00 – 14:30"></span></div>
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span>Morning Theory · 9:00 – 10:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Capstone Demo Day · 10:30 – 12:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Lunch · 12:30 – 13:30</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Peer Review · 13:30 – 14:00</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Q&A · 14:00 – 14:30</span>
+            </div>
+                <a href="modules/handoff-portfolio.html" class="day-card-link text-amber">Open M10 — Handoff & Portfolio →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+        UI/UX Path
+      </a>
+      <ul class="footer-links" style="list-style:none;">
+        <li><a href="modules.html">Modules</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" aria-label="Community forum"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></a>
+        <a href="#" aria-label="Website"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></a>
+        <a href="#" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 UI/UX Path · Internal Design Training</div>
+  </footer>
+  <script src="js/nav.js" defer></script>
+  <script src="js/reveal.js" defer></script>
+  <script src="js/day-card.js" defer></script>
+</body>
+</html>

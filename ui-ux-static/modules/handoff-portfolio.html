@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handoff &amp; Portfolio — UI/UX Path</title>
+  <meta name="description" content="Prepare developer-ready specs in Figma Dev Mode and package your project into a compelling case study.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/colors.css">
+  <link rel="stylesheet" href="../css/module-detail.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<defs>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 9l-2 6-6 2 2-6 6-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="14,6 20,12 14,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><line x1="20" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="10,6 4,12 10,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><line x1="6" y1="18" x2="18" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="9,6 18,6 18,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/><line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="8,12.5 11,15.5 16,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="5,9 12,16 19,9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="18,3 18,7.5 13.5,7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="6,21 6,16.5 10.5,16.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-package" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 8v9l9 4 9-4V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="12" y1="12" x2="12" y2="21" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="12,7 12,12 16,14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="7,10 12,15 17,10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M3 5c2-1 5-1 7 0v14c-2-1-5-1-7 0V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M21 5c-2-1-5-1-7 0v14c2-1 5-1 7 0V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+<symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 9c-1.7 0-3 1.3-3 3v3h4v-6zm0 0c0-2 1-3.5 3-4M17 9c-1.7 0-3 1.3-3 3v3h4v-6zm0 0c0-2 1-3.5 3-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="3,7 12,13 21,7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-9.3-9C1.4 8 2.7 5 6 5c2 0 3.3 1 4.5 2.5C11.7 6 13 5 15 5c3.3 0 4.6 3 4.6 6-2.3 4.5-9.3 9-9.3 9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12,3 21,8 12,13 3,8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="3,13 12,18 21,13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="i-package-check" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 8v9l9 4 9-4V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><polyline points="9,15 11,17 15,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="8" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 12c2.6 0.3 4.5 2 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="13" x2="21" y2="13" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="i-accessibility" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6" fill="currentColor" stroke="none"/><path d="M4 9h16M12 9v6M12 15l-3 6M12 15l3 6M8 11l4 1 4-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5h3V4zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5h-3V4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 8 0 1 0 0 16c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-3.3-4-6-9-6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7.5" cy="10.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="9" cy="7" r="1.1" fill="currentColor" stroke="none"/><circle cx="13" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-microscope" viewBox="0 0 24 24"><path d="M9 19h8M11 19v-3.5M8 15.5h6a3 3 0 0 0 0-6h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 9.5 13.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="12" y="3.5" width="4" height="2.2" rx="0.6" transform="rotate(35 14 4.6)" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="5" y1="19" x2="17" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><polygon points="3,6 9,4 15,6 21,4 21,18 15,20 9,18 3,20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="9" y1="4" x2="9" y2="18" stroke="currentColor" stroke-width="1.8"/><line x1="15" y1="6" x2="15" y2="20" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="14" y1="7" x2="17" y2="10" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="11" height="18" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="15" y="9" width="6" height="12" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="7" y1="7" x2="9" y2="7" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="11" x2="9" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="11" x2="13" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="15" x2="9" y2="15" stroke="currentColor" stroke-width="1.6"/><line x1="11" y1="15" x2="13" y2="15" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 9,22 20,9 13,9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-test-tube" viewBox="0 0 24 24"><path d="M9 3l9 9-4.5 4.5a4 4 0 0 1-5.6 0v0a4 4 0 0 1 0-5.6L13 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="7" y1="13" x2="11" y2="13" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="11" y1="18.5" x2="13" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-3 2-3-2c-1-1-2-3-2-5 0-4 2-8 5-10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9" r="1.4" fill="currentColor" stroke="none"/><path d="M9 17l-2.5 3M15 17l2.5 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M7 22l-4-4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 13v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.3.2.5.6.5 1V16h6v-1.1c0-.4.2-.8.5-1A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 6H5a2 2 0 0 0 0 4h2.3M16 6h3a2 2 0 0 1 0 4h-2.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 19h6M12 14v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><polyline points="9,5 16,12 9,19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+  <a href="../index.html#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header glass">
+    <nav class="navbar container">
+      <div class="nav-left">
+        <button type="button" class="nav-back" aria-label="Go back"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></button>
+        <a href="../index.html" class="nav-logo">
+          <span class="nav-logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+          UI/UX Path
+        </a>
+      </div>
+      <ul class="nav-links" style="list-style:none; display:flex;">
+        <a href="../index.html">Home</a>
+        <a href="../modules.html" aria-current="page">Modules</a>
+        <a href="../schedule.html">Schedule</a>
+        <a href="../resources.html">Resources</a>
+        <a href="../about.html">About</a>
+      </ul>
+      <a href="../modules.html" class="nav-cta btn btn-primary btn-sm">Start Learning</a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span class="icon-menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></span>
+        <span class="icon-close" style="display:none"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></span>
+      </button>
+    </nav>
+    <div class="nav-mobile-panel">
+      <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../modules.html">Modules</a></li>
+          <li><a href="../schedule.html">Schedule</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="module-hero">
+      <div class="module-hero-glow" style="background: radial-gradient(60% 100% at 30% 0%, var(--amber), transparent 70%);"></div>
+      <div class="container module-hero-inner reveal">
+        <div class="module-hero-badges">
+          <span class="module-hero-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rocket"></use></svg></span>
+          <span class="badge bg-amber-soft text-amber">Module M10</span>
+          <span class="badge bg-amber-soft text-amber">Day 13–14</span>
+        </div>
+        <h1>Handoff & Portfolio</h1>
+        <p class="accent-underline bg-amber"></p>
+        <p class="tagline">Ship the work, then tell its story.</p>
+      </div>
+    </section>
+
+    <div class="container module-detail-layout">
+      <div class="module-main">
+        <section>
+          <h2 class="reveal">Learning Objectives</h2>
+          <ul class="objectives-grid">
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Prepare a Figma file for handoff using Dev Mode annotations</span></li>
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Document spacing, color, and typography specs developers can copy directly</span></li>
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Flag interactive states (hover, focus, error) explicitly for engineering</span></li>
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Structure a portfolio case study around problem, process, and outcome</span></li>
+            <li class="objective-item reveal"><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Edit a 2-week project down to its most defensible decisions</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="reveal">Core Concepts</h2>
+          <div class="content-block reveal">
+              <h3>Handoff is a conversation, not a file drop</h3>
+              <p>Dev Mode reduces guesswork, but it doesn't replace a walkthrough. The best handoffs flag intent and edge cases a spec sheet can't capture on its own.</p>
+              
+            </div>
+            <div class="content-block reveal">
+              <h3>A case study isn't a portfolio of screenshots</h3>
+              <p>Hiring managers and clients want to see how you think, not just what shipped. Structure the narrative around decisions, not deliverables.</p>
+              <ul><li><span class="dot bg-amber"></span>Problem — what was broken, for whom, and why it mattered</li><li><span class="dot bg-amber"></span>Process — research, iterations, and what you ruled out and why</li><li><span class="dot bg-amber"></span>Outcome — what changed, ideally with a measurable result</li><li><span class="dot bg-amber"></span>Reflection — what you'd do differently with more time</li></ul>
+            </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Concept Deep Dive</h2>
+          <p class="deep-dive-intro reveal">This module is about shipping the work, then telling its story — to engineering, and to your future employer.</p>
+            <nav class="deep-dive-toc reveal" aria-label="Jump to a topic">
+              <p class="toc-label text-amber"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg> Jump to a topic</p>
+              <ul>
+                <li><a href="#topic-1-figma-dev-mode-specs-developers-can-trust" class="text-amber">1. Figma Dev Mode</a></li>
+              <li><a href="#topic-2-documenting-states-what-dev-mode-can-t-capture" class="text-amber">2. Documenting States</a></li>
+              <li><a href="#topic-3-case-study-structure-problem-process-outcome-reflection" class="text-amber">3. Case Study Structure</a></li>
+              <li><a href="#topic-4-editing-down-to-what-s-defensible" class="text-amber">4. Editing Down to What's Defensible</a></li>
+              </ul>
+            </nav>
+            <div class="deep-dive-section reveal" id="topic-1-figma-dev-mode-specs-developers-can-trust">
+              <h3>1. Figma Dev Mode — Specs Developers Can Trust</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">What happens here:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Expose exact spacing, color, and typography values</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Generate CSS/iOS/Android code snippets directly from the file</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-flow"><span class="flow-step bg-amber-soft text-amber">Design</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Dev Mode</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Code snippet</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Developer</span></div></div>
+              <div class="callout border-amber">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">A developer copies the exact padding and hex values from Dev Mode instead of estimating them from a screenshot.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rocket"></use></svg></span><span class="diagram-chip">Exact padding + hex</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">Developers copy real values instead of guessing from a screenshot</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-2-documenting-states-what-dev-mode-can-t-capture">
+              <h3>2. Documenting States — What Dev Mode Can't Capture</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">What happens here:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Explicitly flag hover, focus, error, and empty states</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Annotate edge cases a spec sheet alone won't show</span></li></ul>
+              </div>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">Key rule:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Handoff is a conversation, not a file drop</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-comparison cols-4"><div class="comparison-col">
+        <p class="comparison-heading text-amber">Hover</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Subtle highlight</span></li></ul>
+      </div><div class="comparison-col">
+        <p class="comparison-heading text-amber">Focus</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Visible outline</span></li></ul>
+      </div><div class="comparison-col">
+        <p class="comparison-heading text-amber">Error</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Red border + message</span></li></ul>
+      </div><div class="comparison-col">
+        <p class="comparison-heading text-amber">Empty</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Placeholder state</span></li></ul>
+      </div></div></div>
+              <div class="callout border-amber">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">An annotation flags that the "Save" button should disable and show a spinner during the API call — a state Dev Mode alone wouldn't surface.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rocket"></use></svg></span><span class="diagram-chip">Save button</span><span class="diagram-chip">Spinner state</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">Fewer "wait, what happens when...?" Slack messages mid-sprint</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-3-case-study-structure-problem-process-outcome-reflection">
+              <h3>3. Case Study Structure — Problem → Process → Outcome → Reflection</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">The four parts:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Problem — what was broken, for whom, and why it mattered</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Process — research, iterations, what you ruled out and why</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Outcome — what changed, ideally with a measurable result</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Reflection — what you'd do differently with more time</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-flow"><span class="flow-step bg-amber-soft text-amber">Problem</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Process</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Outcome</span><span class="flow-connector text-amber"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span><span class="flow-step bg-amber-soft text-amber">Reflection</span></div></div>
+              <div class="callout border-amber">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">A case study led with "23% cart abandonment" — the data point that motivated the project — instead of opening with the final polished screen. Reviewers said it "read like a business case," not a gallery.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rocket"></use></svg></span><span class="diagram-chip">23% cart abandonment</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">A narrative that shows how you think, not just what shipped</span>
+              </p>
+            </div>
+            <div class="deep-dive-section reveal" id="topic-4-editing-down-to-what-s-defensible">
+              <h3>4. Editing Down to What's Defensible</h3>
+              <div class="deep-dive-group">
+                <p class="group-label text-amber">What happens here:</p>
+                <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Two to four deep case studies beat ten shallow ones</span></li><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Cut anything you can't speak to confidently in an interview</span></li></ul>
+              </div>
+              <div class="deep-dive-visual"><div class="diagram-comparison cols-2"><div class="comparison-col">
+        <p class="comparison-heading text-amber">7 shallow projects</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Thin coverage</span></li></ul>
+      </div><div class="comparison-col">
+        <p class="comparison-heading text-amber">3 deep projects</p>
+        <ul><li><svg class="icon text-amber" aria-hidden="true"><use href="#i-check-circle"></use></svg><span>Answers follow-ups</span></li></ul>
+      </div></div></div>
+              <div class="callout border-amber">
+                <div>
+                  <p class="title">Example</p>
+                  <div class="body">A portfolio went from seven thin projects to three deep ones — every interviewer follow-up question could be answered in detail.</div>
+                  <div class="diagram-chips"><span class="chips-icon bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rocket"></use></svg></span><span class="diagram-chip">7 → 3 projects</span></div>
+                </div>
+              </div>
+              <p class="deep-dive-output">
+                <span aria-hidden="true">👉 </span><strong>Output:</strong>
+                <span class="muted-part">A portfolio that holds up under follow-up questions</span>
+              </p>
+            </div>
+            <div class="deep-dive-loop reveal" style="--accent:var(--amber)">
+              <h3 class="text-amber"><svg class="icon" aria-hidden="true"><use href="#i-repeat"></use></svg> The Handoff Loop</h3>
+              <p>Handoff isn't the final step in isolation — engineering questions during build often reveal gaps to fix in the next project's Define stage, and a case study draft often exposes decisions you never actually justified.</p>
+            </div>
+            <div class="deep-dive-flow reveal">
+              <h3 class="text-amber"><svg class="icon" aria-hidden="true"><use href="#i-lightbulb"></use></svg> Simple Real-World Flow</h3>
+              <ol>
+                <li><span class="step-num bg-amber-soft text-amber">1</span><span>Annotate your Figma file in Dev Mode for one full flow (Dev Mode)</span></li>
+              <li><span class="step-num bg-amber-soft text-amber">2</span><span>Flag every interactive state explicitly (Documenting States)</span></li>
+              <li><span class="step-num bg-amber-soft text-amber">3</span><span>Draft a 4-sentence outline: Problem / Process / Outcome / Reflection (Case Study Structure)</span></li>
+              <li><span class="step-num bg-amber-soft text-amber">4</span><span>Cut anything that doesn't hold up to a follow-up question (Editing Down)</span></li>
+              <li><span class="step-num bg-amber-soft text-amber">5</span><span>Ship it — capstone demo day</span></li>
+              </ol>
+            </div>
+            <div class="deep-dive-takeaways reveal" style="background: color-mix(in srgb, var(--amber) 8%, var(--surface));">
+              <h3 class="text-amber"><svg class="icon" aria-hidden="true"><use href="#i-trophy"></use></svg> Key Takeaways</h3>
+              <ul>
+                <li><span class="dot bg-amber"></span><span>Dev Mode reduces guesswork but doesn't replace a walkthrough</span></li>
+              <li><span class="dot bg-amber"></span><span>Document edge cases a spec sheet can't show</span></li>
+              <li><span class="dot bg-amber"></span><span>A case study should show reasoning, not just the final screen</span></li>
+              <li><span class="dot bg-amber"></span><span>Depth beats volume — two strong projects outperform ten shallow ones</span></li>
+              </ul>
+            </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Quick Concept Check</h2>
+          <div class="flip-grid">
+            <button type="button" class="flip-card" aria-pressed="false">
+              <div class="flip-card-inner">
+                <div class="flip-card-front border-amber-soft">
+                  <p>What is Figma Dev Mode?</p>
+                  <span class="flip-hint text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rotate"></use></svg> Click to flip</span>
+                </div>
+                <div class="flip-card-back border-amber">
+                  <p>A dedicated mode that exposes exact spacing, color, and typography values, plus generated CSS/iOS/Android code snippets, for developers consuming a design file.</p>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="flip-card" aria-pressed="false">
+              <div class="flip-card-inner">
+                <div class="flip-card-front border-amber-soft">
+                  <p>What's the biggest portfolio mistake?</p>
+                  <span class="flip-hint text-amber"><svg class="icon" aria-hidden="true"><use href="#i-rotate"></use></svg> Click to flip</span>
+                </div>
+                <div class="flip-card-back border-amber">
+                  <p>Showing only the polished final screen. Without process and reasoning, reviewers can't tell if you made the decisions or just inherited a finished design.</p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">See It In Practice</h2>
+          <div class="tabs">
+            <div class="tabs-list" role="tablist">
+              <button type="button" class="tab-btn active" data-tab="theory" role="tab" aria-selected="true">Theory</button>
+              <button type="button" class="tab-btn" data-tab="example" role="tab" aria-selected="false">Example</button>
+              <button type="button" class="tab-btn" data-tab="exercise" role="tab" aria-selected="false">Exercise</button>
+            </div>
+            <div class="tab-panel active" data-tab="theory">Design handoff is the structured transfer of design intent, specs, and assets to engineering — and a portfolio case study is the structured transfer of your reasoning to a future employer or client.</div>
+            <div class="tab-panel" data-tab="example">A designer's case study on a checkout redesign led with the 23% cart-abandonment data point that motivated the project, not the final screen — reviewers said it was the first portfolio piece that 'read like a business case', not a gallery.</div>
+            <div class="tab-panel" data-tab="exercise">Pick any module project completed this week. Write a 4-sentence outline (Problem / Process / Outcome / Reflection) that could anchor a future case study.</div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="reveal">Common Questions</h2>
+          <div class="accordion-group">
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-question">How many projects should a junior portfolio have?</span>
+                <span class="chevron"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+              </button>
+              <div class="accordion-panel">
+                <p>Two to four deep case studies consistently outperform ten shallow ones — depth of reasoning matters more than volume of screens.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span class="accordion-question">Should I include work I'm not fully happy with?</span>
+                <span class="chevron"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+              </button>
+              <div class="accordion-panel">
+                <p>Only if you can speak honestly about what you'd change — a thoughtful reflection on a flawed project often reads stronger than a flawless one with no friction at all.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="reveal">
+          <div class="exercise-card" style="--accent:var(--amber)">
+              <div class="exercise-card-head">
+                <span class="icon-circle bg-amber-soft text-amber"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg></span>
+                <h3>Today's Exercise</h3>
+              </div>
+              <p class="exercise-title">Capstone Handoff & Case Study Outline</p>
+              <p class="exercise-desc">Prepare your capstone Figma file with Dev Mode annotations for at least one full flow, then draft a one-page case study outline using the Problem/Process/Outcome/Reflection structure.</p>
+              <div class="exercise-grid">
+                <div>
+                  <p class="label"><svg class="icon" aria-hidden="true"><use href="#i-package"></use></svg> Materials</p>
+                  <ul><li>Your capstone Figma file</li><li>A doc for the case study outline</li></ul>
+                </div>
+                <div>
+                  <p class="label"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> Time estimate</p>
+                  <p class="value">60 minutes</p>
+                  <p class="deliverable-label">Deliverable</p>
+                  <p class="value">Annotated Figma file + one-page case study outline.</p>
+                </div>
+              </div>
+              <button type="button" class="btn bg-amber" style="color:var(--bg);"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg> Download Template</button>
+            </div>
+        </section>
+      </div>
+
+      <aside class="module-sidebar">
+            <div class="sidebar-block">
+              <p class="sidebar-label"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg> Recommended Reading</p>
+              <div class="reading-item">
+                <p class="title">Articulating Design Decisions</p>
+                <p class="source">Tom Greever</p>
+              </div>
+              <div class="reading-item">
+                <p class="title">Dev Mode Documentation</p>
+                <p class="source">Figma</p>
+              </div>
+            </div>
+            <div class="sidebar-block">
+              <p class="sidebar-label"><svg class="icon" aria-hidden="true"><use href="#i-wrench"></use></svg> Tools</p>
+              <div class="tool-pills">
+                <a href="../resources.html" class="tool-pill bg-amber-soft text-amber">Figma</a>
+                <a href="../resources.html" class="tool-pill bg-amber-soft text-amber">FigJam</a>
+              </div>
+            </div>
+            <div class="sidebar-block">
+              <p class="sidebar-label">Related Modules</p>
+              <a href="design-systems.html" class="related-module-link">
+                <span class="icon-circle bg-teal-soft text-teal"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+                <span>Design Systems</span>
+              </a>
+              <a href="prototyping.html" class="related-module-link">
+                <span class="icon-circle bg-violet-soft text-violet"><svg class="icon" aria-hidden="true"><use href="#i-zap"></use></svg></span>
+                <span>Prototyping</span>
+              </a>
+            </div>
+          </aside>
+    </div>
+
+    <div class="container module-nav-grid">
+      <a href="mobile-responsive.html" class="nav-card" style="--accent:var(--pink)">
+            <span class="icon-circle bg-pink-soft text-pink"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></span>
+            <span class="nav-card-text">
+              <p class="label">Previous Module</p>
+              <p class="title">Mobile & Responsive</p>
+            </span>
+            <span class="icon-circle bg-pink-soft text-pink"><svg class="icon" aria-hidden="true"><use href="#i-smartphone"></use></svg></span>
+          </a>
+      <div></div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a href="../index.html" class="nav-logo">
+        <span class="nav-logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+        UI/UX Path
+      </a>
+      <ul class="footer-links" style="list-style:none;">
+        <li><a href="../modules.html">Modules</a></li>
+        <li><a href="../schedule.html">Schedule</a></li>
+        <li><a href="../resources.html">Resources</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" aria-label="Community forum"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></a>
+        <a href="#" aria-label="Website"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></a>
+        <a href="#" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 UI/UX Path · Internal Design Training</div>
+  </footer>
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/reveal.js" defer></script>
+  <script src="../js/accordion.js" defer></script>
+  <script src="../js/tabs.js" defer></script>
+  <script src="../js/flip-card.js" defer></script>
+</body>
+</html>

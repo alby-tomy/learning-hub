@@ -1,0 +1,43 @@
+/* Accent color utilities — generated per token to avoid a build step */
+
+.text-teal { color: var(--teal); }
+.text-violet { color: var(--violet); }
+.text-amber { color: var(--amber); }
+.text-pink { color: var(--pink); }
+.text-emerald { color: var(--emerald); }
+.text-orange { color: var(--orange); }
+
+.bg-teal { background: var(--teal); }
+.bg-violet { background: var(--violet); }
+.bg-amber { background: var(--amber); }
+.bg-pink { background: var(--pink); }
+.bg-emerald { background: var(--emerald); }
+.bg-orange { background: var(--orange); }
+
+.bg-teal-soft { background: rgba(0, 191, 165, 0.1); }
+.bg-violet-soft { background: rgba(124, 58, 237, 0.1); }
+.bg-amber-soft { background: rgba(245, 158, 11, 0.1); }
+.bg-pink-soft { background: rgba(236, 72, 153, 0.1); }
+.bg-emerald-soft { background: rgba(16, 185, 129, 0.1); }
+.bg-orange-soft { background: rgba(249, 115, 22, 0.1); }
+
+.border-teal { border-color: var(--teal); }
+.border-violet { border-color: var(--violet); }
+.border-amber { border-color: var(--amber); }
+.border-pink { border-color: var(--pink); }
+.border-emerald { border-color: var(--emerald); }
+.border-orange { border-color: var(--orange); }
+
+.border-teal-soft { border-color: rgba(0, 191, 165, 0.3); }
+.border-violet-soft { border-color: rgba(124, 58, 237, 0.3); }
+.border-amber-soft { border-color: rgba(245, 158, 11, 0.3); }
+.border-pink-soft { border-color: rgba(236, 72, 153, 0.3); }
+.border-emerald-soft { border-color: rgba(16, 185, 129, 0.3); }
+.border-orange-soft { border-color: rgba(249, 115, 22, 0.3); }
+
+.accent-teal { --accent: var(--teal); }
+.accent-violet { --accent: var(--violet); }
+.accent-amber { --accent: var(--amber); }
+.accent-pink { --accent: var(--pink); }
+.accent-emerald { --accent: var(--emerald); }
+.accent-orange { --accent: var(--orange); }

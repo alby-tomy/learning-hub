@@ -1,0 +1,130 @@
+/* Schedule page: two-week grid, day cards, timeline bars */
+
+.schedule-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding-bottom: 96px;
+}
+@media (min-width: 1024px) {
+  .schedule-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.day-card {
+  border-radius: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.day-card-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  text-align: left;
+}
+.day-card-trigger .day-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.day-card-trigger .day-box .day-of {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1;
+}
+.day-card-trigger .day-box .day-num {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 2px;
+}
+.day-card-trigger .day-info {
+  flex: 1;
+  min-width: 0;
+}
+.day-card-trigger .day-info .weekday {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.day-card-trigger .day-info .module-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.day-card-trigger .day-info .focus {
+  font-size: 0.75rem;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.day-card-trigger .chevron {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.day-card.open .chevron {
+  transform: rotate(180deg);
+}
+
+.day-card-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.day-card-panel-inner {
+  padding: 0 20px 20px;
+}
+
+.timeline-bar {
+  display: flex;
+  height: 12px;
+  width: 100%;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.timeline-bar span {
+  height: 100%;
+}
+
+.timeline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  margin-top: 12px;
+}
+.timeline-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.timeline-legend .legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.day-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 16px;
+}

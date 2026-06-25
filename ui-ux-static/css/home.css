@@ -1,0 +1,275 @@
+/* Home page: hero, course preview, why-course, testimonials */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  padding: 80px 0 96px;
+}
+@media (min-width: 640px) {
+  .hero {
+    padding: 112px 0 128px;
+  }
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-particle {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(0, 191, 165, 0.4);
+}
+
+.hero-shape {
+  display: none;
+  position: absolute;
+  border-radius: 24px;
+  border: 1px solid var(--border-soft);
+  background: rgba(30, 49, 72, 0.6);
+  backdrop-filter: blur(4px);
+}
+@media (min-width: 1024px) {
+  .hero-shape {
+    display: block;
+  }
+}
+.hero-shape-1 {
+  top: 96px;
+  right: 8%;
+  width: 160px;
+  height: 288px;
+  border-color: rgba(124, 58, 237, 0.3);
+  --rot: -6deg;
+}
+.hero-shape-2 {
+  top: 224px;
+  right: 22%;
+  width: 224px;
+  height: 160px;
+  border-color: rgba(0, 191, 165, 0.3);
+  --rot: 4deg;
+  animation-delay: 1.2s;
+}
+.hero-shape-3 {
+  bottom: 40px;
+  right: 4%;
+  width: 256px;
+  height: 176px;
+  border-color: rgba(236, 72, 153, 0.3);
+  --rot: 2deg;
+  animation-delay: 2.4s;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--teal);
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+@media (min-width: 640px) {
+  .hero h1 {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-sub {
+  font-size: 1.125rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 1;
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 720px;
+}
+@media (min-width: 640px) {
+  .hero-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.hero-stat .stat-value {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  color: var(--teal);
+}
+@media (min-width: 640px) {
+  .hero-stat .stat-value {
+    font-size: 2.25rem;
+  }
+}
+.hero-stat .stat-label {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Course preview */
+.section {
+  padding: 80px 0;
+}
+@media (min-width: 640px) {
+  .section {
+    padding: 112px 0;
+  }
+}
+.section.alt {
+  background: var(--bg-deep);
+}
+
+.section-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--teal);
+  transition: gap 0.2s;
+}
+.view-all-link:hover {
+  gap: 10px;
+}
+
+.module-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  margin: 0 -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  scroll-snap-type: x mandatory;
+}
+.module-scroll .module-card {
+  min-width: 300px;
+  scroll-snap-align: start;
+}
+@media (min-width: 640px) {
+  .module-scroll {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+}
+@media (min-width: 1024px) {
+  .module-scroll {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Why course feature grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 640px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Testimonials */
+.testimonial-wrap {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 200px;
+}
+.testimonial-card {
+  display: none;
+  border-radius: 20px;
+  padding: 32px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.testimonial-card.active {
+  display: flex;
+}
+.testimonial-card .quote-icon {
+  color: var(--pink);
+  margin-bottom: 16px;
+}
+.testimonial-card p.quote {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.testimonial-card .by {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.testimonial-card .by strong {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.testimonial-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.testimonial-dots button {
+  height: 6px;
+  width: 12px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  transition: width 0.2s, background 0.2s;
+}
+.testimonial-dots button.active {
+  width: 32px;
+  background: var(--pink);
+}

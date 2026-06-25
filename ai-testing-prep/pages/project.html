@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Deep Dive — AI Testing Prep</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="nav-brand" href="../index.html" style="text-decoration:none;">
+        <span class="dot"></span>
+        AI Testing Prep
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="quiz.html">Interview Q&amp;A</a></li>
+        <li><a href="project.html" class="active">Project Deep Dive</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Main content ───────────────────────────────────── -->
+  <main class="page-wrap">
+    <div class="container">
+
+      <!-- ── Project header ──────────────────────────────── -->
+      <div class="page-header">
+        <h1 id="project-title">
+          <!-- filled by project.js -->
+        </h1>
+        <p class="subtitle" id="project-placement">
+          <!-- filled by project.js -->
+        </p>
+      </div>
+
+      <!-- Tech stack pills -->
+      <div style="text-align: center; margin-bottom: 40px;" id="stack-wrap">
+        <!-- filled by project.js -->
+      </div>
+
+      <!-- ── What is this project? ───────────────────────── -->
+      <div class="section-heading">What is this project?</div>
+      <div class="card">
+        <p id="project-summary" style="color: var(--muted); font-size: 14px; line-height: 1.8;">
+          <!-- filled by project.js -->
+        </p>
+      </div>
+
+      <!-- ── Architecture ────────────────────────────────── -->
+      <div class="section-heading">Architecture — what it's made of</div>
+      <div class="arch-grid" id="arch-grid">
+        <!-- filled by project.js -->
+      </div>
+
+      <!-- ── Pipeline flow ───────────────────────────────── -->
+      <div class="section-heading">How it works — pipeline flow</div>
+      <div class="flow-row" id="pipeline-row">
+        <!-- filled by project.js -->
+      </div>
+      <p style="font-size: 12px; color: var(--faint); margin-top: 6px; margin-bottom: 32px;">
+        The Pytest suite runs automatically against a fixed test dataset.
+        Results stream into the Streamlit dashboard with per-query scores.
+      </p>
+
+      <!-- ── 7 Responsibilities ──────────────────────────── -->
+      <div class="section-heading">7 resume bullets — what each one means</div>
+      <div id="resp-wrap">
+        <!-- filled by project.js -->
+      </div>
+
+      <!-- ── Project-specific interview Q&A ──────────────── -->
+      <div class="section-heading" style="margin-top: 40px;">Project interview questions</div>
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 20px;">
+        These 7 questions will come up in any interview where you mention this project.
+        Click each one to see a structured answer and an interview tip.
+      </p>
+      <div id="project-qa-wrap">
+        <!-- filled by project.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <!--
+    Script load order:
+    1. data.js    — defines PROJECT object
+    2. project.js — reads PROJECT and builds all sections
+  -->
+  <script src="../js/data.js"></script>
+  <script src="../js/project.js"></script>
+
+</body>
+</html>

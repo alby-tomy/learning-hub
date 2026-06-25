@@ -1,0 +1,411 @@
+ INFO  Accepting connections at http://localhost:4503
+ HTTP  25/6/2026 1:30:29 pm ::1 GET /modules/design-thinking
+ HTTP  25/6/2026 1:30:29 pm ::1 Returned 200 in 15 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /modules/design-thinking.html
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /modules/design-thinking
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 2 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 4 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 59 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 58 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 59 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 59 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 58 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:41 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 3 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 2 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 3 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 3 ms
+ HTTP  25/6/2026 1:31:41 pm ::1 Returned 200 in 3 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /modules/ui-fundamentals.html
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /modules/ui-fundamentals
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 2 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:46 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:46 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /modules/user-research.html
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /modules/user-research
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /modules/information-architecture.html
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 301 in 0 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /modules/information-architecture
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:47 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /modules/wireframing.html
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /modules/wireframing
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:48 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:48 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /modules/design-systems.html
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /modules/design-systems
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:49 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:49 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /modules/prototyping.html
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 301 in 0 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /modules/prototyping
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 2 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:50 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:50 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /modules/usability-testing.html
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /modules/usability-testing
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 2 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:51 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /modules/mobile-responsive.html
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /modules/mobile-responsive
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:52 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:52 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /modules/handoff-portfolio.html
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /modules/handoff-portfolio
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /modules/design-thinking
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 2 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:53 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /modules/ui-fundamentals
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 2 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:55 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /modules/mobile-responsive
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 2 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:57 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /modules/usability-testing
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:31:58 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /modules/design-thinking.html
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 301 in 0 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /modules/design-thinking
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 0 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 0 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:32:55 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 0 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 0 ms
+ HTTP  25/6/2026 1:32:55 pm ::1 Returned 200 in 0 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /modules/user-research.html
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 301 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /modules/user-research
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 200 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /css/base.css
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /css/animations.css
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /css/layout.css
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /css/components.css
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /css/colors.css
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /css/module-detail.css
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /js/nav.js
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /js/reveal.js
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 1 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /js/accordion.js
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /js/tabs.js
+ HTTP  25/6/2026 1:32:57 pm ::1 GET /js/flip-card.js
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 0 ms
+ HTTP  25/6/2026 1:32:57 pm ::1 Returned 304 in 1 ms

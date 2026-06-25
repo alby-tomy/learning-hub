@@ -1,0 +1,563 @@
+/* ============================================================
+   AI Testing Prep — style.css
+   All visual design lives here. Edit colours in :root to
+   retheme the entire site.
+   ============================================================ */
+
+/* ── 1. Design tokens (CSS variables) ─────────────────────── */
+:root {
+  --bg:          #0f1117;       /* page background */
+  --surface:     #1a1d27;       /* card / panel background */
+  --surface2:    #22263a;       /* slightly lighter surface */
+  --border:      #2e3248;       /* subtle borders */
+  --accent:      #6c8aff;       /* primary blue accent */
+  --accent2:     #a78bfa;       /* purple accent */
+  --accent3:     #34d399;       /* green for "known / pass" */
+  --danger:      #f87171;       /* red for difficulty / fail */
+  --warn:        #fbbf24;       /* amber for medium difficulty */
+  --text:        #e2e8f0;       /* primary text */
+  --muted:       #8892aa;       /* secondary / helper text */
+  --faint:       #3d4260;       /* very subtle text or divider */
+  --radius:      10px;
+  --radius-lg:   16px;
+  --font:        'Inter', system-ui, sans-serif;
+  --mono:        'JetBrains Mono', 'Fira Code', monospace;
+  --transition:  0.18s ease;
+}
+
+/* ── 2. Reset & base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: var(--surface2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent2);
+}
+
+/* ── 3. Layout helpers ─────────────────────────────────────── */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.page-wrap {
+  padding-top: 80px;        /* space below fixed nav */
+  padding-bottom: 60px;
+}
+
+/* ── 4. Navigation bar ─────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  background: rgba(15, 17, 23, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-brand {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-brand .dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text);
+  background: var(--surface2);
+  text-decoration: none;
+}
+
+/* ── 5. Page headers ───────────────────────────────────────── */
+.page-header {
+  text-align: center;
+  padding: 48px 0 40px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.page-header .subtitle {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* gradient text — used on headings */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── 6. Cards ──────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 12px;
+}
+
+.card-sm {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 8px;
+}
+
+/* ── 7. Stat row (progress counters) ───────────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.stat-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-box .num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.stat-box .lbl {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+}
+
+/* ── 8. Progress bar ───────────────────────────────────────── */
+.progress-wrap {
+  height: 5px;
+  background: var(--surface2);
+  border-radius: 3px;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* ── 9. Filter buttons ─────────────────────────────────────── */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.filter-btn {
+  font-size: 12px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.filter-btn:hover { color: var(--text); border-color: var(--faint); }
+.filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.filter-btn.active-easy  { background: #064e3b; color: var(--accent3); border-color: #065f46; }
+.filter-btn.active-medium{ background: #451a03; color: var(--warn);    border-color: #78350f; }
+.filter-btn.active-hard  { background: #450a0a; color: var(--danger);  border-color: #7f1d1d; }
+
+/* ── 10. Difficulty pills ──────────────────────────────────── */
+.pill {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.pill-easy   { background: #064e3b; color: var(--accent3); }
+.pill-medium { background: #451a03; color: var(--warn); }
+.pill-hard   { background: #450a0a; color: var(--danger); }
+
+/* tech stack pills */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  margin: 2px;
+}
+
+/* ── 11. Accordion (Q&A cards) ─────────────────────────────── */
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+
+.q-card:hover { border-color: var(--faint); }
+.q-card.is-open { border-color: var(--accent); }
+
+.q-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.q-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--faint);
+  min-width: 24px;
+  padding-top: 2px;
+}
+
+.q-text {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.q-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.q-chevron {
+  font-size: 16px;
+  color: var(--muted);
+  transition: transform var(--transition);
+  line-height: 1;
+}
+
+.q-card.is-open .q-chevron { transform: rotate(180deg); }
+
+.q-body {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 18px 20px;
+}
+
+.q-card.is-open .q-body { display: block; }
+
+.ans-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+.ans-text {
+  font-size: 13px;
+  color: #b0bdd4;
+  line-height: 1.75;
+}
+
+.ans-text strong { color: var(--text); font-weight: 600; }
+
+.tip-box {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(108, 138, 255, 0.08);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 12px;
+  color: #a0b4e0;
+  line-height: 1.65;
+}
+
+.tip-box strong { color: var(--accent); }
+
+/* Mark as known button */
+.mark-btn {
+  margin-top: 12px;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: var(--transition);
+}
+
+.mark-btn:hover { border-color: var(--accent3); color: var(--accent3); }
+.mark-btn.known { background: #064e3b; color: var(--accent3); border-color: #065f46; }
+
+/* ── 12. Architecture grid (project page) ──────────────────── */
+.arch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.arch-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: border-color var(--transition);
+}
+
+.arch-box:hover { border-color: var(--accent); }
+
+.arch-box .arch-icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.arch-box .arch-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+
+.arch-box .arch-sub {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ── 13. Flow diagram (pipeline row) ───────────────────────── */
+.flow-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.flow-node {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.flow-arrow { color: var(--faint); font-size: 16px; }
+
+/* ── 14. Responsibility cards ──────────────────────────────── */
+.resp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.resp-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(108, 138, 255, 0.12);
+  border: 1px solid rgba(108, 138, 255, 0.3);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.resp-content h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+
+.resp-content p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ── 15. Section headings ──────────────────────────────────── */
+.section-heading {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── 16. Home page hero grid ───────────────────────────────── */
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.home-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  text-decoration: none;
+  display: block;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.home-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+.home-card .hc-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.home-card .hc-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.home-card .hc-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.home-card .hc-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── 17. Empty state ───────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ── 18. Responsive ────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .page-header h1 { font-size: 1.5rem; }
+  .nav-links a { padding: 6px 8px; font-size: 12px; }
+  .resp-card { flex-direction: column; gap: 10px; }
+}

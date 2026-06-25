@@ -1,0 +1,125 @@
+/* Modules overview page: header + progress tracker + week sections */
+
+.page-head {
+  padding: 64px 0 32px;
+}
+.page-head .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+.page-head h1 {
+  font-size: 2.25rem;
+  max-width: 640px;
+  margin-bottom: 16px;
+}
+@media (min-width: 640px) {
+  .page-head h1 {
+    font-size: 3rem;
+  }
+}
+.page-head p {
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.modules-layout {
+  display: flex;
+  gap: 40px;
+  padding-bottom: 96px;
+}
+
+.progress-sidebar {
+  display: none;
+  position: sticky;
+  top: 96px;
+  align-self: flex-start;
+  width: 224px;
+  flex-shrink: 0;
+}
+@media (min-width: 1024px) {
+  .progress-sidebar {
+    display: block;
+  }
+}
+.progress-sidebar .sidebar-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.progress-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.progress-track::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 20px;
+  bottom: 20px;
+  width: 1px;
+  background: var(--border-soft);
+}
+.progress-track a {
+  position: relative;
+  z-index: 1;
+}
+
+.progress-mobile {
+  margin-bottom: 40px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+  overflow-x: auto;
+}
+@media (min-width: 1024px) {
+  .progress-mobile {
+    display: none;
+  }
+}
+.progress-mobile-track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: max-content;
+  padding-bottom: 8px;
+}
+
+.modules-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.week-section {
+  margin-bottom: 64px;
+}
+.week-section:last-child {
+  margin-bottom: 0;
+}
+.week-section .section-heading {
+  margin-bottom: 32px;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 640px) {
+  .module-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .module-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
