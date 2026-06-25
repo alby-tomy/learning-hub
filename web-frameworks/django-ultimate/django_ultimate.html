@@ -1,0 +1,2353 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Django Ultimate — Concepts + School Management Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/shared.css">
+<link rel="stylesheet" href="django-ultimate.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-brand-tag">Django Ultimate Guide</div>
+    <div class="sb-title">Django <span>Complete</span></div>
+    <div class="sb-sub">Concepts + School Management Project</div>
+  </div>
+  <div class="sb-search"><input id="sb-search" type="text" placeholder="Search chapters…"/></div>
+  <div class="sb-nav" id="sb-nav">
+
+    <div class="sb-group">
+      <div class="sb-group-label">Part 1 — Core Concepts</div>
+      <a href="#mvt"        class="sb-link"><span class="sb-num">01</span>MVT Architecture</a>
+      <a href="#apps"       class="sb-link"><span class="sb-num">02</span>What is a Django App?</a>
+      <a href="#single-app" class="sb-link"><span class="sb-num">03</span>Single-App Projects</a>
+      <a href="#multi-app"  class="sb-link"><span class="sb-num">04</span>Multi-App Architecture</a>
+      <a href="#libs"       class="sb-link"><span class="sb-num">05</span>Libraries &amp; Packages</a>
+      <a href="#settings"   class="sb-link"><span class="sb-num">06</span>settings.py Deep Dive</a>
+      <a href="#urls"       class="sb-link"><span class="sb-num">07</span>URL Routing</a>
+      <a href="#views"      class="sb-link"><span class="sb-num">08</span>Views — FBV &amp; CBV</a>
+      <a href="#models"        class="sb-link"><span class="sb-num">09</span>Models &amp; ORM</a>
+      <a href="#relationships" class="sb-link"><span class="sb-num">09+</span>ORM Relationships</a>
+      <a href="#templates"     class="sb-link"><span class="sb-num">10</span>Templates</a>
+      <a href="#forms"      class="sb-link"><span class="sb-num">11</span>Forms &amp; ModelForms</a>
+      <a href="#admin"      class="sb-link"><span class="sb-num">12</span>Admin Panel</a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label">Part 2 — Middleware</div>
+      <a href="#mw-what"    class="sb-link"><span class="sb-num">13</span>What is Middleware?</a>
+      <a href="#mw-builtin" class="sb-link"><span class="sb-num">14</span>Built-in Middleware</a>
+      <a href="#mw-custom"  class="sb-link"><span class="sb-num">15</span>Custom Middleware</a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label">Part 3 — Static &amp; Media</div>
+      <a href="#static"     class="sb-link"><span class="sb-num">16</span>Static Files</a>
+      <a href="#media"      class="sb-link"><span class="sb-num">17</span>Media Files (Uploads)</a>
+      <a href="#prod-files" class="sb-link"><span class="sb-num">18</span>Production Setup</a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label">Part 4 — DRF (38 topics)</div>
+      <a href="#drf-what"      class="sb-link"><span class="sb-num">D1</span>What is DRF?</a>
+      <a href="#drf-setup"     class="sb-link"><span class="sb-num">D2</span>DRF Setup &amp; Config</a>
+      <a href="#drf-serial"    class="sb-link"><span class="sb-num">D3</span>Serializers</a>
+      <a href="#drf-valid"     class="sb-link"><span class="sb-num">D4</span>Validation</a>
+      <a href="#drf-apiview"   class="sb-link"><span class="sb-num">D5</span>APIView</a>
+      <a href="#drf-generics"  class="sb-link"><span class="sb-num">D6</span>Generic Views</a>
+      <a href="#drf-viewsets"  class="sb-link"><span class="sb-num">D7</span>ViewSets &amp; Routers</a>
+      <a href="#drf-auth"      class="sb-link"><span class="sb-num">D8</span>Authentication</a>
+      <a href="#drf-auth-impl" class="sb-link"><span class="sb-num">D8b</span>Auth Implementation</a>
+      <a href="#drf-jwt"       class="sb-link"><span class="sb-num">D9</span>JWT — Deep Dive</a>
+      <a href="#drf-perms"     class="sb-link"><span class="sb-num">D10</span>Authorization</a>
+      <a href="#drf-authz-impl" class="sb-link"><span class="sb-num">D10b</span>Groups &amp; Role-Based</a>
+      <a href="#drf-filter"    class="sb-link"><span class="sb-num">D11</span>Filtering &amp; Search</a>
+      <a href="#drf-page"      class="sb-link"><span class="sb-num">D12</span>Pagination</a>
+      <a href="#drf-throttle"  class="sb-link"><span class="sb-num">D13</span>Throttling</a>
+      <a href="#drf-parsers"   class="sb-link"><span class="sb-num">D14</span>Parsers &amp; Renderers</a>
+      <a href="#drf-relations" class="sb-link"><span class="sb-num">D15</span>Relations &amp; Nesting</a>
+      <a href="#drf-exceptions" class="sb-link"><span class="sb-num">D16</span>Exceptions &amp; Errors</a>
+      <a href="#drf-testing"   class="sb-link"><span class="sb-num">D17</span>Testing APIs</a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label proj">★ School Management Project</div>
+      <a href="django_ultimate_project.html" class="sb-link proj-link" style="color:var(--amber,#f5a623)"><span class="sb-num">P→</span>View Full Project Page</a>
+      <div style="font-family:var(--mono);font-size:.65rem;color:var(--muted2);padding:4px 12px 8px 32px;line-height:1.6;">P0–P17 + Auth Implementation<br/>+ Authorization Wiring</div>
+    </div>
+
+  </div>
+</nav>
+<button id="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<div id="main">
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-eyebrow">Django Ultimate Reference</div>
+  <h1 class="hero-title">
+    <span class="g">38 Concepts</span> explained alone<br/>
+    + <span class="b">School Management System</span> end-to-end
+  </h1>
+  <p class="hero-desc">Every Django and DRF concept explained in isolation — no project noise — then immediately applied inside a real School Management API covering Students, Teachers, Classes, Attendance, Grades, Timetables, and Notifications.</p>
+  <div class="chips">
+    <span class="chip g">Apps &amp; Settings</span>
+    <span class="chip b">DRF — 17 Topics</span>
+    <span class="chip a">School Management System</span>
+    <span class="chip p">Middleware · Signals</span>
+    <span class="chip">JWT Auth</span>
+    <span class="chip">Admin Panel</span>
+    <span class="chip">Validation &amp; Exceptions</span>
+    <span class="chip">Filtering · Pagination</span>
+    <span class="chip">Tests · Deploy</span>
+  </div>
+</div>
+
+<!-- ═══ PART 1: CONCEPTS DIVIDER ═══ -->
+<div class="divider green">
+  <div class="div-label">Part 1</div>
+  <div class="div-title">Django Core — Concepts</div>
+  <div class="div-desc">Architecture, apps, settings, URL routing, views, models, templates, forms and admin — explained independently, no project code mixed in</div>
+</div>
+
+<!-- 01 MVT -->
+<section class="chapter" id="mvt">
+  <div class="ch-head"><span class="ch-num">01</span><h2 class="ch-title">MVT Architecture</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Django follows <strong>MVT — Model, View, Template</strong>. Unlike MVC, Django itself acts as the Controller routing requests to the correct View. The View queries Models, passes a context to the Template, and returns an HttpResponse.</p>
+  <div class="flow">
+    <div class="fb"><div class="fb-l">Browser</div><div class="fb-n">HTTP Request</div></div><div class="fa">→</div>
+    <div class="fb b"><div class="fb-l">urls.py</div><div class="fb-n">URL Router</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Middleware</div><div class="fb-n">Pre-process</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">views.py</div><div class="fb-n">Business Logic</div></div><div class="fa">↕</div>
+    <div class="fb"><div class="fb-l">models.py</div><div class="fb-n">DB / ORM</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">template.html</div><div class="fb-n">HTML render</div></div><div class="fa">→</div>
+    <div class="fb"><div class="fb-l">Browser</div><div class="fb-n">HTTP Response</div></div>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Layer</th><th>File</th><th>Job</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Model</strong></td><td><code>models.py</code></td><td>Define tables, query DB via ORM — no raw SQL</td></tr>
+      <tr><td><strong>View</strong></td><td><code>views.py</code></td><td>Receive request, run logic, return response</td></tr>
+      <tr><td><strong>Template</strong></td><td><code>*.html</code></td><td>Render HTML from a Python context dict</td></tr>
+      <tr><td><strong>URL router</strong></td><td><code>urls.py</code></td><td>Map URL path → view function/class</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 02 APPS -->
+<section class="chapter" id="apps">
+  <div class="ch-head"><span class="ch-num">02</span><h2 class="ch-title">What is a Django App?</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">A <strong>project</strong> is the whole site. An <strong>app</strong> is a self-contained Python package that owns one domain — students, attendance, payments. You can have many apps in one project, and apps can be reused across projects or published as pip packages.</p>
+  <div class="cw">
+    <div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">anatomy of an app directory</span><span class="cb-lang">Filesystem</span></div>
+    <pre class="code">
+students/
+├── <span class="tl">__init__.py</span>       <span class="cm"># makes it a Python package</span>
+├── <span class="tl">apps.py</span>           <span class="cm"># app config class — name, label, ready() for signals</span>
+├── <span class="tl">models.py</span>         <span class="cm"># ★ database tables (class → table)</span>
+├── <span class="tl">views.py</span>          <span class="cm"># ★ request handlers (FBV or CBV)</span>
+├── <span class="tl">urls.py</span>           <span class="cm"># ★ URL patterns for this domain</span>
+├── <span class="tl">admin.py</span>          <span class="cm"># ★ register models in Django admin panel</span>
+├── <span class="tl">serializers.py</span>    <span class="cm"># DRF — convert models ↔ JSON</span>
+├── <span class="tl">permissions.py</span>    <span class="cm"># DRF — custom access rules</span>
+├── <span class="tl">filters.py</span>        <span class="cm"># django-filter FilterSet classes</span>
+├── <span class="tl">signals.py</span>        <span class="cm"># post_save / pre_delete hooks</span>
+├── <span class="tl">forms.py</span>          <span class="cm"># Django Form / ModelForm classes</span>
+├── <span class="tl">tests.py</span>          <span class="cm"># unit + integration tests</span>
+├── migrations/       <span class="cm"># auto-generated DB migration files — never edit</span>
+│   └── 0001_initial.py
+└── templates/students/<span class="cm">  # HTML templates namespaced under app name</span>
+</pre>
+  </div>
+  <div class="cw">
+    <div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">apps.py + settings registration</span><span class="cb-lang">Python</span></div>
+    <pre class="code">
+<span class="cm"># students/apps.py</span>
+<span class="kw2">from</span> django.apps <span class="kw2">import</span> AppConfig
+
+<span class="kw">class</span> <span class="cl">StudentsConfig</span>(AppConfig):
+    name             = <span class="st">'students'</span>
+    label            = <span class="st">'students'</span>
+    verbose_name     = <span class="st">'Students'</span>
+    default_auto_field = <span class="st">'django.db.models.BigAutoField'</span>
+
+    <span class="kw">def</span> <span class="fn">ready</span>(self):
+        <span class="kw2">import</span> students.signals  <span class="cm"># noqa — wire up signal handlers at startup</span>
+
+<span class="cm"># config/settings.py</span>
+INSTALLED_APPS = [
+    <span class="cm"># ...django built-ins...</span>
+    <span class="st">'students.apps.StudentsConfig'</span>,   <span class="cm"># full path is preferred</span>
+    <span class="st">'teachers'</span>,                       <span class="cm"># short name also works</span>
+]
+</pre>
+  </div>
+</section>
+
+<!-- 03 SINGLE APP -->
+<section class="chapter" id="single-app">
+  <div class="ch-head"><span class="ch-num">03</span><h2 class="ch-title">Single-App Projects</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">One project, one app — everything (models, views, URLs) lives inside a single <code>core/</code> directory. Perfect for tools, MVPs, personal projects, and learning exercises.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">structure</span><span class="cb-lang">Filesystem</span></div><pre class="code">
+myproject/
+├── config/          <span class="cm"># project config</span>
+│   ├── settings.py
+│   ├── urls.py      <span class="cm"># path('', include('core.urls'))</span>
+│   └── wsgi.py
+├── core/            <span class="cm"># THE one app</span>
+│   ├── models.py    <span class="cm"># all models</span>
+│   ├── views.py     <span class="cm"># all views</span>
+│   └── urls.py
+└── manage.py
+</pre></div>
+  <div class="box box-a"><div class="box-title" style="color:var(--amber)">When to use single-app</div><ul><li>Small tools, scripts, personal blogs</li><li>MVPs &amp; prototypes</li><li>Learning Django for the first time</li><li>APIs with ≤ 5 tightly coupled models</li></ul></div>
+</section>
+
+<!-- 04 MULTI APP -->
+<section class="chapter" id="multi-app">
+  <div class="ch-head"><span class="ch-num">04</span><h2 class="ch-title">Multi-App Architecture</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Split the codebase by <em>domain</em>. Each app owns one domain entirely — its models, views, URLs, serializers, and tests. Apps communicate via ForeignKeys and signal imports. The School Management project later uses this pattern.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">multi-app layout</span><span class="cb-lang">Filesystem</span></div><pre class="code">
+school_system/
+├── config/          <span class="cm"># project-wide settings + root urls.py</span>
+├── <span class="tf g">accounts/</span>      <span class="cm"># custom User model, registration, JWT</span>
+├── <span class="tf b">students/</span>      <span class="cm"># Student, Guardian, Enrollment</span>
+├── <span class="tf b">teachers/</span>      <span class="cm"># Teacher, Subject assignment</span>
+├── <span class="tf b">classes/</span>       <span class="cm"># Class, Section, Timetable</span>
+├── <span class="tf b">attendance/</span>    <span class="cm"># Attendance records</span>
+├── <span class="tf b">grades/</span>        <span class="cm"># Marks, Exams, Report cards</span>
+├── <span class="tf a">notifications/</span> <span class="cm"># Email / push alerts (Celery tasks)</span>
+└── <span class="tf">core/</span>          <span class="cm"># Shared: BaseModel, permissions, pagination</span>
+</pre></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">root urls.py — dispatch to each app</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib <span class="kw2">import</span> admin
+<span class="kw2">from</span> django.urls <span class="kw2">import</span> path, include
+
+urlpatterns = [
+    path(<span class="st">'admin/'</span>,            admin.site.urls),
+    path(<span class="st">'api/auth/'</span>,         include(<span class="st">'accounts.urls'</span>,     namespace=<span class="st">'accounts'</span>)),
+    path(<span class="st">'api/students/'</span>,     include(<span class="st">'students.urls'</span>,     namespace=<span class="st">'students'</span>)),
+    path(<span class="st">'api/teachers/'</span>,     include(<span class="st">'teachers.urls'</span>,     namespace=<span class="st">'teachers'</span>)),
+    path(<span class="st">'api/classes/'</span>,      include(<span class="st">'classes.urls'</span>,      namespace=<span class="st">'classes'</span>)),
+    path(<span class="st">'api/attendance/'</span>,   include(<span class="st">'attendance.urls'</span>,   namespace=<span class="st">'attendance'</span>)),
+    path(<span class="st">'api/grades/'</span>,       include(<span class="st">'grades.urls'</span>,       namespace=<span class="st">'grades'</span>)),
+    path(<span class="st">'api/notifications/'</span>,include(<span class="st">'notifications.urls'</span>,namespace=<span class="st">'notifications'</span>)),
+]
+</pre></div>
+</section>
+
+<!-- 05 LIBS -->
+<section class="chapter" id="libs">
+  <div class="ch-head"><span class="ch-num">05</span><h2 class="ch-title">Libraries &amp; Packages</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Install via pip, register in <code>INSTALLED_APPS</code> if they have models/template tags. The School project uses all of the packages below.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Package</th><th>Purpose</th><th>In INSTALLED_APPS?</th></tr></thead>
+    <tbody>
+      <tr><td><code>djangorestframework</code></td><td>REST API toolkit</td><td>Yes: <code>'rest_framework'</code></td></tr>
+      <tr><td><code>djangorestframework-simplejwt</code></td><td>JWT auth for DRF</td><td>Yes: <code>'rest_framework_simplejwt'</code></td></tr>
+      <tr><td><code>django-cors-headers</code></td><td>CORS for React / mobile</td><td>Yes: <code>'corsheaders'</code> + Middleware</td></tr>
+      <tr><td><code>django-filter</code></td><td>Powerful query filtering</td><td>Yes: <code>'django_filters'</code></td></tr>
+      <tr><td><code>Pillow</code></td><td>Required for ImageField</td><td>No</td></tr>
+      <tr><td><code>psycopg2-binary</code></td><td>PostgreSQL adapter</td><td>No</td></tr>
+      <tr><td><code>python-decouple</code></td><td>Load .env secrets</td><td>No</td></tr>
+      <tr><td><code>whitenoise</code></td><td>Serve static in prod</td><td>Via Middleware only</td></tr>
+      <tr><td><code>django-storages[boto3]</code></td><td>S3 media uploads</td><td>Yes: <code>'storages'</code></td></tr>
+      <tr><td><code>celery[redis]</code></td><td>Background tasks</td><td>No (celery.py config)</td></tr>
+      <tr><td><code>drf-spectacular</code></td><td>Auto OpenAPI / Swagger</td><td>Yes: <code>'drf_spectacular'</code></td></tr>
+      <tr><td><code>pytest-django</code></td><td>pytest integration</td><td>No (pytest plugin)</td></tr>
+      <tr><td><code>factory-boy</code></td><td>Test data factories</td><td>No</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 06 SETTINGS -->
+<section class="chapter" id="settings">
+  <div class="ch-head"><span class="ch-num">06</span><h2 class="ch-title">settings.py — Every Setting Explained</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">The control centre of every Django project. Every feature reads from here — database, cache, auth, middleware, static/media. Wrong settings cause silent bugs. Annotated below — every line explained.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">config/settings/base.py — fully annotated</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> pathlib <span class="kw2">import</span> Path
+<span class="kw2">from</span> decouple <span class="kw2">import</span> config
+<span class="kw2">from</span> datetime <span class="kw2">import</span> timedelta
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+<span class="cm"># ── Security ──────────────────────────────────────────────────────</span>
+SECRET_KEY    = config(<span class="st">'SECRET_KEY'</span>)              <span class="cm"># never hardcode</span>
+DEBUG         = config(<span class="st">'DEBUG'</span>, cast=bool, default=<span class="kw">False</span>)
+ALLOWED_HOSTS = config(<span class="st">'ALLOWED_HOSTS'</span>, default=<span class="st">'localhost'</span>).split(<span class="st">','</span>)
+
+<span class="cm"># ── Apps ──────────────────────────────────────────────────────────</span>
+INSTALLED_APPS = [
+    <span class="st">'django.contrib.admin'</span>,       <span class="cm"># /admin/ interface</span>
+    <span class="st">'django.contrib.auth'</span>,        <span class="cm"># User model + auth system</span>
+    <span class="st">'django.contrib.contenttypes'</span>,<span class="cm"># generic FK system</span>
+    <span class="st">'django.contrib.sessions'</span>,    <span class="cm"># session framework</span>
+    <span class="st">'django.contrib.messages'</span>,    <span class="cm"># flash messages</span>
+    <span class="st">'django.contrib.staticfiles'</span>, <span class="cm"># {% static %} tag</span>
+    <span class="cm"># third-party</span>
+    <span class="st">'rest_framework'</span>,
+    <span class="st">'rest_framework_simplejwt'</span>,
+    <span class="st">'corsheaders'</span>,
+    <span class="st">'django_filters'</span>,
+    <span class="st">'drf_spectacular'</span>,
+    <span class="cm"># project apps</span>
+    <span class="st">'core'</span>, <span class="st">'accounts'</span>, <span class="st">'students'</span>, <span class="st">'teachers'</span>,
+    <span class="st">'classes'</span>, <span class="st">'attendance'</span>, <span class="st">'grades'</span>, <span class="st">'notifications'</span>,
+]
+
+<span class="cm"># ── Middleware (ORDER MATTERS) ─────────────────────────────────────</span>
+MIDDLEWARE = [
+    <span class="st">'django.middleware.security.SecurityMiddleware'</span>,     <span class="cm"># ① must be first</span>
+    <span class="st">'whitenoise.middleware.WhiteNoiseMiddleware'</span>,         <span class="cm"># ② static files</span>
+    <span class="st">'corsheaders.middleware.CorsMiddleware'</span>,             <span class="cm"># ③ before CommonMiddleware</span>
+    <span class="st">'django.contrib.sessions.middleware.SessionMiddleware'</span>,
+    <span class="st">'django.middleware.common.CommonMiddleware'</span>,
+    <span class="st">'django.middleware.csrf.CsrfViewMiddleware'</span>,
+    <span class="st">'django.contrib.auth.middleware.AuthenticationMiddleware'</span>,<span class="cm"># needs Session</span>
+    <span class="st">'django.contrib.messages.middleware.MessageMiddleware'</span>,
+    <span class="st">'django.middleware.clickjacking.XFrameOptionsMiddleware'</span>,
+    <span class="st">'core.middleware.RequestLoggingMiddleware'</span>,           <span class="cm"># ⑩ custom</span>
+]
+
+<span class="cm"># ── Database ──────────────────────────────────────────────────────</span>
+DATABASES = {<span class="st">'default'</span>: {
+    <span class="st">'ENGINE'</span>: <span class="st">'django.db.backends.postgresql'</span>,
+    <span class="st">'NAME'</span>: config(<span class="st">'DB_NAME'</span>), <span class="st">'USER'</span>: config(<span class="st">'DB_USER'</span>),
+    <span class="st">'PASSWORD'</span>: config(<span class="st">'DB_PASSWORD'</span>), <span class="st">'HOST'</span>: config(<span class="st">'DB_HOST'</span>, default=<span class="st">'localhost'</span>),
+}}
+
+<span class="cm"># ── Custom user model — set BEFORE first migrate ───────────────────</span>
+AUTH_USER_MODEL = <span class="st">'accounts.User'</span>
+
+<span class="cm"># ── Static &amp; Media ────────────────────────────────────────────────</span>
+STATIC_URL  = <span class="st">'/static/'</span>;  STATIC_ROOT = BASE_DIR / <span class="st">'staticfiles'</span>
+STATICFILES_DIRS = [BASE_DIR / <span class="st">'static'</span>]
+MEDIA_URL   = <span class="st">'/media/'</span>;   MEDIA_ROOT  = BASE_DIR / <span class="st">'media'</span>
+
+<span class="cm"># ── DRF global config ──────────────────────────────────────────────</span>
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework_simplejwt.authentication.JWTAuthentication'</span>,
+    ],
+    <span class="st">'DEFAULT_PERMISSION_CLASSES'</span>: [<span class="st">'rest_framework.permissions.IsAuthenticated'</span>],
+    <span class="st">'DEFAULT_PAGINATION_CLASS'</span>: <span class="st">'core.pagination.StandardPagination'</span>,
+    <span class="st">'PAGE_SIZE'</span>: <span class="nu">20</span>,
+    <span class="st">'DEFAULT_FILTER_BACKENDS'</span>: [
+        <span class="st">'django_filters.rest_framework.DjangoFilterBackend'</span>,
+        <span class="st">'rest_framework.filters.SearchFilter'</span>,
+        <span class="st">'rest_framework.filters.OrderingFilter'</span>,
+    ],
+    <span class="st">'EXCEPTION_HANDLER'</span>: <span class="st">'core.exceptions.custom_exception_handler'</span>,
+    <span class="st">'DEFAULT_SCHEMA_CLASS'</span>: <span class="st">'drf_spectacular.openapi.AutoSchema'</span>,
+}
+
+<span class="cm"># ── JWT ────────────────────────────────────────────────────────────</span>
+SIMPLE_JWT = {
+    <span class="st">'ACCESS_TOKEN_LIFETIME'</span>:  timedelta(minutes=<span class="nu">60</span>),
+    <span class="st">'REFRESH_TOKEN_LIFETIME'</span>: timedelta(days=<span class="nu">7</span>),
+    <span class="st">'ROTATE_REFRESH_TOKENS'</span>:  <span class="kw">True</span>,
+    <span class="st">'AUTH_HEADER_TYPES'</span>:      (<span class="st">'Bearer'</span>,),
+}
+
+<span class="cm"># ── CORS ────────────────────────────────────────────────────────────</span>
+CORS_ALLOWED_ORIGINS = [<span class="st">'http://localhost:3000'</span>, <span class="st">'https://school.example.com'</span>]
+CORS_ALLOW_CREDENTIALS = <span class="kw">True</span>
+
+<span class="cm"># ── Cache (Redis) ───────────────────────────────────────────────────</span>
+CACHES = {<span class="st">'default'</span>: {<span class="st">'BACKEND'</span>: <span class="st">'django.core.cache.backends.redis.RedisCache'</span>,
+                      <span class="st">'LOCATION'</span>: config(<span class="st">'REDIS_URL'</span>, default=<span class="st">'redis://127.0.0.1:6379/1'</span>)}}
+TIME_ZONE = <span class="st">'Asia/Kolkata'</span>;  USE_TZ = <span class="kw">True</span>;  DEFAULT_AUTO_FIELD = <span class="st">'django.db.models.BigAutoField'</span>
+</pre></div>
+</section>
+
+<!-- 07-12: URLs, Views, Models, Templates, Forms, Admin (compact) -->
+<section class="chapter" id="urls">
+  <div class="ch-head"><span class="ch-num">07</span><h2 class="ch-title">URL Routing</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">URL confs map HTTP paths to view callables. The root <code>urls.py</code> delegates to app-level confs via <code>include()</code>. URL names + namespaces let you reverse URLs safely everywhere.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/urls.py — all pattern types</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.urls <span class="kw2">import</span> path, re_path, include
+<span class="kw2">from</span> rest_framework.routers <span class="kw2">import</span> DefaultRouter
+<span class="kw2">from</span> . <span class="kw2">import</span> views
+
+router = DefaultRouter()
+router.register(<span class="st">r'students'</span>, views.StudentViewSet, basename=<span class="st">'student'</span>)
+
+urlpatterns = [
+    path(<span class="st">''</span>, include(router.urls)),          <span class="cm"># GET/POST /students/ + GET/PUT/DELETE /students/{pk}/</span>
+
+    <span class="cm"># int, str, slug, uuid, path converters</span>
+    path(<span class="st">'&lt;int:pk&gt;/report/'</span>,        views.ReportView.as_view()),
+    path(<span class="st">'&lt;slug:roll_no&gt;/profile/'</span>,  views.ProfileView.as_view()),
+    path(<span class="st">'&lt;uuid:student_uuid&gt;/'</span>,     views.StudentByUUID.as_view()),
+
+    <span class="cm"># regex for complex patterns</span>
+    re_path(<span class="st">r'^batch/(?P&lt;year&gt;\d{4})/$'</span>, views.BatchView.as_view()),
+]
+
+<span class="cm"># Reverse: reverse('students:student-list')
+# Template: {% url 'students:student-detail' pk=s.pk %}</span>
+</pre></div>
+</section>
+
+<section class="chapter" id="views">
+  <div class="ch-head"><span class="ch-num">08</span><h2 class="ch-title">Views — FBV &amp; CBV</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Any callable that takes <code>HttpRequest</code> and returns <code>HttpResponse</code> is a view. Functions are simple and explicit; class-based views enable inheritance and mixins.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">FBV vs CBV side by side</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Function-Based View ───────────────────────────────────────</span>
+<span class="kw2">from</span> django.shortcuts <span class="kw2">import</span> render, get_object_or_404, redirect
+<span class="kw2">from</span> django.contrib.auth.decorators <span class="kw2">import</span> login_required
+
+<span class="di">@login_required</span>
+<span class="kw">def</span> <span class="fn">student_detail</span>(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    <span class="cm"># request.method / .user / .POST / .FILES / .GET / .session</span>
+    <span class="kw">return</span> render(request, <span class="st">'students/detail.html'</span>, {<span class="st">'student'</span>: student})
+
+
+<span class="cm"># ── Class-Based View ──────────────────────────────────────────</span>
+<span class="kw2">from</span> django.views.generic <span class="kw2">import</span> ListView, DetailView, CreateView
+<span class="kw2">from</span> django.contrib.auth.mixins <span class="kw2">import</span> LoginRequiredMixin
+
+<span class="kw">class</span> <span class="cl">StudentListView</span>(LoginRequiredMixin, ListView):
+    model               = Student
+    template_name       = <span class="st">'students/list.html'</span>
+    context_object_name = <span class="st">'students'</span>
+    paginate_by         = <span class="nu">25</span>
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self):
+        <span class="kw">return</span> Student.objects.filter(is_active=<span class="kw">True</span>).select_related(<span class="st">'classroom'</span>)
+
+    <span class="kw">def</span> <span class="fn">get_context_data</span>(self, **kwargs):
+        ctx = <span class="kw">super</span>().get_context_data(**kwargs)
+        ctx[<span class="st">'total'</span>] = self.get_queryset().count()
+        <span class="kw">return</span> ctx
+</pre></div>
+</section>
+
+<section class="chapter" id="models">
+  <div class="ch-head"><span class="ch-num">09</span><h2 class="ch-title">Models &amp; ORM</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Models are Python classes mapping to database tables. The ORM translates method calls to SQL — no raw SQL needed. Field choices, Meta options, relationships, and query patterns are all shown below.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">models.py — all field types + relationships + ORM patterns</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.db <span class="kw2">import</span> models
+<span class="kw2">from</span> django.conf <span class="kw2">import</span> settings
+
+<span class="kw">class</span> <span class="cl">BaseModel</span>(models.Model):
+    <span class="st">"""Abstract base — gives every model created_at, updated_at."""</span>
+    created_at = models.DateTimeField(auto_now_add=<span class="kw">True</span>)
+    updated_at = models.DateTimeField(auto_now=<span class="kw">True</span>)
+    <span class="kw">class</span> <span class="cl">Meta</span>: abstract = <span class="kw">True</span>
+
+
+<span class="kw">class</span> <span class="cl">Student</span>(BaseModel):
+    <span class="cm"># String fields</span>
+    full_name  = models.CharField(max_length=<span class="nu">150</span>)
+    roll_no    = models.SlugField(unique=<span class="kw">True</span>)
+    email      = models.EmailField(unique=<span class="kw">True</span>)
+    address    = models.TextField(blank=<span class="kw">True</span>)
+
+    <span class="cm"># Numeric</span>
+    age        = models.PositiveSmallIntegerField()
+    gpa        = models.DecimalField(max_digits=<span class="nu">4</span>, decimal_places=<span class="nu">2</span>, default=<span class="nu">0</span>)
+
+    <span class="cm"># Choice field</span>
+    GENDER     = [(<span class="st">'M'</span>,<span class="st">'Male'</span>),(<span class="st">'F'</span>,<span class="st">'Female'</span>),(<span class="st">'O'</span>,<span class="st">'Other'</span>)]
+    gender     = models.CharField(max_length=<span class="nu">1</span>, choices=GENDER)
+
+    <span class="cm"># Boolean &amp; date</span>
+    is_active  = models.BooleanField(default=<span class="kw">True</span>)
+    dob        = models.DateField()
+    joined_on  = models.DateField(auto_now_add=<span class="kw">True</span>)
+
+    <span class="cm"># File / image</span>
+    photo      = models.ImageField(upload_to=<span class="st">'students/%Y/%m/'</span>, null=<span class="kw">True</span>, blank=<span class="kw">True</span>)
+    documents  = models.JSONField(default=list, blank=<span class="kw">True</span>)
+
+    <span class="cm"># Relationships</span>
+    classroom  = models.ForeignKey(<span class="st">'classes.Classroom'</span>, on_delete=models.SET_NULL,
+                                   null=<span class="kw">True</span>, related_name=<span class="st">'students'</span>)
+    guardian   = models.OneToOneField(<span class="st">'Guardian'</span>, on_delete=models.SET_NULL,
+                                      null=<span class="kw">True</span>, related_name=<span class="st">'ward'</span>)
+    subjects   = models.ManyToManyField(<span class="st">'teachers.Subject'</span>, blank=<span class="kw">True</span>)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        ordering       = [<span class="st">'full_name'</span>]
+        indexes        = [models.Index(fields=[<span class="st">'roll_no'</span>], name=<span class="st">'student_roll_idx'</span>)]
+        unique_together = [(<span class="st">'full_name'</span>, <span class="st">'dob'</span>)]
+        verbose_name   = <span class="st">'Student'</span>;  verbose_name_plural = <span class="st">'Students'</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">"{self.full_name} ({self.roll_no})"</span>
+
+
+<span class="cm"># ── ORM query patterns ─────────────────────────────────────────────</span>
+Student.objects.all()
+Student.objects.filter(is_active=<span class="kw">True</span>, classroom__name=<span class="st">'10A'</span>)
+Student.objects.exclude(gender=<span class="st">'O'</span>)
+Student.objects.get(roll_no=<span class="st">'2024001'</span>)                <span class="cm"># raises if missing/multiple</span>
+Student.objects.filter(gpa__gte=<span class="nu">8</span>).order_by(<span class="st">'-gpa'</span>)[:10]
+
+<span class="kw2">from</span> django.db.models <span class="kw2">import</span> Q, Count, Avg
+Student.objects.filter(Q(gpa__gte=<span class="nu">9</span>) | Q(is_active=<span class="kw">False</span>))
+Student.objects.select_related(<span class="st">'classroom'</span>, <span class="st">'guardian'</span>)   <span class="cm"># JOIN — no N+1</span>
+Student.objects.prefetch_related(<span class="st">'subjects'</span>)             <span class="cm"># M2M no N+1</span>
+Student.objects.annotate(subj_count=Count(<span class="st">'subjects'</span>))
+Student.objects.aggregate(avg_gpa=Avg(<span class="st">'gpa'</span>))
+Student.objects.update(is_active=<span class="kw">False</span>)                  <span class="cm"># bulk update</span>
+Student.objects.bulk_create([Student(...), Student(...)])  <span class="cm"># batch insert</span>
+</pre></div>
+</section>
+
+<!-- 09+ ORM RELATIONSHIPS -->
+<section class="chapter" id="relationships">
+  <div class="ch-head"><span class="ch-num">09+</span><h2 class="ch-title">ORM Relationships — One-to-One · One-to-Many · Many-to-One · Many-to-Many</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Django provides three relationship field types that map directly to SQL foreign-key patterns. Each one is explained below with model definitions, the DB tables Django creates, and ORM queries from <em>both</em> sides of the relationship — the side that holds the field and the reverse accessor side.</p>
+
+  <!-- ── ONE-TO-ONE ── -->
+  <h3 class="sub-heading">① One-to-One &nbsp;<code>OneToOneField</code></h3>
+  <p class="prose"><strong>Each row in Table A maps to exactly one row in Table B — and vice versa.</strong> Django adds a <code>UNIQUE</code> constraint on the FK column so no two A rows can point to the same B row. Classic use-case: extending an existing model without subclassing (e.g. a <code>Profile</code> record per <code>User</code>, or a <code>Guardian</code> per <code>Student</code>).</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">models.py — OneToOneField</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.db <span class="kw2">import</span> models
+
+<span class="kw">class</span> <span class="cl">Guardian</span>(models.Model):
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+    phone     = models.CharField(max_length=<span class="nu">15</span>)
+    relation  = models.CharField(max_length=<span class="nu">30</span>)   <span class="cm"># 'Father', 'Mother', etc.</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> self.full_name
+
+
+<span class="kw">class</span> <span class="cl">Student</span>(models.Model):
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+    roll_no   = models.SlugField(unique=<span class="kw">True</span>)
+
+    <span class="cm"># OneToOneField — each student has ONE guardian, each guardian belongs to ONE student</span>
+    guardian  = models.OneToOneField(
+        Guardian,
+        on_delete=models.SET_NULL,   <span class="cm"># if guardian deleted, set student.guardian = NULL</span>
+        null=<span class="kw">True</span>,
+        blank=<span class="kw">True</span>,
+        related_name=<span class="st">'ward'</span>,        <span class="cm"># reverse accessor: guardian_obj.ward → Student</span>
+    )
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> self.full_name
+</pre></div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>DB Table</th><th>Column added</th><th>Constraint</th></tr></thead>
+    <tbody>
+      <tr><td><code>students_student</code></td><td><code>guardian_id</code> (FK → <code>students_guardian.id</code>)</td><td><code>UNIQUE</code> — enforces the "one" on both sides</td></tr>
+      <tr><td><code>students_guardian</code></td><td>—</td><td>No change; reverse access is via Python only</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">ORM queries — forward &amp; reverse</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Forward: student → guardian ────────────────────────────────────</span>
+s = Student.objects.select_related(<span class="st">'guardian'</span>).get(roll_no=<span class="st">'2024001'</span>)
+s.guardian.full_name       <span class="cm"># 'John Doe'  — one JOIN, no extra query</span>
+s.guardian.phone           <span class="cm"># '9876543210'</span>
+
+<span class="cm"># Set / change guardian</span>
+g = Guardian.objects.create(full_name=<span class="st">'Jane Doe'</span>, phone=<span class="st">'9876543211'</span>, relation=<span class="st">'Mother'</span>)
+s.guardian = g
+s.save()
+
+<span class="cm"># ── Reverse: guardian → student ────────────────────────────────────</span>
+g = Guardian.objects.get(pk=<span class="nu">1</span>)
+g.ward            <span class="cm"># Student object  ← related_name='ward'</span>
+g.ward.full_name  <span class="cm"># 'Alice'</span>
+
+<span class="cm"># Check if guardian has a ward</span>
+<span class="kw">try</span>:
+    ward = g.ward
+<span class="kw">except</span> Student.DoesNotExist:
+    ward = <span class="kw">None</span>
+
+<span class="cm"># OR use hasattr</span>
+<span class="kw">if</span> hasattr(g, <span class="st">'ward'</span>): <span class="kw">print</span>(g.ward)
+</pre></div>
+
+  <!-- ── ONE-TO-MANY (FOREIGNKEY) ── -->
+  <h3 class="sub-heading">② One-to-Many &nbsp;<code>ForeignKey</code> — forward (many → one)</h3>
+  <p class="prose"><strong>Many rows in Table A reference one row in Table B.</strong> This is Django's <code>ForeignKey</code>. The FK column lives on the "many" side. Example: many <code>Student</code> rows share one <code>Classroom</code>. From the student's perspective this is a <em>many-to-one</em> lookup; from the classroom's perspective it is <em>one-to-many</em>.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">models.py — ForeignKey</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">Classroom</span>(models.Model):
+    name     = models.CharField(max_length=<span class="nu">20</span>)   <span class="cm"># e.g. '10A'</span>
+    capacity = models.PositiveSmallIntegerField(default=<span class="nu">40</span>)
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> self.name
+
+
+<span class="kw">class</span> <span class="cl">Student</span>(models.Model):
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+
+    <span class="cm"># ForeignKey — many students belong to ONE classroom</span>
+    classroom = models.ForeignKey(
+        Classroom,
+        on_delete=models.SET_NULL,   <span class="cm"># options: CASCADE, PROTECT, SET_NULL, DO_NOTHING</span>
+        null=<span class="kw">True</span>,
+        blank=<span class="kw">True</span>,
+        related_name=<span class="st">'students'</span>,    <span class="cm"># reverse accessor: classroom.students.all()</span>
+    )
+</pre></div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th><code>on_delete</code> option</th><th>What happens when the Classroom is deleted</th></tr></thead>
+    <tbody>
+      <tr><td><code>CASCADE</code></td><td>Delete all related students too</td></tr>
+      <tr><td><code>PROTECT</code></td><td>Raise <code>ProtectedError</code> — prevents deletion while students exist</td></tr>
+      <tr><td><code>SET_NULL</code></td><td>Set <code>student.classroom = NULL</code> (requires <code>null=True</code>)</td></tr>
+      <tr><td><code>SET_DEFAULT</code></td><td>Set the FK to the field's <code>default</code> value</td></tr>
+      <tr><td><code>DO_NOTHING</code></td><td>Leave DB as-is — you handle integrity manually</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">ORM queries — forward (many → one) and reverse (one → many)</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Forward: student → classroom (many-to-one) ─────────────────────</span>
+s = Student.objects.select_related(<span class="st">'classroom'</span>).get(pk=<span class="nu">1</span>)
+s.classroom           <span class="cm"># Classroom object</span>
+s.classroom.name      <span class="cm"># '10A'</span>
+s.classroom_id        <span class="cm"># raw FK integer — no extra DB hit</span>
+
+<span class="cm"># Filter students that belong to classroom '10A'</span>
+Student.objects.filter(classroom__name=<span class="st">'10A'</span>)
+
+<span class="cm"># Assign a student to a different classroom</span>
+room = Classroom.objects.get(name=<span class="st">'11B'</span>)
+s.classroom = room
+s.save()
+
+<span class="cm"># ── Reverse: classroom → students (one-to-many) ────────────────────</span>
+room = Classroom.objects.prefetch_related(<span class="st">'students'</span>).get(name=<span class="st">'10A'</span>)
+room.students.all()            <span class="cm"># QuerySet of all students in 10A</span>
+room.students.count()          <span class="cm"># 35</span>
+room.students.filter(gpa__gte=<span class="nu">8</span>)
+
+<span class="cm"># Annotate classrooms with student count</span>
+<span class="kw2">from</span> django.db.models <span class="kw2">import</span> Count
+Classroom.objects.annotate(student_count=Count(<span class="st">'students'</span>))
+
+<span class="cm"># Add a new student directly via reverse manager</span>
+room.students.create(full_name=<span class="st">'New Student'</span>)
+</pre></div>
+
+  <!-- ── MANY-TO-ONE CLARIFICATION ── -->
+  <h3 class="sub-heading">③ Many-to-One — the same <code>ForeignKey</code>, the other perspective</h3>
+  <p class="prose"><strong>Many-to-one is not a separate field type</strong> — it is how a <code>ForeignKey</code> looks from the "many" side. When a student accesses <code>student.classroom</code> that is a many-to-one traversal: many students share one classroom. The table below shows the same relationship from both perspectives to eliminate confusion.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Direction</th><th>Term</th><th>Example</th><th>ORM accessor</th></tr></thead>
+    <tbody>
+      <tr><td>Child → Parent</td><td><strong>Many-to-One</strong></td><td>student → classroom</td><td><code>student.classroom</code> (returns one object)</td></tr>
+      <tr><td>Parent → Children</td><td><strong>One-to-Many</strong></td><td>classroom → students</td><td><code>classroom.students.all()</code> (returns QuerySet)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Real-world many-to-one patterns</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># Pattern 1 — get every student's classroom name in one query (no N+1)</span>
+students = Student.objects.select_related(<span class="st">'classroom'</span>).all()
+<span class="kw">for</span> s <span class="kw">in</span> students:
+    <span class="kw">print</span>(s.full_name, <span class="st">'→'</span>, s.classroom.name)   <span class="cm"># uses JOIN, not per-row query</span>
+
+<span class="cm"># Pattern 2 — span across the FK with double-underscore lookups</span>
+Student.objects.filter(classroom__capacity__gte=<span class="nu">40</span>)
+Student.objects.filter(classroom__name__startswith=<span class="st">'10'</span>)
+Student.objects.values(<span class="st">'classroom__name'</span>, <span class="st">'full_name'</span>)
+
+<span class="cm"># Pattern 3 — group students by classroom</span>
+<span class="kw2">from</span> django.db.models <span class="kw2">import</span> Count
+Classroom.objects.annotate(total=Count(<span class="st">'students'</span>)).order_by(<span class="st">'-total'</span>)
+
+<span class="cm"># Pattern 4 — move all students from one class to another (bulk update)</span>
+old_room = Classroom.objects.get(name=<span class="st">'10A'</span>)
+new_room = Classroom.objects.get(name=<span class="st">'10B'</span>)
+Student.objects.filter(classroom=old_room).update(classroom=new_room)
+</pre></div>
+
+  <!-- ── MANY-TO-MANY ── -->
+  <h3 class="sub-heading">④ Many-to-Many &nbsp;<code>ManyToManyField</code></h3>
+  <p class="prose"><strong>Many rows in Table A relate to many rows in Table B.</strong> Django automatically creates a <em>junction / through table</em> with two FK columns to manage the relationship. Classic use-case: a student enrolls in many subjects, and each subject is taken by many students. You can also define a custom <code>through</code> model to store extra data on the relationship (e.g. enrollment date, grade).</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">models.py — ManyToManyField (auto junction table)</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">Subject</span>(models.Model):
+    name = models.CharField(max_length=<span class="nu">100</span>)
+    code = models.CharField(max_length=<span class="nu">10</span>, unique=<span class="kw">True</span>)
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> self.name
+
+
+<span class="kw">class</span> <span class="cl">Student</span>(models.Model):
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+
+    <span class="cm"># ManyToManyField — a student takes many subjects, a subject has many students</span>
+    subjects  = models.ManyToManyField(
+        Subject,
+        blank=<span class="kw">True</span>,
+        related_name=<span class="st">'enrolled_students'</span>,  <span class="cm"># subject.enrolled_students.all()</span>
+    )
+</pre></div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>DB Table</th><th>Columns</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td><code>students_student</code></td><td>no new column</td><td>M2M fields don't add a column to the model's table</td></tr>
+      <tr><td><code>students_subject</code></td><td>no new column</td><td>Same</td></tr>
+      <tr><td><code>students_student_subjects</code> <em>(auto)</em></td><td><code>student_id</code>, <code>subject_id</code></td><td>Django creates this junction table automatically</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">ORM queries — M2M add/remove/set + reverse</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Student → Subjects (forward) ───────────────────────────────────</span>
+s = Student.objects.prefetch_related(<span class="st">'subjects'</span>).get(pk=<span class="nu">1</span>)
+
+s.subjects.all()                          <span class="cm"># all subjects this student takes</span>
+s.subjects.count()                        <span class="cm"># 5</span>
+s.subjects.filter(code__startswith=<span class="st">'SCI'</span>)
+
+<span class="cm"># Add a subject (insert row in junction table)</span>
+maths = Subject.objects.get(code=<span class="st">'MATH01'</span>)
+s.subjects.add(maths)
+
+<span class="cm"># Add multiple at once</span>
+s.subjects.add(*Subject.objects.filter(code__in=[<span class="st">'SCI01'</span>, <span class="st">'ENG01'</span>]))
+
+<span class="cm"># Remove a subject</span>
+s.subjects.remove(maths)
+
+<span class="cm"># Replace ALL subjects at once</span>
+s.subjects.set(Subject.objects.filter(code__startswith=<span class="st">'CORE'</span>))
+
+<span class="cm"># Remove all subjects</span>
+s.subjects.clear()
+
+<span class="cm"># ── Subject → Students (reverse) ───────────────────────────────────</span>
+subj = Subject.objects.get(code=<span class="st">'MATH01'</span>)
+subj.enrolled_students.all()             <span class="cm"># all students taking maths</span>
+subj.enrolled_students.filter(gpa__gte=<span class="nu">9</span>)
+
+<span class="cm"># ── Cross-filter (span the M2M) ────────────────────────────────────</span>
+<span class="cm"># students who take both MATH01 AND SCI01</span>
+Student.objects.filter(subjects__code=<span class="st">'MATH01'</span>).filter(subjects__code=<span class="st">'SCI01'</span>)
+
+<span class="cm"># subjects taken by student with roll 2024001</span>
+Subject.objects.filter(enrolled_students__roll_no=<span class="st">'2024001'</span>)
+</pre></div>
+
+  <!-- ── CUSTOM THROUGH TABLE ── -->
+  <h3 class="sub-heading">④b  Many-to-Many with a custom <code>through</code> model</h3>
+  <p class="prose">When you need to store <em>extra data on the relationship itself</em> (e.g. the date a student enrolled in a subject, or the grade they received), replace the auto junction table with an explicit <code>through</code> model.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">models.py — explicit through model (Enrollment)</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">Enrollment</span>(models.Model):
+    <span class="cm"># The junction table — with extra fields</span>
+    student      = models.ForeignKey(Student, on_delete=models.CASCADE, related_name=<span class="st">'enrollments'</span>)
+    subject      = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name=<span class="st">'enrollments'</span>)
+    enrolled_on  = models.DateField(auto_now_add=<span class="kw">True</span>)
+    grade        = models.CharField(max_length=<span class="nu">2</span>, blank=<span class="kw">True</span>)  <span class="cm"># 'A+', 'B', …</span>
+    is_active    = models.BooleanField(default=<span class="kw">True</span>)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        unique_together = [(<span class="st">'student'</span>, <span class="st">'subject'</span>)]
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self):
+        <span class="kw">return</span> f<span class="st">"{self.student} — {self.subject}"</span>
+
+
+<span class="kw">class</span> <span class="cl">Student</span>(models.Model):
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+    subjects  = models.ManyToManyField(
+        Subject,
+        through=<span class="st">'Enrollment'</span>,        <span class="cm"># use our custom junction model</span>
+        related_name=<span class="st">'enrolled_students'</span>,
+    )
+</pre></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">ORM queries — through model</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># Create enrollment (must go through the through model directly)</span>
+Enrollment.objects.create(student=s, subject=maths, grade=<span class="st">'A'</span>)
+
+<span class="cm"># Fetch a student's enrollments with the extra fields</span>
+s.enrollments.select_related(<span class="st">'subject'</span>).filter(is_active=<span class="kw">True</span>)
+
+<span class="cm"># Fetch all active students in MATH01 with their grade</span>
+Enrollment.objects.select_related(<span class="st">'student'</span>, <span class="st">'subject'</span>)\
+    .filter(subject__code=<span class="st">'MATH01'</span>, is_active=<span class="kw">True</span>)\
+    .order_by(<span class="st">'student__full_name'</span>)
+
+<span class="cm"># s.subjects.all() still works — returns Subject objects (no grade)</span>
+<span class="cm"># Use s.enrollments.all() when you need the grade</span>
+
+<span class="cm"># NOTE: .add() / .remove() / .set() / .clear() are DISABLED on M2M with a through model</span>
+<span class="cm"># You must create/delete Enrollment rows directly</span>
+</pre></div>
+
+  <!-- ── QUICK COMPARISON ── -->
+  <h3 class="sub-heading">Quick Comparison</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Relationship</th><th>Django field</th><th>FK column lives in…</th><th>Reverse accessor returns</th></tr></thead>
+    <tbody>
+      <tr><td><strong>One-to-One</strong></td><td><code>OneToOneField</code></td><td>"child" model table (UNIQUE FK)</td><td>Single object (raises <code>DoesNotExist</code> if none)</td></tr>
+      <tr><td><strong>Many-to-One</strong> (child→parent)</td><td><code>ForeignKey</code></td><td>"many" / child table</td><td><code>.all()</code> — QuerySet of children</td></tr>
+      <tr><td><strong>One-to-Many</strong> (parent→children)</td><td>same <code>ForeignKey</code>, reverse</td><td>—</td><td><code>related_name.all()</code> — QuerySet</td></tr>
+      <tr><td><strong>Many-to-Many</strong></td><td><code>ManyToManyField</code></td><td>auto junction table</td><td><code>related_name.all()</code> — QuerySet</td></tr>
+      <tr><td><strong>M2M with extras</strong></td><td><code>ManyToManyField(through=…)</code></td><td>explicit junction model</td><td>same, but use <code>through</code> model for extra data</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="chapter" id="templates">
+  <div class="ch-head"><span class="ch-num">10</span><h2 class="ch-title">Templates</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Django's Template Language (DTL) renders HTML with context data. Inheritance via <code>{% extends %}</code> eliminates duplication. <code>{% load static %}</code> is required before using <code>{% static %}</code>.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">base.html + child template — all key tags</span><span class="cb-lang">HTML</span></div><pre class="code">
+{# base.html #}
+{% load static %}
+&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;
+  &lt;title&gt;{% block title %}School{% endblock %}&lt;/title&gt;
+  &lt;link rel="stylesheet" href="{% static 'css/main.css' %}"&gt;
+&lt;/head&gt;&lt;body&gt;
+  {% include 'partials/navbar.html' %}
+  {% for msg in messages %}&lt;div class="{{ msg.tags }}"&gt;{{ msg }}&lt;/div&gt;{% endfor %}
+  {% block content %}{% endblock %}
+&lt;/body&gt;&lt;/html&gt;
+
+{# students/list.html — child #}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Students{% endblock %}
+{% block content %}
+  &lt;h1&gt;{{ page_title|default:"All Students" }}&lt;/h1&gt;
+  {% for s in students %}
+    &lt;p&gt;{{ s.full_name }} — {{ s.gpa|floatformat:2 }}&lt;/p&gt;
+    &lt;a href="{% url 'students:student-detail' pk=s.pk %}"&gt;View&lt;/a&gt;
+    &lt;img src="{{ s.photo.url }}"&gt;               {# media file URL #}
+  {% empty %}
+    &lt;p&gt;No students found.&lt;/p&gt;
+  {% endfor %}
+  {# Pagination #}
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}&lt;a href="?page={{ page_obj.previous_page_number }}"&gt;←&lt;/a&gt;{% endif %}
+    {{ page_obj.number }}/{{ page_obj.paginator.num_pages }}
+    {% if page_obj.has_next %}&lt;a href="?page={{ page_obj.next_page_number }}"&gt;→&lt;/a&gt;{% endif %}
+  {% endif %}
+  {% with total=students|length %}Total: {{ total }}{% endwith %}
+{% endblock %}
+</pre></div>
+</section>
+
+<section class="chapter" id="forms">
+  <div class="ch-head"><span class="ch-num">11</span><h2 class="ch-title">Forms &amp; ModelForms</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Django Forms handle HTML rendering, parsing POST data, validation (per-field and cross-field), and returning cleaned data or error messages. <code>ModelForm</code> auto-generates fields from a model — preferred 90% of the time.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">forms.py — ModelForm with custom validation</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django <span class="kw2">import</span> forms
+<span class="kw2">from</span> .models <span class="kw2">import</span> Student
+
+<span class="kw">class</span> <span class="cl">StudentForm</span>(forms.ModelForm):
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Student
+        fields = [<span class="st">'full_name'</span>, <span class="st">'roll_no'</span>, <span class="st">'email'</span>, <span class="st">'dob'</span>, <span class="st">'gender'</span>, <span class="st">'photo'</span>]
+        widgets = {<span class="st">'dob'</span>: forms.DateInput(attrs={<span class="st">'type'</span>:<span class="st">'date'</span>})}
+
+    <span class="kw">def</span> <span class="fn">clean_roll_no</span>(self):             <span class="cm"># field-level</span>
+        roll = self.cleaned_data[<span class="st">'roll_no'</span>]
+        <span class="kw">if</span> not roll.startswith(<span class="st">'2024'</span>):
+            <span class="kw">raise</span> forms.ValidationError(<span class="st">'Roll number must start with the current year.'</span>)
+        <span class="kw">return</span> roll.upper()
+
+    <span class="kw">def</span> <span class="fn">clean</span>(self):                     <span class="cm"># cross-field</span>
+        data   = <span class="kw">super</span>().clean()
+        name   = data.get(<span class="st">'full_name'</span>, <span class="st">''</span>)
+        email  = data.get(<span class="st">'email'</span>, <span class="st">''</span>)
+        <span class="kw">if</span> name.lower() <span class="kw">in</span> email.lower():
+            self.add_error(<span class="st">'email'</span>, <span class="st">'Do not use your name in the email address.'</span>)
+        <span class="kw">return</span> data
+
+<span class="cm"># In view:
+# form = StudentForm(request.POST, request.FILES, instance=student)
+# if form.is_valid(): form.save()
+# Template: &lt;form method="post" enctype="multipart/form-data"&gt;{% csrf_token %}{{ form.as_p }}&lt;/form&gt;</span>
+</pre></div>
+</section>
+
+<section class="chapter" id="admin">
+  <div class="ch-head"><span class="ch-num">12</span><h2 class="ch-title">Admin Panel — Full Configuration</h2><span class="badge badge-g">Core</span></div>
+  <p class="prose">Django generates a full CRUD UI for your models at <code>/admin/</code>. <code>ModelAdmin</code> subclasses configure how each model looks — columns, filters, search, inline editing, and custom actions. Zero frontend code needed.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/admin.py</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib <span class="kw2">import</span> admin
+<span class="kw2">from</span> .models <span class="kw2">import</span> Student, Guardian
+
+<span class="kw">class</span> <span class="cl">GuardianInline</span>(admin.StackedInline):
+    model   = Guardian
+    extra   = <span class="nu">0</span>
+    fields  = [<span class="st">'full_name'</span>, <span class="st">'phone'</span>, <span class="st">'email'</span>, <span class="st">'relation'</span>]
+
+<span class="di">@admin.register</span>(Student)
+<span class="kw">class</span> <span class="cl">StudentAdmin</span>(admin.ModelAdmin):
+    list_display   = [<span class="st">'roll_no'</span>, <span class="st">'full_name'</span>, <span class="st">'classroom'</span>, <span class="st">'gpa'</span>, <span class="st">'is_active'</span>]
+    list_filter    = [<span class="st">'is_active'</span>, <span class="st">'gender'</span>, <span class="st">'classroom'</span>]
+    search_fields  = [<span class="st">'full_name'</span>, <span class="st">'roll_no'</span>, <span class="st">'email'</span>]
+    list_editable  = [<span class="st">'is_active'</span>]
+    readonly_fields= [<span class="st">'created_at'</span>, <span class="st">'updated_at'</span>, <span class="st">'gpa'</span>]
+    raw_id_fields  = [<span class="st">'classroom'</span>]
+    ordering       = [<span class="st">'-created_at'</span>]
+    date_hierarchy = <span class="st">'joined_on'</span>
+    list_per_page  = <span class="nu">30</span>
+    inlines        = [GuardianInline]
+
+    fieldsets = [
+        (<span class="kw">None</span>,         {<span class="st">'fields'</span>: [<span class="st">'roll_no'</span>, <span class="st">'full_name'</span>, <span class="st">'email'</span>, <span class="st">'photo'</span>]}),
+        (<span class="st">'Details'</span>,    {<span class="st">'fields'</span>: [<span class="st">'dob'</span>, <span class="st">'gender'</span>, <span class="st">'address'</span>]}),
+        (<span class="st">'Academics'</span>,  {<span class="st">'fields'</span>: [<span class="st">'classroom'</span>, <span class="st">'subjects'</span>, <span class="st">'gpa'</span>]}),
+        (<span class="st">'Status'</span>,     {<span class="st">'fields'</span>: [<span class="st">'is_active'</span>], <span class="st">'classes'</span>: [<span class="st">'collapse'</span>]}),
+    ]
+
+    <span class="di">@admin.action</span>(description=<span class="st">'Deactivate selected students'</span>)
+    <span class="kw">def</span> <span class="fn">deactivate</span>(self, request, queryset):
+        queryset.update(is_active=<span class="kw">False</span>)
+
+    <span class="di">@admin.action</span>(description=<span class="st">'Export selected students to CSV'</span>)
+    <span class="kw">def</span> <span class="fn">export_csv</span>(self, request, queryset):
+        <span class="kw2">import</span> csv
+        <span class="kw2">from</span> django.http <span class="kw2">import</span> HttpResponse
+        resp = HttpResponse(content_type=<span class="st">'text/csv'</span>)
+        resp[<span class="st">'Content-Disposition'</span>] = <span class="st">'attachment; filename=students.csv'</span>
+        w = csv.writer(resp)
+        w.writerow([<span class="st">'Roll'</span>,<span class="st">'Name'</span>,<span class="st">'Email'</span>,<span class="st">'GPA'</span>])
+        <span class="kw">for</span> s <span class="kw">in</span> queryset: w.writerow([s.roll_no, s.full_name, s.email, s.gpa])
+        <span class="kw">return</span> resp
+
+    actions = [<span class="st">'deactivate'</span>, <span class="st">'export_csv'</span>]
+</pre></div>
+</section>
+
+
+<!-- ═══ PART 2: MIDDLEWARE ═══ -->
+<div class="divider amber">
+  <div class="div-label">Part 2</div>
+  <div class="div-title">Middleware</div>
+  <div class="div-desc">The request/response pipeline — every built-in explained, custom middleware patterns</div>
+</div>
+
+<section class="chapter" id="mw-what">
+  <div class="ch-head"><span class="ch-num">13</span><h2 class="ch-title">What is Middleware?</h2><span class="badge badge-a">Middleware</span></div>
+  <p class="prose">Middleware wraps every single request entering Django and every response leaving it. It runs top-to-bottom on requests and bottom-to-top on responses — the <em>onion model</em>. Each layer can inspect, modify, or short-circuit the flow.</p>
+  <div class="flow">
+    <div class="fb"><div class="fb-l">Client</div><div class="fb-n">Request</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">MW ①</div><div class="fb-n">Security</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">MW ②</div><div class="fb-n">Session</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">MW ③</div><div class="fb-n">Auth</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">View</div><div class="fb-n">Your code</div></div><div class="fa">←</div>
+    <div class="fb a"><div class="fb-l">MW ③</div><div class="fb-n">Response</div></div><div class="fa">←</div>
+    <div class="fb a"><div class="fb-l">MW ②</div><div class="fb-n">Response</div></div><div class="fa">←</div>
+    <div class="fb a"><div class="fb-l">MW ①</div><div class="fb-n">Response</div></div><div class="fa">←</div>
+    <div class="fb"><div class="fb-l">Client</div><div class="fb-n">Response</div></div>
+  </div>
+  <div class="box box-a"><div class="box-title" style="color:var(--amber)">Order in MIDDLEWARE list is critical</div><ul>
+    <li><code>SecurityMiddleware</code> must be first — protects before anything else runs</li>
+    <li><code>SessionMiddleware</code> before <code>AuthenticationMiddleware</code> — auth reads session</li>
+    <li><code>CorsMiddleware</code> before <code>CommonMiddleware</code> — intercepts CORS preflight</li>
+  </ul></div>
+</section>
+
+<section class="chapter" id="mw-builtin">
+  <div class="ch-head"><span class="ch-num">14</span><h2 class="ch-title">Built-in Middleware — Every One Explained</h2><span class="badge badge-a">Middleware</span></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>#</th><th>Middleware</th><th>What it does</th><th>Key settings</th></tr></thead>
+    <tbody>
+      <tr><td>①</td><td><code>SecurityMiddleware</code></td><td>HSTS, content-type sniff prevention, SSL redirect</td><td><code>SECURE_SSL_REDIRECT</code>, <code>SECURE_HSTS_SECONDS</code></td></tr>
+      <tr><td>②</td><td><code>WhiteNoiseMiddleware</code></td><td>Serve static files directly from Python (3rd-party)</td><td><code>STATICFILES_STORAGE</code></td></tr>
+      <tr><td>③</td><td><code>CorsMiddleware</code></td><td>CORS headers for cross-origin API calls (3rd-party)</td><td><code>CORS_ALLOWED_ORIGINS</code></td></tr>
+      <tr><td>④</td><td><code>SessionMiddleware</code></td><td>Loads/saves session; gives <code>request.session</code></td><td><code>SESSION_ENGINE</code>, <code>SESSION_COOKIE_AGE</code></td></tr>
+      <tr><td>⑤</td><td><code>CommonMiddleware</code></td><td>Trailing slash redirect, blocks bad user-agents</td><td><code>APPEND_SLASH</code>, <code>PREPEND_WWW</code></td></tr>
+      <tr><td>⑥</td><td><code>CsrfViewMiddleware</code></td><td>Validates CSRF token on POST/PUT/PATCH/DELETE</td><td><code>CSRF_COOKIE_NAME</code></td></tr>
+      <tr><td>⑦</td><td><code>AuthenticationMiddleware</code></td><td>Sets <code>request.user</code> from session — needs ④</td><td>Requires SessionMiddleware above it</td></tr>
+      <tr><td>⑧</td><td><code>MessageMiddleware</code></td><td>Flash message framework: <code>messages.success()</code></td><td><code>MESSAGE_STORAGE</code></td></tr>
+      <tr><td>⑨</td><td><code>XFrameOptionsMiddleware</code></td><td>Sets <code>X-Frame-Options: DENY</code> (clickjacking protection)</td><td><code>X_FRAME_OPTIONS</code></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="chapter" id="mw-custom">
+  <div class="ch-head"><span class="ch-num">15</span><h2 class="ch-title">Custom Middleware</h2><span class="badge badge-a">Middleware</span></div>
+  <p class="prose">Write custom middleware when you need global logic that applies to every request — request timing, maintenance mode, tenant detection, IP blocking, audit logging.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">core/middleware.py — three real examples</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">import</span> time, logging
+<span class="kw2">from</span> django.http <span class="kw2">import</span> HttpResponse
+
+logger = logging.getLogger(<span class="st">'school.requests'</span>)
+
+<span class="cm"># ── Example 1: Request timing (function-style) ────────────────────</span>
+<span class="kw">def</span> <span class="fn">RequestLoggingMiddleware</span>(get_response):
+    <span class="kw">def</span> <span class="fn">middleware</span>(request):
+        start    = time.perf_counter()
+        response = get_response(request)   <span class="cm"># ← view runs here</span>
+        duration = (time.perf_counter() - start) * <span class="nu">1000</span>
+        response[<span class="st">'X-Response-Time'</span>] = f<span class="st">f"{duration:.1f}ms"</span>
+        logger.info(f<span class="st">f"{request.method} {request.path} {response.status_code} {duration:.0f}ms"</span>)
+        <span class="kw">return</span> response
+    <span class="kw">return</span> middleware
+
+
+<span class="cm"># ── Example 2: Maintenance mode (class-style with all hooks) ─────────</span>
+<span class="kw">class</span> <span class="cl">MaintenanceModeMiddleware</span>:
+    EXEMPT = [<span class="st">'/admin/'</span>, <span class="st">'/api/auth/token/'</span>, <span class="st">'/health/'</span>]
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, get_response):
+        self.get_response = get_response   <span class="cm"># runs once at startup</span>
+
+    <span class="kw">def</span> <span class="fn">__call__</span>(self, request):
+        <span class="cm"># ── REQUEST PHASE ──────────────────────────────────────────</span>
+        <span class="kw2">from</span> django.conf <span class="kw2">import</span> settings
+        <span class="kw">if</span> getattr(settings, <span class="st">'MAINTENANCE_MODE'</span>, <span class="kw">False</span>):
+            exempt = any(request.path.startswith(p) <span class="kw">for</span> p <span class="kw">in</span> self.EXEMPT)
+            <span class="kw">if</span> not exempt <span class="kw">and</span> not request.user.is_staff:
+                <span class="kw">return</span> HttpResponse(<span class="st">'{"error":"Maintenance mode"}'</span>,
+                                    status=<span class="nu">503</span>, content_type=<span class="st">'application/json'</span>)
+
+        response = self.get_response(request)   <span class="cm"># ← view runs here</span>
+        <span class="cm"># ── RESPONSE PHASE ─────────────────────────────────────────</span>
+        response[<span class="st">'X-School-API'</span>] = <span class="st">'v1'</span>
+        <span class="kw">return</span> response
+
+    <span class="kw">def</span> <span class="fn">process_view</span>(self, request, view_func, args, kwargs):
+        <span class="cm"># Called just BEFORE the view — return None to continue</span>
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">process_exception</span>(self, request, exception):
+        logger.error(f<span class="st">f"Exception: {exception} on {request.path}"</span>, exc_info=<span class="kw">True</span>)
+
+
+<span class="cm"># ── Example 3: Role-based access for specific URL prefix ─────────────</span>
+<span class="kw">def</span> <span class="fn">AdminAreaMiddleware</span>(get_response):
+    <span class="kw">def</span> <span class="fn">middleware</span>(request):
+        <span class="kw">if</span> request.path.startswith(<span class="st">'/api/admin-reports/'</span>):
+            <span class="kw">if</span> not (request.user.is_authenticated <span class="kw">and</span> request.user.is_staff):
+                <span class="kw">return</span> HttpResponse(<span class="st">'{"error":"Staff only"}'</span>, status=<span class="nu">403</span>,
+                                    content_type=<span class="st">'application/json'</span>)
+        <span class="kw">return</span> get_response(request)
+    <span class="kw">return</span> middleware
+</pre></div>
+</section>
+
+<!-- ═══ PART 3: STATIC & MEDIA ═══ -->
+<div class="divider pink">
+  <div class="div-label">Part 3</div>
+  <div class="div-title">Static &amp; Media Files</div>
+  <div class="div-desc">Static files (CSS/JS) vs media files (user uploads) — dev serving, collectstatic, S3 in production</div>
+</div>
+
+<section class="chapter" id="static">
+  <div class="ch-head"><span class="ch-num">16</span><h2 class="ch-title">Static Files</h2><span class="badge badge-p">Files</span></div>
+  <p class="prose"><strong>Static files</strong> are part of your codebase — CSS, JavaScript, fonts, site images. They don't change at runtime. Django collects them all into <code>STATIC_ROOT</code> with <code>collectstatic</code>; a web server or WhiteNoise serves them.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Settings + template usage</span><span class="cb-lang">Python / HTML</span></div><pre class="code">
+<span class="cm"># settings.py</span>
+STATIC_URL       = <span class="st">'/static/'</span>
+STATICFILES_DIRS = [BASE_DIR / <span class="st">'static'</span>]      <span class="cm"># your source static/</span>
+STATIC_ROOT      = BASE_DIR / <span class="st">'staticfiles'</span>   <span class="cm"># collectstatic output (don't put files here)</span>
+
+<span class="cm"># File layout</span>
+<span class="cm"># static/css/main.css          → {% static 'css/main.css' %}</span>
+<span class="cm"># students/static/students/    → {% static 'students/chart.js' %}</span>
+
+<span class="cm"># Template:</span>
+<span class="cm"># {% load static %}</span>
+<span class="cm"># &lt;link rel="stylesheet" href="{% static 'css/main.css' %}"&gt;</span>
+<span class="cm"># &lt;script src="{% static 'js/app.js' %}"&gt;&lt;/script&gt;</span>
+<span class="cm"># &lt;img src="{% static 'img/logo.png' %}"&gt;</span>
+
+<span class="cm"># Dev: Django serves automatically when DEBUG=True</span>
+<span class="cm"># Prod: python manage.py collectstatic --noinput</span>
+<span class="cm">#       then WhiteNoise or nginx serves STATIC_ROOT</span>
+
+<span class="cm"># urls.py — explicit dev serving (optional when DEBUG=True)</span>
+<span class="kw2">from</span> django.conf.urls.static <span class="kw2">import</span> static
+<span class="kw">if</span> settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+</pre></div>
+</section>
+
+<section class="chapter" id="media">
+  <div class="ch-head"><span class="ch-num">17</span><h2 class="ch-title">Media Files — User Uploads</h2><span class="badge badge-p">Files</span></div>
+  <p class="prose"><strong>Media files</strong> are uploaded by users at runtime — student photos, assignment PDFs, report cards. They live in <code>MEDIA_ROOT</code> on disk (or S3) and must be served separately from static files.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">models.py + urls.py + template</span><span class="cb-lang">Python / HTML</span></div><pre class="code">
+<span class="cm"># settings.py</span>
+MEDIA_URL  = <span class="st">'/media/'</span>
+MEDIA_ROOT = BASE_DIR / <span class="st">'media'</span>
+
+<span class="cm"># models.py</span>
+<span class="kw">class</span> <span class="cl">Student</span>(models.Model):
+    photo = models.ImageField(upload_to=<span class="st">'students/photos/%Y/%m/'</span>, null=<span class="kw">True</span>, blank=<span class="kw">True</span>)
+    <span class="cm"># → saves to MEDIA_ROOT/students/photos/2024/06/img.jpg</span>
+    <span class="cm"># → student.photo.url  → /media/students/photos/2024/06/img.jpg</span>
+    <span class="cm"># → student.photo.path → /abs/path/media/students/photos/2024/06/img.jpg</span>
+
+    <span class="kw">def</span> <span class="fn">upload_to</span>(instance, filename):          <span class="cm"># callable upload_to</span>
+        <span class="kw">return</span> f<span class="st">f"students/{instance.roll_no}/{filename}"</span>
+    document = models.FileField(upload_to=upload_to, blank=<span class="kw">True</span>)
+
+<span class="cm"># urls.py — serve in development</span>
+<span class="kw2">from</span> django.conf.urls.static <span class="kw2">import</span> static
+<span class="kw">if</span> settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+<span class="cm"># Template: {% if student.photo %}&lt;img src="{{ student.photo.url }}"&gt;{% endif %}</span>
+<span class="cm"># Form must have: enctype="multipart/form-data"</span>
+<span class="cm"># View receives: form = StudentForm(request.POST, request.FILES)</span>
+</pre></div>
+</section>
+
+<section class="chapter" id="prod-files">
+  <div class="ch-head"><span class="ch-num">18</span><h2 class="ch-title">Static &amp; Media in Production</h2><span class="badge badge-p">Files</span></div>
+  <div class="g2">
+    <div class="card g"><div class="card-t">Static → WhiteNoise</div><div class="card-b">Add <code>'whitenoise.middleware.WhiteNoiseMiddleware'</code> right after SecurityMiddleware. Set <code>STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'</code>. Run <code>collectstatic</code> on deploy. No nginx config needed.</div></div>
+    <div class="card b"><div class="card-t">Media → AWS S3</div><div class="card-b">Install <code>django-storages[boto3]</code>. Set <code>DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'</code>. Add bucket name, region, and AWS credentials in settings via <code>config()</code>. All <code>model.field.url</code> calls auto-point to S3.</div></div>
+  </div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">settings/prod.py — S3 media</span><span class="cb-lang">Python</span></div><pre class="code">
+INSTALLED_APPS += [<span class="st">'storages'</span>]
+AWS_STORAGE_BUCKET_NAME = config(<span class="st">'AWS_BUCKET'</span>)
+AWS_ACCESS_KEY_ID       = config(<span class="st">'AWS_ACCESS_KEY_ID'</span>)
+AWS_SECRET_ACCESS_KEY   = config(<span class="st">'AWS_SECRET_ACCESS_KEY'</span>)
+AWS_S3_REGION_NAME      = <span class="st">'ap-south-1'</span>
+AWS_S3_CUSTOM_DOMAIN    = f<span class="st">f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"</span>
+AWS_DEFAULT_ACL         = <span class="st">'private'</span>
+DEFAULT_FILE_STORAGE    = <span class="st">'storages.backends.s3boto3.S3Boto3Storage'</span>
+MEDIA_URL = f<span class="st">f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"</span>
+<span class="cm"># student.photo.url → https://bucket.s3.amazonaws.com/media/students/photos/...</span>
+</pre></div>
+</section>
+
+
+<!-- ═══ PART 4: DRF ═══ -->
+<div class="divider blue">
+  <div class="div-label">Part 4</div>
+  <div class="div-title">Django REST Framework — 17 Topics</div>
+  <div class="div-desc">Every DRF concept in its own chapter — serializers, views, auth, JWT, permissions, filtering, pagination, throttling, parsers, relations, exceptions, testing</div>
+</div>
+
+<!-- D1 WHAT IS DRF -->
+<section class="chapter" id="drf-what">
+  <div class="ch-head"><span class="ch-num">D1</span><h2 class="ch-title">What is DRF?</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">DRF is the standard toolkit for building REST APIs with Django. It adds serialization, content negotiation, authentication, permissions, filtering, pagination, throttling, and a browsable HTML interface — all independently configurable per view.</p>
+  <div class="flow">
+    <div class="fb"><div class="fb-l">Client</div><div class="fb-n">JSON Request</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Auth</div><div class="fb-n">Who?</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Perms</div><div class="fb-n">Can?</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Throttle</div><div class="fb-n">Slow down?</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Parser</div><div class="fb-n">Decode body</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">View</div><div class="fb-n">Your logic</div></div><div class="fa">→</div>
+    <div class="fb b"><div class="fb-l">Serializer</div><div class="fb-n">→ JSON</div></div><div class="fa">→</div>
+    <div class="fb"><div class="fb-l">Client</div><div class="fb-n">Response</div></div>
+  </div>
+</section>
+
+<!-- D2 DRF SETUP -->
+<section class="chapter" id="drf-setup">
+  <div class="ch-head"><span class="ch-num">D2</span><h2 class="ch-title">DRF Setup &amp; Global Configuration</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">Every DRF behaviour is controlled by the <code>REST_FRAMEWORK</code> settings dict. These are the global defaults — each view can override any of them locally.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">REST_FRAMEWORK — every option explained</span><span class="cb-lang">Python</span></div><pre class="code">
+REST_FRAMEWORK = {
+    <span class="cm"># Authentication: tried in order; first success sets request.user + request.auth</span>
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework_simplejwt.authentication.JWTAuthentication'</span>,
+        <span class="st">'rest_framework.authentication.SessionAuthentication'</span>,  <span class="cm"># browsable API</span>
+    ],
+    <span class="cm"># Permissions: ALL must pass (AND logic) — override per view</span>
+    <span class="st">'DEFAULT_PERMISSION_CLASSES'</span>: [
+        <span class="st">'rest_framework.permissions.IsAuthenticated'</span>,
+    ],
+    <span class="cm"># Pagination</span>
+    <span class="st">'DEFAULT_PAGINATION_CLASS'</span>: <span class="st">'core.pagination.StandardPagination'</span>,
+    <span class="st">'PAGE_SIZE'</span>: <span class="nu">20</span>,
+    <span class="cm"># Filtering: all three backends active globally</span>
+    <span class="st">'DEFAULT_FILTER_BACKENDS'</span>: [
+        <span class="st">'django_filters.rest_framework.DjangoFilterBackend'</span>,
+        <span class="st">'rest_framework.filters.SearchFilter'</span>,
+        <span class="st">'rest_framework.filters.OrderingFilter'</span>,
+    ],
+    <span class="cm"># Throttling: rate limits per user type</span>
+    <span class="st">'DEFAULT_THROTTLE_CLASSES'</span>: [
+        <span class="st">'rest_framework.throttling.AnonRateThrottle'</span>,
+        <span class="st">'rest_framework.throttling.UserRateThrottle'</span>,
+    ],
+    <span class="st">'DEFAULT_THROTTLE_RATES'</span>: {
+        <span class="st">'anon'</span>: <span class="st">'100/day'</span>,
+        <span class="st">'user'</span>: <span class="st">'2000/day'</span>,
+    },
+    <span class="cm"># Parsers: what content-types requests can send</span>
+    <span class="st">'DEFAULT_PARSER_CLASSES'</span>: [
+        <span class="st">'rest_framework.parsers.JSONParser'</span>,
+        <span class="st">'rest_framework.parsers.MultiPartParser'</span>,   <span class="cm"># file upload</span>
+        <span class="st">'rest_framework.parsers.FormParser'</span>,
+    ],
+    <span class="cm"># Renderers: what formats responses can produce</span>
+    <span class="st">'DEFAULT_RENDERER_CLASSES'</span>: [
+        <span class="st">'rest_framework.renderers.JSONRenderer'</span>,
+        <span class="st">'rest_framework.renderers.BrowsableAPIRenderer'</span>, <span class="cm"># remove in prod</span>
+    ],
+    <span class="cm"># Custom error handler: consistent JSON error shape</span>
+    <span class="st">'EXCEPTION_HANDLER'</span>: <span class="st">'core.exceptions.custom_exception_handler'</span>,
+    <span class="cm"># OpenAPI schema generation</span>
+    <span class="st">'DEFAULT_SCHEMA_CLASS'</span>: <span class="st">'drf_spectacular.openapi.AutoSchema'</span>,
+}
+</pre></div>
+</section>
+
+<!-- D3 SERIALIZERS -->
+<section class="chapter" id="drf-serial">
+  <div class="ch-head"><span class="ch-num">D3</span><h2 class="ch-title">Serializers</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">A Serializer converts Python objects → JSON (<em>serialization</em>) and JSON → validated Python objects (<em>deserialization</em>). <code>ModelSerializer</code> auto-generates fields from a model with one-liner Meta.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">serializers.py — all patterns</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> serializers
+<span class="kw2">from</span> .models <span class="kw2">import</span> Student
+
+<span class="kw">class</span> <span class="cl">StudentSerializer</span>(serializers.ModelSerializer):
+    <span class="cm"># Computed (read-only)</span>
+    age_display  = serializers.SerializerMethodField()
+    <span class="cm"># Traverse FK — read author.full_name as string</span>
+    classroom_name = serializers.CharField(source=<span class="st">'classroom.name'</span>, read_only=<span class="kw">True</span>)
+    <span class="cm"># Write-only field (e.g. password)</span>
+    secret_code  = serializers.CharField(write_only=<span class="kw">True</span>, required=<span class="kw">False</span>)
+    <span class="cm"># Hyperlink to related object</span>
+    photo_url    = serializers.SerializerMethodField()
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Student
+        fields = [<span class="st">'id'</span>, <span class="st">'roll_no'</span>, <span class="st">'full_name'</span>, <span class="st">'email'</span>, <span class="st">'gpa'</span>,
+                  <span class="st">'age_display'</span>, <span class="st">'classroom_name'</span>, <span class="st">'photo_url'</span>,
+                  <span class="st">'secret_code'</span>, <span class="st">'created_at'</span>]
+        read_only_fields = [<span class="st">'id'</span>, <span class="st">'created_at'</span>, <span class="st">'gpa'</span>]
+        extra_kwargs = {
+            <span class="st">'email'</span>: {<span class="st">'validators'</span>: []},   <span class="cm"># remove unique check for update</span>
+            <span class="st">'full_name'</span>: {<span class="st">'min_length'</span>: <span class="nu">3</span>},
+        }
+
+    <span class="kw">def</span> <span class="fn">get_age_display</span>(self, obj):
+        <span class="kw">from</span> datetime <span class="kw">import</span> date
+        today = date.today()
+        age   = today.year - obj.dob.year - ((today.month, today.day) &lt; (obj.dob.month, obj.dob.day))
+        <span class="kw">return</span> f<span class="st">f"{age} years"</span>
+
+    <span class="kw">def</span> <span class="fn">get_photo_url</span>(self, obj):
+        request = self.context.get(<span class="st">'request'</span>)
+        <span class="kw">if</span> obj.photo <span class="kw">and</span> request:
+            <span class="kw">return</span> request.build_absolute_uri(obj.photo.url)
+        <span class="kw">return</span> <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">create</span>(self, validated_data):
+        validated_data.pop(<span class="st">'secret_code'</span>, <span class="kw">None</span>)   <span class="cm"># remove before save</span>
+        <span class="kw">return</span> <span class="kw">super</span>().create(validated_data)
+
+
+<span class="cm"># Use: serialize → Response(StudentSerializer(qs, many=True, context={'request':request}).data)
+# Use: deserialize → s = StudentSerializer(data=request.data); s.is_valid(raise_exception=True); s.save()</span>
+</pre></div>
+</section>
+
+<!-- D4 VALIDATION -->
+<section class="chapter" id="drf-valid">
+  <div class="ch-head"><span class="ch-num">D4</span><h2 class="ch-title">Validation</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">DRF validates in 4 stages in order: type coercion → field validators → <code>validate_field()</code> → <code>validate()</code>. Errors at any stage stop that field. Raise <code>serializers.ValidationError</code> at any level.</p>
+  <div class="flow">
+    <div class="fb a"><div class="fb-l">Stage 1</div><div class="fb-n">Type coerce</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Stage 2</div><div class="fb-n">validators=[]</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Stage 3</div><div class="fb-n">validate_field()</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">Stage 4</div><div class="fb-n">validate()</div></div><div class="fa">→</div>
+    <div class="fb b"><div class="fb-l">Save</div><div class="fb-n">create/update</div></div>
+  </div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">All 4 validation levels</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> serializers
+<span class="kw2">from</span> rest_framework.validators <span class="kw2">import</span> UniqueValidator, UniqueTogetherValidator
+
+<span class="kw">def</span> <span class="fn">valid_roll_format</span>(value):           <span class="cm"># Level 1: standalone validator function</span>
+    <span class="kw">if</span> not value[:4].isdigit():
+        <span class="kw">raise</span> serializers.ValidationError(<span class="st">'Roll number must start with 4 digits (year).'</span>)
+
+<span class="kw">class</span> <span class="cl">StudentSerializer</span>(serializers.ModelSerializer):
+    <span class="cm"># Level 2: field-level validators list</span>
+    roll_no = serializers.SlugField(validators=[
+        valid_roll_format,
+        UniqueValidator(queryset=Student.objects.all(), message=<span class="st">'Roll number taken.'</span>)
+    ])
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Student
+        fields = [<span class="st">'roll_no'</span>, <span class="st">'full_name'</span>, <span class="st">'email'</span>, <span class="st">'dob'</span>, <span class="st">'classroom'</span>]
+        validators = [
+            UniqueTogetherValidator(queryset=Student.objects.all(),
+                                    fields=[<span class="st">'full_name'</span>,<span class="st">'dob'</span>],
+                                    message=<span class="st">'Student already enrolled.'</span>)
+        ]
+
+    <span class="cm"># Level 3: validate_&lt;fieldname&gt; — field-level, must RETURN value</span>
+    <span class="kw">def</span> <span class="fn">validate_full_name</span>(self, value):
+        <span class="kw">if</span> len(value.strip().split()) &lt; <span class="nu">2</span>:
+            <span class="kw">raise</span> serializers.ValidationError(<span class="st">'Please provide first and last name.'</span>)
+        <span class="kw">return</span> value.strip().title()
+
+    <span class="cm"># Level 4: validate() — cross-field, must RETURN attrs</span>
+    <span class="kw">def</span> <span class="fn">validate</span>(self, attrs):
+        <span class="kw">from</span> datetime <span class="kw">import</span> date
+        dob       = attrs.get(<span class="st">'dob'</span>)
+        classroom = attrs.get(<span class="st">'classroom'</span>)
+        <span class="kw">if</span> dob <span class="kw">and</span> classroom:
+            age = date.today().year - dob.year
+            <span class="kw">if</span> abs(age - classroom.expected_age) > <span class="nu">3</span>:
+                <span class="kw">raise</span> serializers.ValidationError(
+                    {<span class="st">'dob'</span>: f<span class="st">f"Age {age} doesn't match classroom grade level."</span>}
+                )
+        <span class="kw">return</span> attrs
+</pre></div>
+</section>
+
+<!-- D5 APIVIEW -->
+<section class="chapter" id="drf-apiview">
+  <div class="ch-head"><span class="ch-num">D5</span><h2 class="ch-title">APIView</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose"><code>APIView</code> maps HTTP methods to Python methods: <code>get()</code>, <code>post()</code>, <code>put()</code>, <code>patch()</code>, <code>delete()</code>. Maximum flexibility, explicit control. Use when generic views don't fit your logic.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Full APIView CRUD + per-view overrides</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.views <span class="kw2">import</span> APIView
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> status, permissions
+<span class="kw2">from</span> django.shortcuts <span class="kw2">import</span> get_object_or_404
+
+<span class="kw">class</span> <span class="cl">StudentListAPIView</span>(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    <span class="kw">def</span> <span class="fn">get</span>(self, request):
+        students   = Student.objects.filter(is_active=<span class="kw">True</span>)
+        serializer = StudentSerializer(students, many=<span class="kw">True</span>, context={<span class="st">'request'</span>: request})
+        <span class="kw">return</span> Response(serializer.data)                     <span class="cm"># 200</span>
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        serializer = StudentSerializer(data=request.data, context={<span class="st">'request'</span>: request})
+        serializer.is_valid(raise_exception=<span class="kw">True</span>)          <span class="cm"># → 400 if invalid</span>
+        serializer.save()
+        <span class="kw">return</span> Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+<span class="kw">class</span> <span class="cl">StudentDetailAPIView</span>(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    <span class="kw">def</span> <span class="fn">get_object</span>(self, pk):
+        <span class="kw">return</span> get_object_or_404(Student, pk=pk)
+
+    <span class="kw">def</span> <span class="fn">get</span>(self, request, pk):
+        <span class="kw">return</span> Response(StudentSerializer(self.get_object(pk), context={<span class="st">'request'</span>: request}).data)
+
+    <span class="kw">def</span> <span class="fn">patch</span>(self, request, pk):
+        s = StudentSerializer(self.get_object(pk), data=request.data,
+                              partial=<span class="kw">True</span>, context={<span class="st">'request'</span>: request})
+        s.is_valid(raise_exception=<span class="kw">True</span>); s.save()
+        <span class="kw">return</span> Response(s.data)
+
+    <span class="kw">def</span> <span class="fn">delete</span>(self, request, pk):
+        self.get_object(pk).delete()
+        <span class="kw">return</span> Response(status=status.HTTP_204_NO_CONTENT)
+</pre></div>
+</section>
+
+<!-- D6 GENERICS -->
+<section class="chapter" id="drf-generics">
+  <div class="ch-head"><span class="ch-num">D6</span><h2 class="ch-title">Generic Views</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">Generic views implement common patterns — list, create, retrieve, update, destroy — so you declare <em>what</em> (model, serializer) instead of coding <em>how</em>. Override hooks, not HTTP methods.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">All 9 generic views + hook methods</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> generics, permissions
+
+<span class="cm"># Single-action</span>
+<span class="kw">class</span> <span class="cl">StudentListView</span>(generics.ListAPIView):         <span class="cm"># GET /students/</span>
+    queryset = Student.objects.filter(is_active=<span class="kw">True</span>)
+    serializer_class = StudentSerializer
+
+<span class="kw">class</span> <span class="cl">StudentCreateView</span>(generics.CreateAPIView):      <span class="cm"># POST /students/</span>
+    serializer_class = StudentSerializer
+
+<span class="kw">class</span> <span class="cl">StudentDetailView</span>(generics.RetrieveAPIView):    <span class="cm"># GET /students/{pk}/</span>
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+<span class="kw">class</span> <span class="cl">StudentUpdateView</span>(generics.UpdateAPIView):      <span class="cm"># PUT/PATCH</span>
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+<span class="kw">class</span> <span class="cl">StudentDeleteView</span>(generics.DestroyAPIView):     <span class="cm"># DELETE</span>
+    queryset = Student.objects.all()
+
+<span class="cm"># Combined (most common)</span>
+<span class="kw">class</span> <span class="cl">StudentListCreate</span>(generics.ListCreateAPIView):
+    serializer_class   = StudentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self):
+        <span class="kw">return</span> Student.objects.filter(is_active=<span class="kw">True</span>).select_related(<span class="st">'classroom'</span>)
+
+    <span class="kw">def</span> <span class="fn">get_serializer_class</span>(self):
+        <span class="kw">if</span> self.request.method == <span class="st">'POST'</span>: <span class="kw">return</span> StudentWriteSerializer
+        <span class="kw">return</span> StudentListSerializer
+
+    <span class="kw">def</span> <span class="fn">perform_create</span>(self, serializer):
+        serializer.save(created_by=self.request.user)   <span class="cm"># inject extra field</span>
+
+
+<span class="kw">class</span> <span class="cl">StudentRUD</span>(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    lookup_field = <span class="st">'roll_no'</span>                           <span class="cm"># use slug instead of pk</span>
+
+    <span class="kw">def</span> <span class="fn">perform_destroy</span>(self, instance):
+        instance.is_active = <span class="kw">False</span>; instance.save()    <span class="cm"># soft delete</span>
+
+<span class="cm"># Key hooks: get_queryset / get_object / get_serializer_class
+# perform_create / perform_update / perform_destroy / get_permissions</span>
+</pre></div>
+</section>
+
+<!-- D7 VIEWSETS & ROUTERS -->
+<section class="chapter" id="drf-viewsets">
+  <div class="ch-head"><span class="ch-num">D7</span><h2 class="ch-title">ViewSets &amp; Routers</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">A ViewSet puts all CRUD actions for one resource in one class. A Router auto-generates all URL patterns. Result: complete REST API for a model in ~10 lines.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">ModelViewSet + custom @action + Router</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> viewsets, permissions
+<span class="kw2">from</span> rest_framework.decorators <span class="kw2">import</span> action
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> rest_framework.routers <span class="kw2">import</span> DefaultRouter
+
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(viewsets.ModelViewSet):
+    serializer_class = StudentSerializer
+    search_fields    = [<span class="st">'full_name'</span>, <span class="st">'roll_no'</span>, <span class="st">'email'</span>]
+    filterset_fields = [<span class="st">'is_active'</span>, <span class="st">'gender'</span>, <span class="st">'classroom'</span>]
+    ordering_fields  = [<span class="st">'full_name'</span>, <span class="st">'gpa'</span>, <span class="st">'created_at'</span>]
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self):
+        <span class="kw">return</span> Student.objects.filter(is_active=<span class="kw">True</span>).select_related(<span class="st">'classroom'</span>)
+
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action <span class="kw">in</span> [<span class="st">'list'</span>, <span class="st">'retrieve'</span>]: <span class="kw">return</span> [permissions.IsAuthenticated()]
+        <span class="kw">return</span> [permissions.IsAdminUser()]
+
+    <span class="kw">def</span> <span class="fn">perform_create</span>(self, serializer): serializer.save()
+
+    <span class="cm"># Custom endpoints with @action</span>
+    <span class="di">@action</span>(detail=<span class="kw">True</span>, methods=[<span class="st">'get'</span>])                   <span class="cm"># /students/{pk}/report_card/</span>
+    <span class="kw">def</span> <span class="fn">report_card</span>(self, request, pk=<span class="kw">None</span>):
+        student = self.get_object()
+        grades  = student.grades.select_related(<span class="st">'subject'</span>).all()
+        <span class="kw">return</span> Response(GradeSerializer(grades, many=<span class="kw">True</span>).data)
+
+    <span class="di">@action</span>(detail=<span class="kw">False</span>, methods=[<span class="st">'get'</span>])                  <span class="cm"># /students/top_performers/</span>
+    <span class="kw">def</span> <span class="fn">top_performers</span>(self, request):
+        qs = self.get_queryset().filter(gpa__gte=<span class="nu">9</span>).order_by(<span class="st">'-gpa'</span>)[:10]
+        <span class="kw">return</span> Response(self.get_serializer(qs, many=<span class="kw">True</span>).data)
+
+    <span class="di">@action</span>(detail=<span class="kw">True</span>, methods=[<span class="st">'post'</span>],                  <span class="cm"># /students/{pk}/transfer/</span>
+             permission_classes=[permissions.IsAdminUser])
+    <span class="kw">def</span> <span class="fn">transfer</span>(self, request, pk=<span class="kw">None</span>):
+        student  = self.get_object()
+        new_cls  = request.data.get(<span class="st">'classroom_id'</span>)
+        student.classroom_id = new_cls; student.save()
+        <span class="kw">return</span> Response({<span class="st">'transferred_to'</span>: new_cls})
+
+
+router = DefaultRouter()
+router.register(<span class="st">r'students'</span>, StudentViewSet, basename=<span class="st">'student'</span>)
+<span class="cm"># Generates: GET/POST /students/   GET/PUT/PATCH/DELETE /students/{pk}/
+# Custom:    GET /students/{pk}/report_card/   GET /students/top_performers/
+#            POST /students/{pk}/transfer/</span>
+</pre></div>
+</section>
+
+<!-- D8 AUTH -->
+<section class="chapter" id="drf-auth">
+  <div class="ch-head"><span class="ch-num">D8</span><h2 class="ch-title">Authentication</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">Authentication sets <code>request.user</code>. DRF tries each class in <code>DEFAULT_AUTHENTICATION_CLASSES</code> in order — first class to return a user wins. Returning <code>None</code> means "skip me, try the next". Authentication never blocks a request — that is the job of <strong>permission classes</strong>.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Method</th><th>What client sends</th><th>Best for</th><th>Stateful?</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Session</strong></td><td><code>Cookie: sessionid=…</code></td><td>Browsable API, Django admin, traditional web apps</td><td>Yes — session row in DB</td></tr>
+      <tr><td><strong>Basic</strong></td><td><code>Authorization: Basic base64(u:p)</code></td><td>Dev / curl testing only — never production</td><td>No</td></tr>
+      <tr><td><strong>Token</strong></td><td><code>Authorization: Token abc123</code></td><td>Simple APIs, no JWT complexity needed</td><td>Yes — token row in DB</td></tr>
+      <tr><td><strong>JWT</strong></td><td><code>Authorization: Bearer eyJ…</code></td><td>SPAs, mobile, microservices, horizontal scaling</td><td>No (stateless)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Implement Session Authentication — full login / logout flow</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Step 1: settings.py ──────────────────────────────────────────────</span>
+INSTALLED_APPS = [
+    <span class="st">'django.contrib.auth'</span>,
+    <span class="st">'django.contrib.sessions'</span>,         <span class="cm"># required for session engine</span>
+    <span class="st">'rest_framework'</span>,
+]
+MIDDLEWARE = [
+    <span class="st">'django.contrib.sessions.middleware.SessionMiddleware'</span>,
+    <span class="st">'django.contrib.auth.middleware.AuthenticationMiddleware'</span>,  <span class="cm"># sets request.user</span>
+]
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework.authentication.SessionAuthentication'</span>,
+    ],
+}
+
+<span class="cm"># ── Step 2: views.py — login / logout ─────────────────────────────────</span>
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> authenticate, login, logout
+<span class="kw2">from</span> rest_framework.views <span class="kw2">import</span> APIView
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> AllowAny, IsAuthenticated
+
+<span class="kw">class</span> <span class="cl">LoginView</span>(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []       <span class="cm"># skip auth check for login endpoint itself</span>
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        user = authenticate(
+            request,
+            username=request.data.get(<span class="st">'username'</span>),
+            password=request.data.get(<span class="st">'password'</span>)
+        )
+        <span class="kw">if</span> user <span class="kw">is</span> <span class="kw">None</span>:
+            <span class="kw">return</span> Response({<span class="st">'error'</span>: <span class="st">'Invalid credentials'</span>}, status=<span class="nu">401</span>)
+        login(request, user)          <span class="cm"># creates django_session row + sets sessionid cookie</span>
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Logged in'</span>, <span class="st">'username'</span>: user.username})
+
+<span class="kw">class</span> <span class="cl">LogoutView</span>(APIView):
+    permission_classes = [IsAuthenticated]
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        logout(request)               <span class="cm"># deletes session row → cookie becomes invalid</span>
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Logged out'</span>})
+
+<span class="kw">class</span> <span class="cl">MeView</span>(APIView):
+    permission_classes = [IsAuthenticated]
+
+    <span class="kw">def</span> <span class="fn">get</span>(self, request):          <span class="cm"># request.user populated from session cookie</span>
+        <span class="kw">return</span> Response({<span class="st">'id'</span>: request.user.id, <span class="st">'username'</span>: request.user.username})
+
+<span class="cm"># ── Step 3: urls.py ───────────────────────────────────────────────────</span>
+urlpatterns = [
+    path(<span class="st">'auth/login/'</span>,  LoginView.as_view()),
+    path(<span class="st">'auth/logout/'</span>, LogoutView.as_view()),
+    path(<span class="st">'auth/me/'</span>,     MeView.as_view()),
+]
+
+<span class="cm"># ── CSRF note: SessionAuthentication enforces CSRF on unsafe methods ──</span>
+<span class="cm"># POST/PUT/PATCH/DELETE require X-CSRFToken header (value from csrftoken cookie)</span>
+<span class="cm"># GET/HEAD/OPTIONS are exempt — safe methods never need CSRF</span>
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Implement Token Authentication — full setup + login endpoint</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Step 1: settings.py ──────────────────────────────────────────────</span>
+INSTALLED_APPS += [<span class="st">'rest_framework.authtoken'</span>]   <span class="cm"># adds authtoken_token DB table</span>
+
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework.authentication.TokenAuthentication'</span>,
+    ],
+}
+<span class="cm"># python manage.py migrate   ← creates authtoken_token table</span>
+
+<span class="cm"># ── Step 2: Generate token on login ───────────────────────────────────</span>
+<span class="kw2">from</span> rest_framework.authtoken.models <span class="kw2">import</span> Token
+
+<span class="kw">class</span> <span class="cl">LoginView</span>(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        user = authenticate(
+            request,
+            username=request.data.get(<span class="st">'username'</span>),
+            password=request.data.get(<span class="st">'password'</span>)
+        )
+        <span class="kw">if</span> user <span class="kw">is</span> <span class="kw">None</span>:
+            <span class="kw">return</span> Response({<span class="st">'error'</span>: <span class="st">'Invalid credentials'</span>}, status=<span class="nu">401</span>)
+        token, _ = Token.objects.get_or_create(user=user)  <span class="cm"># one token per user</span>
+        <span class="kw">return</span> Response({<span class="st">'token'</span>: token.key, <span class="st">'user_id'</span>: user.id})
+
+<span class="cm"># ── Or auto-create token when a user is created (signal) ──────────────</span>
+<span class="kw2">from</span> django.db.models.signals <span class="kw2">import</span> post_save
+<span class="kw2">from</span> django.dispatch <span class="kw2">import</span> receiver
+<span class="kw2">from</span> django.contrib.auth.models <span class="kw2">import</span> User
+
+<span class="di">@receiver</span>(post_save, sender=User)
+<span class="kw">def</span> <span class="fn">create_auth_token</span>(sender, instance, created, **kwargs):
+    <span class="kw">if</span> created:
+        Token.objects.create(user=instance)
+
+<span class="cm"># ── Step 3: Client sends token in header on every request ─────────────</span>
+<span class="cm"># Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4f</span>
+
+<span class="cm"># ── Step 4: Revoke (logout) = delete the DB row ───────────────────────</span>
+<span class="kw">class</span> <span class="cl">LogoutView</span>(APIView):
+    permission_classes = [IsAuthenticated]
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        request.user.auth_token.delete()   <span class="cm"># token no longer valid</span>
+        <span class="kw">return</span> Response(status=<span class="nu">204</span>)
+
+<span class="cm"># ── Or use DRF's built-in ObtainAuthToken view ────────────────────────</span>
+<span class="kw2">from</span> rest_framework.authtoken.views <span class="kw2">import</span> ObtainAuthToken
+urlpatterns += [path(<span class="st">'auth/token/'</span>, ObtainAuthToken.as_view())]
+<span class="cm"># POST {"username": "ali", "password": "pass"} → {"token": "abc..."}</span>
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Write a custom DRF authentication class</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># Custom auth reads a header, validates it, and returns (user, token) or None.</span>
+<span class="kw2">from</span> rest_framework.authentication <span class="kw2">import</span> BaseAuthentication
+<span class="kw2">from</span> rest_framework.exceptions <span class="kw2">import</span> AuthenticationFailed
+
+<span class="kw">class</span> <span class="cl">APIKeyAuthentication</span>(BaseAuthentication):
+    <span class="st">"""Authenticate via X-API-Key header — maps key to a user."""</span>
+
+    <span class="kw">def</span> <span class="fn">authenticate</span>(self, request):
+        api_key = request.headers.get(<span class="st">'X-API-Key'</span>)
+        <span class="kw">if</span> not api_key:
+            <span class="kw">return</span> <span class="kw">None</span>                   <span class="cm"># not our scheme — let next class try</span>
+
+        <span class="kw">try</span>:
+            key_obj = APIKey.objects.select_related(<span class="st">'user'</span>).get(key=api_key, is_active=<span class="kw">True</span>)
+        <span class="kw">except</span> APIKey.DoesNotExist:
+            <span class="kw">raise</span> AuthenticationFailed(<span class="st">'Invalid or revoked API key.'</span>)
+
+        <span class="kw">return</span> (key_obj.user, key_obj)     <span class="cm"># (user, auth) — sets request.user</span>
+
+    <span class="kw">def</span> <span class="fn">authenticate_header</span>(self, request):
+        <span class="kw">return</span> <span class="st">'X-API-Key'</span>                <span class="cm"># sent in WWW-Authenticate on 401</span>
+
+<span class="cm"># Wire it in:</span>
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'myapp.auth.APIKeyAuthentication'</span>,
+        <span class="st">'rest_framework_simplejwt.authentication.JWTAuthentication'</span>,
+    ]
+}
+<span class="cm"># DRF tries APIKeyAuthentication first; if it returns None, tries JWT next.</span>
+</pre></div>
+</section>
+
+<!-- D8b AUTH IMPLEMENTATION -->
+<section class="chapter" id="drf-auth-impl">
+  <div class="ch-head"><span class="ch-num">D8b</span><h2 class="ch-title">Auth Implementation — Custom Backend &amp; Django Built-in</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">Django's <strong>authentication backend</strong> is the layer that maps credentials to a User object. The default backend checks <code>username + password</code> against the DB. Override it to support email login, LDAP, OAuth, or any custom credential scheme. Multiple backends can be chained.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Custom email-based authentication backend</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># accounts/backends.py</span>
+<span class="kw2">from</span> django.contrib.auth.backends <span class="kw2">import</span> ModelBackend
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> get_user_model
+
+User = get_user_model()
+
+<span class="kw">class</span> <span class="cl">EmailBackend</span>(ModelBackend):
+    <span class="st">"""Allow login with email instead of username."""</span>
+
+    <span class="kw">def</span> <span class="fn">authenticate</span>(self, request, username=<span class="kw">None</span>, password=<span class="kw">None</span>, **kwargs):
+        <span class="cm"># 'username' kwarg carries whatever the login form submitted</span>
+        email = username or kwargs.get(<span class="st">'email'</span>)
+        <span class="kw">if</span> not email:
+            <span class="kw">return</span> <span class="kw">None</span>
+        <span class="kw">try</span>:
+            user = User.objects.get(email=email.lower())
+        <span class="kw">except</span> User.DoesNotExist:
+            <span class="kw">return</span> <span class="kw">None</span>
+        <span class="kw">if</span> user.check_password(password) <span class="kw">and</span> self.user_can_authenticate(user):
+            <span class="kw">return</span> user
+        <span class="kw">return</span> <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">get_user</span>(self, user_id):
+        <span class="kw">try</span>:
+            <span class="kw">return</span> User.objects.get(pk=user_id)
+        <span class="kw">except</span> User.DoesNotExist:
+            <span class="kw">return</span> <span class="kw">None</span>
+
+
+<span class="cm"># settings.py — order matters: first backend to return a user wins</span>
+AUTHENTICATION_BACKENDS = [
+    <span class="st">'accounts.backends.EmailBackend'</span>,        <span class="cm"># try email first</span>
+    <span class="st">'django.contrib.auth.backends.ModelBackend'</span>,  <span class="cm"># fallback: username</span>
+]
+
+<span class="cm"># Usage: authenticate() now accepts email kwarg or passes email as username</span>
+user = authenticate(request, username=<span class="st">'ali@school.com'</span>, password=<span class="st">'secret'</span>)
+<span class="cm"># or explicitly:</span>
+user = authenticate(request, email=<span class="st">'ali@school.com'</span>, password=<span class="st">'secret'</span>)
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Django built-in auth views + decorators — protect any view</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Using built-in auth for traditional (non-API) views ───────────────</span>
+<span class="kw2">from</span> django.contrib.auth.decorators <span class="kw2">import</span> login_required, permission_required
+<span class="kw2">from</span> django.contrib.auth.mixins <span class="kw2">import</span> LoginRequiredMixin, PermissionRequiredMixin
+
+<span class="cm"># Function-based view — redirect to login if anonymous</span>
+<span class="di">@login_required</span>(login_url=<span class="st">'/accounts/login/'</span>)
+<span class="kw">def</span> <span class="fn">dashboard</span>(request):
+    <span class="kw">return</span> render(request, <span class="st">'dashboard.html'</span>, {<span class="st">'user'</span>: request.user})
+
+<span class="cm"># FBV — also requires a specific permission</span>
+<span class="di">@login_required</span>
+<span class="di">@permission_required</span>(<span class="st">'students.view_student'</span>, raise_exception=<span class="kw">True</span>)
+<span class="kw">def</span> <span class="fn">student_list</span>(request): ...
+
+<span class="cm"># Class-based view — LoginRequiredMixin must be first in MRO</span>
+<span class="kw">class</span> <span class="cl">ReportView</span>(LoginRequiredMixin, PermissionRequiredMixin, View):
+    login_url          = <span class="st">'/login/'</span>
+    permission_required = <span class="st">'reports.view_report'</span>
+    raise_exception    = <span class="kw">True</span>    <span class="cm"># 403 instead of redirect when logged in but no perm</span>
+
+<span class="cm"># ── urls.py — include Django's built-in login / logout views ──────────</span>
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> views <span class="kw2">as</span> auth_views
+urlpatterns = [
+    path(<span class="st">'accounts/login/'</span>,  auth_views.LoginView.as_view(template_name=<span class="st">'login.html'</span>)),
+    path(<span class="st">'accounts/logout/'</span>, auth_views.LogoutView.as_view(next_page=<span class="st">'/'</span>)),
+    path(<span class="st">'accounts/password-change/'</span>, auth_views.PasswordChangeView.as_view()),
+    path(<span class="st">'accounts/password-reset/'</span>,  auth_views.PasswordResetView.as_view()),
+]
+
+<span class="cm"># settings.py — where to redirect after login/logout</span>
+LOGIN_URL        = <span class="st">'/accounts/login/'</span>    <span class="cm"># @login_required redirects here</span>
+LOGIN_REDIRECT_URL = <span class="st">'/dashboard/'</span>        <span class="cm"># redirect after successful login</span>
+LOGOUT_REDIRECT_URL = <span class="st">'/'</span>               <span class="cm"># redirect after logout</span>
+
+<span class="cm"># ── Manual checks inside a view ────────────────────────────────────────</span>
+<span class="kw">def</span> <span class="fn">my_view</span>(request):
+    <span class="kw">if</span> not request.user.is_authenticated:
+        <span class="kw2">from</span> django.contrib.auth.views <span class="kw2">import</span> redirect_to_login
+        <span class="kw">return</span> redirect_to_login(request.get_full_path())
+
+    <span class="kw">if</span> not request.user.has_perm(<span class="st">'students.delete_student'</span>):
+        <span class="kw2">from</span> django.core.exceptions <span class="kw2">import</span> PermissionDenied
+        <span class="kw">raise</span> PermissionDenied
+</pre></div>
+</section>
+
+<!-- D9 JWT -->
+<section class="chapter" id="drf-jwt">
+  <div class="ch-head"><span class="ch-num">D9</span><h2 class="ch-title">JWT — Deep Dive</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">JWT (JSON Web Token) is the standard for stateless API auth. An access token (short-lived: 15–60 min) is sent with every request. A refresh token (7–30 days) is exchanged for a new access token without re-login.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Complete JWT setup + custom claims + token blacklist</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># pip install djangorestframework-simplejwt</span>
+<span class="cm"># INSTALLED_APPS += ['rest_framework_simplejwt']</span>
+<span class="cm"># For blacklist: INSTALLED_APPS += ['rest_framework_simplejwt.token_blacklist']</span>
+
+<span class="cm"># settings.py</span>
+<span class="kw2">from</span> datetime <span class="kw2">import</span> timedelta
+SIMPLE_JWT = {
+    <span class="st">'ACCESS_TOKEN_LIFETIME'</span>:   timedelta(minutes=<span class="nu">60</span>),
+    <span class="st">'REFRESH_TOKEN_LIFETIME'</span>:  timedelta(days=<span class="nu">7</span>),
+    <span class="st">'ROTATE_REFRESH_TOKENS'</span>:   <span class="kw">True</span>,     <span class="cm"># new refresh on every refresh</span>
+    <span class="st">'BLACKLIST_AFTER_ROTATION'</span>: <span class="kw">True</span>,    <span class="cm"># old refresh can't be reused</span>
+    <span class="st">'UPDATE_LAST_LOGIN'</span>:        <span class="kw">True</span>,
+    <span class="st">'AUTH_HEADER_TYPES'</span>:        (<span class="st">'Bearer'</span>,),
+    <span class="st">'TOKEN_OBTAIN_SERIALIZER'</span>:  <span class="st">'accounts.serializers.SchoolTokenSerializer'</span>,
+}
+
+<span class="cm"># urls.py</span>
+<span class="kw2">from</span> rest_framework_simplejwt.views <span class="kw2">import</span> (
+    TokenObtainPairView, TokenRefreshView, TokenVerifyView, TokenBlacklistView
+)
+urlpatterns = [
+    path(<span class="st">'api/auth/token/'</span>,          TokenObtainPairView.as_view()),  <span class="cm"># POST → login</span>
+    path(<span class="st">'api/auth/token/refresh/'</span>,   TokenRefreshView.as_view()),    <span class="cm"># POST → new access</span>
+    path(<span class="st">'api/auth/token/verify/'</span>,    TokenVerifyView.as_view()),     <span class="cm"># POST → is valid?</span>
+    path(<span class="st">'api/auth/token/blacklist/'</span>,  TokenBlacklistView.as_view()),  <span class="cm"># POST → logout</span>
+]
+
+<span class="cm"># Add custom fields to JWT payload</span>
+<span class="kw2">from</span> rest_framework_simplejwt.serializers <span class="kw2">import</span> TokenObtainPairSerializer
+
+<span class="kw">class</span> <span class="cl">SchoolTokenSerializer</span>(TokenObtainPairSerializer):
+    <span class="di">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">get_token</span>(cls, user):
+        token = <span class="kw">super</span>().get_token(user)
+        token[<span class="st">'email'</span>]   = user.email
+        token[<span class="st">'role'</span>]    = user.role           <span class="cm"># 'admin' | 'teacher' | 'student'</span>
+        token[<span class="st">'school'</span>]  = user.school_id
+        token[<span class="st">'is_staff'</span>] = user.is_staff
+        <span class="kw">return</span> token
+
+<span class="cm"># Flow:
+# 1. POST /api/auth/token/  {"email": "x@x.com", "password": "..."}
+#    → {"access": "eyJ...", "refresh": "eyJ..."}
+# 2. GET  /api/students/    Header: Authorization: Bearer eyJ...
+# 3. POST /api/auth/token/refresh/  {"refresh": "eyJ..."}
+#    → {"access": "eyJ...NEW", "refresh": "eyJ...NEW"}
+# 4. POST /api/auth/token/blacklist/  {"refresh": "eyJ..."}  → logout</span>
+</pre></div>
+</section>
+
+<!-- D10 AUTHORIZATION / PERMISSIONS -->
+<section class="chapter" id="drf-perms">
+  <div class="ch-head"><span class="ch-num">D10</span><h2 class="ch-title">Authorization — Permissions</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">Authorization runs after authentication and answers: <em>"is this user allowed to do this?"</em> DRF checks every class in <code>permission_classes</code> — all must pass (AND logic). <code>has_permission</code> runs on every request; <code>has_object_permission</code> runs only on detail endpoints (retrieve, update, destroy). Returning <code>False</code> raises <strong>403</strong>.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Built-in class</th><th>What it checks</th><th>Use when</th></tr></thead>
+    <tbody>
+      <tr><td><code>AllowAny</code></td><td>Nothing — always passes</td><td>Public endpoints (register, login)</td></tr>
+      <tr><td><code>IsAuthenticated</code></td><td><code>request.user.is_authenticated</code></td><td>Any logged-in user may proceed</td></tr>
+      <tr><td><code>IsAdminUser</code></td><td><code>request.user.is_staff</code></td><td>Django admin / staff only</td></tr>
+      <tr><td><code>IsAuthenticatedOrReadOnly</code></td><td>Anonymous: GET/HEAD/OPTIONS only</td><td>Public read, auth required to write</td></tr>
+      <tr><td><code>DjangoModelPermissions</code></td><td>Django model perms (add/change/delete/view)</td><td>Tie DRF actions to Django admin perms</td></tr>
+      <tr><td><code>DjangoObjectPermissions</code></td><td>Object-level Django perms</td><td>Per-object control via guardian or custom backend</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Custom permission classes — patterns that cover every real scenario</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> BasePermission, SAFE_METHODS
+
+<span class="cm"># ── Pattern 1: Role check on every request ─────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">IsTeacherOrAdmin</span>(BasePermission):
+    message = <span class="st">'Only teachers or admins can access this.'</span>
+
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> (
+            request.user.role <span class="kw">in</span> [<span class="st">'teacher'</span>, <span class="st">'admin'</span>] <span class="kw">or</span> request.user.is_staff
+        )
+
+<span class="cm"># ── Pattern 2: Object-level — only owner or staff can modify ───────────</span>
+<span class="kw">class</span> <span class="cl">IsOwnerOrReadOnly</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">if</span> request.user.is_staff: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">return</span> getattr(obj, <span class="st">'user'</span>, <span class="kw">None</span>) == request.user   <span class="cm"># obj.user FK</span>
+
+<span class="cm"># ── Pattern 3: Teacher scoped to their own classroom ──────────────────</span>
+<span class="kw">class</span> <span class="cl">IsTeacherOfClass</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> request.user.is_authenticated
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> (
+            request.user.is_staff <span class="kw">or</span> request.user.role == <span class="st">'teacher'</span>
+        )
+
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">if</span> request.user.is_staff: <span class="kw">return</span> <span class="kw">True</span>
+        classroom = getattr(obj, <span class="st">'classroom'</span>, <span class="kw">None</span>)
+        <span class="kw">return</span> classroom <span class="kw">and</span> classroom.teacher == request.user
+
+<span class="cm"># ── Pattern 4: Per-action in ViewSet ──────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(viewsets.ModelViewSet):
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action <span class="kw">in</span> [<span class="st">'list'</span>, <span class="st">'retrieve'</span>]:
+            <span class="kw">return</span> [IsAuthenticated()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> [<span class="st">'create'</span>, <span class="st">'update'</span>, <span class="st">'partial_update'</span>]:
+            <span class="kw">return</span> [IsAuthenticated(), IsTeacherOrAdmin()]
+        <span class="kw">if</span> self.action == <span class="st">'destroy'</span>:
+            <span class="kw">return</span> [IsAdminUser()]
+        <span class="kw">return</span> [IsAuthenticated()]
+
+<span class="cm"># ── Pattern 5: Compose with | (OR) and & (AND) ────────────────────────</span>
+<span class="cm"># permission_classes = [IsAdminUser | IsTeacherOrAdmin]   # either role passes</span>
+<span class="cm"># permission_classes = [IsAuthenticated &amp; IsTeacherOrAdmin]  # both must pass</span>
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">DjangoModelPermissions — tie DRF actions to Django admin permissions</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> DjangoModelPermissions
+
+<span class="cm"># ── What it checks per HTTP method ────────────────────────────────────</span>
+<span class="cm"># GET (list/retrieve) → app_label.view_model    (only if queryset defined)</span>
+<span class="cm"># POST               → app_label.add_model</span>
+<span class="cm"># PUT / PATCH        → app_label.change_model</span>
+<span class="cm"># DELETE             → app_label.delete_model</span>
+
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(ModelViewSet):
+    queryset           = Student.objects.all()
+    serializer_class   = StudentSerializer
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    <span class="cm"># Requires that the authenticated user has the appropriate model permission</span>
+    <span class="cm"># in Django's auth system (via admin, Group, or direct assignment)</span>
+
+<span class="cm"># ── Checking Django model permissions manually ─────────────────────────</span>
+user.has_perm(<span class="st">'students.view_student'</span>)     <span class="cm"># single perm</span>
+user.has_perms([<span class="st">'students.view_student'</span>,
+                <span class="st">'students.change_student'</span>])  <span class="cm"># all of these</span>
+user.has_module_perms(<span class="st">'students'</span>)            <span class="cm"># any perm in the app</span>
+
+<span class="cm"># ── Assign permissions to a user directly ─────────────────────────────</span>
+<span class="kw2">from</span> django.contrib.auth.models <span class="kw2">import</span> Permission
+perm = Permission.objects.get(codename=<span class="st">'change_student'</span>)
+user.user_permissions.add(perm)               <span class="cm"># direct assignment</span>
+
+<span class="cm"># ── Custom model permissions ───────────────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">Student</span>(models.Model):
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        permissions = [
+            (<span class="st">'export_student'</span>,   <span class="st">'Can export student list to CSV'</span>),
+            (<span class="st">'transfer_student'</span>, <span class="st">'Can transfer student to another classroom'</span>),
+        ]
+<span class="cm"># Check: user.has_perm('students.export_student')</span>
+
+<span class="cm"># ── Template-level permission check ───────────────────────────────────</span>
+<span class="cm"># {% if perms.students.delete_student %}</span>
+<span class="cm">#   &lt;button&gt;Delete&lt;/button&gt;</span>
+<span class="cm"># {% endif %}</span>
+<span class="cm"># {% if user.is_authenticated %}...{% endif %}</span>
+</pre></div>
+</section>
+
+<!-- D10b GROUPS & ROLE-BASED ACCESS -->
+<section class="chapter" id="drf-authz-impl">
+  <div class="ch-head"><span class="ch-num">D10b</span><h2 class="ch-title">Groups &amp; Role-Based Authorization</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose"><strong>Groups</strong> are Django's built-in way to assign a set of permissions to many users at once. A user in the "Teachers" group inherits every permission assigned to that group. This is the cleanest way to implement role-based access control without a custom role field.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Group setup — create groups, assign permissions, add users</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib.auth.models <span class="kw2">import</span> Group, Permission
+<span class="kw2">from</span> django.contrib.contenttypes.models <span class="kw2">import</span> ContentType
+
+<span class="cm"># ── 1. Create groups once (e.g., in a data migration or management command) ──</span>
+teachers_group, _ = Group.objects.get_or_create(name=<span class="st">'Teachers'</span>)
+students_group, _ = Group.objects.get_or_create(name=<span class="st">'Students'</span>)
+admins_group,   _ = Group.objects.get_or_create(name=<span class="st">'Admins'</span>)
+
+<span class="cm"># ── 2. Assign permissions to the Teachers group ───────────────────────</span>
+teacher_perms = Permission.objects.filter(
+    codename__in=[
+        <span class="st">'view_student'</span>, <span class="st">'change_student'</span>,
+        <span class="st">'view_attendance'</span>, <span class="st">'add_attendance'</span>, <span class="st">'change_attendance'</span>,
+        <span class="st">'view_mark'</span>, <span class="st">'add_mark'</span>, <span class="st">'change_mark'</span>,
+    ]
+)
+teachers_group.permissions.set(teacher_perms)
+
+<span class="cm"># ── 3. Add a user to a group on registration ──────────────────────────</span>
+user.groups.add(teachers_group)              <span class="cm"># user is now a teacher</span>
+user.groups.remove(teachers_group)           <span class="cm"># remove from group</span>
+user.groups.set([teachers_group])            <span class="cm"># replace all groups</span>
+
+<span class="cm"># ── 4. Check permissions — group perms are inherited automatically ────</span>
+user.has_perm(<span class="st">'students.view_student'</span>)      <span class="cm"># True if Teachers group has it</span>
+user.groups.filter(name=<span class="st">'Teachers'</span>).exists()  <span class="cm"># direct group membership check</span>
+
+<span class="cm"># ── 5. DRF permission class that checks group membership ──────────────</span>
+<span class="kw">class</span> <span class="cl">IsInGroup</span>(BasePermission):
+    group_name = <span class="st">''</span>   <span class="cm"># override in subclass</span>
+
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> (
+            request.user.is_authenticated <span class="kw">and</span>
+            request.user.groups.filter(name=self.group_name).exists()
+        )
+
+<span class="kw">class</span> <span class="cl">IsTeacher</span>(IsInGroup): group_name = <span class="st">'Teachers'</span>
+<span class="kw">class</span> <span class="cl">IsSchoolAdmin</span>(IsInGroup): group_name = <span class="st">'Admins'</span>
+
+<span class="cm"># Usage:</span>
+<span class="kw">class</span> <span class="cl">AttendanceViewSet</span>(ModelViewSet):
+    permission_classes = [IsAuthenticated, IsTeacher | IsSchoolAdmin]
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Role field vs Groups — side-by-side comparison + when to use each</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Approach A: role field on User model ──────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">User</span>(AbstractBaseUser):
+    ROLE_CHOICES = [(<span class="st">'admin'</span>, <span class="st">'Admin'</span>), (<span class="st">'teacher'</span>, <span class="st">'Teacher'</span>), (<span class="st">'student'</span>, <span class="st">'Student'</span>)]
+    role = models.CharField(max_length=<span class="nu">10</span>, choices=ROLE_CHOICES)
+
+<span class="cm"># Check: request.user.role == 'teacher'</span>
+<span class="cm"># Pro: simple, single column, embeds cleanly in JWT claims</span>
+<span class="cm"># Con: adding a new role requires a migration and code changes</span>
+
+<span class="cm"># ── Approach B: Django Groups ──────────────────────────────────────────</span>
+<span class="cm"># Check: request.user.groups.filter(name='Teachers').exists()</span>
+<span class="cm"># Pro: built-in admin UI, granular permissions per group, no migration to add roles</span>
+<span class="cm"># Con: extra DB query per request (mitigate with select_related or caching)</span>
+
+<span class="cm"># ── Approach C: Hybrid (recommended for school system) ────────────────</span>
+<span class="cm"># role field on User → drives JWT claims + fast in-memory checks</span>
+<span class="cm"># Groups → drives fine-grained model permissions checked via DjangoModelPermissions</span>
+<span class="cm"># Keep in sync via a post_save signal:</span>
+<span class="kw2">from</span> django.db.models.signals <span class="kw2">import</span> post_save
+<span class="kw2">from</span> django.dispatch <span class="kw2">import</span> receiver
+
+<span class="di">@receiver</span>(post_save, sender=User)
+<span class="kw">def</span> <span class="fn">sync_role_to_group</span>(sender, instance, **kwargs):
+    group_map = {
+        <span class="st">'admin'</span>:   <span class="st">'Admins'</span>,
+        <span class="st">'teacher'</span>: <span class="st">'Teachers'</span>,
+        <span class="st">'student'</span>: <span class="st">'Students'</span>,
+    }
+    group_name = group_map.get(instance.role)
+    <span class="kw">if</span> group_name:
+        group = Group.objects.get(name=group_name)
+        instance.groups.set([group])   <span class="cm"># replaces all groups — one group per user</span>
+
+<span class="cm"># ── Full authorization flow summary ───────────────────────────────────</span>
+<span class="cm"># Request arrives → JWTAuthentication reads token → sets request.user</span>
+<span class="cm">#   ↓</span>
+<span class="cm"># permission_classes checked in order:</span>
+<span class="cm">#   IsAuthenticated   → user logged in?                 (401 if not)</span>
+<span class="cm">#   IsTeacherOrAdmin  → role in ('teacher', 'admin')?   (403 if not)</span>
+<span class="cm">#   IsTeacherOfClass  → has_object_permission checks FK  (403 if not)</span>
+<span class="cm">#   ↓</span>
+<span class="cm"># View runs, queryset filtered by ownership if needed</span>
+<span class="cm">#   get_queryset() → Student.objects.filter(classroom__teacher=request.user)</span>
+</pre></div>
+</section>
+
+<!-- D11 FILTERING -->
+<section class="chapter" id="drf-filter">
+  <div class="ch-head"><span class="ch-num">D11</span><h2 class="ch-title">Filtering &amp; Search</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">Three complementary backends: <code>SearchFilter</code> for text search, <code>OrderingFilter</code> for sort, <code>DjangoFilterBackend</code> for exact/range field filtering. Use all three together.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">All filter types + custom FilterSet</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">import</span> django_filters
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> filters
+
+<span class="cm"># ── 1. SearchFilter — ?search=ali ─────────────────────────────────────</span>
+<span class="cm"># '^field'  → starts with   '=field' → exact   '$field' → regex</span>
+search_fields  = [<span class="st">'full_name'</span>, <span class="st">'roll_no'</span>, <span class="st">'email'</span>, <span class="st">'classroom__name'</span>]
+
+<span class="cm"># ── 2. OrderingFilter — ?ordering=-gpa,full_name ──────────────────────</span>
+ordering_fields = [<span class="st">'full_name'</span>, <span class="st">'gpa'</span>, <span class="st">'created_at'</span>]
+ordering        = [<span class="st">'-created_at'</span>]   <span class="cm"># default</span>
+
+<span class="cm"># ── 3. DjangoFilterBackend simple — ?is_active=true&gender=M ──────────</span>
+filterset_fields = [<span class="st">'is_active'</span>, <span class="st">'gender'</span>, <span class="st">'classroom'</span>]
+
+<span class="cm"># ── 4. Custom FilterSet — full control ────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">StudentFilter</span>(django_filters.FilterSet):
+    name        = django_filters.CharFilter(field_name=<span class="st">'full_name'</span>, lookup_expr=<span class="st">'icontains'</span>)
+    min_gpa     = django_filters.NumberFilter(field_name=<span class="st">'gpa'</span>, lookup_expr=<span class="st">'gte'</span>)
+    max_gpa     = django_filters.NumberFilter(field_name=<span class="st">'gpa'</span>, lookup_expr=<span class="st">'lte'</span>)
+    joined_from = django_filters.DateFilter(field_name=<span class="st">'joined_on'</span>, lookup_expr=<span class="st">'gte'</span>)
+    joined_to   = django_filters.DateFilter(field_name=<span class="st">'joined_on'</span>, lookup_expr=<span class="st">'lte'</span>)
+    subject     = django_filters.CharFilter(method=<span class="st">'filter_by_subject'</span>)
+
+    <span class="kw">def</span> <span class="fn">filter_by_subject</span>(self, qs, name, value):
+        <span class="kw">return</span> qs.filter(subjects__name__icontains=value)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Student
+        fields = [<span class="st">'name'</span>, <span class="st">'min_gpa'</span>, <span class="st">'max_gpa'</span>, <span class="st">'gender'</span>, <span class="st">'is_active'</span>,
+                  <span class="st">'classroom'</span>, <span class="st">'joined_from'</span>, <span class="st">'joined_to'</span>, <span class="st">'subject'</span>]
+
+<span class="cm"># In ViewSet:  filterset_class = StudentFilter
+# Request: GET /api/students/?min_gpa=8&subject=maths&ordering=-gpa&search=ali</span>
+</pre></div>
+</section>
+
+<!-- D12 PAGINATION -->
+<section class="chapter" id="drf-page">
+  <div class="ch-head"><span class="ch-num">D12</span><h2 class="ch-title">Pagination</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">Three pagination styles: page-number (most common), limit-offset (SQL-like), cursor (for feeds/real-time). All support custom response shapes.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">All pagination types + custom shape</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.pagination <span class="kw2">import</span> (PageNumberPagination,
+                                          LimitOffsetPagination, CursorPagination)
+
+<span class="cm"># ── Page number — ?page=2&page_size=10 ────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">StandardPagination</span>(PageNumberPagination):
+    page_size             = <span class="nu">20</span>
+    page_size_query_param = <span class="st">'page_size'</span>
+    max_page_size         = <span class="nu">100</span>
+
+    <span class="kw">def</span> <span class="fn">get_paginated_response</span>(self, data):
+        <span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+        <span class="kw">return</span> Response({
+            <span class="st">'pagination'</span>: {
+                <span class="st">'total'</span>:   self.page.paginator.count,
+                <span class="st">'pages'</span>:   self.page.paginator.num_pages,
+                <span class="st">'current'</span>: self.page.number,
+                <span class="st">'next'</span>:    self.get_next_link(),
+                <span class="st">'previous'</span>: self.get_previous_link(),
+            },
+            <span class="st">'results'</span>: data
+        })
+
+
+<span class="cm"># ── Limit/Offset — ?limit=20&offset=40 ───────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">LargeSetPagination</span>(LimitOffsetPagination):
+    default_limit = <span class="nu">20</span>;  max_limit = <span class="nu">500</span>
+
+
+<span class="cm"># ── Cursor — for activity feeds (no page hopping) ─────────────────────</span>
+<span class="kw">class</span> <span class="cl">AttendanceFeedPagination</span>(CursorPagination):
+    page_size = <span class="nu">50</span>;  ordering = <span class="st">'-date'</span>
+
+<span class="cm"># Apply: pagination_class = StandardPagination
+# Disable per view: pagination_class = None</span>
+</pre></div>
+</section>
+
+<!-- D13 THROTTLING -->
+<section class="chapter" id="drf-throttle">
+  <div class="ch-head"><span class="ch-num">D13</span><h2 class="ch-title">Throttling — Rate Limiting</h2><span class="badge badge-b">DRF</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Throttle classes + scoped + custom</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># settings.py</span>
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_THROTTLE_CLASSES'</span>: [
+        <span class="st">'rest_framework.throttling.AnonRateThrottle'</span>,
+        <span class="st">'rest_framework.throttling.UserRateThrottle'</span>,
+    ],
+    <span class="st">'DEFAULT_THROTTLE_RATES'</span>: {
+        <span class="st">'anon'</span>:   <span class="st">'100/day'</span>,      <span class="cm"># per IP</span>
+        <span class="st">'user'</span>:   <span class="st">'2000/day'</span>,     <span class="cm"># per user</span>
+        <span class="st">'login'</span>:  <span class="st">'10/minute'</span>,   <span class="cm"># scoped for login attempts</span>
+        <span class="st">'report'</span>: <span class="st">'20/hour'</span>,     <span class="cm"># scoped for expensive report generation</span>
+    }
+}
+
+<span class="cm"># Scoped throttle for login view</span>
+<span class="kw2">from</span> rest_framework.throttling <span class="kw2">import</span> ScopedRateThrottle
+
+<span class="kw">class</span> <span class="cl">LoginView</span>(APIView):
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope   = <span class="st">'login'</span>
+
+<span class="cm"># Custom throttle: admin users get unlimited</span>
+<span class="kw2">from</span> rest_framework.throttling <span class="kw2">import</span> UserRateThrottle
+
+<span class="kw">class</span> <span class="cl">TeacherThrottle</span>(UserRateThrottle):
+    <span class="kw">def</span> <span class="fn">get_rate</span>(self):
+        <span class="kw">if</span> self.request.user.is_staff <span class="kw">or</span> self.request.user.role == <span class="st">'admin'</span>:
+            <span class="kw">return</span> <span class="kw">None</span>       <span class="cm"># no limit</span>
+        <span class="kw">return</span> <span class="st">'500/day'</span>
+
+<span class="cm"># Response on limit hit: 429 Too Many Requests
+# {"detail": "Request was throttled. Expected available in 45 seconds."}
+# Header: Retry-After: 45</span>
+</pre></div>
+</section>
+
+<!-- D14 PARSERS & RENDERERS -->
+<section class="chapter" id="drf-parsers">
+  <div class="ch-head"><span class="ch-num">D14</span><h2 class="ch-title">Parsers &amp; Renderers</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose"><strong>Parsers</strong> decode the incoming request body into <code>request.data</code>. <strong>Renderers</strong> encode the outgoing <code>Response</code> into the correct format based on the client's <code>Accept</code> header or <code>?format=json</code>.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Parsers + Renderers + custom CSV renderer</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── Parsers — Content-Type header triggers the right parser ───────────</span>
+<span class="cm"># JSONParser      → application/json         (default)</span>
+<span class="cm"># FormParser      → application/x-www-form-urlencoded</span>
+<span class="cm"># MultiPartParser → multipart/form-data  ← required for file uploads</span>
+
+<span class="kw">class</span> <span class="cl">StudentPhotoUploadView</span>(APIView):
+    parser_classes = [MultiPartParser, FormParser]   <span class="cm"># explicit for file upload</span>
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request, pk):
+        student = get_object_or_404(Student, pk=pk)
+        file    = request.FILES.get(<span class="st">'photo'</span>)
+        <span class="kw">if</span> not file: <span class="kw">raise</span> ParseError(<span class="st">'No photo provided.'</span>)
+        student.photo = file; student.save()
+        <span class="kw">return</span> Response({<span class="st">'photo_url'</span>: request.build_absolute_uri(student.photo.url)})
+
+
+<span class="cm"># ── Renderers — Accept header or ?format=csv ───────────────────────────</span>
+<span class="cm"># JSONRenderer          → application/json  (always include)</span>
+<span class="cm"># BrowsableAPIRenderer  → text/html         (dev only — remove in prod)</span>
+
+<span class="cm"># Custom: CSV renderer for report exports</span>
+<span class="kw2">import</span> csv, io
+<span class="kw2">from</span> rest_framework.renderers <span class="kw2">import</span> BaseRenderer
+
+<span class="kw">class</span> <span class="cl">CSVRenderer</span>(BaseRenderer):
+    media_type = <span class="st">'text/csv'</span>
+    format     = <span class="st">'csv'</span>
+    charset    = <span class="st">'utf-8'</span>
+
+    <span class="kw">def</span> <span class="fn">render</span>(self, data, accepted_media_type=<span class="kw">None</span>, renderer_context=<span class="kw">None</span>):
+        <span class="kw">if</span> not data: <span class="kw">return</span> <span class="st">''</span>
+        rows = data <span class="kw">if</span> isinstance(data, list) <span class="kw">else</span> data.get(<span class="st">'results'</span>, [])
+        <span class="kw">if</span> not rows: <span class="kw">return</span> <span class="st">''</span>
+        output = io.StringIO()
+        writer = csv.DictWriter(output, fieldnames=rows[<span class="nu">0</span>].keys())
+        writer.writeheader(); writer.writerows(rows)
+        <span class="kw">return</span> output.getvalue()
+
+<span class="cm"># Use on specific view: renderer_classes = [JSONRenderer, CSVRenderer]
+# GET /api/students/?format=csv  → returns CSV download</span>
+</pre></div>
+</section>
+
+<!-- D15 RELATIONS -->
+<section class="chapter" id="drf-relations">
+  <div class="ch-head"><span class="ch-num">D15</span><h2 class="ch-title">Relations &amp; Nested Serializers</h2><span class="badge badge-b">DRF</span></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Field</th><th>Output</th><th>Writable?</th><th>Use when</th></tr></thead>
+    <tbody>
+      <tr><td><code>PrimaryKeyRelatedField</code></td><td><code>{"teacher": 3}</code></td><td>Yes</td><td>Lightweight — client fetches teacher separately</td></tr>
+      <tr><td><code>StringRelatedField</code></td><td><code>{"teacher": "Mr. Sharma"}</code></td><td>No</td><td>Display-only, read-only</td></tr>
+      <tr><td><code>HyperlinkedRelatedField</code></td><td><code>{"teacher": "/api/teachers/3/"}</code></td><td>Yes</td><td>HATEOAS APIs</td></tr>
+      <tr><td><code>SlugRelatedField</code></td><td><code>{"teacher": "sharma"}</code></td><td>Yes</td><td>Reference by natural key</td></tr>
+      <tr><td>Nested Serializer</td><td><code>{"teacher": {"id":3,"name":"Sharma"}}</code></td><td>Custom create/update</td><td>Full embedded object</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Nested read + writable M2M</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">StudentDetailSerializer</span>(serializers.ModelSerializer):
+    <span class="cm"># Read: full classroom object embedded</span>
+    classroom = ClassroomSerializer(read_only=<span class="kw">True</span>)
+    <span class="cm"># Write: accept classroom PK</span>
+    classroom_id = serializers.PrimaryKeyRelatedField(
+        queryset=Classroom.objects.all(), source=<span class="st">'classroom'</span>, write_only=<span class="kw">True</span>
+    )
+    <span class="cm"># Read M2M: full subject objects</span>
+    subjects = SubjectSerializer(many=<span class="kw">True</span>, read_only=<span class="kw">True</span>)
+    <span class="cm"># Write M2M: list of subject IDs</span>
+    subject_ids = serializers.PrimaryKeyRelatedField(
+        queryset=Subject.objects.all(), many=<span class="kw">True</span>,
+        write_only=<span class="kw">True</span>, source=<span class="st">'subjects'</span>, required=<span class="kw">False</span>
+    )
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Student
+        fields = [<span class="st">'id'</span>,<span class="st">'full_name'</span>,<span class="st">'classroom'</span>,<span class="st">'classroom_id'</span>,<span class="st">'subjects'</span>,<span class="st">'subject_ids'</span>]
+
+    <span class="kw">def</span> <span class="fn">update</span>(self, instance, validated_data):
+        subjects = validated_data.pop(<span class="st">'subjects'</span>, <span class="kw">None</span>)
+        instance = <span class="kw">super</span>().update(instance, validated_data)
+        <span class="kw">if</span> subjects <span class="kw">is not</span> <span class="kw">None</span>: instance.subjects.set(subjects)
+        <span class="kw">return</span> instance
+</pre></div>
+</section>
+
+<!-- D16 EXCEPTIONS -->
+<section class="chapter" id="drf-exceptions">
+  <div class="ch-head"><span class="ch-num">D16</span><h2 class="ch-title">Exceptions &amp; Error Handling</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">DRF exceptions auto-convert to JSON error responses. A custom exception handler standardises the error shape across your entire API — one consistent structure that frontend teams can rely on.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">core/exceptions.py — custom handler + exception classes</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.views <span class="kw2">import</span> exception_handler
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> rest_framework.exceptions <span class="kw2">import</span> APIException
+<span class="kw2">import</span> logging
+
+logger = logging.getLogger(<span class="st">'school.api'</span>)
+
+
+<span class="kw">def</span> <span class="fn">custom_exception_handler</span>(exc, context):
+    <span class="st">"""
+    Consistent error shape for ALL API errors:
+    {"success": false, "code": 404, "message": "...", "errors": {...}}
+    """</span>
+    response = exception_handler(exc, context)   <span class="cm"># let DRF handle first</span>
+
+    <span class="kw">if</span> response <span class="kw">is not</span> <span class="kw">None</span>:
+        logger.warning(<span class="st">'api_error'</span>, extra={
+            <span class="st">'status'</span>: response.status_code,
+            <span class="st">'exc'</span>:    exc.__class__.__name__,
+            <span class="st">'path'</span>:   context[<span class="st">'request'</span>].path,
+        })
+        response.data = {
+            <span class="st">'success'</span>: <span class="kw">False</span>,
+            <span class="st">'code'</span>:    response.status_code,
+            <span class="st">'message'</span>: str(exc.detail) <span class="kw">if</span> hasattr(exc, <span class="st">'detail'</span>) <span class="kw">else</span> str(exc),
+            <span class="st">'errors'</span>:  response.data,
+        }
+    <span class="kw">return</span> response
+
+
+<span class="cm"># ── Custom exception classes ──────────────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">EnrollmentClosed</span>(APIException):
+    status_code  = <span class="nu">409</span>
+    default_detail = <span class="st">'Enrollment period is closed for this semester.'</span>
+    default_code   = <span class="st">'enrollment_closed'</span>
+
+<span class="kw">class</span> <span class="cl">ClassroomFull</span>(APIException):
+    status_code  = <span class="nu">409</span>
+    default_detail = <span class="st">'This classroom has reached maximum capacity.'</span>
+    default_code   = <span class="st">'classroom_full'</span>
+
+<span class="kw">class</span> <span class="cl">AttendanceAlreadyMarked</span>(APIException):
+    status_code  = <span class="nu">409</span>
+    default_detail = <span class="st">'Attendance already marked for this date.'</span>
+    default_code   = <span class="st">'attendance_duplicate'</span>
+
+<span class="cm"># Raise anywhere in views:
+# raise ClassroomFull()
+# raise ClassroomFull('Grade 10A is full. Current: 40/40 students.')
+
+# All built-in DRF exceptions:
+# ValidationError(400) AuthenticationFailed(401) NotAuthenticated(401)
+# PermissionDenied(403) NotFound(404) MethodNotAllowed(405)
+# NotAcceptable(406) UnsupportedMediaType(415) Throttled(429)</span>
+</pre></div>
+</section>
+
+<!-- D17 TESTING -->
+<section class="chapter" id="drf-testing">
+  <div class="ch-head"><span class="ch-num">D17</span><h2 class="ch-title">Testing APIs</h2><span class="badge badge-b">DRF</span></div>
+  <p class="prose">DRF's <code>APIClient</code> makes HTTP requests in tests without a real server. <code>force_authenticate()</code> skips JWT so tests focus on logic, not auth.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Full test suite patterns</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">import</span> pytest
+<span class="kw2">from</span> rest_framework.test <span class="kw2">import</span> APIClient
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> status
+
+<span class="di">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">api</span>(): <span class="kw">return</span> APIClient()
+
+<span class="di">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">admin_user</span>(db):
+    <span class="kw">from</span> django.contrib.auth <span class="kw">import</span> get_user_model
+    U = get_user_model()
+    <span class="kw">return</span> U.objects.create_superuser(<span class="st">'admin@school.com'</span>, <span class="st">'admin@school.com'</span>, <span class="st">'pass123'</span>)
+
+<span class="di">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">auth_api</span>(api, admin_user): api.force_authenticate(user=admin_user); <span class="kw">return</span> api
+
+
+<span class="di">@pytest.mark.django_db</span>
+<span class="kw">class</span> <span class="cl">TestStudentAPI</span>:
+
+    <span class="kw">def</span> <span class="fn">test_list_requires_auth</span>(self, api):
+        r = api.get(<span class="st">'/api/students/'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_401_UNAUTHORIZED
+
+    <span class="kw">def</span> <span class="fn">test_list_authenticated</span>(self, auth_api):
+        r = auth_api.get(<span class="st">'/api/students/'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_200_OK
+        <span class="kw">assert</span> <span class="st">'results'</span> <span class="kw">in</span> r.data
+
+    <span class="kw">def</span> <span class="fn">test_create_student</span>(self, auth_api, db):
+        payload = {
+            <span class="st">'full_name'</span>: <span class="st">'Arjun Kumar'</span>, <span class="st">'roll_no'</span>: <span class="st">'2024001'</span>,
+            <span class="st">'email'</span>: <span class="st">'arjun@school.com'</span>, <span class="st">'dob'</span>: <span class="st">'2010-05-15'</span>,
+            <span class="st">'gender'</span>: <span class="st">'M'</span>, <span class="st">'age'</span>: <span class="nu">14</span>,
+        }
+        r = auth_api.post(<span class="st">'/api/students/'</span>, data=payload, format=<span class="st">'json'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_201_CREATED
+        <span class="kw">assert</span> r.data[<span class="st">'full_name'</span>] == <span class="st">'Arjun Kumar'</span>
+
+    <span class="kw">def</span> <span class="fn">test_create_invalid_roll</span>(self, auth_api, db):
+        r = auth_api.post(<span class="st">'/api/students/'</span>, data={<span class="st">'roll_no'</span>:<span class="st">'ABCD001'</span>}, format=<span class="st">'json'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_400_BAD_REQUEST
+        <span class="kw">assert</span> <span class="st">'roll_no'</span> <span class="kw">in</span> r.data[<span class="st">'errors'</span>]
+
+    <span class="kw">def</span> <span class="fn">test_search_by_name</span>(self, auth_api, db):
+        <span class="cm"># factory_boy would create test data here</span>
+        r = auth_api.get(<span class="st">'/api/students/?search=arjun'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_200_OK
+
+    <span class="kw">def</span> <span class="fn">test_jwt_login_and_use</span>(self, api, admin_user):
+        r = api.post(<span class="st">'/api/auth/token/'</span>,
+                     {<span class="st">'email'</span>:<span class="st">'admin@school.com'</span>,<span class="st">'password'</span>:<span class="st">'pass123'</span>})
+        <span class="kw">assert</span> r.status_code == <span class="nu">200</span>
+        api.credentials(HTTP_AUTHORIZATION=f<span class="st">f"Bearer {r.data['access']}"</span>)
+        r2 = api.get(<span class="st">'/api/students/'</span>)
+        <span class="kw">assert</span> r2.status_code == <span class="nu">200</span>
+</pre></div>
+</section>
+
+
+
+<!-- ═══ PROJECT PAGE LINK ═══ -->
+<div style="margin:60px 60px 0;padding:40px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;max-width:720px">
+  <div style="font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#f5a623;margin-bottom:10px">★ School Management System</div>
+  <div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.02em">
+    Full Project — 19 Chapters + Auth &amp; Authz
+  </div>
+  <p style="font-size:.85rem;color:var(--muted);line-height:1.75;margin-bottom:20px">
+    All DRF concepts applied end-to-end: custom User model, JWT + session auth, EmailBackend, SchoolTokenSerializer, role-based permission classes, scoped querysets, signals, middleware, deployment.
+  </p>
+  <a href="django_ultimate_project.html" style="display:inline-block;font-family:var(--mono);font-size:.8rem;font-weight:600;color:#000;background:#f5a623;text-decoration:none;padding:10px 22px;border-radius:8px;">Open Project Page →</a>
+</div>
+
+<!-- FOOTER -->
+<div style="padding:48px 60px;background:var(--bg2);border-top:1px solid var(--border);margin-top:80px">
+  <div style="max-width:700px">
+    <div style="font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px">Django Ultimate</div>
+    <div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:8px">
+      Concepts &amp; DRF — 35 chapters. Project on separate page.
+    </div>
+    <div style="font-size:.85rem;color:var(--muted);line-height:1.75">
+      ORM &middot; Serializers &middot; ViewSets &middot; Auth &middot; Permissions &middot; Signals &middot; Middleware &middot; Testing &middot; Deployment
+    </div>
+    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="django_ultimate_project.html" style="font-family:var(--mono);font-size:.75rem;color:#f5a623;text-decoration:none;border:1px solid rgba(245,166,35,.3);padding:6px 14px;border-radius:6px;">★ School Project →</a>
+      <a href="../index.html" style="font-family:var(--mono);font-size:.75rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 14px;border-radius:6px;">← Hub</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- end #main -->
+
+<script src="django-ultimate.js"></script>
+</body>
+</html>

@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Django Ultimate — School Management Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/shared.css">
+<link rel="stylesheet" href="django-ultimate.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-brand-tag">School Management System</div>
+    <div class="sb-title">Django <span>Project</span></div>
+    <div class="sb-sub">End-to-End · 19 Chapters + Auth</div>
+  </div>
+  <div class="sb-search"><input id="sb-search" type="text" placeholder="Search chapters…"/></div>
+  <div class="sb-nav" id="sb-nav">
+
+    <div class="sb-group">
+      <div class="sb-group-label" style="color:var(--blue)">&#8592; Concepts &amp; DRF</div>
+      <a href="django_ultimate.html" class="sb-link" style="color:var(--blue)"><span class="sb-num">←</span>Back to Django Ultimate</a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label proj">★ School Management Project</div>
+      <a href="#proj-entities" class="sb-link proj-link"><span class="sb-num">P0</span>Entities &amp; User Roles</a>
+      <a href="#proj-intro"   class="sb-link proj-link"><span class="sb-num">P1</span>Project Overview</a>
+      <a href="#proj-setup"   class="sb-link proj-link"><span class="sb-num">P2</span>Setup &amp; Structure</a>
+      <a href="#proj-models"  class="sb-link proj-link"><span class="sb-num">P3</span>All Models</a>
+      <a href="#proj-admin"   class="sb-link proj-link"><span class="sb-num">P4</span>Admin — Full Config</a>
+      <a href="#proj-auth"    class="sb-link proj-link"><span class="sb-num">P5</span>Custom Auth &amp; JWT</a>
+      <a href="#proj-auth-impl" class="sb-link proj-link"><span class="sb-num">P5b</span>Auth Implementation</a>
+      <a href="#proj-authz-impl" class="sb-link proj-link"><span class="sb-num">P5c</span>Authorization Wiring</a>
+      <a href="#proj-serial"  class="sb-link proj-link"><span class="sb-num">P6</span>All Serializers</a>
+      <a href="#proj-views"   class="sb-link proj-link"><span class="sb-num">P7</span>ViewSets &amp; APIs</a>
+      <a href="#proj-perms"   class="sb-link proj-link"><span class="sb-num">P8</span>Custom Permissions</a>
+      <a href="#proj-valid"   class="sb-link proj-link"><span class="sb-num">P9</span>Validation &amp; Exceptions</a>
+      <a href="#proj-filter"  class="sb-link proj-link"><span class="sb-num">P10</span>Filtering &amp; Search</a>
+      <a href="#proj-page"    class="sb-link proj-link"><span class="sb-num">P11</span>Pagination</a>
+      <a href="#proj-static"  class="sb-link proj-link"><span class="sb-num">P12</span>Static &amp; Media</a>
+      <a href="#proj-mw"      class="sb-link proj-link"><span class="sb-num">P13</span>Custom Middleware</a>
+      <a href="#proj-signals" class="sb-link proj-link"><span class="sb-num">P14</span>Signals</a>
+      <a href="#proj-urls"    class="sb-link proj-link"><span class="sb-num">P15</span>URL Structure</a>
+      <a href="#proj-tests"   class="sb-link proj-link"><span class="sb-num">P16</span>Tests</a>
+      <a href="#proj-deploy"  class="sb-link proj-link"><span class="sb-num">P17</span>Deployment</a>
+    </div>
+
+  </div>
+</nav>
+<button id="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9776;</button>
+
+<div id="main">
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-eyebrow">School Management System</div>
+  <h1 class="hero-title">
+    <span class="g">End-to-End Project</span><br/>
+    <span class="b">Auth &amp; Authorization included</span>
+  </h1>
+  <p class="hero-desc">All Django and DRF concepts applied in one real project — Students, Teachers, Classes, Attendance, Grades, Timetables, and Notifications. Includes full implementation of Authentication (session + JWT) and Authorization (role-based permission classes) wired into every endpoint.</p>
+  <div class="chips">
+    <span class="chip a">★ School Project</span>
+    <span class="chip g">JWT Auth</span>
+    <span class="chip b">Role-Based Authz</span>
+    <span class="chip p">Permissions</span>
+    <span class="chip">P0 – P17</span>
+    <span class="chip">+ Auth Impl</span>
+  </div>
+  <div style="margin-top:20px">
+    <a href="django_ultimate.html" style="font-family:var(--mono);font-size:.75rem;color:var(--blue);text-decoration:none;border:1px solid rgba(91,141,238,.3);padding:6px 14px;border-radius:6px;">&#8592; Back to Django Concepts &amp; DRF</a>
+  </div>
+</div>
+
+<!-- ═══ SCHOOL MANAGEMENT PROJECT ═══ -->
+<div class="divider proj">
+  <div class="div-label">★ Real Project</div>
+  <div class="div-title">School Management System — End to End</div>
+  <div class="div-desc">All 35 concepts applied in one real project — Students, Teachers, Classes, Attendance, Grades, Timetables, Notifications. From first model to production deployment.</div>
+</div>
+
+<!-- P0 ENTITIES & USER ROLES -->
+<section class="chapter" id="proj-entities">
+  <div class="ch-head"><span class="ch-num proj">P0</span><h2 class="ch-title">Entities &amp; User Roles — School Management System</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">Before writing a single line of Django code, you need a clear picture of <em>who</em> exists in the system and <em>what</em> they own. This section maps every real-world actor and object to a Django model, explains each field's purpose, and shows how all the pieces connect through relationships.</p>
+
+  <!-- ── OVERVIEW MAP ── -->
+  <h3 class="sub-heading">System Entity Map</h3>
+  <div class="flow" style="flex-wrap:wrap;gap:10px;">
+    <div class="fb a"><div class="fb-l">User</div><div class="fb-n">role field gates access</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">Teacher</div><div class="fb-n">OneToOne → User</div></div><div class="fa">+</div>
+    <div class="fb g"><div class="fb-l">Student</div><div class="fb-n">OneToOne → User</div></div><div class="fa">+</div>
+    <div class="fb g"><div class="fb-l">NonTeachingStaff</div><div class="fb-n">OneToOne → User</div></div><div class="fa">+</div>
+    <div class="fb b"><div class="fb-l">Parent</div><div class="fb-n">ForeignKey ← Student</div></div>
+  </div>
+  <div class="flow" style="flex-wrap:wrap;gap:10px;margin-top:10px;">
+    <div class="fb"><div class="fb-l">Classroom</div><div class="fb-n">class_teacher → Teacher</div></div><div class="fa">→</div>
+    <div class="fb b"><div class="fb-l">Subject</div><div class="fb-n">M2M ↔ Teacher, Classroom</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Student</div><div class="fb-n">FK → Classroom</div></div><div class="fa">→</div>
+    <div class="fb p"><div class="fb-l">Attendance · Grades</div><div class="fb-n">FK → Student + Subject</div></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       PART A — USER ROLE SYSTEM
+       ══════════════════════════════════════════════════════════════ -->
+  <h3 class="sub-heading">Part A — User Role System</h3>
+  <p class="prose">A single <code>User</code> model (extending <code>AbstractBaseUser</code>) powers every person in the system. A <code>role</code> field on the user decides what they can see and do. Each role has a separate <em>profile model</em> that stores role-specific details — keeping the auth table clean and generic.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Role value</th><th>Person</th><th>Profile model</th><th>What they can do</th></tr></thead>
+    <tbody>
+      <tr><td><code>admin</code></td><td>Administrator</td><td><em>none (is_staff=True gives full admin access)</em></td><td>Full CRUD on everything — users, classes, staff, grades</td></tr>
+      <tr><td><code>teacher</code></td><td>Teacher / Class Teacher</td><td><code>Teacher</code></td><td>Mark attendance, enter grades for their subjects, view their timetable</td></tr>
+      <tr><td><code>student</code></td><td>Student</td><td><code>Student</code></td><td>View own attendance, grades, timetable, notifications</td></tr>
+      <tr><td><code>non_teaching</code></td><td>Non-teaching staff</td><td><code>NonTeachingStaff</code></td><td>Limited: view school info, manage their own department tasks</td></tr>
+      <tr><td><code>parent</code></td><td>Parent / Guardian</td><td><em>linked via <code>Student.parent</code></em></td><td>View their child's attendance, grades, and notifications — read-only</td></tr>
+      <tr><td><code>guest</code></td><td>Unauthenticated visitor</td><td><em>no account</em></td><td>Public pages only — school info, contact form</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/models.py — Custom User with all roles</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib.auth.models <span class="kw2">import</span> AbstractBaseUser, BaseUserManager, PermissionsMixin
+<span class="kw2">from</span> django.db <span class="kw2">import</span> models
+
+<span class="kw">class</span> <span class="cl">SchoolUserManager</span>(BaseUserManager):
+    <span class="kw">def</span> <span class="fn">create_user</span>(self, email, password=<span class="kw">None</span>, **extra):
+        <span class="kw">if not</span> email: <span class="kw">raise</span> ValueError(<span class="st">'Email is required'</span>)
+        user = self.model(email=self.normalize_email(email), **extra)
+        user.set_password(password)
+        user.save(using=self._db)
+        <span class="kw">return</span> user
+
+    <span class="kw">def</span> <span class="fn">create_superuser</span>(self, email, password=<span class="kw">None</span>, **extra):
+        extra.setdefault(<span class="st">'is_staff'</span>, <span class="kw">True</span>)
+        extra.setdefault(<span class="st">'is_superuser'</span>, <span class="kw">True</span>)
+        extra.setdefault(<span class="st">'role'</span>, <span class="st">'admin'</span>)
+        <span class="kw">return</span> self.create_user(email, password, **extra)
+
+
+<span class="kw">class</span> <span class="cl">User</span>(AbstractBaseUser, PermissionsMixin):
+    <span class="cm"># ── Role choices — covers every actor in the system ────────────────</span>
+    ROLES = [
+        (<span class="st">'admin'</span>,       <span class="st">'Administrator'</span>),
+        (<span class="st">'teacher'</span>,     <span class="st">'Teacher'</span>),
+        (<span class="st">'student'</span>,     <span class="st">'Student'</span>),
+        (<span class="st">'non_teaching'</span>,<span class="st">'Non-Teaching Staff'</span>),
+        (<span class="st">'parent'</span>,      <span class="st">'Parent'</span>),
+        (<span class="st">'guest'</span>,       <span class="st">'Guest'</span>),
+    ]
+
+    email     = models.EmailField(unique=<span class="kw">True</span>)          <span class="cm"># login identifier</span>
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+    role      = models.CharField(max_length=<span class="nu">15</span>, choices=ROLES, default=<span class="st">'student'</span>)
+    phone     = models.CharField(max_length=<span class="nu">15</span>, blank=<span class="kw">True</span>)
+    avatar    = models.ImageField(upload_to=<span class="st">'avatars/'</span>, null=<span class="kw">True</span>, blank=<span class="kw">True</span>)
+    is_active = models.BooleanField(default=<span class="kw">True</span>)
+    is_staff  = models.BooleanField(default=<span class="kw">False</span>)     <span class="cm"># True → Django admin access</span>
+    date_joined = models.DateTimeField(auto_now_add=<span class="kw">True</span>)
+
+    USERNAME_FIELD  = <span class="st">'email'</span>
+    REQUIRED_FIELDS = [<span class="st">'full_name'</span>, <span class="st">'role'</span>]
+    objects = SchoolUserManager()
+
+    <span class="cm"># ── Convenience properties to check role without importing constants ──</span>
+    <span class="di">@property</span>
+    <span class="kw">def</span> <span class="fn">is_admin</span>(self):         <span class="kw">return</span> self.role == <span class="st">'admin'</span>
+    <span class="di">@property</span>
+    <span class="kw">def</span> <span class="fn">is_teacher</span>(self):       <span class="kw">return</span> self.role == <span class="st">'teacher'</span>
+    <span class="di">@property</span>
+    <span class="kw">def</span> <span class="fn">is_student</span>(self):       <span class="kw">return</span> self.role == <span class="st">'student'</span>
+    <span class="di">@property</span>
+    <span class="kw">def</span> <span class="fn">is_non_teaching</span>(self):  <span class="kw">return</span> self.role == <span class="st">'non_teaching'</span>
+    <span class="di">@property</span>
+    <span class="kw">def</span> <span class="fn">is_parent</span>(self):        <span class="kw">return</span> self.role == <span class="st">'parent'</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">"{self.full_name} [{self.role}]"</span>
+
+<span class="cm"># settings.py — MUST be set before first migrate</span>
+AUTH_USER_MODEL = <span class="st">'accounts.User'</span>
+</pre></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       PART B — MODELS
+       ══════════════════════════════════════════════════════════════ -->
+  <h3 class="sub-heading">Part B — Every Model Explained</h3>
+
+  <!-- ── ADMINISTRATOR ── -->
+  <h4 class="sub-heading-sm">① Administrator</h4>
+  <p class="prose">Administrators are just <code>User</code> rows with <code>role='admin'</code> and <code>is_staff=True</code>. They get full access to the Django admin panel (<code>/admin/</code>) and all API endpoints. No separate profile model is needed — the <code>User</code> table is enough.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Field</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>User.role = 'admin'</code></td><td>Grants elevated permissions in every permission class</td></tr>
+      <tr><td><code>User.is_staff = True</code></td><td>Unlocks the Django <code>/admin/</code> interface</td></tr>
+      <tr><td><code>User.is_superuser = True</code></td><td>Bypasses all permission checks (superadmin only)</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ── TEACHER ── -->
+  <h4 class="sub-heading-sm">② Teacher</h4>
+  <p class="prose">A teacher has a login account (<code>User</code> with <code>role='teacher'</code>) linked one-to-one to a <code>Teacher</code> profile that stores professional details. A teacher can teach multiple subjects and be assigned to one or more classrooms via the timetable.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">teachers/models.py — Teacher</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">Teacher</span>(models.Model):
+    <span class="cm"># OneToOne → User means ONE teacher account per person</span>
+    user          = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name=<span class="st">'teacher_profile'</span>,
+        limit_choices_to={<span class="st">'role'</span>: <span class="st">'teacher'</span>},   <span class="cm"># admin form only shows teacher-role users</span>
+    )
+    employee_id   = models.CharField(max_length=<span class="nu">20</span>, unique=<span class="kw">True</span>)   <span class="cm"># 'TCH-2024-001'</span>
+    qualification = models.CharField(max_length=<span class="nu">200</span>)                 <span class="cm"># 'B.Ed, M.Sc Physics'</span>
+    joining_date  = models.DateField()
+    salary        = models.DecimalField(max_digits=<span class="nu">10</span>, decimal_places=<span class="nu">2</span>)
+    is_active     = models.BooleanField(default=<span class="kw">True</span>)
+
+    <span class="cm"># A teacher can teach MANY subjects (M2M)</span>
+    subjects      = models.ManyToManyField(<span class="st">'Subject'</span>, blank=<span class="kw">True</span>, related_name=<span class="st">'teachers'</span>)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        ordering = [<span class="st">'employee_id'</span>]
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">"{self.user.full_name} ({self.employee_id})"</span>
+
+<span class="cm"># Access patterns:</span>
+teacher = Teacher.objects.select_related(<span class="st">'user'</span>).get(employee_id=<span class="st">'TCH-2024-001'</span>)
+teacher.user.full_name         <span class="cm"># 'Mr. John Smith'</span>
+teacher.user.email             <span class="cm"># 'john@school.com'</span>
+teacher.subjects.all()         <span class="cm"># all subjects this teacher teaches</span>
+teacher.classrooms.all()       <span class="cm"># classrooms where this teacher is class_teacher (reverse FK)</span>
+
+<span class="cm"># Reverse: from a User object → Teacher profile</span>
+user = User.objects.get(email=<span class="st">'john@school.com'</span>)
+user.teacher_profile           <span class="cm"># Teacher object (or raises RelatedObjectDoesNotExist)</span>
+</pre></div>
+
+  <!-- ── CLASS TEACHER ── -->
+  <h4 class="sub-heading-sm">③ Class Teacher</h4>
+  <p class="prose"><strong>Class Teacher is not a separate model.</strong> It is a role a <code>Teacher</code> plays — being the primary in-charge of a specific <code>Classroom</code>. Django models this as a <code>ForeignKey</code> on <code>Classroom</code> pointing to <code>Teacher</code>. One teacher can be the class teacher of at most one class per academic year (enforced via <code>unique_together</code>).</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">classes/models.py — Classroom with class_teacher FK</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">Classroom</span>(models.Model):
+    name          = models.CharField(max_length=<span class="nu">20</span>, unique=<span class="kw">True</span>)   <span class="cm"># '10-A'</span>
+    grade         = models.PositiveSmallIntegerField()                 <span class="cm"># 10</span>
+    section       = models.CharField(max_length=<span class="nu">5</span>)                   <span class="cm"># 'A'</span>
+    academic_year = models.CharField(max_length=<span class="nu">9</span>, default=<span class="st">'2024-2025'</span>)
+    max_capacity  = models.PositiveSmallIntegerField(default=<span class="nu">40</span>)
+
+    <span class="cm"># ★ Class Teacher — one teacher in-charge per classroom</span>
+    class_teacher = models.ForeignKey(
+        <span class="st">'teachers.Teacher'</span>,
+        on_delete=models.SET_NULL,
+        null=<span class="kw">True</span>, blank=<span class="kw">True</span>,
+        related_name=<span class="st">'class_in_charge'</span>,    <span class="cm"># teacher.class_in_charge.all() → Classrooms they manage</span>
+    )
+
+    <span class="cm"># Subjects taught in this classroom</span>
+    subjects      = models.ManyToManyField(<span class="st">'teachers.Subject'</span>, blank=<span class="kw">True</span>, related_name=<span class="st">'classrooms'</span>)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        unique_together = [(<span class="st">'grade'</span>, <span class="st">'section'</span>, <span class="st">'academic_year'</span>)]
+        ordering        = [<span class="st">'grade'</span>, <span class="st">'section'</span>]
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> self.name
+
+
+<span class="cm"># Access patterns:</span>
+room = Classroom.objects.select_related(<span class="st">'class_teacher__user'</span>).get(name=<span class="st">'10-A'</span>)
+room.class_teacher.user.full_name    <span class="cm"># 'Mrs. Alice'</span>
+room.students.all()                  <span class="cm"># all students (reverse FK from Student)</span>
+room.subjects.all()                  <span class="cm"># subjects taught in this class</span>
+
+<span class="cm"># All classrooms a teacher is class teacher of:</span>
+teacher = Teacher.objects.get(employee_id=<span class="st">'TCH-001'</span>)
+teacher.class_in_charge.all()        <span class="cm"># QuerySet[Classroom]</span>
+
+<span class="cm"># Check if a teacher is a class teacher of any class:</span>
+teacher.class_in_charge.exists()     <span class="cm"># True / False</span>
+</pre></div>
+
+  <!-- ── STUDENT ── -->
+  <h4 class="sub-heading-sm">④ Student</h4>
+  <p class="prose">A student has a login account (<code>User</code> with <code>role='student'</code>) linked to a <code>Student</code> profile. The profile stores school-specific data: roll number, classroom assignment, GPA. The student belongs to one <code>Classroom</code> (ForeignKey) and can have one or more <code>Parent</code> records linked to them.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/models.py — Student</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">Student</span>(models.Model):
+    <span class="cm"># OneToOne → User (student login account)</span>
+    user      = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name=<span class="st">'student_profile'</span>,
+        limit_choices_to={<span class="st">'role'</span>: <span class="st">'student'</span>},
+    )
+    roll_no   = models.SlugField(unique=<span class="kw">True</span>)        <span class="cm"># '2024-10A-001'</span>
+    dob       = models.DateField()
+    gender    = models.CharField(max_length=<span class="nu">1</span>, choices=[(<span class="st">'M'</span>,<span class="st">'Male'</span>),(<span class="st">'F'</span>,<span class="st">'Female'</span>),(<span class="st">'O'</span>,<span class="st">'Other'</span>)])
+    photo     = models.ImageField(upload_to=<span class="st">'students/photos/%Y/%m/'</span>, null=<span class="kw">True</span>, blank=<span class="kw">True</span>)
+    address   = models.TextField(blank=<span class="kw">True</span>)
+    is_active = models.BooleanField(default=<span class="kw">True</span>)
+    gpa       = models.DecimalField(max_digits=<span class="nu">4</span>, decimal_places=<span class="nu">2</span>, default=<span class="nu">0.00</span>)
+    admitted_on = models.DateField(auto_now_add=<span class="kw">True</span>)
+
+    <span class="cm"># FK → Classroom — a student belongs to ONE class</span>
+    classroom = models.ForeignKey(
+        <span class="st">'classes.Classroom'</span>,
+        on_delete=models.SET_NULL,
+        null=<span class="kw">True</span>,
+        related_name=<span class="st">'students'</span>,
+    )
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        ordering = [<span class="st">'roll_no'</span>]
+        indexes  = [models.Index(fields=[<span class="st">'roll_no'</span>])]
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">"{self.roll_no} — {self.user.full_name}"</span>
+
+<span class="cm"># Access patterns:</span>
+s = Student.objects.select_related(<span class="st">'user'</span>, <span class="st">'classroom'</span>).get(roll_no=<span class="st">'2024-10A-001'</span>)
+s.user.full_name          <span class="cm"># 'Bob Kumar'</span>
+s.classroom.name          <span class="cm"># '10-A'</span>
+s.classroom.class_teacher <span class="cm"># Teacher object</span>
+s.attendance.all()        <span class="cm"># all attendance records (reverse FK)</span>
+s.marks.all()             <span class="cm"># all exam marks (reverse FK)</span>
+s.parents.all()           <span class="cm"># all linked parents (reverse FK from Parent)</span>
+</pre></div>
+
+  <!-- ── SUBJECT ── -->
+  <h4 class="sub-heading-sm">⑤ Subject</h4>
+  <p class="prose">A <code>Subject</code> is the standalone academic topic (Maths, Physics, English). It connects to <code>Teacher</code> (who teaches it) via M2M, to <code>Classroom</code> (where it is taught) via M2M, and is referenced by <code>Timetable</code>, <code>Mark</code>, and <code>AttendanceRecord</code> rows via ForeignKey.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">teachers/models.py — Subject</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">Subject</span>(models.Model):
+    name       = models.CharField(max_length=<span class="nu">100</span>)              <span class="cm"># 'Mathematics'</span>
+    code       = models.CharField(max_length=<span class="nu">10</span>, unique=<span class="kw">True</span>) <span class="cm"># 'MATH10'</span>
+    full_marks = models.PositiveIntegerField(default=<span class="nu">100</span>)
+    pass_marks = models.PositiveIntegerField(default=<span class="nu">35</span>)
+    is_elective = models.BooleanField(default=<span class="kw">False</span>)           <span class="cm"># core vs optional</span>
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        ordering = [<span class="st">'code'</span>]
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">"{self.name} ({self.code})"</span>
+
+<span class="cm"># Access patterns:</span>
+subj = Subject.objects.get(code=<span class="st">'MATH10'</span>)
+subj.teachers.all()           <span class="cm"># all teachers who teach this subject (reverse M2M)</span>
+subj.classrooms.all()         <span class="cm"># all classrooms where this subject is in the syllabus</span>
+subj.marks_set.filter(exam__exam_type=<span class="st">'final'</span>)   <span class="cm"># final exam marks for this subject</span>
+</pre></div>
+
+  <!-- ── NON-TEACHING STAFF ── -->
+  <h4 class="sub-heading-sm">⑥ Non-Teaching Staff</h4>
+  <p class="prose">Non-teaching staff (librarians, lab assistants, accountants, peons) have login accounts (<code>User</code> with <code>role='non_teaching'</code>) linked to a <code>NonTeachingStaff</code> profile. They are grouped by <code>department</code> and have no connection to classrooms or subjects.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/models.py — NonTeachingStaff</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">NonTeachingStaff</span>(models.Model):
+    DEPARTMENTS = [
+        (<span class="st">'admin'</span>,      <span class="st">'Administration'</span>),
+        (<span class="st">'library'</span>,    <span class="st">'Library'</span>),
+        (<span class="st">'lab'</span>,        <span class="st">'Laboratory'</span>),
+        (<span class="st">'accounts'</span>,   <span class="st">'Accounts'</span>),
+        (<span class="st">'sports'</span>,     <span class="st">'Sports'</span>),
+        (<span class="st">'security'</span>,   <span class="st">'Security'</span>),
+        (<span class="st">'housekeeping'</span>,<span class="st">'Housekeeping'</span>),
+    ]
+
+    user       = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name=<span class="st">'staff_profile'</span>,
+        limit_choices_to={<span class="st">'role'</span>: <span class="st">'non_teaching'</span>},
+    )
+    employee_id = models.CharField(max_length=<span class="nu">20</span>, unique=<span class="kw">True</span>)   <span class="cm"># 'STF-2024-001'</span>
+    department  = models.CharField(max_length=<span class="nu">20</span>, choices=DEPARTMENTS)
+    designation = models.CharField(max_length=<span class="nu">100</span>)                 <span class="cm"># 'Head Librarian'</span>
+    joining_date = models.DateField()
+    salary       = models.DecimalField(max_digits=<span class="nu">10</span>, decimal_places=<span class="nu">2</span>)
+    is_active    = models.BooleanField(default=<span class="kw">True</span>)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        ordering   = [<span class="st">'department'</span>, <span class="st">'employee_id'</span>]
+        verbose_name = <span class="st">'Non-Teaching Staff'</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">"{self.user.full_name} — {self.designation}"</span>
+
+<span class="cm"># Access patterns:</span>
+staff = NonTeachingStaff.objects.select_related(<span class="st">'user'</span>).filter(department=<span class="st">'library'</span>)
+<span class="kw">for</span> s <span class="kw">in</span> staff: <span class="kw">print</span>(s.user.full_name, s.designation)
+
+<span class="cm"># All non-teaching staff from User side:</span>
+User.objects.filter(role=<span class="st">'non_teaching'</span>).select_related(<span class="st">'staff_profile'</span>)
+</pre></div>
+
+  <!-- ── PARENT ── -->
+  <h4 class="sub-heading-sm">⑦ Parent / Guardian</h4>
+  <p class="prose">A <code>Parent</code> is linked to one or more students via <code>ForeignKey</code>. A parent can have a login account (<code>User</code> with <code>role='parent'</code>) to log in and view their child's data — or they can be stored as contact-only without an account. The <code>user</code> field is optional (<code>null=True</code>).</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/models.py — Parent</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">Parent</span>(models.Model):
+    RELATION = [(<span class="st">'father'</span>,<span class="st">'Father'</span>),(<span class="st">'mother'</span>,<span class="st">'Mother'</span>),(<span class="st">'guardian'</span>,<span class="st">'Guardian'</span>)]
+
+    <span class="cm"># Optional User account — parent may or may not have a login</span>
+    user      = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=<span class="kw">True</span>, blank=<span class="kw">True</span>,
+        related_name=<span class="st">'parent_profile'</span>,
+        limit_choices_to={<span class="st">'role'</span>: <span class="st">'parent'</span>},
+    )
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+    phone     = models.CharField(max_length=<span class="nu">15</span>)
+    email     = models.EmailField(blank=<span class="kw">True</span>)
+    occupation = models.CharField(max_length=<span class="nu">100</span>, blank=<span class="kw">True</span>)
+    relation  = models.CharField(max_length=<span class="nu">10</span>, choices=RELATION)
+
+    <span class="cm"># ONE parent → MANY students (e.g. siblings)</span>
+    students  = models.ManyToManyField(<span class="st">'Student'</span>, blank=<span class="kw">True</span>, related_name=<span class="st">'parents'</span>)
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">"{self.full_name} ({self.relation})"</span>
+
+<span class="cm"># Access patterns:</span>
+parent = Parent.objects.prefetch_related(<span class="st">'students__classroom'</span>).get(pk=<span class="nu">1</span>)
+parent.students.all()                         <span class="cm"># all children of this parent</span>
+<span class="kw">for</span> child <span class="kw">in</span> parent.students.all():
+    <span class="kw">print</span>(child.roll_no, child.classroom.name) <span class="cm"># 2024-10A-001  10-A</span>
+
+<span class="cm"># From student side — all parents of a student:</span>
+student.parents.all()                         <span class="cm"># QuerySet[Parent]</span>
+</pre></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       PART C — RELATIONSHIP MAP
+       ══════════════════════════════════════════════════════════════ -->
+  <h3 class="sub-heading">Part C — Full Relationship Map</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>From</th><th>Relationship</th><th>To</th><th>Field</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>Teacher</code></td><td>OneToOne →</td><td><code>User</code></td><td><code>Teacher.user</code></td><td>Each teacher has exactly one login account</td></tr>
+      <tr><td><code>Student</code></td><td>OneToOne →</td><td><code>User</code></td><td><code>Student.user</code></td><td>Each student has exactly one login account</td></tr>
+      <tr><td><code>NonTeachingStaff</code></td><td>OneToOne →</td><td><code>User</code></td><td><code>NonTeachingStaff.user</code></td><td>Each staff member has exactly one login account</td></tr>
+      <tr><td><code>Parent</code></td><td>OneToOne → (optional)</td><td><code>User</code></td><td><code>Parent.user</code></td><td>Parent may or may not have a portal login</td></tr>
+      <tr><td><code>Classroom</code></td><td>ForeignKey →</td><td><code>Teacher</code></td><td><code>Classroom.class_teacher</code></td><td>One teacher is in-charge of the class</td></tr>
+      <tr><td><code>Student</code></td><td>ForeignKey →</td><td><code>Classroom</code></td><td><code>Student.classroom</code></td><td>A student belongs to one class</td></tr>
+      <tr><td><code>Teacher</code></td><td>ManyToMany ↔</td><td><code>Subject</code></td><td><code>Teacher.subjects</code></td><td>A teacher teaches many subjects; a subject has many teachers</td></tr>
+      <tr><td><code>Classroom</code></td><td>ManyToMany ↔</td><td><code>Subject</code></td><td><code>Classroom.subjects</code></td><td>A class has many subjects in its syllabus</td></tr>
+      <tr><td><code>Parent</code></td><td>ManyToMany ↔</td><td><code>Student</code></td><td><code>Parent.students</code></td><td>A parent can have multiple children; a student can have multiple parents</td></tr>
+      <tr><td><code>AttendanceRecord</code></td><td>ForeignKey →</td><td><code>Student</code></td><td><code>AttendanceRecord.student</code></td><td>Each attendance row belongs to one student</td></tr>
+      <tr><td><code>Mark</code></td><td>ForeignKey →</td><td><code>Student</code></td><td><code>Mark.student</code></td><td>Each grade row belongs to one student for one subject</td></tr>
+      <tr><td><code>Timetable</code></td><td>ForeignKey →</td><td><code>Classroom + Subject + Teacher</code></td><td>3 FK fields</td><td>One time slot = one room + one subject + one teacher</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       PART D — GUEST / UNAUTHENTICATED
+       ══════════════════════════════════════════════════════════════ -->
+  <h3 class="sub-heading">Part D — Guest Access</h3>
+  <p class="prose">A <strong>Guest</strong> has no account. In Django REST Framework, guest access means <code>AllowAny</code> permission on public endpoints. No model is needed — the role is expressed in the API permission class, not the database.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">How guest vs authenticated roles translate to DRF permissions</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> BasePermission, IsAuthenticated, AllowAny
+
+<span class="kw">class</span> <span class="cl">IsAdminRole</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> request.user.role == <span class="st">'admin'</span>
+
+<span class="kw">class</span> <span class="cl">IsTeacherRole</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> request.user.role == <span class="st">'teacher'</span>
+
+<span class="kw">class</span> <span class="cl">IsStudentRole</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> request.user.role == <span class="st">'student'</span>
+
+<span class="kw">class</span> <span class="cl">IsParentRole</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> request.user.role == <span class="st">'parent'</span>
+
+<span class="kw">class</span> <span class="cl">IsNonTeachingRole</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> request.user.role == <span class="st">'non_teaching'</span>
+
+
+<span class="cm"># In a ViewSet — combine permissions per action</span>
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(viewsets.ModelViewSet):
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action <span class="kw">in</span> [<span class="st">'list'</span>, <span class="st">'retrieve'</span>]:
+            <span class="cm"># admins, teachers, parents can view students</span>
+            <span class="kw">return</span> [(IsAdminRole | IsTeacherRole | IsParentRole)()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> [<span class="st">'create'</span>, <span class="st">'update'</span>, <span class="st">'destroy'</span>]:
+            <span class="kw">return</span> [IsAdminRole()]      <span class="cm"># only admins can modify students</span>
+        <span class="kw">return</span> [IsAuthenticated()]      <span class="cm"># default: any logged-in user</span>
+
+<span class="cm"># Public endpoint (guest access) — no auth needed</span>
+<span class="kw">class</span> <span class="cl">SchoolInfoView</span>(APIView):
+    permission_classes = [AllowAny]   <span class="cm"># guests can see school public info</span>
+</pre></div>
+
+  <!-- ── WHO SEES WHAT ── -->
+  <h3 class="sub-heading">Who Sees What — Access Summary</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Resource</th><th>Admin</th><th>Teacher</th><th>Class Teacher</th><th>Student</th><th>Parent</th><th>Non-Teaching</th><th>Guest</th></tr></thead>
+    <tbody>
+      <tr><td>All students list</td><td>✓ Full</td><td>✓ Own class</td><td>✓ Own class</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Student detail</td><td>✓</td><td>✓ Own class</td><td>✓ Own class</td><td>✓ Own only</td><td>✓ Own child</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Attendance — mark</td><td>✓</td><td>✓ Own subject</td><td>✓ Own class</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Attendance — view</td><td>✓</td><td>✓ Own class</td><td>✓ Own class</td><td>✓ Own</td><td>✓ Own child</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Grades — enter</td><td>✓</td><td>✓ Own subject</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Grades — view</td><td>✓</td><td>✓ Own subject</td><td>✓ Own class</td><td>✓ Own</td><td>✓ Own child</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Timetable</td><td>✓ CRUD</td><td>✓ View</td><td>✓ View</td><td>✓ View own</td><td>✓ View child's</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Staff records</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✓ Own only</td><td>✗</td></tr>
+      <tr><td>School info / contact</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- P1 OVERVIEW -->
+<section class="chapter" id="proj-intro">
+  <div class="ch-head"><span class="ch-num proj">P1</span><h2 class="ch-title">Project Overview</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">A complete School Management REST API. Role-based users (admin / teacher / student / parent), JWT auth with custom claims, per-action permissions, filterable endpoints, bulk operations, photo uploads, soft deletes, Celery notifications, and a fully customised admin panel.</p>
+
+  <div class="g2">
+    <div class="card a"><div class="card-t">8 Django Apps</div><div class="card-b">core · accounts · students · teachers · classes · attendance · grades · notifications</div></div>
+    <div class="card b"><div class="card-t">~45 REST Endpoints</div><div class="card-b">Full CRUD + bulk attendance, report cards, CSV export, photo upload, top-performers, timetable</div></div>
+    <div class="card g"><div class="card-t">Auth Strategy</div><div class="card-b">Custom User with <code>role</code> field. JWT tokens with role + school embedded as claims. Per-action permission classes.</div></div>
+    <div class="card p"><div class="card-t">Stack</div><div class="card-b">Django 5 · DRF 3.15 · PostgreSQL · Redis · Celery · WhiteNoise · AWS S3 · Gunicorn</div></div>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Setup — project structure, split settings, .env</div><div class="step-desc">Create all 8 apps, install packages, configure settings per environment</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Custom User model + JWT auth endpoints</div><div class="step-desc">accounts app — AbstractBaseUser with role, SchoolTokenSerializer</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">All domain models with relationships</div><div class="step-desc">Student, Teacher, Classroom, AttendanceRecord, Exam, Mark</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Admin panel — full customisation, inlines, CSV export</div><div class="step-desc">Custom list_display, actions, photo thumbnails, inline editing</div></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Serializers + all 4 validation levels</div><div class="step-desc">List vs detail serializers, custom error shapes, cross-field validation</div></div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">ViewSets + permissions + filtering + pagination</div><div class="step-desc">Role-scoped querysets, @action endpoints, FilterSet, StandardPagination</div></div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-body"><div class="step-title">Middleware, Signals, Static/Media, Tests, Deploy</div><div class="step-desc">Request logging, post_save signals for GPA, S3 uploads, pytest suite, Gunicorn</div></div></div>
+  </div>
+</section>
+
+<!-- P2 SETUP -->
+<section class="chapter" id="proj-setup">
+  <div class="ch-head"><span class="ch-num proj">P2</span><h2 class="ch-title">Setup &amp; Project Structure</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Terminal — bootstrap</span><span class="cb-lang">Bash</span></div><pre class="code">
+pip install django djangorestframework djangorestframework-simplejwt django-filter
+pip install django-cors-headers python-decouple psycopg2-binary Pillow whitenoise
+pip install drf-spectacular celery[redis] django-storages[boto3]
+pip install pytest-django factory-boy coverage
+
+django-admin startproject config school_system
+cd school_system
+python manage.py startapp core
+python manage.py startapp accounts
+python manage.py startapp students
+python manage.py startapp teachers
+python manage.py startapp classes
+python manage.py startapp attendance
+python manage.py startapp grades
+python manage.py startapp notifications
+
+<span class="cm"># ⚠ Set AUTH_USER_MODEL = 'accounts.User' in settings BEFORE first migrate</span>
+python manage.py makemigrations accounts    <span class="cm"># custom User first</span>
+python manage.py makemigrations            <span class="cm"># rest of apps</span>
+python manage.py migrate
+python manage.py createsuperuser
+</pre></div>
+
+  <div class="tree">
+    <span class="tf">school_system/</span><br/>
+    <span class="tr">├── </span><span class="tf">config/</span><br/>
+    <span class="tr">│   ├── </span><span class="tf b">settings/</span><br/>
+    <span class="tr">│   │   ├── base.py</span><span class="tc">      ← shared: apps, DRF, JWT, S3, Redis</span><br/>
+    <span class="tr">│   │   ├── dev.py</span><span class="tc">       ← DEBUG=True, SQLite, console email</span><br/>
+    <span class="tr">│   │   └── prod.py</span><span class="tc">      ← PostgreSQL, S3, SMTP, Sentry, Gunicorn</span><br/>
+    <span class="tr">│   ├── </span><span class="tf b">urls.py</span><span class="tc">          ← root URL dispatcher + media serving</span><br/>
+    <span class="tr">│   ├── wsgi.py  asgi.py  celery.py</span><br/>
+    <span class="tr">├── </span><span class="tf g">core/</span><span class="tc">                  ← BaseModel · pagination · exceptions · permissions</span><br/>
+    <span class="tr">│   ├── models.py  pagination.py  exceptions.py  permissions.py  middleware.py</span><br/>
+    <span class="tr">├── </span><span class="tf b">accounts/</span><span class="tc">              ← custom User · JWT serializers · register/me</span><br/>
+    <span class="tr">├── </span><span class="tf b">students/</span><span class="tc">              ← Student · Guardian · filters · signals</span><br/>
+    <span class="tr">├── </span><span class="tf b">teachers/</span><span class="tc">              ← Teacher · Subject · Qualification</span><br/>
+    <span class="tr">├── </span><span class="tf b">classes/</span><span class="tc">               ← Classroom · Section · Timetable</span><br/>
+    <span class="tr">├── </span><span class="tf b">attendance/</span><span class="tc">            ← AttendanceRecord · bulk mark</span><br/>
+    <span class="tr">├── </span><span class="tf b">grades/</span><span class="tc">                ← Exam · Mark · ReportCard</span><br/>
+    <span class="tr">├── </span><span class="tf a">notifications/</span><span class="tc">         ← Notification model · Celery tasks</span><br/>
+    <span class="tr">├── static/  media/  templates/  .env  manage.py  requirements.txt  pytest.ini</span>
+  </div>
+</section>
+
+<!-- P3 ALL MODELS -->
+<section class="chapter" id="proj-models">
+  <div class="ch-head"><span class="ch-num proj">P3</span><h2 class="ch-title">All Models</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">core/models.py → accounts/models.py → domain models</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># core/models.py — shared base</span>
+<span class="kw">class</span> <span class="cl">BaseModel</span>(models.Model):
+    created_at = models.DateTimeField(auto_now_add=<span class="kw">True</span>)
+    updated_at = models.DateTimeField(auto_now=<span class="kw">True</span>)
+    <span class="kw">class</span> <span class="cl">Meta</span>: abstract = <span class="kw">True</span>
+
+
+<span class="cm"># accounts/models.py — custom user with role</span>
+<span class="kw2">from</span> django.contrib.auth.models <span class="kw2">import</span> AbstractBaseUser, PermissionsMixin
+
+<span class="kw">class</span> <span class="cl">SchoolUserManager</span>(BaseUserManager):
+    <span class="kw">def</span> <span class="fn">create_user</span>(self, email, password=<span class="kw">None</span>, **extra):
+        user = self.model(email=self.normalize_email(email), **extra)
+        user.set_password(password); user.save(using=self._db); <span class="kw">return</span> user
+    <span class="kw">def</span> <span class="fn">create_superuser</span>(self, email, password=<span class="kw">None</span>, **extra):
+        extra.setdefault(<span class="st">'is_staff'</span>, <span class="kw">True</span>); extra.setdefault(<span class="st">'is_superuser'</span>, <span class="kw">True</span>)
+        extra.setdefault(<span class="st">'role'</span>, <span class="st">'admin'</span>)
+        <span class="kw">return</span> self.create_user(email, password, **extra)
+
+<span class="kw">class</span> <span class="cl">User</span>(AbstractBaseUser, PermissionsMixin, BaseModel):
+    ROLES = [(<span class="st">'admin'</span>,<span class="st">'Admin'</span>),(<span class="st">'teacher'</span>,<span class="st">'Teacher'</span>),(<span class="st">'student'</span>,<span class="st">'Student'</span>),(<span class="st">'parent'</span>,<span class="st">'Parent'</span>)]
+    email     = models.EmailField(unique=<span class="kw">True</span>)
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+    role      = models.CharField(max_length=<span class="nu">10</span>, choices=ROLES, default=<span class="st">'student'</span>)
+    phone     = models.CharField(max_length=<span class="nu">15</span>, blank=<span class="kw">True</span>)
+    avatar    = models.ImageField(upload_to=<span class="st">'avatars/'</span>, null=<span class="kw">True</span>, blank=<span class="kw">True</span>)
+    is_active = models.BooleanField(default=<span class="kw">True</span>)
+    is_staff  = models.BooleanField(default=<span class="kw">False</span>)
+    USERNAME_FIELD = <span class="st">'email'</span>; REQUIRED_FIELDS = [<span class="st">'full_name'</span>]
+    objects = SchoolUserManager()
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">f"{self.full_name} ({self.role})"</span>
+
+
+<span class="cm"># teachers/models.py</span>
+<span class="kw">class</span> <span class="cl">Subject</span>(BaseModel):
+    name       = models.CharField(max_length=<span class="nu">100</span>)
+    code       = models.CharField(max_length=<span class="nu">10</span>, unique=<span class="kw">True</span>)
+    full_marks = models.PositiveIntegerField(default=<span class="nu">100</span>)
+    pass_marks = models.PositiveIntegerField(default=<span class="nu">35</span>)
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">f"{self.name} ({self.code})"</span>
+
+<span class="kw">class</span> <span class="cl">Teacher</span>(BaseModel):
+    user          = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                         related_name=<span class="st">'teacher_profile'</span>)
+    employee_id   = models.CharField(max_length=<span class="nu">20</span>, unique=<span class="kw">True</span>)
+    subjects      = models.ManyToManyField(Subject, blank=<span class="kw">True</span>)
+    qualification = models.CharField(max_length=<span class="nu">150</span>)
+    joining_date  = models.DateField()
+    salary        = models.DecimalField(max_digits=<span class="nu">10</span>, decimal_places=<span class="nu">2</span>)
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">f"{self.user.full_name} ({self.employee_id})"</span>
+
+
+<span class="cm"># classes/models.py</span>
+<span class="kw">class</span> <span class="cl">Classroom</span>(BaseModel):
+    name          = models.CharField(max_length=<span class="nu">20</span>, unique=<span class="kw">True</span>)   <span class="cm"># '10-A', '9-B'</span>
+    grade         = models.PositiveSmallIntegerField()
+    section       = models.CharField(max_length=<span class="nu">5</span>)
+    class_teacher = models.ForeignKey(<span class="st">'teachers.Teacher'</span>, on_delete=models.SET_NULL,
+                                      null=<span class="kw">True</span>, related_name=<span class="st">'classrooms'</span>)
+    subjects      = models.ManyToManyField(Subject, blank=<span class="kw">True</span>)
+    max_capacity  = models.PositiveSmallIntegerField(default=<span class="nu">40</span>)
+    academic_year = models.CharField(max_length=<span class="nu">9</span>, default=<span class="st">'2024-2025'</span>)
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> self.name
+
+<span class="kw">class</span> <span class="cl">Timetable</span>(BaseModel):
+    DAYS = [(<span class="st">'MON'</span>,<span class="st">'Monday'</span>),(<span class="st">'TUE'</span>,<span class="st">'Tuesday'</span>),(<span class="st">'WED'</span>,<span class="st">'Wednesday'</span>),
+            (<span class="st">'THU'</span>,<span class="st">'Thursday'</span>),(<span class="st">'FRI'</span>,<span class="st">'Friday'</span>)]
+    classroom  = models.ForeignKey(Classroom, on_delete=models.CASCADE, related_name=<span class="st">'timetable'</span>)
+    subject    = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    teacher    = models.ForeignKey(<span class="st">'teachers.Teacher'</span>, on_delete=models.CASCADE)
+    day        = models.CharField(max_length=<span class="nu">3</span>, choices=DAYS)
+    start_time = models.TimeField()
+    end_time   = models.TimeField()
+    <span class="kw">class</span> <span class="cl">Meta</span>: unique_together = [(<span class="st">'classroom'</span>, <span class="st">'day'</span>, <span class="st">'start_time'</span>)]
+
+
+<span class="cm"># students/models.py</span>
+<span class="kw">class</span> <span class="cl">Guardian</span>(BaseModel):
+    full_name = models.CharField(max_length=<span class="nu">150</span>)
+    phone     = models.CharField(max_length=<span class="nu">15</span>)
+    email     = models.EmailField(blank=<span class="kw">True</span>)
+    relation  = models.CharField(max_length=<span class="nu">20</span>)
+
+<span class="kw">class</span> <span class="cl">Student</span>(BaseModel):
+    user      = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                     null=<span class="kw">True</span>, blank=<span class="kw">True</span>, related_name=<span class="st">'student_profile'</span>)
+    roll_no   = models.SlugField(unique=<span class="kw">True</span>)
+    classroom = models.ForeignKey(Classroom, on_delete=models.SET_NULL,
+                                  null=<span class="kw">True</span>, related_name=<span class="st">'students'</span>)
+    guardian  = models.ForeignKey(Guardian, on_delete=models.SET_NULL,
+                                  null=<span class="kw">True</span>, related_name=<span class="st">'wards'</span>)
+    dob       = models.DateField()
+    gender    = models.CharField(max_length=<span class="nu">1</span>, choices=[(<span class="st">'M'</span>,<span class="st">'Male'</span>),(<span class="st">'F'</span>,<span class="st">'Female'</span>),(<span class="st">'O'</span>,<span class="st">'Other'</span>)])
+    photo     = models.ImageField(upload_to=<span class="st">'students/photos/%Y/%m/'</span>, null=<span class="kw">True</span>, blank=<span class="kw">True</span>)
+    is_active = models.BooleanField(default=<span class="kw">True</span>)
+    gpa       = models.DecimalField(max_digits=<span class="nu">4</span>, decimal_places=<span class="nu">2</span>, default=<span class="nu">0</span>)
+    <span class="kw">def</span> <span class="fn">__str__</span>(self): <span class="kw">return</span> f<span class="st">f"{self.roll_no} — {self.user.full_name if self.user else 'Unknown'}"</span>
+
+
+<span class="cm"># attendance/models.py</span>
+<span class="kw">class</span> <span class="cl">AttendanceRecord</span>(BaseModel):
+    STATUS   = [(<span class="st">'P'</span>,<span class="st">'Present'</span>),(<span class="st">'A'</span>,<span class="st">'Absent'</span>),(<span class="st">'L'</span>,<span class="st">'Late'</span>),(<span class="st">'E'</span>,<span class="st">'Excused'</span>)]
+    student  = models.ForeignKey(Student, on_delete=models.CASCADE, related_name=<span class="st">'attendance'</span>)
+    date     = models.DateField()
+    status   = models.CharField(max_length=<span class="nu">1</span>, choices=STATUS)
+    remarks  = models.TextField(blank=<span class="kw">True</span>)
+    marked_by= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=<span class="kw">True</span>)
+    <span class="kw">class</span> <span class="cl">Meta</span>: unique_together = [(<span class="st">'student'</span>, <span class="st">'date'</span>)]
+
+
+<span class="cm"># grades/models.py</span>
+<span class="kw">class</span> <span class="cl">Exam</span>(BaseModel):
+    TYPES     = [(<span class="st">'unit'</span>,<span class="st">'Unit Test'</span>),(<span class="st">'mid'</span>,<span class="st">'Mid-Term'</span>),(<span class="st">'final'</span>,<span class="st">'Final'</span>)]
+    name      = models.CharField(max_length=<span class="nu">100</span>)
+    exam_type = models.CharField(max_length=<span class="nu">5</span>, choices=TYPES)
+    classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE, related_name=<span class="st">'exams'</span>)
+    date      = models.DateField()
+
+<span class="kw">class</span> <span class="cl">Mark</span>(BaseModel):
+    student   = models.ForeignKey(Student, on_delete=models.CASCADE, related_name=<span class="st">'marks'</span>)
+    exam      = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name=<span class="st">'marks'</span>)
+    subject   = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    marks     = models.DecimalField(max_digits=<span class="nu">6</span>, decimal_places=<span class="nu">2</span>)
+    is_absent = models.BooleanField(default=<span class="kw">False</span>)
+    <span class="kw">class</span> <span class="cl">Meta</span>: unique_together = [(<span class="st">'student'</span>, <span class="st">'exam'</span>, <span class="st">'subject'</span>)]
+    <span class="kw">def</span> <span class="fn">percentage</span>(self): <span class="kw">return</span> round((float(self.marks) / self.subject.full_marks) * <span class="nu">100</span>, <span class="nu">2</span>)
+    <span class="kw">def</span> <span class="fn">is_pass</span>(self):    <span class="kw">return</span> self.marks >= self.subject.pass_marks
+
+
+<span class="cm"># notifications/models.py</span>
+<span class="kw">class</span> <span class="cl">Notification</span>(BaseModel):
+    TYPES = [(<span class="st">'info'</span>,<span class="st">'Info'</span>),(<span class="st">'alert'</span>,<span class="st">'Alert'</span>),(<span class="st">'grade'</span>,<span class="st">'Grade'</span>),(<span class="st">'attendance'</span>,<span class="st">'Attendance'</span>)]
+    user      = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                  related_name=<span class="st">'notifications'</span>)
+    title     = models.CharField(max_length=<span class="nu">200</span>)
+    message   = models.TextField()
+    notif_type= models.CharField(max_length=<span class="nu">10</span>, choices=TYPES, default=<span class="st">'info'</span>)
+    is_read   = models.BooleanField(default=<span class="kw">False</span>)
+    sent_via  = models.JSONField(default=list)   <span class="cm"># ['email', 'push']</span>
+</pre></div>
+</section>
+
+<!-- P4 ADMIN -->
+<section class="chapter" id="proj-admin">
+  <div class="ch-head"><span class="ch-num proj">P4</span><h2 class="ch-title">Admin Panel — Full Configuration</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/admin.py — every admin feature</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib <span class="kw2">import</span> admin
+<span class="kw2">from</span> django.utils.html <span class="kw2">import</span> format_html
+<span class="kw2">from</span> django.db.models <span class="kw2">import</span> Avg, Count
+<span class="kw2">from</span> .models <span class="kw2">import</span> Student, Guardian
+
+<span class="kw">class</span> <span class="cl">GuardianInline</span>(admin.StackedInline):
+    model = Guardian;  extra = <span class="nu">0</span>
+    fields = [<span class="st">'full_name'</span>, <span class="st">'phone'</span>, <span class="st">'email'</span>, <span class="st">'relation'</span>]
+
+
+<span class="di">@admin.register</span>(Student)
+<span class="kw">class</span> <span class="cl">StudentAdmin</span>(admin.ModelAdmin):
+    <span class="cm"># ── List view ─────────────────────────────────────────────────────</span>
+    list_display    = [<span class="st">'photo_thumb'</span>, <span class="st">'roll_no'</span>, <span class="st">'student_name'</span>, <span class="st">'classroom'</span>,
+                       <span class="st">'gpa_badge'</span>, <span class="st">'gender'</span>, <span class="st">'is_active'</span>]
+    list_filter     = [<span class="st">'is_active'</span>, <span class="st">'gender'</span>, <span class="st">'classroom'</span>, <span class="st">'classroom__academic_year'</span>]
+    search_fields   = [<span class="st">'roll_no'</span>, <span class="st">'user__full_name'</span>, <span class="st">'user__email'</span>]
+    list_editable   = [<span class="st">'is_active'</span>]
+    list_per_page   = <span class="nu">30</span>
+    ordering        = [<span class="st">'classroom__name'</span>, <span class="st">'roll_no'</span>]
+    date_hierarchy  = <span class="st">'created_at'</span>
+    readonly_fields = [<span class="st">'created_at'</span>, <span class="st">'updated_at'</span>, <span class="st">'gpa'</span>, <span class="st">'photo_preview'</span>]
+    raw_id_fields   = [<span class="st">'classroom'</span>]
+    inlines         = [GuardianInline]
+
+    <span class="cm"># ── Detail form layout ────────────────────────────────────────────</span>
+    fieldsets = [
+        (<span class="st">'Account'</span>,     {<span class="st">'fields'</span>: [<span class="st">'user'</span>, <span class="st">'roll_no'</span>]}),
+        (<span class="st">'Personal'</span>,    {<span class="st">'fields'</span>: [<span class="st">'dob'</span>, <span class="st">'gender'</span>, <span class="st">'photo'</span>, <span class="st">'photo_preview'</span>]}),
+        (<span class="st">'Academic'</span>,    {<span class="st">'fields'</span>: [<span class="st">'classroom'</span>, <span class="st">'gpa'</span>]}),
+        (<span class="st">'Status'</span>,      {<span class="st">'fields'</span>: [<span class="st">'is_active'</span>]}),
+        (<span class="st">'Timestamps'</span>,  {<span class="st">'fields'</span>: [<span class="st">'created_at'</span>, <span class="st">'updated_at'</span>], <span class="st">'classes'</span>: [<span class="st">'collapse'</span>]}),
+    ]
+
+    <span class="cm"># ── Custom list columns ───────────────────────────────────────────</span>
+    <span class="di">@admin.display</span>(description=<span class="st">'Photo'</span>)
+    <span class="kw">def</span> <span class="fn">photo_thumb</span>(self, obj):
+        <span class="kw">if</span> obj.photo:
+            <span class="kw">return</span> format_html(<span class="st">'&lt;img src="{}" width="36" height="36" style="border-radius:50%;object-fit:cover"/&gt;'</span>, obj.photo.url)
+        <span class="kw">return</span> format_html(<span class="st">'&lt;div style="width:36px;height:36px;border-radius:50%;background:#2a2b3d;display:flex;align-items:center;justify-content:center;color:#666"&gt;?&lt;/div&gt;'</span>)
+
+    <span class="di">@admin.display</span>(description=<span class="st">'Name'</span>, ordering=<span class="st">'user__full_name'</span>)
+    <span class="kw">def</span> <span class="fn">student_name</span>(self, obj):
+        <span class="kw">return</span> obj.user.full_name <span class="kw">if</span> obj.user <span class="kw">else</span> <span class="st">'—'</span>
+
+    <span class="di">@admin.display</span>(description=<span class="st">'GPA'</span>, ordering=<span class="st">'gpa'</span>)
+    <span class="kw">def</span> <span class="fn">gpa_badge</span>(self, obj):
+        color = <span class="st">'#00e5a0'</span> <span class="kw">if</span> obj.gpa >= <span class="nu">8</span> <span class="kw">else</span> (<span class="st">'#f5a623'</span> <span class="kw">if</span> obj.gpa >= <span class="nu">5</span> <span class="kw">else</span> <span class="st">'#ff6b6b'</span>)
+        <span class="kw">return</span> format_html(<span class="st">'&lt;b style="color:{}"&gt;{}&lt;/b&gt;'</span>, color, obj.gpa)
+
+    <span class="di">@admin.display</span>(description=<span class="st">'Photo preview'</span>)
+    <span class="kw">def</span> <span class="fn">photo_preview</span>(self, obj):
+        <span class="kw">if</span> obj.photo:
+            <span class="kw">return</span> format_html(<span class="st">'&lt;img src="{}" style="max-width:200px;border-radius:8px"/&gt;'</span>, obj.photo.url)
+        <span class="kw">return</span> <span class="st">'No photo uploaded'</span>
+
+    <span class="cm"># ── Custom actions ────────────────────────────────────────────────</span>
+    <span class="di">@admin.action</span>(description=<span class="st">'✓ Activate students'</span>)
+    <span class="kw">def</span> <span class="fn">activate</span>(self, request, qs): qs.update(is_active=<span class="kw">True</span>)
+
+    <span class="di">@admin.action</span>(description=<span class="st">'✗ Deactivate students'</span>)
+    <span class="kw">def</span> <span class="fn">deactivate</span>(self, request, qs): qs.update(is_active=<span class="kw">False</span>)
+
+    <span class="di">@admin.action</span>(description=<span class="st">'↓ Export as CSV'</span>)
+    <span class="kw">def</span> <span class="fn">export_csv</span>(self, request, qs):
+        <span class="kw2">import</span> csv
+        <span class="kw2">from</span> django.http <span class="kw2">import</span> HttpResponse
+        resp = HttpResponse(content_type=<span class="st">'text/csv'</span>)
+        resp[<span class="st">'Content-Disposition'</span>] = <span class="st">'attachment; filename=students.csv'</span>
+        w = csv.writer(resp)
+        w.writerow([<span class="st">'Roll No'</span>, <span class="st">'Name'</span>, <span class="st">'Email'</span>, <span class="st">'Class'</span>, <span class="st">'GPA'</span>, <span class="st">'Gender'</span>, <span class="st">'Active'</span>])
+        <span class="kw">for</span> s <span class="kw">in</span> qs.select_related(<span class="st">'user'</span>, <span class="st">'classroom'</span>):
+            w.writerow([s.roll_no, s.user.full_name <span class="kw">if</span> s.user <span class="kw">else</span> <span class="st">''</span>,
+                        s.user.email <span class="kw">if</span> s.user <span class="kw">else</span> <span class="st">''</span>, str(s.classroom),
+                        s.gpa, s.get_gender_display(), s.is_active])
+        <span class="kw">return</span> resp
+
+    actions = [<span class="st">'activate'</span>, <span class="st">'deactivate'</span>, <span class="st">'export_csv'</span>]
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self, request):
+        <span class="kw">return</span> <span class="kw">super</span>().get_queryset(request).select_related(<span class="st">'user'</span>, <span class="st">'classroom'</span>)
+
+
+<span class="cm"># attendance/admin.py</span>
+<span class="di">@admin.register</span>(AttendanceRecord)
+<span class="kw">class</span> <span class="cl">AttendanceAdmin</span>(admin.ModelAdmin):
+    list_display  = [<span class="st">'student'</span>, <span class="st">'date'</span>, <span class="st">'status_badge'</span>, <span class="st">'marked_by'</span>]
+    list_filter   = [<span class="st">'status'</span>, <span class="st">'date'</span>, <span class="st">'student__classroom'</span>]
+    date_hierarchy= <span class="st">'date'</span>
+    ordering      = [<span class="st">'-date'</span>]
+
+    <span class="di">@admin.display</span>(description=<span class="st">'Status'</span>, ordering=<span class="st">'status'</span>)
+    <span class="kw">def</span> <span class="fn">status_badge</span>(self, obj):
+        colors = {<span class="st">'P'</span>:<span class="st">'#00e5a0'</span>, <span class="st">'A'</span>:<span class="st">'#ff6b6b'</span>, <span class="st">'L'</span>:<span class="st">'#f5a623'</span>, <span class="st">'E'</span>:<span class="st">'#5b8dee'</span>}
+        <span class="kw">return</span> format_html(<span class="st">'&lt;span style="color:{};font-weight:700"&gt;{}&lt;/span&gt;'</span>,
+                           colors.get(obj.status, <span class="st">'#fff'</span>), obj.get_status_display())
+</pre></div>
+</section>
+
+<!-- P5 AUTH & JWT -->
+<section class="chapter" id="proj-auth">
+  <div class="ch-head"><span class="ch-num proj">P5</span><h2 class="ch-title">Custom Auth &amp; JWT</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/serializers.py + views.py + urls.py</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># accounts/serializers.py</span>
+<span class="kw2">from</span> rest_framework_simplejwt.serializers <span class="kw2">import</span> TokenObtainPairSerializer
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> serializers
+
+<span class="kw">class</span> <span class="cl">SchoolTokenSerializer</span>(TokenObtainPairSerializer):
+    <span class="st">"""Custom JWT payload — embed role, name, school info."""</span>
+    <span class="di">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">get_token</span>(cls, user):
+        token = <span class="kw">super</span>().get_token(user)
+        token[<span class="st">'email'</span>]     = user.email
+        token[<span class="st">'full_name'</span>] = user.full_name
+        token[<span class="st">'role'</span>]      = user.role
+        token[<span class="st">'is_staff'</span>]  = user.is_staff
+        <span class="kw">return</span> token
+
+
+<span class="kw">class</span> <span class="cl">RegisterSerializer</span>(serializers.ModelSerializer):
+    password  = serializers.CharField(write_only=<span class="kw">True</span>, min_length=<span class="nu">8</span>)
+    password2 = serializers.CharField(write_only=<span class="kw">True</span>, label=<span class="st">'Confirm password'</span>)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = User
+        fields = [<span class="st">'email'</span>, <span class="st">'full_name'</span>, <span class="st">'role'</span>, <span class="st">'phone'</span>, <span class="st">'password'</span>, <span class="st">'password2'</span>]
+
+    <span class="kw">def</span> <span class="fn">validate</span>(self, attrs):
+        <span class="kw">if</span> attrs[<span class="st">'password'</span>] != attrs.pop(<span class="st">'password2'</span>):
+            <span class="kw">raise</span> serializers.ValidationError({<span class="st">'password2'</span>: <span class="st">'Passwords do not match.'</span>})
+        <span class="kw">return</span> attrs
+
+    <span class="kw">def</span> <span class="fn">create</span>(self, validated_data):
+        password = validated_data.pop(<span class="st">'password'</span>)
+        user = User(**validated_data)
+        user.set_password(password); user.save(); <span class="kw">return</span> user
+
+
+<span class="cm"># accounts/views.py</span>
+<span class="kw2">from</span> rest_framework.views <span class="kw2">import</span> APIView
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> status, permissions
+
+<span class="kw">class</span> <span class="cl">RegisterView</span>(APIView):
+    permission_classes = [permissions.AllowAny]
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        s = RegisterSerializer(data=request.data)
+        s.is_valid(raise_exception=<span class="kw">True</span>)
+        s.save()
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Account created. Please login.'</span>}, status=<span class="nu">201</span>)
+
+<span class="kw">class</span> <span class="cl">MeView</span>(APIView):
+    <span class="st">"""GET /api/auth/me/ — current user info"""</span>
+    <span class="kw">def</span> <span class="fn">get</span>(self, request):
+        <span class="kw">return</span> Response({
+            <span class="st">'id'</span>:        request.user.id,
+            <span class="st">'email'</span>:     request.user.email,
+            <span class="st">'full_name'</span>: request.user.full_name,
+            <span class="st">'role'</span>:      request.user.role,
+            <span class="st">'is_staff'</span>:  request.user.is_staff,
+        })
+
+
+<span class="cm"># accounts/urls.py</span>
+<span class="kw2">from</span> rest_framework_simplejwt.views <span class="kw2">import</span> (TokenObtainPairView,
+                                             TokenRefreshView, TokenBlacklistView)
+urlpatterns = [
+    path(<span class="st">'register/'</span>,        RegisterView.as_view()),
+    path(<span class="st">'login/'</span>,           TokenObtainPairView.as_view(serializer_class=SchoolTokenSerializer)),
+    path(<span class="st">'token/refresh/'</span>,   TokenRefreshView.as_view()),
+    path(<span class="st">'logout/'</span>,          TokenBlacklistView.as_view()),
+    path(<span class="st">'me/'</span>,              MeView.as_view()),
+]
+</pre></div>
+</section>
+
+<!-- P6 SERIALIZERS -->
+<section class="chapter" id="proj-serial">
+  <div class="ch-head"><span class="ch-num proj">P6</span><h2 class="ch-title">All Serializers</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/serializers.py + grades/serializers.py</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># students/serializers.py</span>
+<span class="kw">class</span> <span class="cl">StudentListSerializer</span>(serializers.ModelSerializer):
+    <span class="st">"""Lightweight — used for list view"""</span>
+    full_name      = serializers.CharField(source=<span class="st">'user.full_name'</span>, read_only=<span class="kw">True</span>)
+    email          = serializers.EmailField(source=<span class="st">'user.email'</span>, read_only=<span class="kw">True</span>)
+    classroom_name = serializers.CharField(source=<span class="st">'classroom.name'</span>, read_only=<span class="kw">True</span>)
+    photo_url      = serializers.SerializerMethodField()
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Student
+        fields = [<span class="st">'id'</span>, <span class="st">'roll_no'</span>, <span class="st">'full_name'</span>, <span class="st">'email'</span>,
+                  <span class="st">'classroom_name'</span>, <span class="st">'gpa'</span>, <span class="st">'is_active'</span>, <span class="st">'photo_url'</span>]
+
+    <span class="kw">def</span> <span class="fn">get_photo_url</span>(self, obj):
+        r = self.context.get(<span class="st">'request'</span>)
+        <span class="kw">return</span> r.build_absolute_uri(obj.photo.url) <span class="kw">if</span> obj.photo <span class="kw">and</span> r <span class="kw">else</span> <span class="kw">None</span>
+
+
+<span class="kw">class</span> <span class="cl">StudentDetailSerializer</span>(serializers.ModelSerializer):
+    <span class="st">"""Full nested — for create/update/detail views"""</span>
+    guardian      = GuardianSerializer(read_only=<span class="kw">True</span>)
+    guardian_id   = serializers.PrimaryKeyRelatedField(
+                      queryset=Guardian.objects.all(),
+                      source=<span class="st">'guardian'</span>, write_only=<span class="kw">True</span>, required=<span class="kw">False</span>)
+    classroom_name= serializers.CharField(source=<span class="st">'classroom.name'</span>, read_only=<span class="kw">True</span>)
+    age           = serializers.SerializerMethodField()
+    photo_url     = serializers.SerializerMethodField()
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Student
+        fields = [<span class="st">'id'</span>, <span class="st">'roll_no'</span>, <span class="st">'user'</span>, <span class="st">'classroom'</span>, <span class="st">'classroom_name'</span>,
+                  <span class="st">'guardian'</span>, <span class="st">'guardian_id'</span>, <span class="st">'dob'</span>, <span class="st">'gender'</span>, <span class="st">'photo'</span>, <span class="st">'photo_url'</span>,
+                  <span class="st">'is_active'</span>, <span class="st">'gpa'</span>, <span class="st">'age'</span>, <span class="st">'created_at'</span>]
+        read_only_fields = [<span class="st">'id'</span>, <span class="st">'gpa'</span>, <span class="st">'created_at'</span>]
+
+    <span class="kw">def</span> <span class="fn">get_age</span>(self, obj):
+        <span class="kw2">from</span> datetime <span class="kw2">import</span> date
+        d = date.today()
+        <span class="kw">return</span> d.year - obj.dob.year - ((d.month, d.day) &lt; (obj.dob.month, obj.dob.day))
+
+    <span class="kw">def</span> <span class="fn">get_photo_url</span>(self, obj):
+        r = self.context.get(<span class="st">'request'</span>)
+        <span class="kw">return</span> r.build_absolute_uri(obj.photo.url) <span class="kw">if</span> obj.photo <span class="kw">and</span> r <span class="kw">else</span> <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">validate_roll_no</span>(self, value):            <span class="cm"># Level 3 — field validation</span>
+        <span class="kw">if</span> not value[:4].isdigit():
+            <span class="kw">raise</span> serializers.ValidationError(<span class="st">'Roll number must start with the admission year.'</span>)
+        <span class="kw">return</span> value.upper()
+
+    <span class="kw">def</span> <span class="fn">validate</span>(self, attrs):                    <span class="cm"># Level 4 — cross-field</span>
+        classroom = attrs.get(<span class="st">'classroom'</span>)
+        <span class="kw">if</span> classroom <span class="kw">and</span> not self.instance:       <span class="cm"># only on create</span>
+            current  = classroom.students.filter(is_active=<span class="kw">True</span>).count()
+            <span class="kw">if</span> current >= classroom.max_capacity:
+                <span class="kw">from</span> core.exceptions <span class="kw">import</span> ClassroomFull
+                <span class="kw">raise</span> ClassroomFull(f<span class="st">f"Classroom {classroom.name} is at full capacity ({classroom.max_capacity})."</span>)
+        <span class="kw">return</span> attrs
+
+
+<span class="cm"># grades/serializers.py</span>
+<span class="kw">class</span> <span class="cl">MarkSerializer</span>(serializers.ModelSerializer):
+    subject_name = serializers.CharField(source=<span class="st">'subject.name'</span>, read_only=<span class="kw">True</span>)
+    percentage   = serializers.SerializerMethodField()
+    is_pass      = serializers.SerializerMethodField()
+    grade        = serializers.SerializerMethodField()
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Mark
+        fields = [<span class="st">'id'</span>, <span class="st">'subject'</span>, <span class="st">'subject_name'</span>, <span class="st">'marks'</span>,
+                  <span class="st">'is_absent'</span>, <span class="st">'percentage'</span>, <span class="st">'is_pass'</span>, <span class="st">'grade'</span>]
+
+    <span class="kw">def</span> <span class="fn">get_percentage</span>(self, obj): <span class="kw">return</span> obj.percentage()
+    <span class="kw">def</span> <span class="fn">get_is_pass</span>(self, obj):    <span class="kw">return</span> obj.is_pass()
+    <span class="kw">def</span> <span class="fn">get_grade</span>(self, obj):
+        p = obj.percentage()
+        <span class="kw">for</span> threshold, letter <span class="kw">in</span> [(<span class="nu">90</span>,<span class="st">'A+'</span>),(<span class="nu">80</span>,<span class="st">'A'</span>),(<span class="nu">70</span>,<span class="st">'B'</span>),(<span class="nu">60</span>,<span class="st">'C'</span>),(<span class="nu">35</span>,<span class="st">'D'</span>)]:
+            <span class="kw">if</span> p >= threshold: <span class="kw">return</span> letter
+        <span class="kw">return</span> <span class="st">'F'</span>
+</pre></div>
+</section>
+
+<!-- P7 VIEWSETS & APIS -->
+<section class="chapter" id="proj-views">
+  <div class="ch-head"><span class="ch-num proj">P7</span><h2 class="ch-title">ViewSets &amp; All API Endpoints</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/views.py — full ViewSet with custom actions</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> viewsets, permissions, status
+<span class="kw2">from</span> rest_framework.decorators <span class="kw2">import</span> action
+<span class="kw2">from</span> rest_framework.parsers <span class="kw2">import</span> MultiPartParser, FormParser
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> core.permissions <span class="kw2">import</span> IsTeacherOrAdmin
+<span class="kw2">from</span> .filters <span class="kw2">import</span> StudentFilter
+<span class="kw2">from</span> .serializers <span class="kw2">import</span> StudentListSerializer, StudentDetailSerializer
+
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(viewsets.ModelViewSet):
+    search_fields   = [<span class="st">'roll_no'</span>, <span class="st">'user__full_name'</span>, <span class="st">'user__email'</span>]
+    ordering_fields = [<span class="st">'gpa'</span>, <span class="st">'created_at'</span>, <span class="st">'user__full_name'</span>]
+    filterset_class = StudentFilter
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self):
+        qs = Student.objects.select_related(<span class="st">'user'</span>, <span class="st">'classroom'</span>, <span class="st">'guardian'</span>)
+        user = self.request.user
+        <span class="kw">if</span> user.role == <span class="st">'teacher'</span>:
+            qs = qs.filter(classroom__class_teacher__user=user)
+        <span class="kw">elif</span> user.role == <span class="st">'student'</span>:
+            qs = qs.filter(user=user)
+        <span class="kw">elif</span> user.role == <span class="st">'parent'</span>:
+            qs = qs.filter(guardian__email=user.email)
+        <span class="kw">return</span> qs.filter(is_active=<span class="kw">True</span>)
+
+    <span class="kw">def</span> <span class="fn">get_serializer_class</span>(self):
+        <span class="kw">return</span> StudentListSerializer <span class="kw">if</span> self.action == <span class="st">'list'</span> <span class="kw">else</span> StudentDetailSerializer
+
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action <span class="kw">in</span> [<span class="st">'list'</span>, <span class="st">'retrieve'</span>]:          <span class="kw">return</span> [permissions.IsAuthenticated()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> [<span class="st">'create'</span>,<span class="st">'update'</span>,<span class="st">'partial_update'</span>]: <span class="kw">return</span> [IsTeacherOrAdmin()]
+        <span class="kw">if</span> self.action == <span class="st">'destroy'</span>:                     <span class="kw">return</span> [permissions.IsAdminUser()]
+        <span class="kw">return</span> [permissions.IsAuthenticated()]
+
+    <span class="kw">def</span> <span class="fn">perform_destroy</span>(self, instance):
+        instance.is_active = <span class="kw">False</span>; instance.save()   <span class="cm"># soft delete</span>
+
+    <span class="di">@action</span>(detail=<span class="kw">True</span>, methods=[<span class="st">'get'</span>], url_path=<span class="st">'report-card'</span>)
+    <span class="kw">def</span> <span class="fn">report_card</span>(self, request, pk=<span class="kw">None</span>):
+        <span class="st">"""GET /students/{pk}/report-card/"""</span>
+        student = self.get_object()
+        marks   = student.marks.select_related(<span class="st">'subject'</span>, <span class="st">'exam'</span>).order_by(<span class="st">'exam__date'</span>)
+        <span class="kw">return</span> Response({
+            <span class="st">'student'</span>: StudentListSerializer(student, context={<span class="st">'request'</span>: request}).data,
+            <span class="st">'marks'</span>:   MarkSerializer(marks, many=<span class="kw">True</span>).data,
+            <span class="st">'gpa'</span>:     float(student.gpa),
+        })
+
+    <span class="di">@action</span>(detail=<span class="kw">True</span>, methods=[<span class="st">'get'</span>], url_path=<span class="st">'attendance-summary'</span>)
+    <span class="kw">def</span> <span class="fn">attendance_summary</span>(self, request, pk=<span class="kw">None</span>):
+        <span class="st">"""GET /students/{pk}/attendance-summary/"""</span>
+        student = self.get_object()
+        <span class="kw2">from</span> django.db.models <span class="kw2">import</span> Count
+        summary = student.attendance.values(<span class="st">'status'</span>).annotate(count=Count(<span class="st">'id'</span>))
+        total   = student.attendance.count()
+        present = student.attendance.filter(status=<span class="st">'P'</span>).count()
+        pct     = round((present / total * <span class="nu">100</span>), <span class="nu">1</span>) <span class="kw">if</span> total <span class="kw">else</span> <span class="nu">0</span>
+        <span class="kw">return</span> Response({<span class="st">'total'</span>: total, <span class="st">'present'</span>: present,
+                         <span class="st">'attendance_pct'</span>: pct, <span class="st">'by_status'</span>: list(summary)})
+
+    <span class="di">@action</span>(detail=<span class="kw">True</span>, methods=[<span class="st">'post'</span>], url_path=<span class="st">'upload-photo'</span>,
+             parser_classes=[MultiPartParser, FormParser])
+    <span class="kw">def</span> <span class="fn">upload_photo</span>(self, request, pk=<span class="kw">None</span>):
+        <span class="st">"""POST /students/{pk}/upload-photo/"""</span>
+        student = self.get_object()
+        photo   = request.FILES.get(<span class="st">'photo'</span>)
+        <span class="kw">if</span> not photo:
+            <span class="kw2">from</span> rest_framework.exceptions <span class="kw2">import</span> ParseError
+            <span class="kw">raise</span> ParseError(<span class="st">'No photo file in request.'</span>)
+        <span class="kw">if</span> student.photo: student.photo.delete(save=<span class="kw">False</span>)
+        student.photo = photo; student.save()
+        <span class="kw">return</span> Response({<span class="st">'photo_url'</span>: request.build_absolute_uri(student.photo.url)},
+                        status=status.HTTP_200_OK)
+
+    <span class="di">@action</span>(detail=<span class="kw">False</span>, methods=[<span class="st">'get'</span>], url_path=<span class="st">'top-performers'</span>)
+    <span class="kw">def</span> <span class="fn">top_performers</span>(self, request):
+        <span class="st">"""GET /students/top-performers/ — top 10 by GPA"""</span>
+        qs = self.get_queryset().filter(gpa__gte=<span class="nu">8</span>).order_by(<span class="st">'-gpa'</span>)[:10]
+        <span class="kw">return</span> Response(StudentListSerializer(qs, many=<span class="kw">True</span>,
+                                              context={<span class="st">'request'</span>: request}).data)
+
+
+<span class="cm"># attendance/views.py — bulk mark endpoint</span>
+<span class="kw">class</span> <span class="cl">AttendanceViewSet</span>(viewsets.ModelViewSet):
+    serializer_class   = AttendanceSerializer
+    permission_classes = [IsTeacherOrAdmin]
+    filterset_fields   = [<span class="st">'status'</span>, <span class="st">'date'</span>, <span class="st">'student__classroom'</span>]
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self):
+        <span class="kw">return</span> AttendanceRecord.objects.select_related(<span class="st">'student__user'</span>, <span class="st">'marked_by'</span>)
+
+    <span class="kw">def</span> <span class="fn">perform_create</span>(self, serializer):
+        serializer.save(marked_by=self.request.user)
+
+    <span class="di">@action</span>(detail=<span class="kw">False</span>, methods=[<span class="st">'post'</span>], url_path=<span class="st">'bulk-mark'</span>)
+    <span class="kw">def</span> <span class="fn">bulk_mark</span>(self, request):
+        <span class="st">"""POST /attendance/bulk-mark/
+        Body: {"date": "2024-06-15", "records": [{"student": 1, "status": "P"}, ...]}"""</span>
+        date    = request.data.get(<span class="st">'date'</span>)
+        records = request.data.get(<span class="st">'records'</span>, [])
+        created = updated = errors = <span class="nu">0</span>
+        <span class="kw">for</span> rec <span class="kw">in</span> records:
+            <span class="kw">try</span>:
+                _, c = AttendanceRecord.objects.update_or_create(
+                    student_id=rec[<span class="st">'student'</span>], date=date,
+                    defaults={<span class="st">'status'</span>: rec[<span class="st">'status'</span>], <span class="st">'marked_by'</span>: request.user,
+                              <span class="st">'remarks'</span>: rec.get(<span class="st">'remarks'</span>, <span class="st">''</span>)}
+                )
+                <span class="kw">if</span> c: created += <span class="nu">1</span>
+                <span class="kw">else</span>:  updated += <span class="nu">1</span>
+            <span class="kw">except</span> Exception: errors += <span class="nu">1</span>
+        <span class="kw">return</span> Response({<span class="st">'created'</span>: created, <span class="st">'updated'</span>: updated, <span class="st">'errors'</span>: errors})
+</pre></div>
+</section>
+
+<!-- P8 PERMISSIONS -->
+<section class="chapter" id="proj-perms">
+  <div class="ch-head"><span class="ch-num proj">P8</span><h2 class="ch-title">Custom Permissions</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">core/permissions.py — all project permission classes</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> permissions
+
+<span class="kw">class</span> <span class="cl">IsAdminRole</span>(permissions.BasePermission):
+    message = <span class="st">'Only school administrators can perform this action.'</span>
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> (request.user.is_authenticated <span class="kw">and</span>
+                (request.user.is_staff <span class="kw">or</span> request.user.role == <span class="st">'admin'</span>))
+
+
+<span class="kw">class</span> <span class="cl">IsTeacherOrAdmin</span>(permissions.BasePermission):
+    message = <span class="st">'Only teachers or admins can perform this action.'</span>
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">if</span> request.method <span class="kw">in</span> permissions.SAFE_METHODS:
+            <span class="kw">return</span> request.user.is_authenticated
+        <span class="kw">return</span> (request.user.is_authenticated <span class="kw">and</span>
+                request.user.role <span class="kw">in</span> [<span class="st">'teacher'</span>, <span class="st">'admin'</span>] <span class="kw">or</span>
+                request.user.is_staff)
+
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.method <span class="kw">in</span> permissions.SAFE_METHODS: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">if</span> request.user.is_staff <span class="kw">or</span> request.user.role == <span class="st">'admin'</span>: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="cm"># Teacher can only modify students in their classroom</span>
+        <span class="kw">if</span> hasattr(obj, <span class="st">'classroom'</span>) <span class="kw">and</span> obj.classroom:
+            <span class="kw">return</span> obj.classroom.class_teacher == getattr(request.user, <span class="st">'teacher_profile'</span>, <span class="kw">None</span>)
+        <span class="kw">return</span> <span class="kw">False</span>
+
+
+<span class="kw">class</span> <span class="cl">IsOwnerOrAdmin</span>(permissions.BasePermission):
+    <span class="st">"""User can only view/edit their own record; admin can do everything."""</span>
+    message = <span class="st">'You can only access your own record.'</span>
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.user.is_staff <span class="kw">or</span> request.user.role == <span class="st">'admin'</span>: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">return</span> (getattr(obj, <span class="st">'user'</span>, <span class="kw">None</span>) == request.user <span class="kw">or</span>
+                getattr(obj, <span class="st">'marked_by'</span>, <span class="kw">None</span>) == request.user)
+
+
+<span class="kw">class</span> <span class="cl">IsSameClassroom</span>(permissions.BasePermission):
+    <span class="st">"""Teacher can only see attendance/marks for their own classroom."""</span>
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.user.is_staff: <span class="kw">return</span> <span class="kw">True</span>
+        teacher = getattr(request.user, <span class="st">'teacher_profile'</span>, <span class="kw">None</span>)
+        student = getattr(obj, <span class="st">'student'</span>, obj)
+        <span class="kw">return</span> teacher <span class="kw">and</span> student.classroom <span class="kw">and</span> student.classroom.class_teacher == teacher
+</pre></div>
+</section>
+
+<!-- P9 VALIDATION & EXCEPTIONS -->
+<section class="chapter" id="proj-valid">
+  <div class="ch-head"><span class="ch-num proj">P9</span><h2 class="ch-title">Validation &amp; Exceptions</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">core/exceptions.py — custom exception classes + handler</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.views <span class="kw2">import</span> exception_handler
+<span class="kw2">from</span> rest_framework.exceptions <span class="kw2">import</span> APIException
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">import</span> logging
+
+logger = logging.getLogger(<span class="st">'school.exceptions'</span>)
+
+
+<span class="cm"># ── Custom exception classes ──────────────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">ClassroomFull</span>(APIException):
+    status_code  = <span class="nu">409</span>
+    default_detail = <span class="st">'This classroom has reached maximum capacity.'</span>
+    default_code   = <span class="st">'classroom_full'</span>
+
+<span class="kw">class</span> <span class="cl">AttendanceAlreadyMarked</span>(APIException):
+    status_code  = <span class="nu">409</span>
+    default_detail = <span class="st">'Attendance already marked for this student on this date.'</span>
+    default_code   = <span class="st">'attendance_duplicate'</span>
+
+<span class="kw">class</span> <span class="cl">EnrollmentClosed</span>(APIException):
+    status_code  = <span class="nu">403</span>
+    default_detail = <span class="st">'Enrollment period is closed for this term.'</span>
+    default_code   = <span class="st">'enrollment_closed'</span>
+
+<span class="kw">class</span> <span class="cl">InvalidGrade</span>(APIException):
+    status_code  = <span class="nu">422</span>
+    default_detail = <span class="st">'Marks entered exceed the maximum allowed for this subject.'</span>
+    default_code   = <span class="st">'marks_exceed_max'</span>
+
+
+<span class="cm"># ── Custom handler — consistent JSON shape for ALL errors ─────────────</span>
+<span class="kw">def</span> <span class="fn">custom_exception_handler</span>(exc, context):
+    response = exception_handler(exc, context)   <span class="cm"># DRF default first</span>
+    <span class="kw">if</span> response <span class="kw">is not</span> <span class="kw">None</span>:
+        original = response.data
+        code = getattr(exc, <span class="st">'default_code'</span>, <span class="st">'error'</span>) <span class="kw">or</span> <span class="st">'error'</span>
+        message = (exc.detail[<span class="nu">0</span>] <span class="kw">if</span> isinstance(original, list)
+                   <span class="kw">else</span> str(getattr(exc, <span class="st">'detail'</span>, exc)))
+        logger.warning(<span class="st">'api_error'</span>, extra={
+            <span class="st">'path'</span>:   context[<span class="st">'request'</span>].path,
+            <span class="st">'method'</span>: context[<span class="st">'request'</span>].method,
+            <span class="st">'status'</span>: response.status_code,
+            <span class="st">'exc'</span>:    exc.__class__.__name__,
+        })
+        response.data = {
+            <span class="st">'success'</span>: <span class="kw">False</span>,
+            <span class="st">'status'</span>:  response.status_code,
+            <span class="st">'code'</span>:    code,
+            <span class="st">'message'</span>: str(message),
+            <span class="st">'errors'</span>:  original,
+        }
+    <span class="kw">return</span> response
+
+<span class="cm"># settings.py: 'EXCEPTION_HANDLER': 'core.exceptions.custom_exception_handler'
+#
+# Every error now: {"success": false, "status": 400, "code": "classroom_full",
+#                   "message": "...", "errors": {...}}</span>
+</pre></div>
+</section>
+
+<!-- P10 FILTERING -->
+<section class="chapter" id="proj-filter">
+  <div class="ch-head"><span class="ch-num proj">P10</span><h2 class="ch-title">Filtering &amp; Search</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/filters.py</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">import</span> django_filters
+<span class="kw2">from</span> .models <span class="kw2">import</span> Student
+
+<span class="kw">class</span> <span class="cl">StudentFilter</span>(django_filters.FilterSet):
+    <span class="cm"># Text filters</span>
+    name         = django_filters.CharFilter(field_name=<span class="st">'user__full_name'</span>, lookup_expr=<span class="st">'icontains'</span>)
+    email        = django_filters.CharFilter(field_name=<span class="st">'user__email'</span>,     lookup_expr=<span class="st">'icontains'</span>)
+
+    <span class="cm"># GPA range</span>
+    min_gpa      = django_filters.NumberFilter(field_name=<span class="st">'gpa'</span>, lookup_expr=<span class="st">'gte'</span>)
+    max_gpa      = django_filters.NumberFilter(field_name=<span class="st">'gpa'</span>, lookup_expr=<span class="st">'lte'</span>)
+
+    <span class="cm"># Admission date range</span>
+    joined_from  = django_filters.DateFilter(field_name=<span class="st">'created_at'</span>, lookup_expr=<span class="st">'date__gte'</span>)
+    joined_to    = django_filters.DateFilter(field_name=<span class="st">'created_at'</span>, lookup_expr=<span class="st">'date__lte'</span>)
+
+    <span class="cm"># Multi-value</span>
+    gender       = django_filters.MultipleChoiceFilter(choices=[(<span class="st">'M'</span>,<span class="st">'M'</span>),(<span class="st">'F'</span>,<span class="st">'F'</span>),(<span class="st">'O'</span>,<span class="st">'O'</span>)])
+    classroom    = django_filters.NumberFilter(field_name=<span class="st">'classroom__id'</span>)
+    grade        = django_filters.NumberFilter(field_name=<span class="st">'classroom__grade'</span>)
+
+    <span class="cm"># Custom method filter</span>
+    subject      = django_filters.CharFilter(method=<span class="st">'filter_by_subject'</span>)
+    low_gpa      = django_filters.BooleanFilter(method=<span class="st">'filter_low_gpa'</span>)
+
+    <span class="kw">def</span> <span class="fn">filter_by_subject</span>(self, qs, name, value):
+        <span class="kw">return</span> qs.filter(classroom__subjects__name__icontains=value)
+
+    <span class="kw">def</span> <span class="fn">filter_low_gpa</span>(self, qs, name, value):
+        <span class="kw">return</span> qs.filter(gpa__lt=<span class="nu">5</span>) <span class="kw">if</span> value <span class="kw">else</span> qs
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = Student
+        fields = [<span class="st">'name'</span>, <span class="st">'email'</span>, <span class="st">'gender'</span>, <span class="st">'classroom'</span>, <span class="st">'grade'</span>,
+                  <span class="st">'min_gpa'</span>, <span class="st">'max_gpa'</span>, <span class="st">'joined_from'</span>, <span class="st">'joined_to'</span>,
+                  <span class="st">'subject'</span>, <span class="st">'is_active'</span>, <span class="st">'low_gpa'</span>]
+
+<span class="cm"># Usage: GET /api/students/?min_gpa=7&grade=10&gender=M&search=kumar&ordering=-gpa
+# In ViewSet: filterset_class = StudentFilter
+#             search_fields   = ['roll_no', 'user__full_name', 'user__email']
+#             ordering_fields = ['gpa', 'created_at', 'user__full_name']</span>
+</pre></div>
+</section>
+
+<!-- P11 PAGINATION -->
+<section class="chapter" id="proj-page">
+  <div class="ch-head"><span class="ch-num proj">P11</span><h2 class="ch-title">Pagination</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">core/pagination.py</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.pagination <span class="kw2">import</span> PageNumberPagination, CursorPagination
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+
+<span class="kw">class</span> <span class="cl">StandardPagination</span>(PageNumberPagination):
+    <span class="st">"""Default for all list endpoints — ?page=2&page_size=10"""</span>
+    page_size             = <span class="nu">20</span>
+    page_size_query_param = <span class="st">'page_size'</span>
+    max_page_size         = <span class="nu">100</span>
+    page_query_param      = <span class="st">'page'</span>
+
+    <span class="kw">def</span> <span class="fn">get_paginated_response</span>(self, data):
+        <span class="kw">return</span> Response({
+            <span class="st">'success'</span>: <span class="kw">True</span>,
+            <span class="st">'pagination'</span>: {
+                <span class="st">'total'</span>:       self.page.paginator.count,
+                <span class="st">'total_pages'</span>: self.page.paginator.num_pages,
+                <span class="st">'current_page'</span>:self.page.number,
+                <span class="st">'page_size'</span>:   self.get_page_size(self.request),
+                <span class="st">'next'</span>:        self.get_next_link(),
+                <span class="st">'previous'</span>:    self.get_previous_link(),
+            },
+            <span class="st">'results'</span>: data,
+        })
+
+
+<span class="kw">class</span> <span class="cl">AttendancePagination</span>(CursorPagination):
+    <span class="st">"""Cursor-based for attendance feed — no page jumping."""</span>
+    page_size  = <span class="nu">50</span>
+    ordering   = <span class="st">'-date'</span>
+
+<span class="cm"># Set globally:  'DEFAULT_PAGINATION_CLASS': 'core.pagination.StandardPagination'
+# Override per view: pagination_class = AttendancePagination
+# Disable per view:  pagination_class = None
+
+# Response shape:
+# {
+#   "success": true,
+#   "pagination": {"total": 250, "total_pages": 13, "current_page": 1, ...},
+#   "results": [...]
+# }</span>
+</pre></div>
+</section>
+
+<!-- P12 STATIC & MEDIA -->
+<section class="chapter" id="proj-static">
+  <div class="ch-head"><span class="ch-num proj">P12</span><h2 class="ch-title">Static &amp; Media Files in the Project</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Dev + Prod configuration</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># config/settings/base.py — static</span>
+STATIC_URL       = <span class="st">'/static/'</span>
+STATICFILES_DIRS = [BASE_DIR / <span class="st">'static'</span>]
+STATIC_ROOT      = BASE_DIR / <span class="st">'staticfiles'</span>
+
+<span class="cm"># config/settings/base.py — media (user uploads)</span>
+MEDIA_URL  = <span class="st">'/media/'</span>
+MEDIA_ROOT = BASE_DIR / <span class="st">'media'</span>
+
+<span class="cm"># config/settings/dev.py — serve media locally in development</span>
+STATICFILES_STORAGE = <span class="st">'django.contrib.staticfiles.storage.StaticFilesStorage'</span>
+
+<span class="cm"># config/settings/prod.py — WhiteNoise for static, S3 for media</span>
+STATICFILES_STORAGE  = <span class="st">'whitenoise.storage.CompressedManifestStaticFilesStorage'</span>
+DEFAULT_FILE_STORAGE = <span class="st">'storages.backends.s3boto3.S3Boto3Storage'</span>
+AWS_STORAGE_BUCKET_NAME = config(<span class="st">'AWS_BUCKET'</span>)
+AWS_ACCESS_KEY_ID       = config(<span class="st">'AWS_ACCESS_KEY_ID'</span>)
+AWS_SECRET_ACCESS_KEY   = config(<span class="st">'AWS_SECRET_ACCESS_KEY'</span>)
+AWS_S3_REGION_NAME      = <span class="st">'ap-south-1'</span>
+MEDIA_URL = f<span class="st">f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/"</span>
+
+<span class="cm"># config/urls.py — serve media and static in DEV only</span>
+<span class="kw2">from</span> django.conf <span class="kw2">import</span> settings
+<span class="kw2">from</span> django.conf.urls.static <span class="kw2">import</span> static
+
+urlpatterns = [ <span class="cm"># ... all app URL includes ...</span> ]
+<span class="kw">if</span> settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[<span class="nu">0</span>])
+</pre></div>
+</section>
+
+<!-- P13 MIDDLEWARE -->
+<section class="chapter" id="proj-mw">
+  <div class="ch-head"><span class="ch-num proj">P13</span><h2 class="ch-title">Custom Middleware</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">core/middleware.py — request logging + maintenance mode</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">import</span> time, logging, json
+<span class="kw2">from</span> django.http <span class="kw2">import</span> JsonResponse
+
+logger = logging.getLogger(<span class="st">'school.requests'</span>)
+
+<span class="kw">def</span> <span class="fn">RequestLoggingMiddleware</span>(get_response):
+    <span class="st">"""Log every API request: method, path, status, duration, user."""</span>
+    <span class="kw">def</span> <span class="fn">middleware</span>(request):
+        start    = time.perf_counter()
+        response = get_response(request)
+        duration = (time.perf_counter() - start) * <span class="nu">1000</span>
+        user     = getattr(request, <span class="st">'user'</span>, <span class="kw">None</span>)
+        logger.info(
+            f<span class="st">f"{request.method} {request.path} {response.status_code} "
+            f"{duration:.1f}ms user={getattr(user,'email','anon')}"</span>
+        )
+        response[<span class="st">'X-Response-Time'</span>] = f<span class="st">f"{duration:.1f}ms"</span>
+        response[<span class="st">'X-School-API'</span>]    = <span class="st">'v1'</span>
+        <span class="kw">return</span> response
+    <span class="kw">return</span> middleware
+
+
+<span class="kw">class</span> <span class="cl">MaintenanceModeMiddleware</span>:
+    EXEMPT_PATHS = [<span class="st">'/admin/'</span>, <span class="st">'/api/auth/login/'</span>, <span class="st">'/health/'</span>]
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, get_response):
+        self.get_response = get_response
+
+    <span class="kw">def</span> <span class="fn">__call__</span>(self, request):
+        <span class="kw2">from</span> django.conf <span class="kw2">import</span> settings
+        <span class="kw">if</span> getattr(settings, <span class="st">'MAINTENANCE_MODE'</span>, <span class="kw">False</span>):
+            exempt = any(request.path.startswith(p) <span class="kw">for</span> p <span class="kw">in</span> self.EXEMPT_PATHS)
+            staff  = getattr(request.user, <span class="st">'is_staff'</span>, <span class="kw">False</span>)
+            <span class="kw">if</span> not exempt <span class="kw">and</span> not staff:
+                <span class="kw">return</span> JsonResponse({<span class="st">'success'</span>:<span class="kw">False</span>,<span class="st">'message'</span>:<span class="st">'System maintenance in progress.'</span>},
+                                    status=<span class="nu">503</span>)
+        <span class="kw">return</span> self.get_response(request)
+</pre></div>
+</section>
+
+<!-- P14 SIGNALS -->
+<section class="chapter" id="proj-signals">
+  <div class="ch-head"><span class="ch-num proj">P14</span><h2 class="ch-title">Signals</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">Signals let apps react to events in other apps without coupling them. The grades app updates a student's GPA automatically when marks are saved. The notifications app emails parents when attendance is marked absent.</p>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">grades/signals.py + students/signals.py</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># grades/signals.py — recalculate GPA whenever a Mark is saved</span>
+<span class="kw2">from</span> django.db.models.signals <span class="kw2">import</span> post_save
+<span class="kw2">from</span> django.dispatch <span class="kw2">import</span> receiver
+<span class="kw2">from</span> django.db.models <span class="kw2">import</span> Avg
+<span class="kw2">from</span> .models <span class="kw2">import</span> Mark
+
+<span class="di">@receiver</span>(post_save, sender=Mark)
+<span class="kw">def</span> <span class="fn">recalculate_gpa</span>(sender, instance, created, **kwargs):
+    <span class="st">"""After each mark save, recalculate and store student GPA."""</span>
+    student = instance.student
+    avg = student.marks.filter(is_absent=<span class="kw">False</span>).aggregate(
+        gpa=Avg(<span class="st">'marks'</span>)
+    )[<span class="st">'gpa'</span>]
+    <span class="cm"># Normalise to 0–10 scale based on 100 max marks</span>
+    student.gpa = round((avg / <span class="nu">10</span>), <span class="nu">2</span>) <span class="kw">if</span> avg <span class="kw">else</span> <span class="nu">0</span>
+    student.save(update_fields=[<span class="st">'gpa'</span>])   <span class="cm"># only update gpa field — prevents signal loop</span>
+
+
+<span class="cm"># attendance/signals.py — notify parent on absence</span>
+<span class="kw2">from</span> attendance.models <span class="kw2">import</span> AttendanceRecord
+<span class="kw2">from</span> notifications.tasks <span class="kw2">import</span> send_attendance_notification
+
+<span class="di">@receiver</span>(post_save, sender=AttendanceRecord)
+<span class="kw">def</span> <span class="fn">notify_parent_on_absence</span>(sender, instance, created, **kwargs):
+    <span class="kw">if</span> created <span class="kw">and</span> instance.status == <span class="st">'A'</span>:      <span class="cm"># new absence only</span>
+        guardian = instance.student.guardian
+        <span class="kw">if</span> guardian <span class="kw">and</span> guardian.email:
+            send_attendance_notification.delay(   <span class="cm"># async via Celery</span>
+                guardian.email,
+                instance.student.user.full_name,
+                str(instance.date)
+            )
+
+
+<span class="cm"># students/signals.py — auto-create Student record when a user with role='student' is saved</span>
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> get_user_model
+
+<span class="di">@receiver</span>(post_save, sender=get_user_model())
+<span class="kw">def</span> <span class="fn">create_student_profile</span>(sender, instance, created, **kwargs):
+    <span class="kw">if</span> created <span class="kw">and</span> instance.role == <span class="st">'student'</span>:
+        <span class="kw2">from</span> students.models <span class="kw2">import</span> Student
+        <span class="kw2">import</span> uuid
+        Student.objects.get_or_create(
+            user=instance,
+            defaults={<span class="st">'roll_no'</span>: f<span class="st">f"TEMP-{str(uuid.uuid4())[:8].upper()}"</span>}
+        )
+
+
+<span class="cm"># grades/apps.py — wire up signals in ready()</span>
+<span class="kw">class</span> <span class="cl">GradesConfig</span>(AppConfig):
+    name = <span class="st">'grades'</span>
+    <span class="kw">def</span> <span class="fn">ready</span>(self):
+        <span class="kw2">import</span> grades.signals   <span class="cm"># noqa</span>
+</pre></div>
+</section>
+
+<!-- P15 URLS -->
+<section class="chapter" id="proj-urls">
+  <div class="ch-head"><span class="ch-num proj">P15</span><h2 class="ch-title">Complete URL Structure</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">config/urls.py — all 45 endpoints</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib <span class="kw2">import</span> admin
+<span class="kw2">from</span> django.urls <span class="kw2">import</span> path, include
+<span class="kw2">from</span> django.conf <span class="kw2">import</span> settings
+<span class="kw2">from</span> django.conf.urls.static <span class="kw2">import</span> static
+<span class="kw2">from</span> rest_framework.routers <span class="kw2">import</span> DefaultRouter
+<span class="kw2">from</span> drf_spectacular.views <span class="kw2">import</span> SpectacularAPIView, SpectacularSwaggerView
+
+<span class="cm"># ── DRF Routers — auto-generate CRUD URL patterns ────────────────────</span>
+router = DefaultRouter()
+router.register(<span class="st">r'students'</span>,      StudentViewSet,    basename=<span class="st">'student'</span>)
+router.register(<span class="st">r'teachers'</span>,      TeacherViewSet,    basename=<span class="st">'teacher'</span>)
+router.register(<span class="st">r'classrooms'</span>,    ClassroomViewSet,  basename=<span class="st">'classroom'</span>)
+router.register(<span class="st">r'timetable'</span>,     TimetableViewSet,  basename=<span class="st">'timetable'</span>)
+router.register(<span class="st">r'attendance'</span>,    AttendanceViewSet, basename=<span class="st">'attendance'</span>)
+router.register(<span class="st">r'exams'</span>,         ExamViewSet,       basename=<span class="st">'exam'</span>)
+router.register(<span class="st">r'marks'</span>,         MarkViewSet,       basename=<span class="st">'mark'</span>)
+router.register(<span class="st">r'subjects'</span>,      SubjectViewSet,    basename=<span class="st">'subject'</span>)
+router.register(<span class="st">r'notifications'</span>, NotificationViewSet,basename=<span class="st">'notification'</span>)
+
+urlpatterns = [
+    path(<span class="st">'admin/'</span>,      admin.site.urls),
+
+    <span class="cm"># Auth</span>
+    path(<span class="st">'api/auth/'</span>,   include(<span class="st">'accounts.urls'</span>)),
+    <span class="cm"># POST /api/auth/register/     — create account</span>
+    <span class="cm"># POST /api/auth/login/         — get JWT tokens</span>
+    <span class="cm"># POST /api/auth/token/refresh/ — refresh access token</span>
+    <span class="cm"># POST /api/auth/logout/        — blacklist refresh token</span>
+    <span class="cm"># GET  /api/auth/me/            — current user info</span>
+
+    <span class="cm"># All router URLs</span>
+    path(<span class="st">'api/'</span>, include(router.urls)),
+    <span class="cm"># GET/POST   /api/students/</span>
+    <span class="cm"># GET/PATCH/DELETE /api/students/{pk}/</span>
+    <span class="cm"># GET  /api/students/{pk}/report-card/</span>
+    <span class="cm"># GET  /api/students/{pk}/attendance-summary/</span>
+    <span class="cm"># POST /api/students/{pk}/upload-photo/</span>
+    <span class="cm"># GET  /api/students/top-performers/</span>
+    <span class="cm"># POST /api/attendance/bulk-mark/</span>
+
+    <span class="cm"># OpenAPI / Swagger UI</span>
+    path(<span class="st">'api/schema/'</span>,  SpectacularAPIView.as_view(),          name=<span class="st">'schema'</span>),
+    path(<span class="st">'api/docs/'</span>,    SpectacularSwaggerView.as_view(url_name=<span class="st">'schema'</span>), name=<span class="st">'docs'</span>),
+]
+
+<span class="kw">if</span> settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,  document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[<span class="nu">0</span>])
+</pre></div>
+</section>
+
+<!-- P16 TESTS -->
+<section class="chapter" id="proj-tests">
+  <div class="ch-head"><span class="ch-num proj">P16</span><h2 class="ch-title">Tests</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">pytest.ini + tests/test_students.py + tests/test_attendance.py</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># pytest.ini</span>
+[pytest]
+DJANGO_SETTINGS_MODULE = config.settings.dev
+python_files = tests/test_*.py
+addopts = --tb=short -v
+
+
+<span class="cm"># tests/factories.py — factory-boy test data</span>
+<span class="kw2">import</span> factory
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> get_user_model
+<span class="kw2">from</span> students.models <span class="kw2">import</span> Student
+<span class="kw2">from</span> classes.models <span class="kw2">import</span> Classroom
+
+<span class="kw">class</span> <span class="cl">UserFactory</span>(factory.django.DjangoModelFactory):
+    <span class="kw">class</span> <span class="cl">Meta</span>: model = get_user_model()
+    email     = factory.Sequence(<span class="kw">lambda</span> n: f<span class="st">f"user{n}@school.com"</span>)
+    full_name = factory.Faker(<span class="st">'name'</span>)
+    role      = <span class="st">'student'</span>
+    password  = factory.PostGenerationMethodCall(<span class="st">'set_password'</span>, <span class="st">'testpass123'</span>)
+
+<span class="kw">class</span> <span class="cl">ClassroomFactory</span>(factory.django.DjangoModelFactory):
+    <span class="kw">class</span> <span class="cl">Meta</span>: model = Classroom
+    name  = factory.Sequence(<span class="kw">lambda</span> n: f<span class="st">f"10-{chr(65+n)}"</span>)
+    grade = <span class="nu">10</span>;  section = factory.Sequence(<span class="kw">lambda</span> n: chr(<span class="nu">65</span>+n))
+
+<span class="kw">class</span> <span class="cl">StudentFactory</span>(factory.django.DjangoModelFactory):
+    <span class="kw">class</span> <span class="cl">Meta</span>: model = Student
+    user      = factory.SubFactory(UserFactory)
+    roll_no   = factory.Sequence(<span class="kw">lambda</span> n: f<span class="st">f"2024{n:03d}"</span>)
+    classroom = factory.SubFactory(ClassroomFactory)
+    dob       = factory.Faker(<span class="st">'date_of_birth'</span>, minimum_age=<span class="nu">12</span>, maximum_age=<span class="nu">18</span>)
+    gender    = <span class="st">'M'</span>
+
+
+<span class="cm"># tests/test_students.py</span>
+<span class="kw2">import</span> pytest
+<span class="kw2">from</span> rest_framework.test <span class="kw2">import</span> APIClient
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> status
+<span class="kw2">from</span> .factories <span class="kw2">import</span> UserFactory, StudentFactory, ClassroomFactory
+
+<span class="di">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">admin</span>(db): <span class="kw">return</span> UserFactory(role=<span class="st">'admin'</span>, is_staff=<span class="kw">True</span>)
+
+<span class="di">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">teacher</span>(db): <span class="kw">return</span> UserFactory(role=<span class="st">'teacher'</span>)
+
+<span class="di">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">admin_client</span>(admin):
+    c = APIClient(); c.force_authenticate(user=admin); <span class="kw">return</span> c
+
+<span class="di">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">teacher_client</span>(teacher):
+    c = APIClient(); c.force_authenticate(user=teacher); <span class="kw">return</span> c
+
+
+<span class="di">@pytest.mark.django_db</span>
+<span class="kw">class</span> <span class="cl">TestStudentEndpoints</span>:
+
+    <span class="kw">def</span> <span class="fn">test_list_unauthenticated_is_401</span>(self):
+        r = APIClient().get(<span class="st">'/api/students/'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_401_UNAUTHORIZED
+
+    <span class="kw">def</span> <span class="fn">test_list_returns_paginated(self, admin_client, db)</span>:
+        StudentFactory.create_batch(<span class="nu">5</span>)
+        r = admin_client.get(<span class="st">'/api/students/'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_200_OK
+        <span class="kw">assert</span> <span class="st">'pagination'</span> <span class="kw">in</span> r.data
+        <span class="kw">assert</span> r.data[<span class="st">'pagination'</span>][<span class="st">'total'</span>] == <span class="nu">5</span>
+
+    <span class="kw">def</span> <span class="fn">test_create_student(self, admin_client, db)</span>:
+        cls = ClassroomFactory()
+        user = UserFactory(role=<span class="st">'student'</span>)
+        payload = {<span class="st">'roll_no'</span>:<span class="st">'2024099'</span>, <span class="st">'user'</span>: user.id, <span class="st">'classroom'</span>: cls.id,
+                   <span class="st">'dob'</span>:<span class="st">'2010-06-15'</span>, <span class="st">'gender'</span>:<span class="st">'M'</span>}
+        r = admin_client.post(<span class="st">'/api/students/'</span>, payload, format=<span class="st">'json'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_201_CREATED
+        <span class="kw">assert</span> r.data[<span class="st">'roll_no'</span>] == <span class="st">'2024099'</span>
+
+    <span class="kw">def</span> <span class="fn">test_teacher_cannot_delete(self, teacher_client, db)</span>:
+        s = StudentFactory()
+        r = teacher_client.delete(f<span class="st">f'/api/students/{s.pk}/'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_403_FORBIDDEN
+
+    <span class="kw">def</span> <span class="fn">test_invalid_roll_no_rejected(self, admin_client, db)</span>:
+        r = admin_client.post(<span class="st">'/api/students/'</span>, {<span class="st">'roll_no'</span>: <span class="st">'ABCD001'</span>}, format=<span class="st">'json'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_400_BAD_REQUEST
+        <span class="kw">assert</span> <span class="st">'roll_no'</span> <span class="kw">in</span> r.data[<span class="st">'errors'</span>]
+
+    <span class="kw">def</span> <span class="fn">test_classroom_capacity_rejected(self, admin_client, db)</span>:
+        cls = ClassroomFactory(max_capacity=<span class="nu">1</span>)
+        StudentFactory(classroom=cls)      <span class="cm"># fill the 1-seat classroom</span>
+        user = UserFactory(role=<span class="st">'student'</span>)
+        r = admin_client.post(<span class="st">'/api/students/'</span>,
+                              {<span class="st">'roll_no'</span>:<span class="st">'2024098'</span>,<span class="st">'user'</span>:user.id,<span class="st">'classroom'</span>:cls.id,
+                               <span class="st">'dob'</span>:<span class="st">'2010-01-01'</span>,<span class="st">'gender'</span>:<span class="st">'F'</span>}, format=<span class="st">'json'</span>)
+        <span class="kw">assert</span> r.status_code == <span class="nu">409</span>
+        <span class="kw">assert</span> r.data[<span class="st">'code'</span>] == <span class="st">'classroom_full'</span>
+
+    <span class="kw">def</span> <span class="fn">test_filter_by_grade(self, admin_client, db)</span>:
+        StudentFactory(classroom=ClassroomFactory(grade=<span class="nu">10</span>))
+        StudentFactory(classroom=ClassroomFactory(grade=<span class="nu">9</span>))
+        r = admin_client.get(<span class="st">'/api/students/?grade=10'</span>)
+        <span class="kw">assert</span> r.data[<span class="st">'pagination'</span>][<span class="st">'total'</span>] == <span class="nu">1</span>
+
+    <span class="kw">def</span> <span class="fn">test_report_card_endpoint(self, admin_client, db)</span>:
+        s = StudentFactory()
+        r = admin_client.get(f<span class="st">f'/api/students/{s.pk}/report-card/'</span>)
+        <span class="kw">assert</span> r.status_code == status.HTTP_200_OK
+        <span class="kw">assert</span> <span class="st">'student'</span> <span class="kw">in</span> r.data <span class="kw">and</span> <span class="st">'marks'</span> <span class="kw">in</span> r.data
+
+    <span class="kw">def</span> <span class="fn">test_jwt_flow(self, db)</span>:
+        user = UserFactory(role=<span class="st">'admin'</span>, is_staff=<span class="kw">True</span>)
+        c    = APIClient()
+        r    = c.post(<span class="st">'/api/auth/login/'</span>, {<span class="st">'email'</span>: user.email, <span class="st">'password'</span>: <span class="st">'testpass123'</span>})
+        <span class="kw">assert</span> r.status_code == <span class="nu">200</span>
+        <span class="kw">assert</span> <span class="st">'access'</span> <span class="kw">in</span> r.data <span class="kw">and</span> <span class="st">'refresh'</span> <span class="kw">in</span> r.data
+        c.credentials(HTTP_AUTHORIZATION=f<span class="st">f"Bearer {r.data['access']}"</span>)
+        r2 = c.get(<span class="st">'/api/students/'</span>)
+        <span class="kw">assert</span> r2.status_code == <span class="nu">200</span>
+</pre></div>
+</section>
+
+<!-- P17 DEPLOYMENT -->
+<section class="chapter" id="proj-deploy">
+  <div class="ch-head"><span class="ch-num proj">P17</span><h2 class="ch-title">Deployment</h2><span class="badge badge-a">Project</span></div>
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Production checklist — every step</span><span class="cb-lang">Bash</span></div><pre class="code">
+<span class="cm"># ── 1. Environment (.env in production server) ───────────────────────</span>
+SECRET_KEY=your-secret-key-here
+DEBUG=False
+ALLOWED_HOSTS=school.example.com,api.school.example.com
+DATABASE_URL=postgres://user:pass@localhost:5432/school_db
+REDIS_URL=redis://127.0.0.1:6379/1
+AWS_BUCKET=school-uploads
+AWS_ACCESS_KEY_ID=AKIA...
+AWS_SECRET_ACCESS_KEY=...
+EMAIL_HOST=smtp.sendgrid.net
+EMAIL_HOST_USER=apikey
+EMAIL_HOST_PASSWORD=SG...
+
+<span class="cm"># ── 2. Install + collect ─────────────────────────────────────────────</span>
+pip install -r requirements.txt
+DJANGO_SETTINGS_MODULE=config.settings.prod python manage.py collectstatic --noinput
+python manage.py migrate --settings=config.settings.prod
+python manage.py createsuperuser --settings=config.settings.prod
+
+<span class="cm"># ── 3. Gunicorn — WSGI server ────────────────────────────────────────</span>
+<span class="cm"># gunicorn.conf.py</span>
+bind           = <span class="st">"0.0.0.0:8000"</span>
+workers        = <span class="nu">4</span>             <span class="cm"># 2 * CPU cores + 1</span>
+worker_class   = <span class="st">"gthread"</span>
+threads        = <span class="nu">2</span>
+timeout        = <span class="nu">120</span>
+keepalive      = <span class="nu">5</span>
+accesslog      = <span class="st">"-"</span>           <span class="cm"># stdout</span>
+errorlog       = <span class="st">"-"</span>
+loglevel       = <span class="st">"info"</span>
+proc_name      = <span class="st">"school_api"</span>
+
+gunicorn config.wsgi:application -c gunicorn.conf.py
+
+<span class="cm"># ── 4. Celery worker + beat ───────────────────────────────────────────</span>
+celery -A config worker -l info -Q default,emails
+celery -A config beat   -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+<span class="cm"># ── 5. Nginx (reverse proxy) ──────────────────────────────────────────</span>
+<span class="cm"># nginx.conf snippet</span>
+<span class="cm"># server {</span>
+<span class="cm">#   listen 443 ssl;  server_name api.school.example.com;</span>
+<span class="cm">#   location / {</span>
+<span class="cm">#     proxy_pass http://127.0.0.1:8000;</span>
+<span class="cm">#     proxy_set_header Host $host;</span>
+<span class="cm">#     proxy_set_header X-Real-IP $remote_addr;</span>
+<span class="cm">#     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+<span class="cm">#     proxy_set_header X-Forwarded-Proto $scheme;</span>
+<span class="cm">#   }</span>
+<span class="cm">#   location /static/ { alias /app/staticfiles/; expires 1y; }</span>
+<span class="cm"># }</span>
+
+<span class="cm"># ── 6. Security checklist (settings/prod.py) ─────────────────────────</span>
+SECURE_SSL_REDIRECT          = <span class="kw">True</span>
+SECURE_HSTS_SECONDS          = <span class="nu">31536000</span>   <span class="cm"># 1 year</span>
+SECURE_HSTS_INCLUDE_SUBDOMAINS = <span class="kw">True</span>
+SECURE_CONTENT_TYPE_NOSNIFF  = <span class="kw">True</span>
+SECURE_BROWSER_XSS_FILTER    = <span class="kw">True</span>
+SESSION_COOKIE_SECURE        = <span class="kw">True</span>
+CSRF_COOKIE_SECURE           = <span class="kw">True</span>
+X_FRAME_OPTIONS              = <span class="st">'DENY'</span>
+
+<span class="cm"># ── 7. Run test suite before every deploy ────────────────────────────</span>
+pytest tests/ -v --cov=. --cov-report=html
+<span class="cm"># Aim for >80% coverage before deploying</span>
+</pre></div>
+
+  <div class="box box-g">
+    <div class="box-title" style="color:var(--green)">✓ Pre-deployment checklist</div>
+    <ul>
+      <li>DEBUG=False in production settings</li>
+      <li>SECRET_KEY loaded from env, not hardcoded</li>
+      <li>ALLOWED_HOSTS set to your actual domain</li>
+      <li>SECURE_SSL_REDIRECT=True + valid SSL cert</li>
+      <li>collectstatic ran before starting Gunicorn</li>
+      <li>Migrations applied: <code>python manage.py migrate</code></li>
+      <li>BrowsableAPIRenderer removed from DEFAULT_RENDERER_CLASSES</li>
+      <li>CORS_ALLOWED_ORIGINS set to exact frontend domains</li>
+      <li>Database backups configured</li>
+      <li>Sentry or logging monitoring enabled</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- P5b SCHOOL AUTH IMPLEMENTATION -->
+<section class="chapter" id="proj-auth-impl">
+  <div class="ch-head"><span class="ch-num proj">P5b</span><h2 class="ch-title">Authentication Implementation</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">The school system runs two parallel auth tracks: <strong>Session auth</strong> for the Django admin panel (admin staff only) and <strong>JWT auth</strong> for all REST API consumers (teachers, students, parents via mobile/SPA). Both authenticate against the same <code>SchoolUser</code> table. Here is the complete wiring.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">config/settings/base.py — full auth configuration</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># accounts/models.py — already defined in P3, referenced here for context</span>
+AUTH_USER_MODEL = <span class="st">'accounts.User'</span>   <span class="cm"># must be set BEFORE first migration</span>
+
+INSTALLED_APPS = [
+    <span class="st">'django.contrib.admin'</span>,
+    <span class="st">'django.contrib.auth'</span>,
+    <span class="st">'django.contrib.contenttypes'</span>,
+    <span class="st">'django.contrib.sessions'</span>,          <span class="cm"># session-based admin track</span>
+    <span class="st">'rest_framework'</span>,
+    <span class="st">'rest_framework_simplejwt'</span>,          <span class="cm"># JWT API track</span>
+    <span class="st">'rest_framework_simplejwt.token_blacklist'</span>,  <span class="cm"># for logout/revocation</span>
+    <span class="st">'accounts'</span>, <span class="st">'students'</span>, <span class="st">'teachers'</span>, <span class="st">'classes'</span>,
+    <span class="st">'attendance'</span>, <span class="st">'grades'</span>, <span class="st">'notifications'</span>,
+]
+
+MIDDLEWARE = [
+    <span class="st">'django.middleware.security.SecurityMiddleware'</span>,
+    <span class="st">'django.contrib.sessions.middleware.SessionMiddleware'</span>,
+    <span class="st">'django.middleware.common.CommonMiddleware'</span>,
+    <span class="st">'django.middleware.csrf.CsrfViewMiddleware'</span>,
+    <span class="st">'django.contrib.auth.middleware.AuthenticationMiddleware'</span>,
+    <span class="st">'django.contrib.messages.middleware.MessageMiddleware'</span>,
+    <span class="st">'core.middleware.RequestLogMiddleware'</span>,
+]
+
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework_simplejwt.authentication.JWTAuthentication'</span>,
+        <span class="st">'rest_framework.authentication.SessionAuthentication'</span>,
+    ],
+    <span class="st">'DEFAULT_PERMISSION_CLASSES'</span>: [
+        <span class="st">'rest_framework.permissions.IsAuthenticated'</span>,
+    ],
+}
+
+<span class="kw2">from</span> datetime <span class="kw2">import</span> timedelta
+SIMPLE_JWT = {
+    <span class="st">'ACCESS_TOKEN_LIFETIME'</span>:   timedelta(minutes=<span class="nu">60</span>),
+    <span class="st">'REFRESH_TOKEN_LIFETIME'</span>:  timedelta(days=<span class="nu">7</span>),
+    <span class="st">'ROTATE_REFRESH_TOKENS'</span>:   <span class="kw">True</span>,
+    <span class="st">'BLACKLIST_AFTER_ROTATION'</span>: <span class="kw">True</span>,
+    <span class="st">'UPDATE_LAST_LOGIN'</span>:        <span class="kw">True</span>,
+    <span class="st">'ALGORITHM'</span>:               <span class="st">'HS256'</span>,
+    <span class="st">'AUTH_HEADER_TYPES'</span>:       (<span class="st">'Bearer'</span>,),
+    <span class="st">'TOKEN_OBTAIN_SERIALIZER'</span>: <span class="st">'accounts.serializers.SchoolTokenSerializer'</span>,
+}
+
+SESSION_COOKIE_AGE      = <span class="nu">28800</span>    <span class="cm"># 8-hour school day</span>
+SESSION_COOKIE_HTTPONLY = <span class="kw">True</span>
+SESSION_COOKIE_SECURE   = <span class="kw">True</span>
+SESSION_COOKIE_SAMESITE = <span class="st">'Lax'</span>
+
+LOGIN_URL           = <span class="st">'/admin/login/'</span>
+LOGIN_REDIRECT_URL  = <span class="st">'/admin/'</span>
+LOGOUT_REDIRECT_URL = <span class="st">'/'</span>
+
+AUTHENTICATION_BACKENDS = [
+    <span class="st">'accounts.backends.EmailBackend'</span>,
+    <span class="st">'django.contrib.auth.backends.ModelBackend'</span>,
+]
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/backends.py — email login backend for admin panel</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib.auth.backends <span class="kw2">import</span> ModelBackend
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> get_user_model
+
+User = get_user_model()
+
+<span class="kw">class</span> <span class="cl">EmailBackend</span>(ModelBackend):
+    <span class="st">"""Admin staff log in with email instead of username."""</span>
+
+    <span class="kw">def</span> <span class="fn">authenticate</span>(self, request, username=<span class="kw">None</span>, password=<span class="kw">None</span>, **kwargs):
+        email = username or kwargs.get(<span class="st">'email'</span>)
+        <span class="kw">if</span> not email:
+            <span class="kw">return</span> <span class="kw">None</span>
+        <span class="kw">try</span>:
+            user = User.objects.get(email=email.lower())
+        <span class="kw">except</span> User.DoesNotExist:
+            <span class="kw">return</span> <span class="kw">None</span>
+        <span class="kw">if</span> user.check_password(password) <span class="kw">and</span> self.user_can_authenticate(user):
+            <span class="kw">return</span> user
+        <span class="kw">return</span> <span class="kw">None</span>
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/serializers.py — JWT token with school claims + register + password change</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework_simplejwt.serializers <span class="kw2">import</span> TokenObtainPairSerializer
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> serializers
+<span class="kw2">from</span> django.contrib.auth.password_validation <span class="kw2">import</span> validate_password
+<span class="kw2">from</span> .models <span class="kw2">import</span> User
+
+
+<span class="kw">class</span> <span class="cl">SchoolTokenSerializer</span>(TokenObtainPairSerializer):
+    <span class="di">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">get_token</span>(cls, user):
+        token = <span class="kw">super</span>().get_token(user)
+        token[<span class="st">'email'</span>]     = user.email
+        token[<span class="st">'full_name'</span>] = user.full_name
+        token[<span class="st">'role'</span>]      = user.role
+        token[<span class="st">'is_staff'</span>]  = user.is_staff
+        <span class="kw">return</span> token
+
+
+<span class="kw">class</span> <span class="cl">RegisterSerializer</span>(serializers.ModelSerializer):
+    password  = serializers.CharField(write_only=<span class="kw">True</span>, validators=[validate_password])
+    password2 = serializers.CharField(write_only=<span class="kw">True</span>, label=<span class="st">'Confirm'</span>)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = User
+        fields = [<span class="st">'email'</span>, <span class="st">'full_name'</span>, <span class="st">'role'</span>, <span class="st">'phone'</span>, <span class="st">'password'</span>, <span class="st">'password2'</span>]
+        extra_kwargs = {<span class="st">'role'</span>: {<span class="st">'default'</span>: <span class="st">'student'</span>}}
+
+    <span class="kw">def</span> <span class="fn">validate</span>(self, attrs):
+        <span class="kw">if</span> attrs[<span class="st">'password'</span>] != attrs.pop(<span class="st">'password2'</span>):
+            <span class="kw">raise</span> serializers.ValidationError({<span class="st">'password2'</span>: <span class="st">'Passwords do not match.'</span>})
+        <span class="kw">return</span> attrs
+
+    <span class="kw">def</span> <span class="fn">create</span>(self, validated_data):
+        password = validated_data.pop(<span class="st">'password'</span>)
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        <span class="kw">return</span> user
+
+
+<span class="kw">class</span> <span class="cl">PasswordChangeSerializer</span>(serializers.Serializer):
+    old_password  = serializers.CharField(write_only=<span class="kw">True</span>)
+    new_password  = serializers.CharField(write_only=<span class="kw">True</span>, validators=[validate_password])
+    new_password2 = serializers.CharField(write_only=<span class="kw">True</span>)
+
+    <span class="kw">def</span> <span class="fn">validate_old_password</span>(self, value):
+        user = self.context[<span class="st">'request'</span>].user
+        <span class="kw">if</span> not user.check_password(value):
+            <span class="kw">raise</span> serializers.ValidationError(<span class="st">'Current password is incorrect.'</span>)
+        <span class="kw">return</span> value
+
+    <span class="kw">def</span> <span class="fn">validate</span>(self, attrs):
+        <span class="kw">if</span> attrs[<span class="st">'new_password'</span>] != attrs[<span class="st">'new_password2'</span>]:
+            <span class="kw">raise</span> serializers.ValidationError({<span class="st">'new_password2'</span>: <span class="st">'New passwords do not match.'</span>})
+        <span class="kw">return</span> attrs
+
+    <span class="kw">def</span> <span class="fn">save</span>(self):
+        user = self.context[<span class="st">'request'</span>].user
+        user.set_password(self.validated_data[<span class="st">'new_password'</span>])
+        user.save(update_fields=[<span class="st">'password'</span>])
+        <span class="kw">return</span> user
+
+
+<span class="kw">class</span> <span class="cl">UserProfileSerializer</span>(serializers.ModelSerializer):
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = User
+        fields = [<span class="st">'id'</span>, <span class="st">'email'</span>, <span class="st">'full_name'</span>, <span class="st">'role'</span>, <span class="st">'phone'</span>, <span class="st">'is_active'</span>]
+        read_only_fields = [<span class="st">'id'</span>, <span class="st">'email'</span>, <span class="st">'role'</span>]
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/views.py + accounts/urls.py — all auth endpoints</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.views <span class="kw2">import</span> APIView
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> AllowAny, IsAuthenticated
+<span class="kw2">from</span> rest_framework_simplejwt.views <span class="kw2">import</span> TokenObtainPairView
+<span class="kw2">from</span> .serializers <span class="kw2">import</span> (RegisterSerializer, PasswordChangeSerializer,
+                           UserProfileSerializer, SchoolTokenSerializer)
+
+
+<span class="kw">class</span> <span class="cl">RegisterView</span>(APIView):
+    permission_classes     = [AllowAny]
+    authentication_classes = []
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        s = RegisterSerializer(data=request.data)
+        s.is_valid(raise_exception=<span class="kw">True</span>)
+        s.save()
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Account created. Please login.'</span>}, status=<span class="nu">201</span>)
+
+
+<span class="kw">class</span> <span class="cl">SchoolLoginView</span>(TokenObtainPairView):
+    serializer_class       = SchoolTokenSerializer
+    permission_classes     = [AllowAny]
+    authentication_classes = []
+
+
+<span class="kw">class</span> <span class="cl">MeView</span>(APIView):
+    permission_classes = [IsAuthenticated]
+
+    <span class="kw">def</span> <span class="fn">get</span>(self, request):
+        s = UserProfileSerializer(request.user)
+        <span class="kw">return</span> Response(s.data)
+
+    <span class="kw">def</span> <span class="fn">patch</span>(self, request):
+        s = UserProfileSerializer(request.user, data=request.data, partial=<span class="kw">True</span>)
+        s.is_valid(raise_exception=<span class="kw">True</span>)
+        s.save()
+        <span class="kw">return</span> Response(s.data)
+
+
+<span class="kw">class</span> <span class="cl">PasswordChangeView</span>(APIView):
+    permission_classes = [IsAuthenticated]
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        s = PasswordChangeSerializer(data=request.data, context={<span class="st">'request'</span>: request})
+        s.is_valid(raise_exception=<span class="kw">True</span>)
+        s.save()
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Password updated.'</span>})
+
+
+<span class="cm"># accounts/urls.py</span>
+<span class="kw2">from</span> rest_framework_simplejwt.views <span class="kw2">import</span> TokenRefreshView, TokenBlacklistView
+
+urlpatterns = [
+    path(<span class="st">'register/'</span>,        RegisterView.as_view()),
+    path(<span class="st">'login/'</span>,           SchoolLoginView.as_view()),
+    path(<span class="st">'token/refresh/'</span>,   TokenRefreshView.as_view()),
+    path(<span class="st">'logout/'</span>,          TokenBlacklistView.as_view()),
+    path(<span class="st">'me/'</span>,              MeView.as_view()),
+    path(<span class="st">'password/change/'</span>, PasswordChangeView.as_view()),
+]
+
+<span class="cm"># POST /api/auth/register/        -> create account (AllowAny)
+# POST /api/auth/login/           -> {access, refresh} (AllowAny)
+# POST /api/auth/token/refresh/   -> {access, refresh} (AllowAny)
+# POST /api/auth/logout/          -> blacklist refresh token (IsAuthenticated)
+# GET  /api/auth/me/              -> current user profile (IsAuthenticated)
+# PATCH /api/auth/me/             -> update name/phone (IsAuthenticated)
+# POST /api/auth/password/change/ -> change password (IsAuthenticated)</span>
+</pre></div>
+</section>
+
+<!-- P5c SCHOOL AUTHORIZATION IMPLEMENTATION -->
+<section class="chapter" id="proj-authz-impl">
+  <div class="ch-head"><span class="ch-num proj">P5c</span><h2 class="ch-title">Authorization Implementation — Role-Based Wiring</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">Authorization is driven by the <code>role</code> field on <code>SchoolUser</code>. Every ViewSet uses <code>get_permissions()</code> to return the right permission classes per action, and <code>get_queryset()</code> to scope data to what the user is allowed to see. No endpoint relies on the default global permission alone.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">core/permissions.py — all reusable school permission classes</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> BasePermission, SAFE_METHODS
+
+<span class="kw">class</span> <span class="cl">IsSchoolAdmin</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> bool(
+            request.user <span class="kw">and</span> request.user.is_authenticated <span class="kw">and</span>
+            (request.user.role == <span class="st">'admin'</span> <span class="kw">or</span> request.user.is_staff)
+        )
+
+
+<span class="kw">class</span> <span class="cl">IsTeacherOrAdmin</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> request.user.is_authenticated
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> (
+            request.user.role <span class="kw">in</span> (<span class="st">'teacher'</span>, <span class="st">'admin'</span>) <span class="kw">or</span> request.user.is_staff
+        )
+
+
+<span class="kw">class</span> <span class="cl">IsOwnerOrTeacherOrAdmin</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated
+
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.user.role <span class="kw">in</span> (<span class="st">'admin'</span>, <span class="st">'teacher'</span>) <span class="kw">or</span> request.user.is_staff:
+            <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">return</span> getattr(obj, <span class="st">'user'</span>, <span class="kw">None</span>) == request.user
+
+
+<span class="kw">class</span> <span class="cl">IsTeacherOfClass</span>(BasePermission):
+    message = <span class="st">'You can only modify records for your own classroom.'</span>
+
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> request.user.is_authenticated
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> (
+            request.user.is_staff <span class="kw">or</span> request.user.role <span class="kw">in</span> (<span class="st">'teacher'</span>, <span class="st">'admin'</span>)
+        )
+
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">if</span> request.user.is_staff <span class="kw">or</span> request.user.role == <span class="st">'admin'</span>: <span class="kw">return</span> <span class="kw">True</span>
+        classroom = getattr(obj, <span class="st">'classroom'</span>, <span class="kw">None</span>)
+        <span class="kw">return</span> classroom <span class="kw">and</span> classroom.teacher == request.user
+
+
+<span class="kw">class</span> <span class="cl">IsParentOfStudent</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.method not <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> <span class="kw">False</span>
+        <span class="kw">if</span> request.user.role != <span class="st">'parent'</span>: <span class="kw">return</span> <span class="kw">True</span>
+        guardian = getattr(obj, <span class="st">'guardian'</span>, <span class="kw">None</span>)
+        <span class="kw">return</span> guardian <span class="kw">and</span> guardian.user == request.user
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">students/views.py — role-scoped queryset + per-action permissions</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.viewsets <span class="kw2">import</span> ModelViewSet
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> IsAuthenticated
+<span class="kw2">from</span> core.permissions <span class="kw2">import</span> (IsSchoolAdmin, IsTeacherOrAdmin,
+                               IsOwnerOrTeacherOrAdmin, IsTeacherOfClass,
+                               IsParentOfStudent)
+
+
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(ModelViewSet):
+    serializer_class = StudentDetailSerializer
+
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action == <span class="st">'list'</span>:
+            <span class="kw">return</span> [IsAuthenticated(), IsTeacherOrAdmin()]
+        <span class="kw">if</span> self.action == <span class="st">'retrieve'</span>:
+            <span class="kw">return</span> [IsAuthenticated(), IsOwnerOrTeacherOrAdmin(), IsParentOfStudent()]
+        <span class="kw">if</span> self.action == <span class="st">'create'</span>:
+            <span class="kw">return</span> [IsAuthenticated(), IsTeacherOrAdmin()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'update'</span>, <span class="st">'partial_update'</span>):
+            <span class="kw">return</span> [IsAuthenticated(), IsTeacherOfClass()]
+        <span class="kw">if</span> self.action == <span class="st">'destroy'</span>:
+            <span class="kw">return</span> [IsAuthenticated(), IsSchoolAdmin()]
+        <span class="kw">return</span> [IsAuthenticated()]
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self):
+        user = self.request.user
+        <span class="kw">if</span> user.is_staff <span class="kw">or</span> user.role == <span class="st">'admin'</span>:
+            <span class="kw">return</span> Student.objects.select_related(<span class="st">'user'</span>, <span class="st">'classroom'</span>, <span class="st">'guardian'</span>).all()
+        <span class="kw">if</span> user.role == <span class="st">'teacher'</span>:
+            <span class="kw">return</span> Student.objects.filter(
+                classroom__teacher=user
+            ).select_related(<span class="st">'user'</span>, <span class="st">'classroom'</span>)
+        <span class="kw">if</span> user.role == <span class="st">'student'</span>:
+            <span class="kw">return</span> Student.objects.filter(user=user).select_related(<span class="st">'classroom'</span>)
+        <span class="kw">if</span> user.role == <span class="st">'parent'</span>:
+            <span class="kw">return</span> Student.objects.filter(guardian__user=user).select_related(<span class="st">'classroom'</span>)
+        <span class="kw">return</span> Student.objects.none()
+
+    <span class="kw">def</span> <span class="fn">get_serializer_class</span>(self):
+        <span class="kw">if</span> self.action == <span class="st">'list'</span>: <span class="kw">return</span> StudentListSerializer
+        <span class="kw">return</span> StudentDetailSerializer
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">attendance/views.py + grades/views.py — teacher-scoped querysets</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw">class</span> <span class="cl">AttendanceViewSet</span>(ModelViewSet):
+
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'list'</span>, <span class="st">'retrieve'</span>):
+            <span class="kw">return</span> [IsAuthenticated()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'create'</span>, <span class="st">'update'</span>, <span class="st">'partial_update'</span>):
+            <span class="kw">return</span> [IsAuthenticated(), IsTeacherOfClass()]
+        <span class="kw">if</span> self.action == <span class="st">'destroy'</span>:
+            <span class="kw">return</span> [IsAuthenticated(), IsSchoolAdmin()]
+        <span class="kw">return</span> [IsAuthenticated()]
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self):
+        user = self.request.user
+        qs = AttendanceRecord.objects.select_related(
+            <span class="st">'student__user'</span>, <span class="st">'student__classroom'</span>, <span class="st">'marked_by'</span>
+        )
+        <span class="kw">if</span> user.is_staff <span class="kw">or</span> user.role == <span class="st">'admin'</span>:  <span class="kw">return</span> qs
+        <span class="kw">if</span> user.role == <span class="st">'teacher'</span>: <span class="kw">return</span> qs.filter(student__classroom__teacher=user)
+        <span class="kw">if</span> user.role == <span class="st">'student'</span>: <span class="kw">return</span> qs.filter(student__user=user)
+        <span class="kw">if</span> user.role == <span class="st">'parent'</span>:  <span class="kw">return</span> qs.filter(student__guardian__user=user)
+        <span class="kw">return</span> qs.none()
+
+    <span class="kw">def</span> <span class="fn">perform_create</span>(self, serializer):
+        serializer.save(marked_by=self.request.user)
+
+
+<span class="kw">class</span> <span class="cl">GradeViewSet</span>(ModelViewSet):
+
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'list'</span>, <span class="st">'retrieve'</span>): <span class="kw">return</span> [IsAuthenticated()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'create'</span>, <span class="st">'update'</span>, <span class="st">'partial_update'</span>):
+            <span class="kw">return</span> [IsAuthenticated(), IsTeacherOrAdmin()]
+        <span class="kw">if</span> self.action == <span class="st">'destroy'</span>: <span class="kw">return</span> [IsAuthenticated(), IsSchoolAdmin()]
+        <span class="kw">return</span> [IsAuthenticated()]
+
+    <span class="kw">def</span> <span class="fn">get_queryset</span>(self):
+        user = self.request.user
+        qs = Mark.objects.select_related(<span class="st">'student__user'</span>, <span class="st">'subject'</span>, <span class="st">'exam'</span>)
+        <span class="kw">if</span> user.is_staff <span class="kw">or</span> user.role == <span class="st">'admin'</span>: <span class="kw">return</span> qs
+        <span class="kw">if</span> user.role == <span class="st">'teacher'</span>: <span class="kw">return</span> qs.filter(subject__teacher=user)
+        <span class="kw">if</span> user.role == <span class="st">'student'</span>: <span class="kw">return</span> qs.filter(student__user=user)
+        <span class="kw">if</span> user.role == <span class="st">'parent'</span>:  <span class="kw">return</span> qs.filter(student__guardian__user=user)
+        <span class="kw">return</span> qs.none()
+</pre></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">config/urls.py — root URL config wiring both tracks</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib <span class="kw2">import</span> admin
+<span class="kw2">from</span> django.urls <span class="kw2">import</span> path, include
+<span class="kw2">from</span> django.conf <span class="kw2">import</span> settings
+<span class="kw2">from</span> django.conf.urls.static <span class="kw2">import</span> static
+
+urlpatterns = [
+    path(<span class="st">'admin/'</span>, admin.site.urls),           <span class="cm"># Track A: session auth</span>
+
+    path(<span class="st">'api/auth/'</span>,        include(<span class="st">'accounts.urls'</span>)),
+    path(<span class="st">'api/students/'</span>,    include(<span class="st">'students.urls'</span>)),
+    path(<span class="st">'api/teachers/'</span>,    include(<span class="st">'teachers.urls'</span>)),
+    path(<span class="st">'api/classes/'</span>,     include(<span class="st">'classes.urls'</span>)),
+    path(<span class="st">'api/attendance/'</span>,  include(<span class="st">'attendance.urls'</span>)),
+    path(<span class="st">'api/grades/'</span>,      include(<span class="st">'grades.urls'</span>)),
+    path(<span class="st">'api/notifications/'</span>, include(<span class="st">'notifications.urls'</span>)),
+
+    path(<span class="st">'api-auth/'</span>, include(<span class="st">'rest_framework.urls'</span>)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+<span class="cm"># Full auth flow:
+#
+# Admin Panel (Session)
+#   Browser -> GET /admin/ -> redirect /admin/login/
+#   POST /admin/login/ {email, password}
+#     -> EmailBackend.authenticate()
+#     -> login(request, user) -> session row created
+#     -> Set-Cookie: sessionid=...
+#   Subsequent requests carry cookie
+#   -> AuthenticationMiddleware sets request.user
+#
+# REST API (JWT)
+#   POST /api/auth/login/ {email, password}
+#     -> SchoolTokenSerializer.validate() -> authenticate()
+#     -> get_token(user) adds role/email/full_name
+#     -> {access: "eyJ...", refresh: "eyJ..."}
+#   API Request: Authorization: Bearer eyJ...
+#     -> JWTAuthentication.authenticate()
+#     -> validates signature + expiry
+#     -> sets request.user (DB lookup by user_id)
+#     -> permission_classes checked per action
+#     -> get_queryset() scopes data by role</span>
+</pre></div>
+</section>
+
+<!-- FOOTER -->
+<div style="padding:48px 60px;background:var(--bg2);border-top:1px solid var(--border);">
+  <div style="max-width:700px">
+    <div style="font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px">School Management System</div>
+    <div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:8px">
+      19 Project Chapters &middot; Full Auth &amp; Authz Implementation
+    </div>
+    <div style="font-size:.85rem;color:var(--muted);line-height:1.75">
+      Custom User &middot; JWT + Session &middot; EmailBackend &middot; SchoolTokenSerializer &middot;
+      IsTeacherOfClass &middot; Role-scoped QuerySets &middot; Per-action Permissions &middot; Deployment
+    </div>
+    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="django_ultimate.html" style="font-family:var(--mono);font-size:.75rem;color:var(--blue);text-decoration:none;border:1px solid rgba(91,141,238,.3);padding:6px 14px;border-radius:6px;">&#8592; Django Concepts &amp; DRF</a>
+      <a href="../index.html" style="font-family:var(--mono);font-size:.75rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 14px;border-radius:6px;">&#8592; Hub</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- end #main -->
+
+<script src="django-ultimate.js"></script>
+</body>
+</html>

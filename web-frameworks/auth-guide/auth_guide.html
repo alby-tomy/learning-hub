@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Auth Guide — Authentication &amp; Authorization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/shared.css">
+<link rel="stylesheet" href="auth-guide.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-brand-tag">Auth &amp; Authorization</div>
+    <div class="sb-title">Auth <span>Complete</span></div>
+    <div class="sb-sub">Concepts · Module Examples · School System</div>
+  </div>
+  <div class="sb-search"><input id="sb-search" type="text" placeholder="Search chapters…"/></div>
+  <div class="sb-nav" id="sb-nav">
+
+    <div class="sb-group">
+      <div class="sb-group-label">Part 1 — Core Concepts</div>
+      <a href="#authn-authz"    class="sb-link"><span class="sb-num">A1</span>AuthN vs AuthZ</a>
+      <a href="#sessions"       class="sb-link"><span class="sb-num">A2</span>How HTTP Sessions Work</a>
+      <a href="#cookies"        class="sb-link"><span class="sb-num">A3</span>Cookies &amp; Session Storage</a>
+      <a href="#base64"         class="sb-link"><span class="sb-num">A4</span>Base64 Explained</a>
+      <a href="#jwt-anatomy"    class="sb-link"><span class="sb-num">A5</span>JWT Anatomy</a>
+      <a href="#tokens"         class="sb-link"><span class="sb-num">A6</span>Access vs Refresh Token</a>
+      <a href="#stateful"       class="sb-link"><span class="sb-num">A7</span>Stateful vs Stateless</a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label">Part 2 — Django Auth Module</div>
+      <a href="#django-auth"    class="sb-link"><span class="sb-num">M1</span>Django Built-in Auth</a>
+      <a href="#session-drf"    class="sb-link"><span class="sb-num">M2</span>Session Auth in DRF</a>
+      <a href="#token-drf"      class="sb-link"><span class="sb-num">M3</span>Token Auth in DRF</a>
+      <a href="#jwt-module"     class="sb-link"><span class="sb-num">M4</span>JWT with SimpleJWT</a>
+      <a href="#django-perms"   class="sb-link"><span class="sb-num">M5</span>Django Permission System</a>
+      <a href="#custom-perms"   class="sb-link"><span class="sb-num">M6</span>Custom DRF Permissions</a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label proj">★ School System Integration</div>
+      <a href="#proj-user"      class="sb-link proj-link"><span class="sb-num">P1</span>User Model &amp; Roles</a>
+      <a href="#proj-session"   class="sb-link proj-link"><span class="sb-num">P2</span>Session Login (Admin)</a>
+      <a href="#proj-jwt"       class="sb-link proj-link"><span class="sb-num">P3</span>JWT Login &amp; Register API</a>
+      <a href="#proj-matrix"    class="sb-link proj-link"><span class="sb-num">P4</span>Authorization Matrix</a>
+      <a href="#proj-flow"      class="sb-link proj-link"><span class="sb-num">P5</span>Complete Auth Flow</a>
+    </div>
+
+  </div>
+</nav>
+<button id="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<div id="main">
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-eyebrow">Auth Complete Reference</div>
+  <h1 class="hero-title">
+    <span class="g">Authentication &amp; Authorization</span><br/>
+    <span class="b">Sessions · JWT · Base64 · Permissions</span>
+  </h1>
+  <p class="hero-desc">Every auth concept explained from first principles — HTTP sessions, cookies, Base64 encoding, JWT anatomy — then wired into Django as standalone modules and fully integrated into the School Management System.</p>
+  <div class="chips">
+    <span class="chip g">AuthN vs AuthZ</span>
+    <span class="chip b">Sessions &amp; Cookies</span>
+    <span class="chip a">JWT Tokens</span>
+    <span class="chip p">Base64</span>
+    <span class="chip">SimpleJWT</span>
+    <span class="chip">DRF Permissions</span>
+    <span class="chip">Role-Based Access</span>
+    <span class="chip">School Integration</span>
+  </div>
+</div>
+
+<!-- ═══ PART 1 DIVIDER ═══ -->
+<div class="divider green">
+  <div class="div-label">Part 1</div>
+  <div class="div-title">Core Concepts</div>
+  <div class="div-desc">Authentication, authorization, sessions, cookies, Base64, and JWT — explained from scratch before any Django code</div>
+</div>
+
+<!-- A1 AUTHN vs AUTHZ -->
+<section class="chapter" id="authn-authz">
+  <div class="ch-head"><span class="ch-num">A1</span><h2 class="ch-title">Authentication vs Authorization</h2><span class="badge badge-g">Concept</span></div>
+  <p class="prose">These two words are often confused but they answer completely different questions. <strong>Authentication (AuthN)</strong> asks <em>"Who are you?"</em> — it verifies identity. <strong>Authorization (AuthZ)</strong> asks <em>"What are you allowed to do?"</em> — it enforces permissions. Authentication always happens first.</p>
+
+  <div class="concept-cards">
+    <div class="concept-card card-green">
+      <div class="concept-icon">🪪</div>
+      <div class="concept-label">Authentication (AuthN)</div>
+      <div class="concept-def">"Who are you?"</div>
+      <ul class="concept-list">
+        <li>Verify identity via password, token, biometric</li>
+        <li>Sets <code>request.user</code> on every request</li>
+        <li>Result: <strong>anonymous</strong> or a known <strong>User object</strong></li>
+        <li>Failing AuthN → <strong>401 Unauthorized</strong></li>
+      </ul>
+      <div class="concept-eg">School eg: Teacher enters email + password → server confirms identity</div>
+    </div>
+    <div class="concept-card card-amber">
+      <div class="concept-icon">🛡️</div>
+      <div class="concept-label">Authorization (AuthZ)</div>
+      <div class="concept-def">"What can you do?"</div>
+      <ul class="concept-list">
+        <li>Check roles, groups, object-level rules</li>
+        <li>Runs after AuthN confirms a user</li>
+        <li>Result: <strong>allowed</strong> or <strong>denied</strong></li>
+        <li>Failing AuthZ → <strong>403 Forbidden</strong></li>
+      </ul>
+      <div class="concept-eg">School eg: Teacher is authenticated but can only edit <em>their own</em> students</div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="fb b"><div class="fb-l">Client</div><div class="fb-n">HTTP Request</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">AuthN</div><div class="fb-n">Who are you?</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">AuthZ</div><div class="fb-n">Allowed?</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">View</div><div class="fb-n">Run Logic</div></div><div class="fa">→</div>
+    <div class="fb b"><div class="fb-l">Client</div><div class="fb-n">Response</div></div>
+  </div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Aspect</th><th>Authentication</th><th>Authorization</th></tr></thead>
+    <tbody>
+      <tr><td>Question</td><td>Who are you?</td><td>What can you do?</td></tr>
+      <tr><td>Failure code</td><td>401 Unauthorized</td><td>403 Forbidden</td></tr>
+      <tr><td>Django layer</td><td>Authentication backends / DRF auth classes</td><td>Permission classes / decorators</td></tr>
+      <tr><td>School example</td><td>Login with email + password</td><td>Only admins can delete students</td></tr>
+      <tr><td>Order</td><td>Always first</td><td>Only after AuthN succeeds</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- A2 SESSIONS -->
+<section class="chapter" id="sessions">
+  <div class="ch-head"><span class="ch-num">A2</span><h2 class="ch-title">How HTTP Sessions Work</h2><span class="badge badge-g">Concept</span></div>
+  <p class="prose"><strong>HTTP is stateless</strong> — every request is independent; the server remembers nothing between them. Sessions solve this by having the server store state and giving the client a small <em>session ID</em> to reference that state on every subsequent request.</p>
+
+  <div class="flow">
+    <div class="fb g"><div class="fb-l">Step 1</div><div class="fb-n">POST /login</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Server</div><div class="fb-n">Verify creds</div></div><div class="fa">→</div>
+    <div class="fb p"><div class="fb-l">Session DB</div><div class="fb-n">Create session row</div></div><div class="fa">→</div>
+    <div class="fb b"><div class="fb-l">Response</div><div class="fb-n">Set-Cookie: sessionid=…</div></div>
+  </div>
+  <div style="text-align:center;color:var(--muted);font-size:.8rem;margin:4px 0 12px">↓ on every subsequent request</div>
+  <div class="flow">
+    <div class="fb g"><div class="fb-l">Step 2</div><div class="fb-n">GET /dashboard</div></div><div class="fa">→</div>
+    <div class="fb b"><div class="fb-l">Cookie</div><div class="fb-n">sessionid=abc123</div></div><div class="fa">→</div>
+    <div class="fb p"><div class="fb-l">Session DB</div><div class="fb-n">Lookup session</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">request.user</div><div class="fb-n">Teacher object</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">View</div><div class="fb-n">Run logic</div></div>
+  </div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Session lifecycle — what happens inside Django</span><span class="cb-lang">Concept</span></div><pre class="code">
+<span class="cm"># 1. User submits login form</span>
+POST /login/  body: { email: "teacher@school.com", password: "pass" }
+
+<span class="cm"># 2. Server authenticates and creates session</span>
+<span class="cm">#    Django stores in django_session table:</span>
+<span class="cm">#    session_key  = "abc123def456..."   (random 32-char string)</span>
+<span class="cm">#    session_data = base64(pickle({'_auth_user_id': 7, '_auth_user_backend': '...'}))</span>
+<span class="cm">#    expire_date  = 2026-07-18 (SESSION_COOKIE_AGE seconds from now)</span>
+
+<span class="cm"># 3. Response carries the cookie</span>
+Set-Cookie: sessionid=abc123def456; HttpOnly; Secure; SameSite=Lax; Path=/
+
+<span class="cm"># 4. Browser stores cookie, sends it on every request to same domain</span>
+GET /api/students/
+Cookie: sessionid=abc123def456
+
+<span class="cm"># 5. Django middleware reads cookie, looks up session, sets request.user</span>
+<span class="cm">#    SessionMiddleware → loads session data</span>
+<span class="cm">#    AuthenticationMiddleware → sets request.user from session data</span>
+
+<span class="cm"># 6. Logout = delete the session row</span>
+POST /logout/  → session row deleted → cookie becomes invalid
+</pre></div>
+
+  <div class="box box-b">
+    <div class="box-title" style="color:var(--blue)">Key insight</div>
+    The session ID itself carries no information — it's just a random key. All actual data (user ID, roles, etc.) lives on the <strong>server</strong>. This is why sessions are called <em>stateful</em> — the server must maintain state.
+  </div>
+</section>
+
+<!-- A3 COOKIES -->
+<section class="chapter" id="cookies">
+  <div class="ch-head"><span class="ch-num">A3</span><h2 class="ch-title">Cookies &amp; Session Storage</h2><span class="badge badge-g">Concept</span></div>
+  <p class="prose">A <strong>cookie</strong> is a key=value string the server sends in a <code>Set-Cookie</code> header. The browser stores it and automatically re-sends it on every request to that domain in a <code>Cookie</code> header. Cookie attributes control security behavior.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Attribute</th><th>What it does</th><th>Why it matters for auth</th></tr></thead>
+    <tbody>
+      <tr><td><code>HttpOnly</code></td><td>JS cannot read the cookie</td><td>Blocks XSS stealing session IDs</td></tr>
+      <tr><td><code>Secure</code></td><td>Only sent over HTTPS</td><td>Prevents cleartext interception</td></tr>
+      <tr><td><code>SameSite=Lax</code></td><td>Not sent on cross-site POST</td><td>Mitigates CSRF attacks</td></tr>
+      <tr><td><code>Max-Age</code></td><td>Lifetime in seconds</td><td>Controls session expiry</td></tr>
+      <tr><td><code>Path=/</code></td><td>Sent for all paths on domain</td><td>Session cookie must be site-wide</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Django session storage backends + settings</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># settings.py</span>
+
+<span class="cm"># ── Storage backend (where sessions live) ──────────────────────────────</span>
+SESSION_ENGINE = <span class="st">'django.contrib.sessions.backends.db'</span>        <span class="cm"># default: DB table</span>
+<span class="cm"># SESSION_ENGINE = 'django.contrib.sessions.backends.cache'       # Redis/Memcache (fast)</span>
+<span class="cm"># SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'   # cache first, DB fallback</span>
+<span class="cm"># SESSION_ENGINE = 'django.contrib.sessions.backends.file'        # files (not for production)</span>
+<span class="cm"># SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies' # all in cookie, no DB</span>
+
+<span class="cm"># ── Security settings ─────────────────────────────────────────────────</span>
+SESSION_COOKIE_AGE      = <span class="nu">1209600</span>   <span class="cm"># 2 weeks in seconds (default)</span>
+SESSION_COOKIE_HTTPONLY = <span class="kw">True</span>      <span class="cm"># JS cannot read (default True)</span>
+SESSION_COOKIE_SECURE   = <span class="kw">True</span>      <span class="cm"># HTTPS only (set True in production)</span>
+SESSION_COOKIE_SAMESITE = <span class="st">'Lax'</span>    <span class="cm"># CSRF protection</span>
+SESSION_COOKIE_NAME     = <span class="st">'sessionid'</span>  <span class="cm"># the cookie name sent to browser</span>
+SESSION_SAVE_EVERY_REQUEST = <span class="kw">False</span>  <span class="cm"># only save when modified</span>
+SESSION_EXPIRE_AT_BROWSER_CLOSE = <span class="kw">False</span>  <span class="cm"># True = session cookie</span>
+
+<span class="cm"># ── Inspecting sessions in Python ─────────────────────────────────────</span>
+<span class="kw2">from</span> django.contrib.sessions.models <span class="kw2">import</span> Session
+session = Session.objects.get(session_key=<span class="st">'abc123'</span>)
+data = session.get_decoded()   <span class="cm"># {'_auth_user_id': '7', '_auth_user_backend': '...'}</span>
+
+<span class="cm"># ── What's in request.session inside a view ───────────────────────────</span>
+<span class="kw">def</span> <span class="fn">my_view</span>(request):
+    request.session[<span class="st">'last_visited'</span>] = <span class="st">'dashboard'</span>   <span class="cm"># write</span>
+    page = request.session.get(<span class="st">'last_visited'</span>)        <span class="cm"># read</span>
+    <span class="kw">del</span> request.session[<span class="st">'last_visited'</span>]               <span class="cm"># delete key</span>
+    request.session.flush()                             <span class="cm"># delete whole session + cookie</span>
+</pre></div>
+</section>
+
+<!-- A4 BASE64 -->
+<section class="chapter" id="base64">
+  <div class="ch-head"><span class="ch-num">A4</span><h2 class="ch-title">Base64 Explained</h2><span class="badge badge-g">Concept</span></div>
+  <p class="prose"><strong>Base64</strong> is a binary-to-text encoding scheme. It converts any binary data into a string using only 64 printable ASCII characters: <code>A–Z</code>, <code>a–z</code>, <code>0–9</code>, <code>+</code>, <code>/</code> (standard) or <code>-</code>, <code>_</code> (URL-safe variant). It is <em>not encryption</em> — anyone can decode it instantly. It exists because HTTP headers and URLs can only carry printable text.</p>
+
+  <div class="concept-cards">
+    <div class="concept-card card-green">
+      <div class="concept-label">Standard Base64</div>
+      <ul class="concept-list">
+        <li>64 chars: A–Z, a–z, 0–9, <code>+</code>, <code>/</code></li>
+        <li>Padding with <code>=</code> to align to 4-char groups</li>
+        <li>Used in: email (MIME), HTTP Basic auth header</li>
+        <li>Python: <code>base64.b64encode()</code></li>
+      </ul>
+    </div>
+    <div class="concept-card card-blue">
+      <div class="concept-label">Base64URL (URL-safe)</div>
+      <ul class="concept-list">
+        <li>Same but: <code>+</code> → <code>-</code> and <code>/</code> → <code>_</code></li>
+        <li>Padding <code>=</code> omitted (causes issues in URLs)</li>
+        <li>Used in: <strong>JWT tokens</strong>, OAuth, URL parameters</li>
+        <li>Python: <code>base64.urlsafe_b64encode()</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Base64 encoding/decoding — Python examples</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">import</span> base64, json
+
+<span class="cm"># ── Standard Base64 ────────────────────────────────────────────────────</span>
+raw = <span class="st">b"teacher@school.com:password123"</span>
+encoded = base64.b64encode(raw)
+<span class="cm"># b'dGVhY2hlckBzY2hvb2wuY29tOnBhc3N3b3JkMTIz'</span>
+
+decoded = base64.b64decode(encoded)
+<span class="cm"># b'teacher@school.com:password123'</span>
+
+<span class="cm"># HTTP Basic Auth header uses this:</span>
+<span class="cm"># Authorization: Basic dGVhY2hlckBzY2hvb2wuY29tOnBhc3N3b3JkMTIz</span>
+
+<span class="cm"># ── Base64URL (JWT-safe) ───────────────────────────────────────────────</span>
+payload = {<span class="st">"user_id"</span>: <span class="nu">7</span>, <span class="st">"role"</span>: <span class="st">"teacher"</span>, <span class="st">"exp"</span>: <span class="nu">1750000000</span>}
+json_bytes = json.dumps(payload, separators=(<span class="st">','</span>,<span class="st">':'</span>)).encode()
+
+encoded_url = base64.urlsafe_b64encode(json_bytes).rstrip(<span class="st">b'='</span>)
+<span class="cm"># b'eyJ1c2VyX2lkIjo3LCJyb2xlIjoidGVhY2hlciIsImV4cCI6MTc1MDAwMDAwMH0'</span>
+
+decoded_back = base64.urlsafe_b64decode(encoded_url + <span class="st">b'=='</span>)
+<span class="cm"># b'{"user_id":7,"role":"teacher","exp":1750000000}'</span>
+
+<span class="cm"># ── KEY POINT: Base64 is NOT secret ───────────────────────────────────</span>
+<span class="cm"># Any JWT payload is readable by anyone who holds the token.</span>
+<span class="cm"># Never put passwords or secrets in JWT claims.</span>
+<span class="cm"># Security comes from the SIGNATURE, not from encoding.</span>
+
+<span class="cm"># ── Why 3 bytes → 4 chars? ─────────────────────────────────────────────</span>
+<span class="cm"># 3 bytes = 24 bits → split into four 6-bit groups → each maps to one of 64 chars</span>
+<span class="cm"># Input length 3 → output length 4  (33% overhead)</span>
+<span class="cm"># Input not divisible by 3 → padded with = to complete the last group</span>
+</pre></div>
+
+  <div class="box box-g">
+    <div class="box-title" style="color:var(--green)">Where you see Base64 in auth</div>
+    <ul>
+      <li><strong>HTTP Basic Auth:</strong> <code>Authorization: Basic base64("user:pass")</code> — sent in every request header</li>
+      <li><strong>JWT tokens:</strong> every part (header, payload, signature) is Base64URL encoded</li>
+      <li><strong>Django session data:</strong> session_data in the DB is base64-encoded pickled Python dict</li>
+      <li><strong>CSRF tokens:</strong> often Base64URL encoded random bytes</li>
+    </ul>
+  </div>
+</section>
+
+<!-- A5 JWT ANATOMY -->
+<section class="chapter" id="jwt-anatomy">
+  <div class="ch-head"><span class="ch-num">A5</span><h2 class="ch-title">JWT Anatomy — Header · Payload · Signature</h2><span class="badge badge-g">Concept</span></div>
+  <p class="prose">A <strong>JWT (JSON Web Token)</strong> is three Base64URL-encoded JSON objects joined by dots: <code>header.payload.signature</code>. The header describes the algorithm. The payload carries claims (data). The signature proves the token hasn't been tampered with. JWT is <em>not encrypted by default</em> — the payload is readable; the signature just makes it tamper-proof.</p>
+
+  <div class="jwt-visual">
+    <div class="jwt-part jwt-header">
+      <div class="jwt-part-label">HEADER</div>
+      <div class="jwt-part-text">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</div>
+    </div>
+    <div class="jwt-dot">.</div>
+    <div class="jwt-part jwt-payload">
+      <div class="jwt-part-label">PAYLOAD</div>
+      <div class="jwt-part-text">eyJ1c2VyX2lkIjo3LCJyb2xlIjoidGVhY2hlciIsImV4cCI6MTc1MH0</div>
+    </div>
+    <div class="jwt-dot">.</div>
+    <div class="jwt-part jwt-sig">
+      <div class="jwt-part-label">SIGNATURE</div>
+      <div class="jwt-part-text">SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</div>
+    </div>
+  </div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Decode each part manually in Python</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">import</span> base64, json, hmac, hashlib
+
+token = <span class="st">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJyb2xlIjoidGVhY2hlciIsImV4cCI6MTc1MH0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"</span>
+
+header_b64, payload_b64, sig_b64 = token.split(<span class="st">'.'</span>)
+
+<span class="kw">def</span> <span class="fn">b64url_decode</span>(s):
+    padding = <span class="nu">4</span> - len(s) % <span class="nu">4</span>
+    <span class="kw">return</span> base64.urlsafe_b64decode(s + <span class="st">'='</span> * (padding % <span class="nu">4</span>))
+
+<span class="cm"># ── Part 1: HEADER ────────────────────────────────────────────────────</span>
+header = json.loads(b64url_decode(header_b64))
+<span class="cm"># {"alg": "HS256", "typ": "JWT"}</span>
+<span class="cm"># alg: HMAC-SHA256 — the signing algorithm</span>
+<span class="cm"># typ: token type</span>
+
+<span class="cm"># ── Part 2: PAYLOAD (claims) ──────────────────────────────────────────</span>
+payload = json.loads(b64url_decode(payload_b64))
+<span class="cm"># {"user_id": 7, "role": "teacher", "exp": 1750000000}</span>
+<span class="cm">#</span>
+<span class="cm"># Standard registered claims:</span>
+<span class="cm">#   iss  (issuer)       — who issued the token</span>
+<span class="cm">#   sub  (subject)      — who the token is about (user id)</span>
+<span class="cm">#   exp  (expiration)   — Unix timestamp: reject after this time</span>
+<span class="cm">#   iat  (issued at)    — Unix timestamp: when the token was created</span>
+<span class="cm">#   jti  (JWT ID)       — unique ID, used for blacklisting</span>
+<span class="cm"># Custom claims (anything you add): role, email, school_id, etc.</span>
+
+<span class="cm"># ── Part 3: SIGNATURE ─────────────────────────────────────────────────</span>
+<span class="cm"># Signature = HMAC-SHA256(base64url(header) + '.' + base64url(payload), SECRET_KEY)</span>
+SECRET = <span class="st">b"your-secret-key"</span>
+signing_input = (header_b64 + <span class="st">'.'</span> + payload_b64).encode()
+expected_sig = base64.urlsafe_b64encode(
+    hmac.new(SECRET, signing_input, hashlib.sha256).digest()
+).rstrip(<span class="st">b'='</span>).decode()
+
+is_valid = hmac.compare_digest(expected_sig, sig_b64)
+<span class="cm"># True → token is authentic and untampered</span>
+<span class="cm"># False → token was modified or signed with a different key → REJECT</span>
+
+<span class="cm"># ── SECURITY RULE ─────────────────────────────────────────────────────</span>
+<span class="cm"># Payload is readable by anyone. Never put passwords, PII, or secrets in payload.</span>
+<span class="cm"># Security guarantee: only the server with SECRET_KEY can produce a valid signature.</span>
+<span class="cm"># If an attacker edits payload (e.g. changes role to 'admin'), signature breaks.</span>
+</pre></div>
+</section>
+
+<!-- A6 ACCESS vs REFRESH -->
+<section class="chapter" id="tokens">
+  <div class="ch-head"><span class="ch-num">A6</span><h2 class="ch-title">Access Token vs Refresh Token</h2><span class="badge badge-g">Concept</span></div>
+  <p class="prose">Using a single long-lived token is a security risk — if stolen, the attacker has permanent access. The two-token pattern solves this: a <strong>short-lived access token</strong> for every API call, and a <strong>long-lived refresh token</strong> only used to obtain new access tokens.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Property</th><th>Access Token</th><th>Refresh Token</th></tr></thead>
+    <tbody>
+      <tr><td>Lifetime</td><td>15–60 minutes</td><td>7–30 days</td></tr>
+      <tr><td>Sent where</td><td>Every API request header</td><td>Only to <code>/token/refresh/</code> endpoint</td></tr>
+      <tr><td>Stored client-side</td><td>Memory (SPA) or localStorage</td><td>HttpOnly cookie or secure storage</td></tr>
+      <tr><td>If stolen</td><td>Attacker gets 15–60 min access</td><td>Attacker can get new access tokens</td></tr>
+      <tr><td>Revocation</td><td>Wait for expiry (or use blacklist)</td><td>Delete from DB or blacklist</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Complete token lifecycle</span><span class="cb-lang">HTTP flow</span></div><pre class="code">
+<span class="cm"># ── Step 1: Login ─────────────────────────────────────────────────────</span>
+POST /api/auth/login/
+Body: {"email": "teacher@school.com", "password": "secret"}
+
+Response 200:
+{
+  "access":  "eyJhbGc...",   <span class="cm"># short-lived, 60 min</span>
+  "refresh": "eyJhbGc..."    <span class="cm"># long-lived, 7 days</span>
+}
+
+<span class="cm"># ── Step 2: Use access token for every API call ───────────────────────</span>
+GET /api/students/
+Authorization: Bearer eyJhbGc...   <span class="cm"># access token</span>
+
+Response 200: [{ ... }]
+
+<span class="cm"># ── Step 3: Access token expires → get a new one ──────────────────────</span>
+GET /api/students/
+Authorization: Bearer eyJhbGc...   <span class="cm"># expired access token</span>
+
+Response 401: {"detail": "Given token not valid for any token type"}
+
+POST /api/auth/token/refresh/
+Body: {"refresh": "eyJhbGc..."}     <span class="cm"># long-lived refresh token</span>
+
+Response 200:
+{
+  "access":  "eyJhbGc...NEW",       <span class="cm"># brand new access token</span>
+  "refresh": "eyJhbGc...NEW"        <span class="cm"># new refresh token (ROTATE_REFRESH_TOKENS=True)</span>
+}
+
+<span class="cm"># ── Step 4: Logout — blacklist the refresh token ──────────────────────</span>
+POST /api/auth/logout/
+Body: {"refresh": "eyJhbGc..."}     <span class="cm"># revoke this refresh token</span>
+
+Response 205: {}
+<span class="cm"># Refresh token stored in outstanding_token + blacklisted_token tables</span>
+<span class="cm"># Attempting to reuse it returns 401</span>
+</pre></div>
+</section>
+
+<!-- A7 STATEFUL vs STATELESS -->
+<section class="chapter" id="stateful">
+  <div class="ch-head"><span class="ch-num">A7</span><h2 class="ch-title">Stateful vs Stateless Auth</h2><span class="badge badge-g">Concept</span></div>
+  <p class="prose">The fundamental architectural difference: <strong>stateful</strong> auth (sessions) keeps user state on the server and gives the client a reference key. <strong>Stateless</strong> auth (JWT) embeds all state in the token itself — the server verifies without storing anything.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Aspect</th><th>Session (Stateful)</th><th>JWT (Stateless)</th></tr></thead>
+    <tbody>
+      <tr><td>Server storage</td><td>Session record in DB or cache</td><td>Nothing (or only blacklist)</td></tr>
+      <tr><td>Client sends</td><td>Session ID in cookie</td><td>Full token in Authorization header</td></tr>
+      <tr><td>Revocation</td><td>Delete session row — instant</td><td>Wait for expiry (or blacklist)</td></tr>
+      <tr><td>Horizontal scaling</td><td>Needs shared session store (Redis)</td><td>Any server can verify — no sharing needed</td></tr>
+      <tr><td>Performance</td><td>DB lookup on every request</td><td>In-memory signature verify (fast)</td></tr>
+      <tr><td>Token size</td><td>Small (32-char session ID)</td><td>Larger (~300–600 bytes)</td></tr>
+      <tr><td>Best for</td><td>Traditional web apps, Django admin</td><td>APIs, SPAs, mobile, microservices</td></tr>
+      <tr><td>School usage</td><td>Django admin panel login</td><td>REST API for student/teacher app</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ═══ PART 2 DIVIDER ═══ -->
+<div class="divider blue">
+  <div class="div-label">Part 2</div>
+  <div class="div-title">Django Auth Module</div>
+  <div class="div-desc">Standalone Django/DRF code examples — each concept as an independent, reusable module</div>
+</div>
+
+<!-- M1 DJANGO BUILT-IN AUTH -->
+<section class="chapter" id="django-auth">
+  <div class="ch-head"><span class="ch-num">M1</span><h2 class="ch-title">Django Built-in Auth System</h2><span class="badge badge-b">Module</span></div>
+  <p class="prose">Django ships a complete auth system in <code>django.contrib.auth</code>: User model, password hashing (PBKDF2-SHA256), authentication backends, login/logout views, and decorators. Zero configuration required — it's included by default.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Core auth functions + decorators</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># ── INSTALLED_APPS (default — already there) ──────────────────────────</span>
+INSTALLED_APPS = [
+    <span class="st">'django.contrib.auth'</span>,          <span class="cm"># User, Group, Permission models</span>
+    <span class="st">'django.contrib.contenttypes'</span>,   <span class="cm"># required by auth</span>
+    ...
+]
+
+MIDDLEWARE = [
+    <span class="st">'django.contrib.sessions.middleware.SessionMiddleware'</span>,
+    <span class="st">'django.contrib.auth.middleware.AuthenticationMiddleware'</span>,  <span class="cm"># sets request.user</span>
+    ...
+]
+
+<span class="cm"># ── authenticate() — check credentials ────────────────────────────────</span>
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> authenticate, login, logout
+
+user = authenticate(request, username=<span class="st">'ali'</span>, password=<span class="st">'pass'</span>)
+<span class="cm"># Returns User object if credentials valid, else None</span>
+
+<span class="cm"># ── login() — create session ──────────────────────────────────────────</span>
+<span class="kw">if</span> user <span class="kw">is not</span> <span class="kw">None</span>:
+    login(request, user)
+    <span class="cm"># Creates django_session row, sets sessionid cookie</span>
+
+<span class="cm"># ── logout() — destroy session ────────────────────────────────────────</span>
+logout(request)
+<span class="cm"># Deletes session row, browser cookie becomes invalid</span>
+
+<span class="cm"># ── request.user — always available in views ──────────────────────────</span>
+request.user               <span class="cm"># User object or AnonymousUser</span>
+request.user.is_authenticated  <span class="cm"># True for real users</span>
+request.user.is_staff          <span class="cm"># True for admin access</span>
+request.user.is_superuser      <span class="cm"># True for full access</span>
+
+<span class="cm"># ── @login_required — protect FBV ────────────────────────────────────</span>
+<span class="kw2">from</span> django.contrib.auth.decorators <span class="kw2">import</span> login_required, permission_required
+
+<span class="di">@login_required</span>(login_url=<span class="st">'/login/'</span>)          <span class="cm"># redirect if not authenticated</span>
+<span class="kw">def</span> <span class="fn">dashboard</span>(request):
+    <span class="kw">return</span> render(request, <span class="st">'dashboard.html'</span>)
+
+<span class="di">@permission_required</span>(<span class="st">'students.view_student'</span>)  <span class="cm"># redirect if no permission</span>
+<span class="kw">def</span> <span class="fn">student_list</span>(request): ...
+
+<span class="cm"># ── LoginRequiredMixin — protect CBV ──────────────────────────────────</span>
+<span class="kw2">from</span> django.contrib.auth.mixins <span class="kw2">import</span> LoginRequiredMixin, PermissionRequiredMixin
+
+<span class="kw">class</span> <span class="cl">DashboardView</span>(LoginRequiredMixin, View):
+    login_url = <span class="st">'/login/'</span>
+
+<span class="cm"># ── Password hashing — what Django stores in DB ───────────────────────</span>
+<span class="cm"># pbkdf2_sha256$390000$salt$hash</span>
+<span class="cm"># Never store raw passwords. Use user.set_password('new') + user.save()</span>
+user.set_password(<span class="st">'new_password'</span>)
+user.check_password(<span class="st">'candidate'</span>)   <span class="cm"># True / False</span>
+</pre></div>
+</section>
+
+<!-- M2 SESSION AUTH DRF -->
+<section class="chapter" id="session-drf">
+  <div class="ch-head"><span class="ch-num">M2</span><h2 class="ch-title">Session Authentication in DRF</h2><span class="badge badge-b">Module</span></div>
+  <p class="prose"><code>SessionAuthentication</code> reads the Django session cookie. Because it relies on cookies, DRF enforces CSRF validation on all <em>unsafe</em> methods (POST/PUT/PATCH/DELETE). Best for the browsable API and traditional Django views that also expose an API.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Session auth in DRF — settings + login view + CSRF</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># settings.py</span>
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework.authentication.SessionAuthentication'</span>,
+        <span class="st">'rest_framework.authentication.BasicAuthentication'</span>,  <span class="cm"># dev only</span>
+    ],
+    <span class="st">'DEFAULT_PERMISSION_CLASSES'</span>: [
+        <span class="st">'rest_framework.permissions.IsAuthenticated'</span>,
+    ],
+}
+
+<span class="cm"># urls.py — include DRF's login/logout views for browsable API</span>
+urlpatterns = [
+    path(<span class="st">'api-auth/'</span>, include(<span class="st">'rest_framework.urls'</span>)),
+    <span class="cm"># This adds /api-auth/login/ and /api-auth/logout/ with session support</span>
+]
+
+<span class="cm"># ── CSRF with Session Auth ────────────────────────────────────────────</span>
+<span class="cm"># DRF requires CSRF token for unsafe methods when SessionAuthentication is used.</span>
+<span class="cm"># Include in HTML forms:</span>
+<span class="cm">#   {% csrf_token %}</span>
+<span class="cm"># Include in AJAX requests:</span>
+<span class="cm">#   X-CSRFToken: (value from csrftoken cookie)</span>
+
+<span class="cm"># ── Custom session login view ─────────────────────────────────────────</span>
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> authenticate, login
+<span class="kw2">from</span> rest_framework.views <span class="kw2">import</span> APIView
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> status
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> AllowAny
+
+<span class="kw">class</span> <span class="cl">SessionLoginView</span>(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []        <span class="cm"># no auth needed to log in</span>
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        username = request.data.get(<span class="st">'username'</span>)
+        password = request.data.get(<span class="st">'password'</span>)
+        user = authenticate(request, username=username, password=password)
+        <span class="kw">if</span> user <span class="kw">is</span> <span class="kw">None</span>:
+            <span class="kw">return</span> Response({<span class="st">'error'</span>: <span class="st">'Invalid credentials'</span>}, status=<span class="nu">401</span>)
+        login(request, user)            <span class="cm"># creates session, sets cookie</span>
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Logged in'</span>, <span class="st">'user'</span>: user.username})
+
+
+<span class="kw">class</span> <span class="cl">SessionLogoutView</span>(APIView):
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        <span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> logout
+        logout(request)
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Logged out'</span>})
+</pre></div>
+</section>
+
+<!-- M3 TOKEN AUTH DRF -->
+<section class="chapter" id="token-drf">
+  <div class="ch-head"><span class="ch-num">M3</span><h2 class="ch-title">Token Authentication in DRF</h2><span class="badge badge-b">Module</span></div>
+  <p class="prose">DRF's built-in <code>TokenAuthentication</code> stores one opaque token per user in the database. No expiry by default. Good for simple APIs where JWT complexity isn't needed. Tokens are stateful — you can revoke by deleting the DB row.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Token auth setup + generate + use</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># settings.py</span>
+INSTALLED_APPS += [<span class="st">'rest_framework.authtoken'</span>]
+
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework.authentication.TokenAuthentication'</span>,
+    ]
+}
+
+<span class="cm"># ── Generate token on login ────────────────────────────────────────────</span>
+<span class="kw2">from</span> rest_framework.authtoken.models <span class="kw2">import</span> Token
+<span class="kw2">from</span> rest_framework.authtoken.views <span class="kw2">import</span> ObtainAuthToken
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+
+<span class="kw">class</span> <span class="cl">LoginView</span>(ObtainAuthToken):
+    <span class="kw">def</span> <span class="fn">post</span>(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={<span class="st">'request'</span>: request})
+        serializer.is_valid(raise_exception=<span class="kw">True</span>)
+        user = serializer.validated_data[<span class="st">'user'</span>]
+        token, created = Token.objects.get_or_create(user=user)
+        <span class="kw">return</span> Response({<span class="st">'token'</span>: token.key, <span class="st">'user_id'</span>: user.id})
+
+<span class="cm"># Or create token automatically on user creation via signal:</span>
+<span class="kw2">from</span> django.db.models.signals <span class="kw2">import</span> post_save
+<span class="kw2">from</span> django.contrib.auth.models <span class="kw2">import</span> User
+<span class="di">@receiver</span>(post_save, sender=User)
+<span class="kw">def</span> <span class="fn">create_token</span>(sender, instance, created, **kwargs):
+    <span class="kw">if</span> created: Token.objects.create(user=instance)
+
+<span class="cm"># ── Client sends token in header ──────────────────────────────────────</span>
+<span class="cm"># Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4f</span>
+
+<span class="cm"># ── Revoke = delete row ────────────────────────────────────────────────</span>
+Token.objects.filter(user=request.user).delete()
+
+<span class="cm"># ── Difference from JWT ───────────────────────────────────────────────</span>
+<span class="cm"># Token: opaque string, stored in DB, revocable instantly, no expiry by default</span>
+<span class="cm"># JWT:   self-contained, no DB storage, expires automatically, harder to revoke</span>
+</pre></div>
+</section>
+
+<!-- M4 JWT MODULE -->
+<section class="chapter" id="jwt-module">
+  <div class="ch-head"><span class="ch-num">M4</span><h2 class="ch-title">JWT with djangorestframework-simplejwt</h2><span class="badge badge-b">Module</span></div>
+  <p class="prose"><code>djangorestframework-simplejwt</code> is the standard JWT library for DRF. It provides token obtain/refresh/verify/blacklist views and authentication classes out of the box.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Complete SimpleJWT setup — settings, urls, custom claims</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># pip install djangorestframework-simplejwt</span>
+
+<span class="cm"># settings.py</span>
+<span class="kw2">from</span> datetime <span class="kw2">import</span> timedelta
+
+INSTALLED_APPS += [<span class="st">'rest_framework_simplejwt'</span>,
+                   <span class="st">'rest_framework_simplejwt.token_blacklist'</span>]  <span class="cm"># for logout</span>
+
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework_simplejwt.authentication.JWTAuthentication'</span>,
+    ],
+}
+
+SIMPLE_JWT = {
+    <span class="st">'ACCESS_TOKEN_LIFETIME'</span>:    timedelta(minutes=<span class="nu">60</span>),
+    <span class="st">'REFRESH_TOKEN_LIFETIME'</span>:   timedelta(days=<span class="nu">7</span>),
+    <span class="st">'ROTATE_REFRESH_TOKENS'</span>:    <span class="kw">True</span>,   <span class="cm"># issue new refresh token on each refresh</span>
+    <span class="st">'BLACKLIST_AFTER_ROTATION'</span>:  <span class="kw">True</span>,   <span class="cm"># old refresh token is blacklisted</span>
+    <span class="st">'UPDATE_LAST_LOGIN'</span>:         <span class="kw">True</span>,
+    <span class="st">'ALGORITHM'</span>:                <span class="st">'HS256'</span>,
+    <span class="st">'AUTH_HEADER_TYPES'</span>:        (<span class="st">'Bearer'</span>,),
+    <span class="st">'AUTH_HEADER_NAME'</span>:         <span class="st">'HTTP_AUTHORIZATION'</span>,
+    <span class="st">'USER_ID_FIELD'</span>:            <span class="st">'id'</span>,
+    <span class="st">'USER_ID_CLAIM'</span>:            <span class="st">'user_id'</span>,
+}
+
+<span class="cm"># urls.py</span>
+<span class="kw2">from</span> rest_framework_simplejwt.views <span class="kw2">import</span> (
+    TokenObtainPairView, TokenRefreshView, TokenVerifyView, TokenBlacklistView
+)
+urlpatterns = [
+    path(<span class="st">'api/token/'</span>,           TokenObtainPairView.as_view()),  <span class="cm"># POST login</span>
+    path(<span class="st">'api/token/refresh/'</span>,    TokenRefreshView.as_view()),     <span class="cm"># POST refresh</span>
+    path(<span class="st">'api/token/verify/'</span>,     TokenVerifyView.as_view()),      <span class="cm"># POST verify</span>
+    path(<span class="st">'api/token/blacklist/'</span>,  TokenBlacklistView.as_view()),   <span class="cm"># POST logout</span>
+]
+
+<span class="cm"># ── Custom claims serializer — add extra data to JWT payload ──────────</span>
+<span class="kw2">from</span> rest_framework_simplejwt.serializers <span class="kw2">import</span> TokenObtainPairSerializer
+
+<span class="kw">class</span> <span class="cl">CustomTokenSerializer</span>(TokenObtainPairSerializer):
+    <span class="di">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">get_token</span>(cls, user):
+        token = <span class="kw">super</span>().get_token(user)
+        token[<span class="st">'email'</span>]     = user.email
+        token[<span class="st">'full_name'</span>] = user.get_full_name()
+        token[<span class="st">'is_staff'</span>]  = user.is_staff
+        <span class="kw">return</span> token
+
+<span class="cm"># Wire it in settings:</span>
+SIMPLE_JWT[<span class="st">'TOKEN_OBTAIN_SERIALIZER'</span>] = <span class="st">'myapp.serializers.CustomTokenSerializer'</span>
+
+<span class="cm"># ── Read claims inside a view (without DB hit) ────────────────────────</span>
+<span class="kw">def</span> <span class="fn">my_view</span>(request):
+    <span class="cm"># request.user is set by JWTAuthentication after validating the token</span>
+    <span class="cm"># To read raw claims from the token:</span>
+    <span class="kw2">from</span> rest_framework_simplejwt.authentication <span class="kw2">import</span> JWTAuthentication
+    jwt_auth = JWTAuthentication()
+    raw_token = jwt_auth.get_raw_token(jwt_auth.get_header(request))
+    validated_token = jwt_auth.get_validated_token(raw_token)
+    role = validated_token[<span class="st">'role'</span>]   <span class="cm"># read custom claim directly</span>
+</pre></div>
+</section>
+
+<!-- M5 DJANGO PERMISSIONS -->
+<section class="chapter" id="django-perms">
+  <div class="ch-head"><span class="ch-num">M5</span><h2 class="ch-title">Django Permission System</h2><span class="badge badge-b">Module</span></div>
+  <p class="prose">Django auto-creates four permissions per model: <code>add_modelname</code>, <code>change_modelname</code>, <code>delete_modelname</code>, <code>view_modelname</code>. Assign them to users directly or through Groups. Check with <code>user.has_perm()</code>.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Django permissions — assign, check, custom</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib.auth.models <span class="kw2">import</span> User, Group, Permission
+<span class="kw2">from</span> django.contrib.contenttypes.models <span class="kw2">import</span> ContentType
+
+<span class="cm"># ── Auto-created permissions (after migrate) ──────────────────────────</span>
+<span class="cm"># students.add_student</span>
+<span class="cm"># students.change_student</span>
+<span class="cm"># students.delete_student</span>
+<span class="cm"># students.view_student</span>
+
+<span class="cm"># ── Assign permission to a user ────────────────────────────────────────</span>
+perm = Permission.objects.get(codename=<span class="st">'change_student'</span>)
+user.user_permissions.add(perm)
+user.has_perm(<span class="st">'students.change_student'</span>)   <span class="cm"># True</span>
+
+<span class="cm"># ── Groups — assign permissions to groups, add users to groups ─────────</span>
+teachers = Group.objects.create(name=<span class="st">'Teachers'</span>)
+teachers.permissions.set([
+    Permission.objects.get(codename=<span class="st">'view_student'</span>),
+    Permission.objects.get(codename=<span class="st">'change_student'</span>),
+    Permission.objects.get(codename=<span class="st">'view_attendance'</span>),
+])
+user.groups.add(teachers)
+user.has_perm(<span class="st">'students.view_student'</span>)    <span class="cm"># True (via group)</span>
+
+<span class="cm"># ── Custom permissions on a model ─────────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">Student</span>(models.Model):
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        permissions = [
+            (<span class="st">'export_student'</span>, <span class="st">'Can export student data to CSV'</span>),
+            (<span class="st">'transfer_student'</span>, <span class="st">'Can transfer student to another class'</span>),
+        ]
+
+<span class="cm"># Check: user.has_perm('students.export_student')</span>
+
+<span class="cm"># ── permission_required in DRF via DjangoModelPermissions ─────────────</span>
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> DjangoModelPermissions
+
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(ModelViewSet):
+    permission_classes = [DjangoModelPermissions]
+    <span class="cm"># GET list    → view permission</span>
+    <span class="cm"># POST        → add permission</span>
+    <span class="cm"># PUT/PATCH   → change permission</span>
+    <span class="cm"># DELETE      → delete permission</span>
+</pre></div>
+</section>
+
+<!-- M6 CUSTOM DRF PERMISSIONS -->
+<section class="chapter" id="custom-perms">
+  <div class="ch-head"><span class="ch-num">M6</span><h2 class="ch-title">Custom DRF Permission Classes</h2><span class="badge badge-b">Module</span></div>
+  <p class="prose">Subclass <code>BasePermission</code> and implement <code>has_permission</code> (runs on every request) and/or <code>has_object_permission</code> (runs on detail views). Compose with <code>|</code> (OR) and <code>&amp;</code> (AND).</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">Permission patterns — read-only, role-based, object-level</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> BasePermission, SAFE_METHODS
+
+<span class="cm"># ── Pattern 1: Read-only for anonymous, write for authenticated ────────</span>
+<span class="kw">class</span> <span class="cl">ReadOnlyOrAuthenticated</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> <span class="kw">True</span>   <span class="cm"># GET, HEAD, OPTIONS</span>
+        <span class="kw">return</span> request.user.is_authenticated
+
+<span class="cm"># ── Pattern 2: Role-based access ──────────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">IsTeacherOrAdmin</span>(BasePermission):
+    message = <span class="st">'Only teachers or admins can perform this action.'</span>
+
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">if</span> not request.user.is_authenticated: <span class="kw">return</span> <span class="kw">False</span>
+        <span class="kw">return</span> getattr(request.user, <span class="st">'role'</span>, <span class="kw">None</span>) <span class="kw">in</span> (<span class="st">'teacher'</span>, <span class="st">'admin'</span>)
+
+<span class="cm"># ── Pattern 3: Object-level — users only access their own records ──────</span>
+<span class="kw">class</span> <span class="cl">IsOwner</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">if</span> request.user.is_staff: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">return</span> obj.user == request.user   <span class="cm"># obj must have a 'user' FK</span>
+
+<span class="cm"># ── Pattern 4: Compose with | and & ───────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">MyView</span>(APIView):
+    permission_classes = [IsTeacherOrAdmin | IsOwner]   <span class="cm"># OR</span>
+
+<span class="cm"># ── Pattern 5: Per-action in ViewSet ──────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(ModelViewSet):
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'list'</span>, <span class="st">'retrieve'</span>):
+            <span class="kw">return</span> [IsAuthenticated()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'create'</span>, <span class="st">'update'</span>, <span class="st">'partial_update'</span>):
+            <span class="kw">return</span> [IsAuthenticated(), IsTeacherOrAdmin()]
+        <span class="kw">if</span> self.action == <span class="st">'destroy'</span>:
+            <span class="kw">return</span> [IsAdminUser()]
+        <span class="kw">return</span> [IsAuthenticated()]
+
+<span class="cm"># ── Pattern 6: Return 403 vs 401 correctly ────────────────────────────</span>
+<span class="cm"># Not authenticated (no user)   → 401  ← DRF handles this automatically</span>
+<span class="cm"># Authenticated but no access   → 403  ← permission class returns False</span>
+<span class="cm"># Customize the 403 message via: message = '...' on the class</span>
+</pre></div>
+</section>
+
+<!-- ═══ PART 3 DIVIDER ═══ -->
+<div class="divider amber">
+  <div class="div-label">Part 3</div>
+  <div class="div-title">School Management Integration</div>
+  <div class="div-desc">All auth concepts wired together inside the School Management System — user roles, session admin, JWT API, and permission matrix</div>
+</div>
+
+<!-- P1 USER MODEL & ROLES -->
+<section class="chapter" id="proj-user">
+  <div class="ch-head"><span class="ch-num proj">P1</span><h2 class="ch-title">User Model &amp; Roles</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">The school system uses a custom User model extending <code>AbstractBaseUser</code> with a <code>role</code> field. Email is the login field (not username). This single model covers all user types — admin, teacher, student — and the role drives authorization everywhere.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/models.py — custom User with roles</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> django.contrib.auth.models <span class="kw2">import</span> AbstractBaseUser, BaseUserManager, PermissionsMixin
+<span class="kw2">from</span> django.db <span class="kw2">import</span> models
+
+<span class="kw">class</span> <span class="cl">SchoolUserManager</span>(BaseUserManager):
+    <span class="kw">def</span> <span class="fn">create_user</span>(self, email, password=<span class="kw">None</span>, **extra):
+        <span class="kw">if</span> not email: <span class="kw">raise</span> ValueError(<span class="st">'Email required'</span>)
+        user = self.model(email=self.normalize_email(email), **extra)
+        user.set_password(password)
+        user.save(using=self._db)
+        <span class="kw">return</span> user
+
+    <span class="kw">def</span> <span class="fn">create_superuser</span>(self, email, password, **extra):
+        extra.setdefault(<span class="st">'is_staff'</span>, <span class="kw">True</span>)
+        extra.setdefault(<span class="st">'is_superuser'</span>, <span class="kw">True</span>)
+        extra.setdefault(<span class="st">'role'</span>, SchoolUser.ADMIN)
+        <span class="kw">return</span> self.create_user(email, password, **extra)
+
+
+<span class="kw">class</span> <span class="cl">SchoolUser</span>(AbstractBaseUser, PermissionsMixin):
+    ADMIN   = <span class="st">'admin'</span>
+    TEACHER = <span class="st">'teacher'</span>
+    STUDENT = <span class="st">'student'</span>
+    ROLE_CHOICES = [
+        (ADMIN,   <span class="st">'Administrator'</span>),
+        (TEACHER, <span class="st">'Teacher'</span>),
+        (STUDENT, <span class="st">'Student'</span>),
+    ]
+
+    email     = models.EmailField(unique=<span class="kw">True</span>)
+    full_name = models.CharField(max_length=<span class="nu">100</span>)
+    role      = models.CharField(max_length=<span class="nu">10</span>, choices=ROLE_CHOICES, default=STUDENT)
+    phone     = models.CharField(max_length=<span class="nu">15</span>, blank=<span class="kw">True</span>)
+    is_active = models.BooleanField(default=<span class="kw">True</span>)
+    is_staff  = models.BooleanField(default=<span class="kw">False</span>)    <span class="cm"># can access admin panel</span>
+    created_at = models.DateTimeField(auto_now_add=<span class="kw">True</span>)
+
+    objects = SchoolUserManager()
+
+    USERNAME_FIELD  = <span class="st">'email'</span>    <span class="cm"># login with email instead of username</span>
+    REQUIRED_FIELDS = [<span class="st">'full_name'</span>, <span class="st">'role'</span>]
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        db_table = <span class="st">'school_users'</span>
+
+    <span class="cm"># ── Convenience properties for authorization checks ─────────────────</span>
+    <span class="di">@property</span>
+    <span class="kw">def</span> <span class="fn">is_admin</span>(self): <span class="kw">return</span> self.role == self.ADMIN
+    <span class="di">@property</span>
+    <span class="kw">def</span> <span class="fn">is_teacher</span>(self): <span class="kw">return</span> self.role == self.TEACHER
+    <span class="di">@property</span>
+    <span class="kw">def</span> <span class="fn">is_student_role</span>(self): <span class="kw">return</span> self.role == self.STUDENT
+
+
+<span class="cm"># settings.py — tell Django to use your custom model</span>
+AUTH_USER_MODEL = <span class="st">'accounts.SchoolUser'</span>
+</pre></div>
+</section>
+
+<!-- P2 SESSION LOGIN ADMIN -->
+<section class="chapter" id="proj-session">
+  <div class="ch-head"><span class="ch-num proj">P2</span><h2 class="ch-title">Session Login — Admin Panel</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">The Django admin uses session authentication by default. For the school system, admin staff log into <code>/admin/</code> with email + password and get a session cookie. We customize the admin to show school-specific models and restrict access by role.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/admin.py + session-based web login view</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># accounts/admin.py</span>
+<span class="kw2">from</span> django.contrib <span class="kw2">import</span> admin
+<span class="kw2">from</span> django.contrib.auth.admin <span class="kw2">import</span> UserAdmin
+<span class="kw2">from</span> .models <span class="kw2">import</span> SchoolUser
+
+<span class="di">@admin.register</span>(SchoolUser)
+<span class="kw">class</span> <span class="cl">SchoolUserAdmin</span>(UserAdmin):
+    list_display  = [<span class="st">'email'</span>, <span class="st">'full_name'</span>, <span class="st">'role'</span>, <span class="st">'is_active'</span>, <span class="st">'is_staff'</span>]
+    list_filter   = [<span class="st">'role'</span>, <span class="st">'is_active'</span>, <span class="st">'is_staff'</span>]
+    search_fields = [<span class="st">'email'</span>, <span class="st">'full_name'</span>]
+    ordering      = [<span class="st">'email'</span>]
+
+    fieldsets = (
+        (<span class="kw">None</span>,           {<span class="st">'fields'</span>: (<span class="st">'email'</span>, <span class="st">'password'</span>)}),
+        (<span class="st">'Personal'</span>,     {<span class="st">'fields'</span>: (<span class="st">'full_name'</span>, <span class="st">'phone'</span>)}),
+        (<span class="st">'School Role'</span>,  {<span class="st">'fields'</span>: (<span class="st">'role'</span>,)}),
+        (<span class="st">'Permissions'</span>,  {<span class="st">'fields'</span>: (<span class="st">'is_active'</span>, <span class="st">'is_staff'</span>, <span class="st">'is_superuser'</span>,
+                                       <span class="st">'groups'</span>, <span class="st">'user_permissions'</span>)}),
+    )
+    add_fieldsets = (
+        (<span class="kw">None</span>, {<span class="st">'fields'</span>: (<span class="st">'email'</span>, <span class="st">'full_name'</span>, <span class="st">'role'</span>, <span class="st">'password1'</span>, <span class="st">'password2'</span>)}),
+    )
+
+<span class="cm"># ── Web login form view (session-based) ───────────────────────────────</span>
+<span class="kw2">from</span> django.shortcuts <span class="kw2">import</span> render, redirect
+<span class="kw2">from</span> django.contrib.auth <span class="kw2">import</span> authenticate, login, logout
+<span class="kw2">from</span> django.contrib.auth.decorators <span class="kw2">import</span> login_required
+
+<span class="kw">def</span> <span class="fn">school_login</span>(request):
+    <span class="kw">if</span> request.user.is_authenticated: <span class="kw">return</span> redirect(<span class="st">'dashboard'</span>)
+    error = <span class="kw">None</span>
+    <span class="kw">if</span> request.method == <span class="st">'POST'</span>:
+        user = authenticate(request,
+                            username=request.POST[<span class="st">'email'</span>],
+                            password=request.POST[<span class="st">'password'</span>])
+        <span class="kw">if</span> user:
+            login(request, user)      <span class="cm"># ← creates session row, sets cookie</span>
+            next_url = request.GET.get(<span class="st">'next'</span>, <span class="st">'dashboard'</span>)
+            <span class="kw">return</span> redirect(next_url)
+        error = <span class="st">'Invalid email or password'</span>
+    <span class="kw">return</span> render(request, <span class="st">'accounts/login.html'</span>, {<span class="st">'error'</span>: error})
+
+
+<span class="di">@login_required</span>
+<span class="kw">def</span> <span class="fn">school_logout</span>(request):
+    logout(request)      <span class="cm"># ← deletes session, cookie becomes invalid</span>
+    <span class="kw">return</span> redirect(<span class="st">'login'</span>)
+
+
+<span class="di">@login_required</span>
+<span class="kw">def</span> <span class="fn">dashboard</span>(request):
+    <span class="cm"># request.user is loaded from session automatically</span>
+    context = {
+        <span class="st">'user'</span>: request.user,
+        <span class="st">'role'</span>: request.user.role,
+        <span class="st">'is_admin'</span>: request.user.is_admin,
+    }
+    <span class="kw">return</span> render(request, <span class="st">'dashboard.html'</span>, context)
+</pre></div>
+</section>
+
+<!-- P3 JWT API -->
+<section class="chapter" id="proj-jwt">
+  <div class="ch-head"><span class="ch-num proj">P3</span><h2 class="ch-title">JWT Login &amp; Register API</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">The REST API uses JWT. Teachers and students authenticate via <code>POST /api/auth/login/</code> and receive access + refresh tokens. The access token is sent as <code>Authorization: Bearer …</code> on every subsequent API call. The JWT payload includes role, name, and school metadata.</p>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/serializers.py + views.py + urls.py</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># accounts/serializers.py</span>
+<span class="kw2">from</span> rest_framework_simplejwt.serializers <span class="kw2">import</span> TokenObtainPairSerializer
+<span class="kw2">from</span> rest_framework <span class="kw2">import</span> serializers
+<span class="kw2">from</span> .models <span class="kw2">import</span> SchoolUser
+
+<span class="kw">class</span> <span class="cl">SchoolTokenSerializer</span>(TokenObtainPairSerializer):
+    <span class="st">"""Embeds role, name, and school info directly in JWT payload."""</span>
+    <span class="di">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">get_token</span>(cls, user):
+        token = <span class="kw">super</span>().get_token(user)
+        <span class="cm"># Custom claims — readable from token without a DB lookup</span>
+        token[<span class="st">'email'</span>]     = user.email
+        token[<span class="st">'full_name'</span>] = user.full_name
+        token[<span class="st">'role'</span>]      = user.role          <span class="cm"># 'admin' | 'teacher' | 'student'</span>
+        token[<span class="st">'is_staff'</span>]  = user.is_staff
+        <span class="kw">return</span> token
+    <span class="cm"># Decoded payload example:</span>
+    <span class="cm"># {"user_id": 7, "email": "ali@school.com", "full_name": "Ali Khan",</span>
+    <span class="cm">#  "role": "teacher", "is_staff": false, "exp": 1750003600, "iat": 1749999999}</span>
+
+
+<span class="kw">class</span> <span class="cl">RegisterSerializer</span>(serializers.ModelSerializer):
+    password  = serializers.CharField(write_only=<span class="kw">True</span>, min_length=<span class="nu">8</span>)
+    password2 = serializers.CharField(write_only=<span class="kw">True</span>)
+
+    <span class="kw">class</span> <span class="cl">Meta</span>:
+        model  = SchoolUser
+        fields = [<span class="st">'email'</span>, <span class="st">'full_name'</span>, <span class="st">'role'</span>, <span class="st">'phone'</span>, <span class="st">'password'</span>, <span class="st">'password2'</span>]
+
+    <span class="kw">def</span> <span class="fn">validate</span>(self, attrs):
+        <span class="kw">if</span> attrs[<span class="st">'password'</span>] != attrs.pop(<span class="st">'password2'</span>):
+            <span class="kw">raise</span> serializers.ValidationError({<span class="st">'password2'</span>: <span class="st">'Passwords do not match.'</span>})
+        <span class="kw">return</span> attrs
+
+    <span class="kw">def</span> <span class="fn">create</span>(self, validated_data):
+        password = validated_data.pop(<span class="st">'password'</span>)
+        user = SchoolUser(**validated_data)
+        user.set_password(password)   <span class="cm"># hashes via PBKDF2-SHA256</span>
+        user.save()
+        <span class="kw">return</span> user
+
+
+<span class="cm"># accounts/views.py</span>
+<span class="kw2">from</span> rest_framework.views <span class="kw2">import</span> APIView
+<span class="kw2">from</span> rest_framework.response <span class="kw2">import</span> Response
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> AllowAny, IsAuthenticated
+
+<span class="kw">class</span> <span class="cl">RegisterView</span>(APIView):
+    permission_classes = [AllowAny]
+
+    <span class="kw">def</span> <span class="fn">post</span>(self, request):
+        s = RegisterSerializer(data=request.data)
+        s.is_valid(raise_exception=<span class="kw">True</span>)
+        s.save()
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Account created. Please login.'</span>}, status=<span class="nu">201</span>)
+
+
+<span class="kw">class</span> <span class="cl">MeView</span>(APIView):
+    <span class="st">"""Current user profile — reads from DB, not JWT."""</span>
+    permission_classes = [IsAuthenticated]
+
+    <span class="kw">def</span> <span class="fn">get</span>(self, request):
+        <span class="kw">return</span> Response({
+            <span class="st">'id'</span>:        request.user.id,
+            <span class="st">'email'</span>:     request.user.email,
+            <span class="st">'full_name'</span>: request.user.full_name,
+            <span class="st">'role'</span>:      request.user.role,
+            <span class="st">'is_staff'</span>:  request.user.is_staff,
+        })
+
+    <span class="kw">def</span> <span class="fn">patch</span>(self, request):
+        allowed = {<span class="st">'full_name'</span>, <span class="st">'phone'</span>}   <span class="cm"># only allow safe fields</span>
+        data    = {k: v <span class="kw">for</span> k, v <span class="kw">in</span> request.data.items() <span class="kw">if</span> k <span class="kw">in</span> allowed}
+        <span class="kw">for</span> field, value <span class="kw">in</span> data.items():
+            setattr(request.user, field, value)
+        request.user.save(update_fields=list(data.keys()))
+        <span class="kw">return</span> Response({<span class="st">'message'</span>: <span class="st">'Profile updated.'</span>})
+
+
+<span class="cm"># accounts/urls.py</span>
+<span class="kw2">from</span> rest_framework_simplejwt.views <span class="kw2">import</span> TokenRefreshView, TokenBlacklistView
+<span class="kw2">from</span> rest_framework_simplejwt.views <span class="kw2">import</span> TokenObtainPairView
+
+urlpatterns = [
+    path(<span class="st">'register/'</span>,       RegisterView.as_view()),
+    path(<span class="st">'login/'</span>,          TokenObtainPairView.as_view(serializer_class=SchoolTokenSerializer)),
+    path(<span class="st">'token/refresh/'</span>,  TokenRefreshView.as_view()),
+    path(<span class="st">'logout/'</span>,         TokenBlacklistView.as_view()),
+    path(<span class="st">'me/'</span>,             MeView.as_view()),
+]
+<span class="cm"># Prefix all with 'api/auth/' in root urls.py:
+# path('api/auth/', include('accounts.urls'))</span>
+</pre></div>
+</section>
+
+<!-- P4 AUTH MATRIX -->
+<section class="chapter" id="proj-matrix">
+  <div class="ch-head"><span class="ch-num proj">P4</span><h2 class="ch-title">Authorization Matrix — Who Can Do What</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">Every API endpoint has a permission rule derived from the user's role. This matrix is the single source of truth — it drives both the DRF <code>permission_classes</code> and the school's access policy.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Resource / Action</th><th>Admin</th><th>Teacher</th><th>Student</th><th>Anonymous</th></tr></thead>
+    <tbody>
+      <tr><td>Register account</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓</td></tr>
+      <tr><td>Login / get tokens</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓</td></tr>
+      <tr><td>View own profile</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-n">✗</td></tr>
+      <tr><td>List all students</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+      <tr><td>View own student record</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓ (own)</td><td class="perm-n">✗</td></tr>
+      <tr><td>Create student</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+      <tr><td>Edit student</td><td class="perm-y">✓</td><td class="perm-p">✓ (own class)</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+      <tr><td>Delete student</td><td class="perm-y">✓</td><td class="perm-n">✗</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+      <tr><td>List classrooms</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-n">✗</td></tr>
+      <tr><td>Create / edit classroom</td><td class="perm-y">✓</td><td class="perm-n">✗</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+      <tr><td>Record attendance</td><td class="perm-y">✓</td><td class="perm-p">✓ (own class)</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+      <tr><td>View own attendance</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓ (own)</td><td class="perm-n">✗</td></tr>
+      <tr><td>Enter grades / marks</td><td class="perm-y">✓</td><td class="perm-p">✓ (own subject)</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+      <tr><td>View own grades</td><td class="perm-y">✓</td><td class="perm-y">✓</td><td class="perm-y">✓ (own)</td><td class="perm-n">✗</td></tr>
+      <tr><td>Manage users / roles</td><td class="perm-y">✓</td><td class="perm-n">✗</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+      <tr><td>Django admin panel</td><td class="perm-y">✓</td><td class="perm-n">✗</td><td class="perm-n">✗</td><td class="perm-n">✗</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">accounts/permissions.py — implements the matrix above</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="kw2">from</span> rest_framework.permissions <span class="kw2">import</span> BasePermission, SAFE_METHODS
+
+<span class="kw">class</span> <span class="cl">IsSchoolAdmin</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> request.user.is_admin
+
+
+<span class="kw">class</span> <span class="cl">IsTeacherOrAdmin</span>(BasePermission):
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> (
+            request.user.is_admin <span class="kw">or</span> request.user.is_teacher
+        )
+
+
+<span class="kw">class</span> <span class="cl">IsOwnerOrTeacherOrAdmin</span>(BasePermission):
+    <span class="st">"""List: teachers/admins only. Detail: student sees own record."""</span>
+
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">return</span> request.user.is_authenticated
+
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.user.is_admin <span class="kw">or</span> request.user.is_teacher: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="cm"># Student: only their own record</span>
+        <span class="kw">return</span> getattr(obj, <span class="st">'user'</span>, <span class="kw">None</span>) == request.user
+
+
+<span class="kw">class</span> <span class="cl">IsTeacherOfClass</span>(BasePermission):
+    <span class="st">"""Teacher can only modify students in their own classroom."""</span>
+    message = <span class="st">'You can only edit students in your own classroom.'</span>
+
+    <span class="kw">def</span> <span class="fn">has_permission</span>(self, request, view):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> request.user.is_authenticated
+        <span class="kw">return</span> request.user.is_authenticated <span class="kw">and</span> (
+            request.user.is_admin <span class="kw">or</span> request.user.is_teacher
+        )
+
+    <span class="kw">def</span> <span class="fn">has_object_permission</span>(self, request, view, obj):
+        <span class="kw">if</span> request.method <span class="kw">in</span> SAFE_METHODS: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="kw">if</span> request.user.is_admin: <span class="kw">return</span> <span class="kw">True</span>
+        <span class="cm"># Teacher: object must belong to their classroom</span>
+        classroom = getattr(obj, <span class="st">'classroom'</span>, <span class="kw">None</span>)
+        <span class="kw">return</span> classroom <span class="kw">and</span> classroom.teacher == request.user
+
+
+<span class="cm"># ── Wire permissions into ViewSets ────────────────────────────────────</span>
+<span class="kw">class</span> <span class="cl">StudentViewSet</span>(ModelViewSet):
+    <span class="kw">def</span> <span class="fn">get_permissions</span>(self):
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'list'</span>,):
+            <span class="kw">return</span> [IsTeacherOrAdmin()]
+        <span class="kw">if</span> self.action == <span class="st">'retrieve'</span>:
+            <span class="kw">return</span> [IsOwnerOrTeacherOrAdmin()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'create'</span>,):
+            <span class="kw">return</span> [IsTeacherOrAdmin()]
+        <span class="kw">if</span> self.action <span class="kw">in</span> (<span class="st">'update'</span>, <span class="st">'partial_update'</span>):
+            <span class="kw">return</span> [IsTeacherOfClass()]
+        <span class="kw">if</span> self.action == <span class="st">'destroy'</span>:
+            <span class="kw">return</span> [IsSchoolAdmin()]
+        <span class="kw">return</span> [IsAuthenticated()]
+</pre></div>
+</section>
+
+<!-- P5 COMPLETE FLOW -->
+<section class="chapter" id="proj-flow">
+  <div class="ch-head"><span class="ch-num proj">P5</span><h2 class="ch-title">Complete Auth Flow — School System</h2><span class="badge badge-a">Project</span></div>
+  <p class="prose">The school system runs two parallel auth tracks: <strong>session-based</strong> for the Django admin panel and <strong>JWT-based</strong> for the REST API. Both authenticate against the same <code>SchoolUser</code> table. Once the user is identified, the same permission classes enforce role-based authorization on every request.</p>
+
+  <div class="flow-section">
+    <div class="flow-track-label track-green">Track A — Django Admin (Session)</div>
+    <div class="flow">
+      <div class="fb g"><div class="fb-l">Browser</div><div class="fb-n">POST /login/</div></div><div class="fa">→</div>
+      <div class="fb a"><div class="fb-l">authenticate()</div><div class="fb-n">Check DB hash</div></div><div class="fa">→</div>
+      <div class="fb g"><div class="fb-l">login()</div><div class="fb-n">Create session</div></div><div class="fa">→</div>
+      <div class="fb b"><div class="fb-l">Set-Cookie</div><div class="fb-n">sessionid=…</div></div><div class="fa">→</div>
+      <div class="fb g"><div class="fb-l">GET /admin/</div><div class="fb-n">Session lookup</div></div><div class="fa">→</div>
+      <div class="fb a"><div class="fb-l">is_staff?</div><div class="fb-n">AuthZ check</div></div>
+    </div>
+
+    <div class="flow-track-label track-blue" style="margin-top:20px">Track B — REST API (JWT)</div>
+    <div class="flow">
+      <div class="fb b"><div class="fb-l">App / SPA</div><div class="fb-n">POST /api/auth/login/</div></div><div class="fa">→</div>
+      <div class="fb a"><div class="fb-l">SchoolToken<br/>Serializer</div><div class="fb-n">Verify + sign JWT</div></div><div class="fa">→</div>
+      <div class="fb g"><div class="fb-l">Response</div><div class="fb-n">access + refresh</div></div><div class="fa">→</div>
+      <div class="fb b"><div class="fb-l">API Request</div><div class="fb-n">Authorization: Bearer</div></div><div class="fa">→</div>
+      <div class="fb p"><div class="fb-l">JWT Auth</div><div class="fb-n">Verify signature</div></div><div class="fa">→</div>
+      <div class="fb a"><div class="fb-l">Permission<br/>class</div><div class="fb-n">Role check</div></div>
+    </div>
+  </div>
+
+  <div class="cw"><div class="cb"><div class="cb-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="cb-name">settings.py — both auth tracks configured together</span><span class="cb-lang">Python</span></div><pre class="code">
+<span class="cm"># settings.py — production configuration for both tracks</span>
+
+AUTH_USER_MODEL = <span class="st">'accounts.SchoolUser'</span>
+
+INSTALLED_APPS = [
+    <span class="st">'django.contrib.admin'</span>,
+    <span class="st">'django.contrib.auth'</span>,
+    <span class="st">'django.contrib.contenttypes'</span>,
+    <span class="st">'django.contrib.sessions'</span>,          <span class="cm"># ← Track A</span>
+    <span class="st">'rest_framework'</span>,
+    <span class="st">'rest_framework_simplejwt'</span>,          <span class="cm"># ← Track B</span>
+    <span class="st">'rest_framework_simplejwt.token_blacklist'</span>,
+    <span class="st">'accounts'</span>, <span class="st">'students'</span>, <span class="st">'grades'</span>, <span class="st">'attendance'</span>,
+]
+
+MIDDLEWARE = [
+    <span class="st">'django.middleware.security.SecurityMiddleware'</span>,
+    <span class="st">'django.contrib.sessions.middleware.SessionMiddleware'</span>,   <span class="cm"># ← Track A</span>
+    <span class="st">'django.middleware.common.CommonMiddleware'</span>,
+    <span class="st">'django.middleware.csrf.CsrfViewMiddleware'</span>,
+    <span class="st">'django.contrib.auth.middleware.AuthenticationMiddleware'</span>, <span class="cm"># ← Track A</span>
+    <span class="st">'django.contrib.messages.middleware.MessageMiddleware'</span>,
+]
+
+<span class="cm"># DRF uses JWT by default for the API</span>
+REST_FRAMEWORK = {
+    <span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [
+        <span class="st">'rest_framework_simplejwt.authentication.JWTAuthentication'</span>,  <span class="cm"># ← API</span>
+        <span class="st">'rest_framework.authentication.SessionAuthentication'</span>,          <span class="cm"># ← browsable API</span>
+    ],
+    <span class="st">'DEFAULT_PERMISSION_CLASSES'</span>: [
+        <span class="st">'rest_framework.permissions.IsAuthenticated'</span>,  <span class="cm"># baseline: must be logged in</span>
+    ],
+}
+
+<span class="kw2">from</span> datetime <span class="kw2">import</span> timedelta
+SIMPLE_JWT = {
+    <span class="st">'ACCESS_TOKEN_LIFETIME'</span>:   timedelta(minutes=<span class="nu">60</span>),
+    <span class="st">'REFRESH_TOKEN_LIFETIME'</span>:  timedelta(days=<span class="nu">7</span>),
+    <span class="st">'ROTATE_REFRESH_TOKENS'</span>:   <span class="kw">True</span>,
+    <span class="st">'BLACKLIST_AFTER_ROTATION'</span>: <span class="kw">True</span>,
+    <span class="st">'AUTH_HEADER_TYPES'</span>:        (<span class="st">'Bearer'</span>,),
+    <span class="st">'TOKEN_OBTAIN_SERIALIZER'</span>:  <span class="st">'accounts.serializers.SchoolTokenSerializer'</span>,
+}
+
+<span class="cm"># Session settings (for Track A / Django admin)</span>
+SESSION_ENGINE       = <span class="st">'django.contrib.sessions.backends.db'</span>
+SESSION_COOKIE_AGE   = <span class="nu">28800</span>   <span class="cm"># 8-hour school day</span>
+SESSION_COOKIE_HTTPONLY = <span class="kw">True</span>
+SESSION_COOKIE_SECURE   = <span class="kw">True</span>
+SESSION_COOKIE_SAMESITE = <span class="st">'Lax'</span>
+
+<span class="cm"># urls.py (root)</span>
+urlpatterns = [
+    path(<span class="st">'admin/'</span>,      admin.site.urls),                      <span class="cm"># ← Track A</span>
+    path(<span class="st">'api/auth/'</span>,  include(<span class="st">'accounts.urls'</span>)),             <span class="cm"># ← Track B login/register</span>
+    path(<span class="st">'api/'</span>,        include(<span class="st">'api.urls'</span>)),                  <span class="cm"># ← API resources</span>
+    path(<span class="st">'api-auth/'</span>,  include(<span class="st">'rest_framework.urls'</span>)),       <span class="cm"># browsable API login</span>
+]
+</pre></div>
+
+  <div class="box box-g">
+    <div class="box-title" style="color:var(--green)">Auth security checklist</div>
+    <ul>
+      <li><code>AUTH_USER_MODEL</code> set before first migration — cannot change after</li>
+      <li><code>SESSION_COOKIE_SECURE = True</code> and <code>SESSION_COOKIE_HTTPONLY = True</code> in production</li>
+      <li><code>CSRF_COOKIE_SECURE = True</code> — protects session-based forms</li>
+      <li>Never put passwords, full PII, or secrets in JWT payload</li>
+      <li><code>ROTATE_REFRESH_TOKENS = True</code> — makes stolen refresh tokens single-use</li>
+      <li><code>BLACKLIST_AFTER_ROTATION = True</code> — old refresh tokens are revoked</li>
+      <li>Keep <code>ACCESS_TOKEN_LIFETIME</code> short (≤60 min) to limit stolen-token damage</li>
+      <li>Always use <code>HTTPS</code> — tokens in headers are cleartext without it</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div style="padding:48px 60px;background:var(--bg2);border-top:1px solid var(--border);">
+  <div style="max-width:700px">
+    <div style="font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px">Auth Complete Reference</div>
+    <div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:8px">
+      7 Concepts · 6 Django Modules · 5 School Integration Chapters
+    </div>
+    <div style="font-size:.85rem;color:var(--muted);line-height:1.75">
+      AuthN vs AuthZ · Sessions · Cookies · Base64 · JWT Anatomy ·
+      Access &amp; Refresh Tokens · Stateful vs Stateless ·
+      Django Auth · Session DRF · Token DRF · SimpleJWT · Permissions · School Integration
+    </div>
+    <div style="margin-top:20px">
+      <a href="../index.html" style="font-family:var(--mono);font-size:.75rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:6px 14px;border-radius:6px;">← Back to Hub</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- end #main -->
+
+<script>
+// Sidebar search
+document.getElementById('sb-search').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.sb-link').forEach(a => {
+    a.style.display = !q || a.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+});
+
+// Active link on scroll
+const chapters = document.querySelectorAll('.chapter');
+const links = document.querySelectorAll('.sb-link');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.sb-link[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+chapters.forEach(c => io.observe(c));
+</script>
+</body>
+</html>

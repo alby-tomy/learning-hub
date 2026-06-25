@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Hub</title>
+<meta name="description" content="A unified hub for web frameworks, system design, UI/UX, AI testing, and cyber security reference material.">
+<link rel="stylesheet" href="web-frameworks/shared/shared.css">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<nav class="hub-nav">
+  <div class="hub-logo">
+    <div class="hub-logo-dot"></div>
+    Learning Hub
+  </div>
+
+  <!-- Stack navigation: jump straight to any stack's section/landing page -->
+  <div class="stack-nav" id="stack-nav">
+    <a href="system-design/system-design.html"><span class="stack-dot" style="background:#38bdf8;"></span>System Design</a>
+    <a href="web-frameworks/index.html"><span class="stack-dot" style="background:#4ade80;"></span>Web Frameworks</a>
+    <a href="ui-ux-static/index.html"><span class="stack-dot" style="background:#7c6cff;"></span>UI/UX</a>
+    <a href="ai-testing-prep/index.html"><span class="stack-dot" style="background:#f5a623;"></span>AI Testing</a>
+    <a href="#cyber-security"><span class="stack-dot" style="background:#f87171;"></span>Cyber Security</a>
+  </div>
+
+  <div class="hub-meta">v2.0 · 2026</div>
+</nav>
+
+<section class="hub-hero">
+  <div class="hub-hero-grid"></div>
+  <div class="hub-eyebrow">Unified Reference</div>
+  <h1 class="hub-title">Your <span>learning hub</span></h1>
+  <p class="hub-desc">One home for every stack you're learning — system design, web frameworks, UI/UX, AI testing, and cyber security. Structured guides, live examples, and reference material in one place.</p>
+</section>
+
+<div class="hub-body">
+  <div class="hub-section-label">Stacks</div>
+  <div class="topic-grid">
+
+    <!-- System Design — flagship topic -->
+    <a href="system-design/system-design.html" class="topic-card card-system" id="system-design">
+      <div class="topic-header">
+        <div class="topic-icon">🏗️</div>
+        <span class="topic-tag tag-system">System Design</span>
+      </div>
+      <div class="topic-name">System Design — HLD &amp; LLD</div>
+      <p class="topic-desc">Start with the fundamentals — High-Level vs Low-Level Design — then go deep across 23 chapters: scaling, caching, queues, CAP theorem, microservices, observability, and real-world interview walkthroughs.</p>
+      <div class="topic-pills">
+        <span class="topic-pill">HLD</span>
+        <span class="topic-pill">LLD</span>
+        <span class="topic-pill">Scaling</span>
+        <span class="topic-pill">Distributed Systems</span>
+      </div>
+      <div class="topic-arrow">↗</div>
+    </a>
+
+    <!-- Web Frameworks (Django, Frontend, Auth) -->
+    <a href="web-frameworks/index.html" class="topic-card card-frameworks">
+      <div class="topic-header">
+        <div class="topic-icon">🐍</div>
+        <span class="topic-tag tag-frameworks">Web Frameworks</span>
+      </div>
+      <div class="topic-name">Django, Frontend &amp; Auth</div>
+      <p class="topic-desc">Django REST Framework, Django templates, a 59-module HTML/CSS/JS encyclopedia, and a full authentication &amp; authorization guide.</p>
+      <div class="topic-sublist">
+        <a href="web-frameworks/django-ultimate/django_ultimate.html">→ Django REST Framework</a>
+        <a href="web-frameworks/django-templates/django_template_complete_guide.html">→ Django Templates</a>
+        <a href="web-frameworks/webdev-encyclopedia/webdev-encyclopedia.html">→ HTML / CSS / JS Encyclopedia</a>
+        <a href="web-frameworks/auth-guide/auth_guide.html">→ Auth &amp; Authorization</a>
+      </div>
+      <div class="topic-arrow">↗</div>
+    </a>
+
+    <!-- UI/UX -->
+    <a href="ui-ux-static/index.html" class="topic-card card-uiux">
+      <div class="topic-header">
+        <div class="topic-icon">🎨</div>
+        <span class="topic-tag tag-uiux">UI/UX</span>
+      </div>
+      <div class="topic-name">UI/UX Path</div>
+      <p class="topic-desc">A 2-week UI/UX bootcamp — design thinking, wireframing, prototyping, design systems, usability testing, and a portfolio-ready handoff module.</p>
+      <div class="topic-pills">
+        <span class="topic-pill">Design Thinking</span>
+        <span class="topic-pill">Wireframing</span>
+        <span class="topic-pill">Design Systems</span>
+      </div>
+      <div class="topic-arrow">↗</div>
+    </a>
+
+    <!-- AI Testing -->
+    <a href="ai-testing-prep/index.html" class="topic-card card-testing">
+      <div class="topic-header">
+        <div class="topic-icon">🧪</div>
+        <span class="topic-tag tag-testing">AI Testing</span>
+      </div>
+      <div class="topic-name">AI Testing Prep</div>
+      <p class="topic-desc">Interview Q&amp;A and project deep-dives for AI/ML-focused QA and testing roles.</p>
+      <div class="topic-pills">
+        <span class="topic-pill">Interview Q&amp;A</span>
+        <span class="topic-pill">Project Deep Dive</span>
+      </div>
+      <div class="topic-arrow">↗</div>
+    </a>
+
+    <!-- Cyber Security — terminal tool, no web page yet -->
+    <div class="topic-card card-security card-coming" id="cyber-security">
+      <div class="topic-header">
+        <div class="topic-icon">🛰️</div>
+        <span class="topic-tag tag-security">Cyber Security</span>
+      </div>
+      <div class="topic-name">NetMon — Network Monitor</div>
+      <p class="topic-desc">A terminal-only LAN traffic monitor and device discovery tool (Python + Scapy + Rich). No web UI yet — run it from <code>cyber-security/netmon/</code>.</p>
+      <div class="topic-pills">
+        <span class="topic-pill">Packet Capture</span>
+        <span class="topic-pill">LAN Discovery</span>
+        <span class="topic-pill">CLI</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="hub-footer">
+  <span class="hub-footer-text">Learning Hub</span>
+  <div class="hub-footer-links">
+    <a href="system-design/system-design.html">System Design</a>
+    <a href="web-frameworks/index.html">Web Frameworks</a>
+    <a href="ui-ux-static/index.html">UI/UX</a>
+    <a href="ai-testing-prep/index.html">AI Testing</a>
+    <a href="#cyber-security">Cyber Security</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>System Design Fundamentals — Comprehensive Concept Breakdown</title>
+<link rel="stylesheet" href="../web-frameworks/shared/shared.css">
+<link rel="stylesheet" href="system-design.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <a href="../index.html" style="font-family:var(--mono);font-size:10px;color:var(--muted);text-decoration:none;display:inline-block;margin-bottom:8px;">← Learning Hub</a>
+    <div class="sb-brand-tag">System Design</div>
+    <div class="sb-title">System Design <span>Complete</span></div>
+    <div class="sb-sub">24 chapters · First Principles to Advanced</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sd-search" placeholder="Search concepts…"/>
+  </div>
+  <div class="sb-nav">
+    <div class="sb-group">
+      <div class="sb-group-label">Get Started</div>
+      <a href="#intro"          class="sb-link"><span class="sb-num">00</span>HLD vs LLD — Welcome</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Architecture & Foundations</div>
+      <a href="#arch-shift"     class="sb-link"><span class="sb-num">01</span>The Architectural Shift</a>
+      <a href="#foundations"    class="sb-link"><span class="sb-num">02</span>System Foundations</a>
+      <a href="#data-layer"     class="sb-link"><span class="sb-num">03</span>Data Layer: SQL vs NoSQL</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Scalability</div>
+      <a href="#scaling"        class="sb-link"><span class="sb-num">04</span>Scaling Strategies</a>
+      <a href="#load-balancing" class="sb-link"><span class="sb-num">05</span>Load Balancing</a>
+      <a href="#spof"           class="sb-link"><span class="sb-num">06</span>Single Point of Failure</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">APIs &amp; Networking</div>
+      <a href="#api-design"     class="sb-link"><span class="sb-num">07</span>API Design &amp; Styles</a>
+      <a href="#protocols"      class="sb-link"><span class="sb-num">08</span>Network Protocols</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Security</div>
+      <a href="#auth"           class="sb-link"><span class="sb-num">09</span>Auth &amp; Authorization</a>
+      <a href="#protection"     class="sb-link"><span class="sb-num">10</span>System Protection</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Data Management</div>
+      <a href="#caching"        class="sb-link"><span class="sb-num">11</span>Caching Strategies</a>
+      <a href="#message-queues" class="sb-link"><span class="sb-num">12</span>Message Queues &amp; Streaming</a>
+      <a href="#db-indexing"    class="sb-link"><span class="sb-num">13</span>DB Indexing &amp; Sharding</a>
+      <a href="#db-replication" class="sb-link"><span class="sb-num">14</span>Database Replication</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Distributed Systems</div>
+      <a href="#cap-theorem"    class="sb-link"><span class="sb-num">15</span>CAP Theorem &amp; Consistency</a>
+      <a href="#microservices"  class="sb-link"><span class="sb-num">16</span>Microservices Architecture</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Infrastructure</div>
+      <a href="#cdn"            class="sb-link"><span class="sb-num">17</span>Content Delivery Networks</a>
+      <a href="#storage"        class="sb-link"><span class="sb-num">18</span>Storage Systems</a>
+      <a href="#observability"  class="sb-link"><span class="sb-num">19</span>Monitoring &amp; Observability</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Advanced Patterns</div>
+      <a href="#ha-dr"          class="sb-link"><span class="sb-num">20</span>High Availability &amp; DR</a>
+      <a href="#patterns"       class="sb-link"><span class="sb-num">21</span>Design Patterns</a>
+      <a href="#real-world"     class="sb-link"><span class="sb-num">22</span>Real-World Designs</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Low-Level Design</div>
+      <a href="#lld-fundamentals" class="sb-link"><span class="sb-num">23</span>OOP, SOLID &amp; UML</a>
+    </div>
+  </div>
+</nav>
+<button id="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<div id="main">
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-eyebrow">System Design — Complete Reference</div>
+  <h1 class="hero-title">
+    <span class="b">24 Chapters</span><br/>
+    from <span class="g">HLD vs LLD</span> to <span class="p">Advanced Patterns</span>
+  </h1>
+  <p class="hero-desc">Start with the question every beginner actually has — "what even is system design?" — then build up through architecture, scaling, caching, messaging, CAP theorem, microservices and observability, before zooming into the class-level world of OOP, SOLID and UML.</p>
+  <div class="chips">
+    <span class="chip g">HLD vs LLD</span>
+    <span class="chip b">Architecture</span>
+    <span class="chip b">Scaling &amp; Caching</span>
+    <span class="chip p">Microservices</span>
+    <span class="chip g">SQL vs NoSQL</span>
+    <span class="chip g">CAP Theorem</span>
+    <span class="chip a">Message Queues</span>
+    <span class="chip a">Observability</span>
+    <span class="chip r">HA &amp; Disaster Recovery</span>
+    <span class="chip p">SOLID &amp; UML</span>
+  </div>
+</div>
+
+<!-- ═══════════════ 00 INTRODUCTION — HLD vs LLD ═══════════════ -->
+<section class="chapter" id="intro">
+  <div class="ch-head">
+    <span class="ch-num">00</span>
+    <h2 class="ch-title">Welcome, Future Architect — What Is System Design?</h2>
+    <span class="badge badge-g">Start Here</span>
+  </div>
+
+  <p class="prose">Grab a coffee, because this is the chapter everyone skips and then regrets skipping. Every other chapter in this guide — caching, microservices, load balancers, the works — is really just a detailed answer to one giant question: <strong>"how do I take a vague business idea and turn it into a system that actually works, at scale, without falling over?"</strong> That giant question has a name. It's called <strong>System Design</strong>, and by the end of this chapter you'll understand its two halves — HLD and LLD — well enough to know exactly which chapter to read next.</p>
+
+  <p class="prose">Here's the plain-English definition: <strong>System design is the process of planning and structuring the architecture of a software system based on user requirements.</strong> It's the bridge between "what the business wants" and "what the engineers actually build." Done well, it quietly saves you from disaster eighteen months later. Done badly, it's the reason your app falls over the moment more than ten people show up at once.</p>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">🛍️</div>
+    <p><strong>The Online Shopping Example:</strong> Think about the last time you bought something online. Behind that one "Buy Now" click, system design decided how the <em>user interface</em>, the <em>product catalog</em>, the <em>payment service</em>, and the <em>database</em> all talk to each other — in the right order, without losing your money or your order. You never see any of it. That invisibility is the entire point: good system design feels like nothing happened at all.</p>
+  </div>
+
+  <h3>Where System Design Lives in the SDLC</h3>
+  <p class="prose">If you've heard of the Software Development Life Cycle (SDLC), here's the part nobody tells beginners: <strong>you cannot skip the design phase and jump straight to coding.</strong> Well — you <em>can</em>, plenty of bootcamp projects do exactly that, but it's the software equivalent of building a house by stacking bricks and figuring out the floor plan afterwards. System design is the phase that gives your code a <strong>backbone</strong>: it's where you decide how the system behaves when things go wrong, not just when things go right.</p>
+
+  <div class="flow">
+    <div class="fb b"><div class="fb-l">1</div><div class="fb-n">Requirements</div></div><div class="fa">→</div>
+    <div class="fb p"><div class="fb-l">2</div><div class="fb-n">System Design</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">3</div><div class="fb-n">Implementation</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">4</div><div class="fb-n">Testing</div></div><div class="fa">→</div>
+    <div class="fb r"><div class="fb-l">5</div><div class="fb-n">Deployment</div></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">📌</div>
+    <p><strong>Added — not in the standard syllabus:</strong> Before any of this, someone has to separate <strong>Functional Requirements</strong> (what the system must <em>do</em> — "users can add items to a cart") from <strong>Non-Functional Requirements</strong> (how well it must do it — "the cart page must load in under 200ms for 10,000 concurrent users"). Beginners almost always design for the first and forget the second — and the second is exactly what every later chapter in this guide (scaling, caching, replication…) exists to satisfy.</p>
+  </div>
+
+  <h3>Two Lenses, One System: HLD vs LLD</h3>
+  <p class="prose">Here's the mental model that makes everything click: imagine you're an architect designing a building. <strong>High-Level Design (HLD)</strong> is the satellite view — where the building goes, how many floors, where the elevators and plumbing risers run. <strong>Low-Level Design (LLD)</strong> is the blueprint for one specific room — exactly where every wire, socket, and pipe goes inside it. You need both. A beautiful floor plan with no wiring detail doesn't get built; flawless room wiring with no floor plan gets built in the wrong place.</p>
+
+  <div class="g2">
+    <div class="box box-b">
+      <div class="box-title">🛰️ High-Level Design (HLD)</div>
+      <div class="box-body">The <strong>big-picture blueprint</strong>. Defines the major services, how they talk to each other, and the overall data flow. Answers: <em>"What pieces exist, and how do they fit together?"</em> Usually owned by architects and senior engineers.</div>
+    </div>
+    <div class="box box-p">
+      <div class="box-title">🔬 Low-Level Design (LLD)</div>
+      <div class="box-body">The <strong>implementation-ready detail</strong> for one piece of that blueprint. Defines classes, methods, database schemas, and exact API contracts. Answers: <em>"How exactly does this one module work, line by line?"</em> Usually owned by the developer about to write the code.</div>
+    </div>
+  </div>
+
+  <h3>High-Level Design — What You Need to Know First</h3>
+  <p class="prose">HLD is usually handed to people with scar tissue — engineers who've watched a system fall over in production and learned, the hard way, what "scale" actually costs. That's not to scare you off; it just means HLD leans on a checklist of prerequisite knowledge before it gets useful.</p>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🧰</div><div class="card-label" style="color:var(--sd)">Prerequisites for HLD</div></div>
+      <div class="card-body">
+        <ul>
+          <li>Basic Data Structures &amp; Algorithms</li>
+          <li>Databases — when to reach for SQL vs NoSQL</li>
+          <li>Caches (Redis, Memcached, CDNs) and what they're <em>for</em></li>
+          <li>Functional vs Non-Functional Requirements, deeply</li>
+          <li>Networking — DNS, TCP/UDP, HTTP, WebSockets, TLS/SSL</li>
+          <li>Security basics — OAuth, JWT, rate-limiting</li>
+          <li>Message queues / streaming (Kafka, RabbitMQ)</li>
+          <li>Monoliths vs microservices, load balancing, fault tolerance</li>
+          <li>Observability — Prometheus, Grafana, ELK, PagerDuty</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">📋</div><div class="card-label" style="color:var(--sd2)">What HLD Actually Covers</div></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>System architecture overview</strong> — services, queues, databases</li>
+          <li><strong>Data flow &amp; integrations</strong> between modules</li>
+          <li><strong>Tech stack &amp; infrastructure</strong> choices</li>
+          <li><strong>Module responsibilities</strong> — what owns what</li>
+          <li><strong>Trade-offs</strong> — performance, scalability, security, cost</li>
+          <li><strong>Artifacts</strong> — architecture diagrams, deployment diagrams, ER overviews</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>HLD in the Wild — It's Not Just Theory</h3>
+  <div class="g3">
+    <div class="box box-b">
+      <div class="box-title">🎬 Netflix</div>
+      <div class="box-body">Migrated their entire backend from a <strong>monolith to microservices</strong> (finishing around 2011) so the system could scale fast during holiday-season traffic spikes — a textbook HLD decision driven by a non-functional requirement: availability under load.</div>
+    </div>
+    <div class="box box-p">
+      <div class="box-title">🚗 Uber</div>
+      <div class="box-body">Runs on an <strong>event-driven architecture</strong>: a ride request, a location update, a fare change — each is an event that triggers real-time driver matching, billing, and dynamic pricing. One design decision, three downstream systems reacting independently.</div>
+    </div>
+    <div class="box box-g">
+      <div class="box-title">🐦 Twitter</div>
+      <div class="box-body">Uses a <strong>load-balanced, heavily cached architecture</strong> so trending topics and popular tweets are served from memory instead of hammering the database every time millions of people refresh their feed at once.</div>
+    </div>
+  </div>
+
+  <h3>Low-Level Design — Zooming Into One Room</h3>
+  <p class="prose">If HLD is "what services exist," LLD is "what does <em>this</em> service actually look like inside?" This is where the blueprint turns into class diagrams, method signatures, and database tables you can hand straight to a developer with no ambiguity left.</p>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🧰</div><div class="card-label" style="color:var(--emerald)">Prerequisites for LLD</div></div>
+      <div class="card-body">
+        <ul>
+          <li>Basic Data Structures &amp; Algorithms</li>
+          <li>Strong grasp of <strong>OOP</strong> — encapsulation, inheritance, polymorphism, abstraction</li>
+        </ul>
+        <p style="margin-top:10px;">That's it — LLD is more about disciplined thinking than a long tool list. See <a href="#lld-fundamentals" style="color:var(--sd);">Chapter 23</a> for the full OOP/SOLID/UML deep-dive.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">📋</div><div class="card-label" style="color:var(--amber)">What LLD Actually Covers</div></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Component breakdown</strong> — class responsibilities, methods, attributes</li>
+          <li><strong>Database schema</strong> — tables, keys, indexes, relationships</li>
+          <li><strong>API &amp; interface contracts</strong> — exact requests, responses, error codes</li>
+          <li><strong>Error handling &amp; validation</strong> per module</li>
+          <li><strong>Design patterns &amp; SOLID</strong> — for clean, extensible code</li>
+          <li><strong>UML &amp; pseudocode</strong> — class diagrams, sequence diagrams</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>HLD vs LLD, Side by Side</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Dimension</th><th>High-Level Design (HLD)</th><th>Low-Level Design (LLD)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Defines</strong></td><td>Overall system architecture</td><td>Detailed component-level design</td></tr>
+        <tr><td><strong>Describes</strong></td><td>Modules and their interactions</td><td>Internal logic of each module</td></tr>
+        <tr><td><strong>Also Known As</strong></td><td>Macro-level / system design</td><td>Micro-level / detailed design</td></tr>
+        <tr><td><strong>Owned By</strong></td><td>Solution architects</td><td>Developers / designers</td></tr>
+        <tr><td><strong>Based On</strong></td><td>Software Requirement Specification (SRS)</td><td>The reviewed HLD</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Your 7-Step Field Guide to Designing Any System</h3>
+  <p class="prose">Whether you're designing a food delivery app or a bank, the steps barely change — only the details do. Here's the walk-through, with one running example so you can see it click into place.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Understand Requirements</div><div class="step-desc">Gather and clarify business needs before drawing a single box. <strong>Example:</strong> a food delivery app needs login, restaurant listings, order placement, and online payment.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Define Architecture</div><div class="step-desc">Plan the overall structure and how components interact. <strong>Example:</strong> an e-commerce system splits into a user service, product service, order service, and payment service.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Choose Tech Stack</div><div class="step-desc">Pick technologies that fit your requirements and scale target. <strong>Example:</strong> React frontend, Node.js backend, MongoDB database.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Design Modules</div><div class="step-desc">Break the system into components with single, clear responsibilities. <strong>Example:</strong> a banking system splits into account management, transaction processing, and customer management.</div></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Plan for Scalability</div><div class="step-desc">Design for growth before growth forces your hand. <strong>Example:</strong> a video platform uses multiple servers and caching to serve millions of concurrent viewers.</div></div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Ensure Security &amp; Privacy</div><div class="step-desc">Bake in auth, encryption, and secure communication from day one. <strong>Example:</strong> an online banking system uses secure login, encrypted transactions, and MFA.</div></div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-body"><div class="step-title">Test &amp; Validate</div><div class="step-desc">Confirm the system meets functional <em>and</em> non-functional requirements. <strong>Example:</strong> testing a ride-hailing app to ensure booking, driver matching, and payment all hold up under load.</div></div></div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">🧮</div>
+    <p><strong>Added — Capacity Estimation 101 (the math beginners skip):</strong> Step 5, "Plan for Scalability," hides a skill most newcomers never practice: rough math, done on a napkin, <em>before</em> you design anything. Suppose your app has 10 million daily active users, each making 5 requests a day. That's 50M requests/day ÷ 86,400 seconds ≈ <strong>580 requests per second on average</strong> — but real traffic spikes, so you design for peak (often 3-5× average, so ~2,000-3,000 RPS). If each user record is 1KB and you store 10M users, that's roughly 10GB of user data alone — tiny for a single modern DB, but the calculation habit is what matters. This "back-of-the-envelope" math is exactly what real interviewers (and real on-call engineers) expect you to do before drawing a single box. You'll see it applied properly in the URL Shortener and Chat System walkthroughs in <a href="#real-world" style="color:var(--sd);">Chapter 22</a>.</p>
+  </div>
+
+  <h3>Tips &amp; Tricks for Cracking a System Design Problem</h3>
+  <p class="prose">Here's the secret experienced engineers won't always say out loud: <strong>there is no single correct answer.</strong> Two senior engineers can design the same system completely differently and both be right, as long as they can defend their trade-offs. So the goal isn't memorizing "the" answer — it's building a repeatable process.</p>
+
+  <div class="g2">
+    <div class="box box-b"><div class="box-title">❓ Clarify Requirements First</div><div class="box-body">Ask questions before assuming anything. Wrong assumptions compound into a wrong design fast.</div></div>
+    <div class="box box-g"><div class="box-title">✏️ Sketch the High-Level First</div><div class="box-body">Clients, servers, databases, APIs — the rough shape before any detail. This is your HLD pass.</div></div>
+    <div class="box box-p"><div class="box-title">🧩 Break Into Components</div><div class="box-body">Smaller services with clear responsibilities are easier to explain, test, and scale independently.</div></div>
+    <div class="box box-a"><div class="box-title">📈 Think Scale &amp; Performance</div><div class="box-body">Load balancing, caching, sharding — bring these up before someone asks "but what if it's popular?"</div></div>
+    <div class="box box-r"><div class="box-title">⚖️ Always Discuss Trade-offs</div><div class="box-body">Why this database, not that one? Cost vs performance, simplicity vs scalability — say it out loud.</div></div>
+    <div class="box box-b"><div class="box-title">🔁 Refine Gradually</div><div class="box-body">High-level first, then go deeper into database design, APIs, and data flow. Don't try to nail every detail in one pass.</div></div>
+  </div>
+
+  <h3>The Engineer's Checklist — 8 Pillars to Always Consider</h3>
+  <p class="prose">Whatever you design, run it past this checklist before you call it done. Miss one of these and it usually doesn't show up in week one — it shows up six months later, at 2 AM, during an incident.</p>
+
+  <div class="g3">
+    <div class="box box-b"><div class="box-title">📈 Scalability</div><div class="box-body">Can it handle more load by scaling horizontally or vertically as needed?</div></div>
+    <div class="box box-g"><div class="box-title">⚡ Performance</div><div class="box-body">Does it respond efficiently, with minimal latency?</div></div>
+    <div class="box box-p"><div class="box-title">🛡️ Reliability</div><div class="box-body">Is it available with minimal downtime or failures?</div></div>
+    <div class="box box-r"><div class="box-title">🔐 Security</div><div class="box-body">Does it prevent unauthorized access and protect sensitive data?</div></div>
+    <div class="box box-a"><div class="box-title">🔧 Maintainability</div><div class="box-body">Is it easy to update, with clear docs and organised code?</div></div>
+    <div class="box box-b"><div class="box-title">🔗 Interoperability</div><div class="box-body">Does it integrate cleanly with other systems via well-defined interfaces?</div></div>
+    <div class="box box-g"><div class="box-title">🙂 Usability</div><div class="box-body">Is it intuitive for the humans who actually have to use it?</div></div>
+    <div class="box box-p"><div class="box-title">💰 Cost-Effectiveness</div><div class="box-body">Does it meet requirements without overspending on infrastructure?</div></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">🗺️</div>
+    <p><strong>How to use the rest of this guide:</strong> Chapters 01–22 are almost entirely <strong>HLD territory</strong> — architecture, scaling, databases, caching, messaging, CAP theorem, microservices, observability, and real interview-style walkthroughs. Chapter 23 is your <strong>LLD deep-dive</strong> — OOP, SOLID principles, and reading UML diagrams. Read this chapter once, then treat the rest as a reference you revisit, not a novel you finish in one sitting.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ 01 THE ARCHITECTURAL SHIFT ═══════════════ -->
+<section class="chapter" id="arch-shift">
+  <div class="ch-head">
+    <span class="ch-num">01</span>
+    <h2 class="ch-title">The Architectural Shift</h2>
+    <span class="badge badge-b">Mindset</span>
+  </div>
+
+  <p class="prose">Here's a career truth nobody puts on a slide: the jump from mid-level developer to senior engineer isn't about writing <em>more</em> code, or even <em>better</em> code — it's a shift from "can you implement this ticket" to "can you decide what should exist in the first place." Mid-level developers are often brilliant inside a mature codebase with clear tickets. Hand them a blank whiteboard and a vague request like "build us something like Uber," though, and that confidence can evaporate fast.</p>
+  <p class="prose">That blank-whiteboard moment is exactly what separates senior engineers — not because they're smarter, but because they've done it enough times to have a process. They take a messy, half-formed business idea, ask the right clarifying questions, weigh trade-offs out loud, and walk away with a design that a team can actually build. That process is what the rest of this chapter — and frankly, the rest of this guide — is going to teach you to imitate.</p>
+
+  <h3>Why Companies Value Architectural Decision-Making</h3>
+  <div class="g2">
+    <div class="box box-b">
+      <div class="box-title">🧭 Navigating Ambiguity</div>
+      <div class="box-body">Seniors translate <strong>vague business needs</strong> into concrete, scalable technical architectures — without waiting for complete specs.</div>
+    </div>
+    <div class="box box-p">
+      <div class="box-title">⏳ System Longevity</div>
+      <div class="box-body">Architectural decisions directly impact <strong>long-term efficiency, maintenance, and scalability</strong> of the software — often for years.</div>
+    </div>
+    <div class="box box-g">
+      <div class="box-title">🗄️ Data Strategy</div>
+      <div class="box-body">Expert storage and data-layer choices ensure the system <strong>remains performant</strong> as user demand grows by orders of magnitude.</div>
+    </div>
+    <div class="box box-a">
+      <div class="box-title">💼 Business Impact</div>
+      <div class="box-body">Companies invest in senior talent to make <strong>high-stakes decisions</strong> that directly affect the customer experience and the bottom line.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 02 SYSTEM FOUNDATIONS ═══════════════ -->
+<section class="chapter" id="foundations">
+  <div class="ch-head">
+    <span class="ch-num">02</span>
+    <h2 class="ch-title">System Foundations: The Single-Server Model</h2>
+    <span class="badge badge-b">Core</span>
+  </div>
+
+  <p class="prose">Before we talk about thousands of servers spread across continents, let's talk about <em>one</em> server — because if you can't explain what happens on one machine, adding nine hundred more won't help. Picture the smallest possible setup: a single computer running your web app, its database, and its cache, all crammed onto one box. That's not a toy example to throw away later — it's the atomic unit that every "distributed system" is secretly just many copies of, talking to each other.</p>
+
+  <h3>The Request-Response Flow</h3>
+  <div class="flow">
+    <div class="fb b"><div class="fb-l">Client</div><div class="fb-n">Domain Input</div></div><div class="fa">→</div>
+    <div class="fb p"><div class="fb-l">DNS Lookup</div><div class="fb-n">Resolves IP</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">IP Retrieval</div><div class="fb-n">Address Returned</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">HTTP Request</div><div class="fb-n">Data Requested</div></div><div class="fa">→</div>
+    <div class="fb r"><div class="fb-l">Server</div><div class="fb-n">HTML / JSON</div></div>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Domain Input</div><div class="step-desc">Client enters a domain name (e.g., <strong>app.demo.com</strong>).</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">DNS Lookup</div><div class="step-desc">The DNS maps the domain to the server's <strong>IP address</strong> — the physical location of the server on the internet.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">IP Retrieval</div><div class="step-desc">The DNS provider sends the <strong>IP address</strong> back to the client.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">HTTP Request</div><div class="step-desc">Client uses the IP to send an <strong>HTTP request</strong> for specific data.</div></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Server Processing</div><div class="step-desc">The server processes the request and returns <strong>HTML or JSON</strong>.</div></div></div>
+  </div>
+
+  <h3>Web vs. Mobile Application Interaction</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Feature</th><th>Web Applications</th><th>Mobile Applications</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Interaction Mode</strong></td><td>Browser-based</td><td>App-based API calls</td></tr>
+        <tr><td><strong>Data Requirements</strong></td><td>Handles logic, storage, and presentation (HTML/CSS/JS)</td><td>Focuses on business logic and raw data retrieval</td></tr>
+        <tr><td><strong>Response Format</strong></td><td>Primarily HTML/CSS/JS</td><td>Lightweight <strong>JSON</strong> for easier interpretation</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════ 03 DATA LAYER ═══════════════ -->
+<section class="chapter" id="data-layer">
+  <div class="ch-head">
+    <span class="ch-num">03</span>
+    <h2 class="ch-title">The Data Layer: SQL vs NoSQL</h2>
+    <span class="badge badge-g">Storage</span>
+  </div>
+
+  <p class="prose">Picture your single server from the last chapter starting to creak under real traffic. The first move almost every system makes is splitting it into two tiers: the <strong>web tier</strong> (the part that handles requests) and the <strong>data tier</strong> (the part that remembers things). Once they're separated, you can scale each independently — and now you face one of the most consequential decisions in the whole design: <em>which kind of database actually fits this data?</em> Get this wrong early and you'll be migrating live data under pressure later, which is nobody's favourite Saturday.</p>
+
+  <h3>Relational Databases (RDBMS)</h3>
+  <p class="prose">Think of a relational database as an extremely strict, extremely organised spreadsheet — everything lives in <strong>tables, rows, and columns</strong>, with rules about how tables relate to each other. It's the industry standard whenever your data has clear, well-defined relationships (a customer <em>has</em> orders, an order <em>has</em> line items). Its superpower, and the reason banks trust it with your money, is <strong>ACID compliance</strong>.</p>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">💡</div>
+    <p><strong>ACID in plain English — Bank Transfer Example:</strong> Moving money from Account A to Account B must satisfy all four ACID properties simultaneously.</p>
+  </div>
+
+  <div class="g2">
+    <div class="box box-b">
+      <div class="box-title">⚛️ Atomicity</div>
+      <div class="box-body">The entire transfer is <strong>one indivisible unit</strong>. If the system fails after deducting from A but before adding to B, the entire transaction rolls back — money cannot "disappear."</div>
+    </div>
+    <div class="box box-g">
+      <div class="box-title">✅ Consistency</div>
+      <div class="box-body">The database moves from <strong>one valid state to another</strong>. The combined total balance of both accounts must remain the same before and after the transfer.</div>
+    </div>
+    <div class="box box-p">
+      <div class="box-title">🔒 Isolation</div>
+      <div class="box-body">If multiple transfers to Account B happen simultaneously, the transactions <strong>do not interfere or overwrite</strong> each other — each runs as if it were the only one.</div>
+    </div>
+    <div class="box box-a">
+      <div class="box-title">💾 Durability</div>
+      <div class="box-body">Once the transfer is confirmed, the record is <strong>saved permanently</strong> — even if the server crashes immediately afterward.</div>
+    </div>
+  </div>
+
+  <h3>Non-Relational Databases (NoSQL)</h3>
+  <p class="prose">Now imagine telling that strict spreadsheet to relax — to accept messy, irregular, or absolutely massive piles of data without complaining about structure. That's NoSQL's whole pitch: trade some of SQL's rigidity for speed and flexibility. It's not one technology — it's four genuinely different storage models, each built for a different shape of problem.</p>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-head"><div class="card-icon">📄</div><div class="card-label" style="color:var(--sd)">Document Store</div></div>
+      <div class="card-title">JSON-like Documents</div>
+      <div class="card-body">Data stored as flexible documents. Ideal for content management and user profiles.<br/><strong>Examples:</strong> MongoDB, CouchDB</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🏛️</div><div class="card-label" style="color:var(--sd2)">Wide-Column Store</div></div>
+      <div class="card-title">Massive Scale Writes</div>
+      <div class="card-body">Optimised for high-volume writes at massive scale. Ideal for time-series and IoT data.<br/><strong>Examples:</strong> Cassandra, Cosmos DB</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🕸️</div><div class="card-label" style="color:var(--emerald)">Graph Store</div></div>
+      <div class="card-title">Entities &amp; Relationships</div>
+      <div class="card-body">Focuses on nodes and the connections between them. Ideal for social networks and recommendations.<br/><strong>Examples:</strong> Neo4j, Amazon Neptune</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">⚡</div><div class="card-label" style="color:var(--amber)">Key-Value Store</div></div>
+      <div class="card-title">Lightning-Fast RAM Storage</div>
+      <div class="card-body">Simple, extremely fast storage primarily in RAM. Ideal for caching and sessions.<br/><strong>Examples:</strong> Redis, Memcached</div>
+    </div>
+  </div>
+
+  <h3>Database Selection Criteria</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Criteria</th><th>SQL (Relational)</th><th>NoSQL (Non-Relational)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Structure</strong></td><td>Structured tables and rows</td><td>Unstructured / Flexible (JSON, Key-value)</td></tr>
+        <tr><td><strong>Consistency</strong></td><td>Strong transactional integrity (ACID)</td><td>Optimised for low latency and high availability</td></tr>
+        <tr><td><strong>Latency</strong></td><td>Higher due to complex joins</td><td>Extremely low latency</td></tr>
+        <tr><td><strong>Scalability</strong></td><td>Generally Vertical</td><td>Designed for Horizontal (Massive Scale)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════ 04 SCALING ═══════════════ -->
+<section class="chapter" id="scaling">
+  <div class="ch-head">
+    <span class="ch-num">04</span>
+    <h2 class="ch-title">Scaling Strategies</h2>
+    <span class="badge badge-p">Capacity</span>
+  </div>
+
+  <p class="prose">Your app just got featured somewhere and traffic 10×'d overnight. Congratulations, and also: now what? <strong>Scaling</strong> is simply the process of growing your system's capacity to absorb that kind of demand — and you essentially have two strategies to choose from, the same way you'd handle a sudden crowd at a restaurant: build a bigger kitchen, or open more kitchens.</p>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-head"><div class="card-icon">⬆️</div><div class="card-label" style="color:var(--amber)">Vertical Scaling</div></div>
+      <div class="card-title">Scale Up — Stronger Machine</div>
+      <div class="card-body">
+        Adding more power (CPU, RAM) to a single existing server.
+        <ul style="margin-top:10px;padding-left:16px;">
+          <li style="color:var(--red);margin-bottom:4px;">⚠ <strong style="color:var(--text)">Resource Ceiling</strong> — every server has a hard hardware limit</li>
+          <li style="color:var(--red);margin-bottom:4px;">⚠ <strong style="color:var(--text)">No Redundancy</strong> — no backup if the server fails</li>
+          <li style="color:var(--red);">⚠ <strong style="color:var(--text)">Single Point of Failure</strong> — entire app goes offline if it goes down</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">↔️</div><div class="card-label" style="color:var(--sd)">Horizontal Scaling</div></div>
+      <div class="card-title">Scale Out — More Machines</div>
+      <div class="card-body">
+        Adding more servers to distribute the load across the pool.
+        <ul style="margin-top:10px;padding-left:16px;">
+          <li style="color:var(--emerald);margin-bottom:4px;">✓ <strong style="color:var(--text)">Fault Tolerance</strong> — if one server fails, others serve traffic</li>
+          <li style="color:var(--emerald);margin-bottom:4px;">✓ <strong style="color:var(--text)">No Hard Ceiling</strong> — add servers as demand grows</li>
+          <li style="color:var(--emerald);">✓ <strong style="color:var(--text)">Superior for High Traffic</strong> — the industry-standard approach</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow" style="margin-top:24px;">
+    <div class="fb a"><div class="fb-l">Vertical</div><div class="fb-n">1 Big Server</div></div><div class="fa">vs</div>
+    <div class="fb b"><div class="fb-l">Horizontal</div><div class="fb-n">N Servers</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">Load Balancer</div><div class="fb-n">Distributes Load</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 05 LOAD BALANCING ═══════════════ -->
+<section class="chapter" id="load-balancing">
+  <div class="ch-head">
+    <span class="ch-num">05</span>
+    <h2 class="ch-title">Load Balancing Logic and Strategies</h2>
+    <span class="badge badge-b">Availability</span>
+  </div>
+
+  <p class="prose">So you opened more kitchens — great. Now somebody has to stand at the door and decide which kitchen each customer walks into, or everyone piles into the first one and ignores the rest. That bouncer is the <strong>Load Balancer</strong>: it sits in front of your server pool and decides, request by request, who goes where — so no single machine ever becomes the unlucky one drowning in traffic while its neighbours sit idle.</p>
+
+  <h3>Distribution Algorithms</h3>
+  <div class="algo-grid">
+    <div class="algo-card">
+      <div class="algo-name"><span class="algo-num">01</span>Round Robin</div>
+      <div class="algo-when">When: Identical server specs</div>
+      <div class="algo-desc">Sequential rotation through the server pool. Simple and predictable.</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-name"><span class="algo-num">02</span>Least Connections</div>
+      <div class="algo-when">When: Variable session lengths</div>
+      <div class="algo-desc">Routes to the server with the fewest active sessions.</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-name"><span class="algo-num">03</span>Least Response Time</div>
+      <div class="algo-when">When: Speed is the priority</div>
+      <div class="algo-desc">Routes to the most responsive server. Best when servers have different capabilities.</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-name"><span class="algo-num">04</span>IP Hash</div>
+      <div class="algo-when">When: Client needs sticky sessions</div>
+      <div class="algo-desc">Client IP mapped to a specific server. Ensures consistent connections for local state.</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-name"><span class="algo-num">05</span>Weighted</div>
+      <div class="algo-when">When: Mixed server capacities</div>
+      <div class="algo-desc">Traffic assigned by capacity weight. Use when pool has servers of different specs (e.g., 16GB vs 64GB RAM).</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-name"><span class="algo-num">06</span>Geographical</div>
+      <div class="algo-when">When: Global services</div>
+      <div class="algo-desc">Routes to the server physically closest to the user. Minimises latency at global scale.</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-name"><span class="algo-num">07</span>Consistent Hashing</div>
+      <div class="algo-when">When: Dynamic server pools</div>
+      <div class="algo-desc">Hash ring maps users to servers. Minimises data redistribution when servers are added or removed.</div>
+    </div>
+  </div>
+
+  <h3>Availability Features</h3>
+  <div class="box box-g">
+    <div class="box-title">❤️ Health Checks</div>
+    <div class="box-body">The load balancer <strong>continuously monitors server status</strong>. If a server fails a check, it is flagged offline and removed from the rotation until it recovers — automatically, without manual intervention.</div>
+  </div>
+
+  <h3>Implementation Tiers</h3>
+  <div class="g3">
+    <div class="box box-b">
+      <div class="box-title">💻 Software</div>
+      <div class="box-body">Installed on existing servers. Flexible and cost-effective.<br/><strong>e.g., Nginx, HAProxy</strong></div>
+    </div>
+    <div class="box box-a">
+      <div class="box-title">🖥️ Hardware</div>
+      <div class="box-body">High-performance physical appliances. Maximum throughput.<br/><strong>e.g., F5, Citrix</strong></div>
+    </div>
+    <div class="box box-p">
+      <div class="box-title">☁️ Cloud-based</div>
+      <div class="box-body">Managed services with auto-scaling, integrated security and monitoring. <strong>Senior-preferred</strong>.<br/><strong>e.g., AWS ELB, Azure LB</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 06 SPOF ═══════════════ -->
+<section class="chapter" id="spof">
+  <div class="ch-head">
+    <span class="ch-num">06</span>
+    <h2 class="ch-title">Single Point of Failure (SPOF)</h2>
+    <span class="badge badge-r">Risk</span>
+  </div>
+
+  <p class="prose">Quick gut-check question: if you unplugged any <em>one</em> server, database, or load balancer in your design right now, would the whole system go dark? If the answer is yes, you've just found a <strong>Single Point of Failure (SPOF)</strong> — and hunting these down before they find you is one of the least glamorous, most important jobs a senior engineer does. Nobody throws a party for "the system that didn't go down." But everybody remembers the one that did.</p>
+
+  <div class="g3">
+    <div class="box box-r">
+      <div class="box-title">📉 Reliability</div>
+      <div class="box-body">Leads to <strong>total downtime</strong> and direct business loss. Every minute offline has a measurable revenue cost.</div>
+    </div>
+    <div class="box box-a">
+      <div class="box-title">⚙️ Scalability</div>
+      <div class="box-body">Non-redundant components become <strong>bottlenecks</strong> as the system grows — choking throughput at the weakest link.</div>
+    </div>
+    <div class="box box-p">
+      <div class="box-title">🎯 Security</div>
+      <div class="box-body">Attackers <strong>target SPOFs</strong> (like a single load balancer) to execute successful DDoS attacks that take down the entire service.</div>
+    </div>
+  </div>
+
+  <h3>Mitigation Strategies</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Redundancy</div>
+        <div class="step-desc">Implement <strong>multiple load balancers</strong> so others automatically take over during a failure. No single node should be irreplaceable.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Continuous Monitoring</div>
+        <div class="step-desc"><strong>Track the health</strong> of every critical component in real time. Detect degradation before it becomes a full outage.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Self-Healing Systems</div>
+        <div class="step-desc">Automatically <strong>spin up new instances</strong> to replace failed ones without manual intervention — the system heals itself.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 07 API DESIGN ═══════════════ -->
+<section class="chapter" id="api-design">
+  <div class="ch-head">
+    <span class="ch-num">07</span>
+    <h2 class="ch-title">API Design and Architectural Styles</h2>
+    <span class="badge badge-p">Interfaces</span>
+  </div>
+
+  <p class="prose">If your database schema is the foundation of your house, your API is the front door — it's the only part most other systems (and other teams) will ever actually touch. Think of an API as a <strong>contract</strong>: a promise about exactly what you'll accept and exactly what you'll hand back. Break that promise carelessly and you don't just have a bug — you have every client of that API breaking at once. Good API design is, quietly, just as important as good database design.</p>
+
+  <h3>Design Principles</h3>
+  <div class="g2">
+    <div class="box box-b"><div class="box-title">🔠 Consistency</div><div class="box-body">Use uniform <strong>naming conventions</strong> (plural nouns) and casing (e.g., camelCase) across all endpoints.</div></div>
+    <div class="box box-g"><div class="box-title">✨ Simplicity</div><div class="box-body">Designs should be <strong>intuitive enough</strong> for developers to use without constant documentation reference.</div></div>
+    <div class="box box-r"><div class="box-title">🔐 Security</div><div class="box-body">Enforce <strong>authentication, authorization</strong>, and strict input validation on every endpoint.</div></div>
+    <div class="box box-a"><div class="box-title">⚡ Performance</div><div class="box-body">Implement <strong>pagination</strong>, minimise payloads, and reduce round trips wherever possible.</div></div>
+  </div>
+
+  <h3>Style Comparison</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Feature</th><th>REST</th><th>GraphQL</th><th>gRPC</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Philosophy</strong></td><td>Resource-based (Nouns)</td><td>Query-based (Client-specified)</td><td>Procedure-based (Remote Calls)</td></tr>
+        <tr><td><strong>Transport</strong></td><td>HTTP</td><td>HTTP</td><td>HTTP/2</td></tr>
+        <tr><td><strong>Primary Use</strong></td><td>Web &amp; Mobile apps</td><td>Complex UIs with nested data</td><td>Internal Microservices</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>REST — Nouns over Verbs</h3>
+  <p class="prose">REST focuses on <strong>resources, not actions</strong> — e.g., <code>/products</code> instead of <code>/getProducts</code>. HTTP methods express the action.</p>
+  <div class="g3" style="margin-bottom:20px;">
+    <div class="box box-g"><div class="box-title">GET</div><div class="box-body">Read — retrieve a resource</div></div>
+    <div class="box box-b"><div class="box-title">POST</div><div class="box-body">Create — add a new resource</div></div>
+    <div class="box box-p"><div class="box-title">PUT</div><div class="box-body">Full Update — replace entirely</div></div>
+    <div class="box box-a"><div class="box-title">PATCH</div><div class="box-body">Partial Update — modify fields</div></div>
+    <div class="box box-r"><div class="box-title">DELETE</div><div class="box-body">Remove — delete a resource</div></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Category</th><th>Meaning</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--emerald)">2xx</strong></td><td>Success</td><td>200 OK · 201 Created</td></tr>
+        <tr><td><strong style="color:var(--sd)">3xx</strong></td><td>Redirection</td><td>301 Moved Permanently</td></tr>
+        <tr><td><strong style="color:var(--amber)">4xx</strong></td><td>Client Error</td><td>400 Bad Request · 404 Not Found</td></tr>
+        <tr><td><strong style="color:var(--red)">5xx</strong></td><td>Server Error</td><td>500 Internal Server Error</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>GraphQL — Solving Over &amp; Under-Fetching</h3>
+  <div class="g2">
+    <div class="box box-r">
+      <div class="box-title">📦 Over-fetching</div>
+      <div class="box-body">REST returns <strong>more data than needed</strong>. The client must discard unused fields, wasting bandwidth and parse time.</div>
+    </div>
+    <div class="box box-a">
+      <div class="box-title">📭 Under-fetching</div>
+      <div class="box-body">REST returns <strong>too little data</strong>, requiring multiple requests (N+1 problem) to assemble a complete view.</div>
+    </div>
+  </div>
+  <div class="g3" style="margin-top:12px;">
+    <div class="box box-g"><div class="box-title">Query</div><div class="box-body">Equivalent to REST GET — read data with precise field selection.</div></div>
+    <div class="box box-b"><div class="box-title">Mutation</div><div class="box-body">Equivalent to REST POST/PUT/PATCH/DELETE — changes data state.</div></div>
+    <div class="box box-p"><div class="box-title">Error Handling</div><div class="box-body">Returns <strong>200 OK even on failure</strong>, with an <code>errors</code> field in the response body.</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 08 PROTOCOLS ═══════════════ -->
+<section class="chapter" id="protocols">
+  <div class="ch-head">
+    <span class="ch-num">08</span>
+    <h2 class="ch-title">Network and Transport Layer Protocols</h2>
+    <span class="badge badge-b">Networking</span>
+  </div>
+
+  <p class="prose">Every single request your system has ever served travelled over a protocol you probably never think about — the postal system of the internet, quietly agreeing on envelopes and addresses so two strangers' computers can understand each other. You don't need to memorise an OSI model poster to design good systems, but knowing which protocol fits which job is the difference between a chat app that feels instant and one that feels like it's typing through molasses.</p>
+
+  <h3>Application Layer</h3>
+  <div class="g3">
+    <div class="box box-b">
+      <div class="box-title">🔒 HTTPS</div>
+      <div class="box-body">Uses <strong>TLS/SSL encryption</strong> to protect data in transit. The modern security standard — non-negotiable for all production systems.</div>
+    </div>
+    <div class="box box-g">
+      <div class="box-title">🔄 WebSockets</div>
+      <div class="box-body">Enables <strong>bidirectional, real-time</strong> communication (e.g., chat apps) without the overhead of repetitive request-response cycles.</div>
+    </div>
+    <div class="box box-p">
+      <div class="box-title">📨 AMQP</div>
+      <div class="box-body">An <strong>asynchronous protocol</strong> for message queuing (e.g., RabbitMQ) — producers and consumers communicate at different speeds.</div>
+    </div>
+  </div>
+
+  <h3>TCP vs UDP — Transport Layer</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Feature</th><th>TCP</th><th>UDP</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Reliability</strong></td><td>Guaranteed delivery — resends lost packets</td><td>No guarantee — lost packets are ignored</td></tr>
+        <tr><td><strong>Ordering</strong></td><td>Guaranteed ordering of packets</td><td>Packets can arrive in any order</td></tr>
+        <tr><td><strong>Speed</strong></td><td>Slower (high overhead)</td><td>Faster (minimal overhead)</td></tr>
+        <tr><td><strong>Use Case</strong></td><td>Banking · Email · Payments</td><td>Video calls · Gaming · Live streams</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>TCP Three-Way Handshake</h3>
+  <p class="prose">Establishes a <strong>stable connection</strong> before any actual data is transmitted. Every TCP connection begins with this sequence.</p>
+  <div class="flow">
+    <div class="fb b"><div class="fb-l">Client</div><div class="fb-n">SYN →</div></div><div class="fa">→</div>
+    <div class="fb p"><div class="fb-l">Server</div><div class="fb-n">← SYN-ACK</div></div><div class="fa">→</div>
+    <div class="fb g"><div class="fb-l">Client</div><div class="fb-n">ACK →</div></div><div class="fa">→</div>
+    <div class="fb a"><div class="fb-l">Connection</div><div class="fb-n">Established</div></div>
+  </div>
+  <div class="steps" style="margin-top:16px;">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">SYN</div><div class="step-desc">Client sends a <strong>synchronisation request</strong> to the server.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">SYN-ACK</div><div class="step-desc">Server <strong>acknowledges</strong> the request and sends its own synchronisation signal back.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">ACK</div><div class="step-desc">Client acknowledges the server — the <strong>connection is finalised</strong> and data transfer begins.</div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 09 AUTH ═══════════════ -->
+<section class="chapter" id="auth">
+  <div class="ch-head">
+    <span class="ch-num">09</span>
+    <h2 class="ch-title">Security: Authentication &amp; Authorization</h2>
+    <span class="badge badge-r">Security</span>
+  </div>
+
+  <p class="prose">Two words get tossed around interchangeably by beginners, and mixing them up is an easy interview tell: <strong>authentication</strong> and <strong>authorization</strong>. They sound similar, they often happen back-to-back in the same request, and they answer two completely different questions. Get the distinction wired into your brain now, because the rest of this chapter — and most of the security world — is built on top of it.</p>
+
+  <div class="g2" style="margin-bottom:28px;">
+    <div class="box box-b"><div class="box-title">🪪 Authentication — Identity</div><div class="box-body"><strong>Who are you?</strong> Verifies that you are who you claim to be before granting any access.</div></div>
+    <div class="box box-p"><div class="box-title">🔑 Authorization — Permissions</div><div class="box-body"><strong>What can you do?</strong> Determines which resources and actions you are permitted to access.</div></div>
+  </div>
+
+  <h3>Authentication Methods</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Method</th><th>Mechanism</th><th>Trade-off</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Basic / Digest</strong></td><td>Credentials in the HTTP header (Basic = base64; Digest = MD5)</td><td>Simple but weak — not suitable alone for production</td></tr>
+        <tr><td><strong>API Keys</strong></td><td>Unique strings passed in headers or query params</td><td>Require database lookups on every request</td></tr>
+        <tr><td><strong>Session-based</strong></td><td>Stateful — server stores session IDs in RAM or Redis</td><td>Harder to scale horizontally; session must be shared</td></tr>
+        <tr><td><strong>JWT (Token-based)</strong></td><td>Signed, stateless JSON object — verified via cryptographic signature</td><td>No database hit; but token revocation is complex</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Access &amp; Refresh Tokens</h3>
+  <div class="g2">
+    <div class="box box-b">
+      <div class="box-title">⚡ Access Token</div>
+      <div class="box-body"><strong>Short-lived</strong> token used for API access. Expires quickly (minutes to hours) to limit exposure if compromised.</div>
+    </div>
+    <div class="box box-g">
+      <div class="box-title">🔄 Refresh Token</div>
+      <div class="box-body"><strong>Long-lived</strong> token used to renew access tokens. <strong>Security Rule:</strong> Always store in HTTP-only cookies to prevent XSS-based theft.</div>
+    </div>
+  </div>
+
+  <h3>Authorization Models</h3>
+  <div class="g3">
+    <div class="card">
+      <div class="card-head"><div class="card-icon">👥</div><div class="card-label" style="color:var(--sd)">RBAC</div></div>
+      <div class="card-title">Role-Based Access Control</div>
+      <div class="card-body">Permissions assigned to <strong>roles</strong>, not individuals.<br/><strong>e.g.,</strong> Admin, Editor, Viewer</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🏷️</div><div class="card-label" style="color:var(--sd2)">ABAC</div></div>
+      <div class="card-title">Attribute-Based Access Control</div>
+      <div class="card-body">Access based on <strong>attributes</strong> of user, resource, and environment.<br/><strong>e.g.,</strong> HR department users only during work hours</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">📋</div><div class="card-label" style="color:var(--emerald)">ACL</div></div>
+      <div class="card-title">Access Control Lists</div>
+      <div class="card-body">Specific permissions attached to a <strong>resource</strong> directly.<br/><strong>e.g.,</strong> A shared Google Doc with per-user permissions</div>
+    </div>
+  </div>
+
+  <h3>OAuth 2.0 &amp; OpenID Connect</h3>
+  <div class="g2">
+    <div class="box box-a">
+      <div class="box-title">🔐 OAuth 2.0</div>
+      <div class="box-body">An <strong>authorization framework</strong> for delegating access to third-party applications.<br/><br/>
+      <strong style="color:var(--red);">⚠ Common Pitfall:</strong> OAuth 2.0 is NOT an authentication protocol — it only delegates access, it does not verify identity.</div>
+    </div>
+    <div class="box box-g">
+      <div class="box-title">🪪 OpenID Connect (OIDC)</div>
+      <div class="box-body">The <strong>authentication layer</strong> built on top of OAuth 2.0. Provides identity tokens (ID tokens) that confirm who the user is — the correct tool for "Sign in with Google."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 10 SYSTEM PROTECTION ═══════════════ -->
+<section class="chapter" id="protection">
+  <div class="ch-head">
+    <span class="ch-num">10</span>
+    <h2 class="ch-title">System Protection Techniques</h2>
+    <span class="badge badge-r">Defence</span>
+  </div>
+
+  <p class="prose">Here's a slightly uncomfortable truth to internalise early: the moment your system goes live, it is under attack. Not "might be" — automated bots are scanning random IP ranges for open doors right now, this minute, regardless of whether anyone has heard of your app yet. The seven layers below aren't paranoid overengineering; they're the baseline seatbelt-and-airbags every production system needs before it's allowed near real users.</p>
+
+  <div class="protect">
+
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🚦 Rate Limiting</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">Attackers overwhelming the API with thousands of requests per minute — <strong>DDoS</strong> or brute-force login attempts.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Implement <strong>per-IP or per-user limits</strong> to block traffic automatically once a threshold is reached.</div>
+      </div>
+    </div>
+
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🌐 CORS</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">Malicious websites tricking a user's browser into making <strong>unauthorised requests</strong> to your API.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Define an <strong>allow-list</strong> of specific domains permitted to interact with your API via the CORS policy headers.</div>
+      </div>
+    </div>
+
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">💉 Injection Prevention</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">Attackers inserting <strong>malicious code</strong> into input fields to read or delete database data (SQL/NoSQL Injection).</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Use <strong>parameterised queries</strong> or ORM safeguards — treat all input as data, never as executable code.</div>
+      </div>
+    </div>
+
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🧱 Firewalls (WAF)</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text"><strong>Malicious traffic patterns</strong> — suspicious SQL keywords, strange HTTP methods — reaching your server directly.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Use a <strong>Web Application Firewall</strong> to filter known attack patterns before they hit your infrastructure.</div>
+      </div>
+    </div>
+
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🔒 VPNs</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">Exposing <strong>sensitive internal tools</strong> or administrative APIs to the public internet unnecessarily.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Limit access to a <strong>private network</strong>, requiring users to connect via a secure encrypted tunnel first.</div>
+      </div>
+    </div>
+
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🛡️ CSRF Protection</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">A logged-in user being tricked into performing <strong>unwanted actions</strong> on a different site using their active session cookies.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Use unique <strong>CSRF tokens</strong> that must be submitted and validated with every state-changing request.</div>
+      </div>
+    </div>
+
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🪲 XSS Mitigation</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">Attackers <strong>injecting malicious scripts</strong> into pages viewed by other users (e.g., in a comment section).</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text"><strong>Sanitise and validate</strong> all user inputs — prevent execution of injected JavaScript by escaping output correctly.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:24px;">
+    <div class="callout-icon">🏗️</div>
+    <p><strong>Defence in Depth:</strong> No single protection layer is sufficient. Senior engineers layer multiple mechanisms — rate limiting + WAF + CSRF tokens + input validation — so that bypassing one layer does not compromise the entire system.</p>
+  </div>
+</section>
+
+
+<!-- ── CHAPTER 11: Caching Strategies ─────────────────────────────────── -->
+<section class="chapter module" id="caching">
+  <div class="ch-head">
+    <div class="ch-num">11</div>
+    <div>
+      <div class="ch-title">Caching Strategies</div>
+      <div class="badges"><span class="badge b">Performance</span><span class="badge g">Scalability</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Imagine answering the exact same trivia question for the hundredth visitor today. You wouldn't re-derive the answer from scratch each time — you'd just remember it from the first time and answer instantly. That's precisely what a <strong>cache</strong> does for your application: it's a fast, in-memory store sitting between your app and the database, remembering recent answers so it doesn't have to ask the (slow, disk-bound) database the same question over and over. Done right, this single trick can cut latency by 100× and take a huge bite out of database load.</p>
+  </div>
+
+  <div class="g2" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">Cache-Aside (Lazy Loading)</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 12px;">Application controls the cache explicitly. Most common pattern.</p>
+      <div class="steps">
+        <div class="step"><span class="step-n">1</span><span>App checks cache first</span></div>
+        <div class="step"><span class="step-n">2</span><span>Cache miss → fetch from DB</span></div>
+        <div class="step"><span class="step-n">3</span><span>App writes result to cache</span></div>
+        <div class="step"><span class="step-n">4</span><span>Future reads hit cache</span></div>
+      </div>
+      <div class="callout callout-tip" style="margin-top:14px;"><div class="callout-icon">✓</div><p>Only caches what's actually requested. Resilient to cache failure.</p></div>
+    </div>
+    <div class="box-p">
+      <div class="box-label">Write-Through</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 12px;">Every write goes to cache AND database synchronously.</p>
+      <div class="steps">
+        <div class="step"><span class="step-n">1</span><span>App writes to cache</span></div>
+        <div class="step"><span class="step-n">2</span><span>Cache immediately writes to DB</span></div>
+        <div class="step"><span class="step-n">3</span><span>Both stores always in sync</span></div>
+      </div>
+      <div class="callout callout-tip" style="margin-top:14px;"><div class="callout-icon">✓</div><p>No stale data. Higher write latency — every write hits DB.</p></div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-top:16px;">
+    <div class="box-g">
+      <div class="box-label">Write-Behind (Write-Back)</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 12px;">Write to cache immediately, flush to DB asynchronously later.</p>
+      <div class="callout callout-tip" style="margin-top:8px;"><div class="callout-icon">⚡</div><p>Very fast writes. Risk of data loss if cache crashes before flush.</p></div>
+    </div>
+    <div class="box-a">
+      <div class="box-label">Read-Through</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 12px;">Cache itself fetches from DB on a miss — app only talks to cache.</p>
+      <div class="callout callout-tip" style="margin-top:8px;"><div class="callout-icon">✓</div><p>Simplifies app code. Cache vendor handles DB fallback logic.</p></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:32px;">Eviction Policies</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Policy</th><th>Evicts</th><th>Best For</th></tr></thead>
+      <tbody>
+        <tr><td><strong>LRU</strong> — Least Recently Used</td><td>Item not accessed longest</td><td>General use, hot-data workloads</td></tr>
+        <tr><td><strong>LFU</strong> — Least Frequently Used</td><td>Item with fewest total accesses</td><td>Skewed popularity distributions</td></tr>
+        <tr><td><strong>FIFO</strong> — First In, First Out</td><td>Oldest inserted item</td><td>Simple queues, streaming pipelines</td></tr>
+        <tr><td><strong>TTL</strong> — Time To Live</td><td>Items past their expiry time</td><td>Session data, API responses</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:28px;">Cache Stampede (Thundering Herd)</h3>
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <p><strong>Problem:</strong> A popular cache key expires. Hundreds of requests hit the database simultaneously before the first one can repopulate the cache — potentially overwhelming the DB.</p>
+  </div>
+  <div class="g3" style="margin-top:14px;">
+    <div class="card"><strong>Mutex Lock</strong><br/><span style="color:var(--muted);font-size:13px;">Only one process fetches from DB; others wait on the lock.</span></div>
+    <div class="card"><strong>Probabilistic Early Expiry</strong><br/><span style="color:var(--muted);font-size:13px;">Randomly refresh before TTL expires to prevent stampedes.</span></div>
+    <div class="card"><strong>Background Refresh</strong><br/><span style="color:var(--muted);font-size:13px;">Serve stale data while one async worker silently refreshes.</span></div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 12: Message Queues & Event Streaming ───────────────────── -->
+<section class="chapter module" id="message-queues">
+  <div class="ch-head">
+    <div class="ch-num">12</div>
+    <div>
+      <div class="ch-title">Message Queues &amp; Event Streaming</div>
+      <div class="badges"><span class="badge b">Async</span><span class="badge p">Decoupling</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Think about how you'd leave a voicemail instead of demanding someone pick up the phone <em>right now</em>. You say your piece, hang up, and trust they'll get to it. That's the entire idea behind <strong>message queues and event streams</strong>: instead of Service A calling Service B directly and waiting on hold, A drops a message and walks away — B picks it up whenever it's ready, even if it was offline a moment ago. This one shift, from "talking" to "leaving messages," is what lets large systems stay decoupled instead of toppling like dominoes when one service has a bad day.</p>
+  </div>
+
+  <div class="g2" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">Message Queue (RabbitMQ)</div>
+      <div class="flow" style="margin-top:12px;">
+        <div class="fb">Producer</div><div class="fa">→</div>
+        <div class="fb">Queue</div><div class="fa">→</div>
+        <div class="fb">Consumer</div>
+      </div>
+      <ul style="font-size:13px;color:var(--muted);margin-top:12px;padding-left:18px;">
+        <li>Point-to-point: one consumer per message</li>
+        <li>Message deleted once acknowledged (ACK)</li>
+        <li>Dead Letter Queue (DLQ) for failed messages</li>
+        <li>Great for: task queues, email, notifications</li>
+      </ul>
+    </div>
+    <div class="box-p">
+      <div class="box-label">Event Streaming (Apache Kafka)</div>
+      <div class="flow" style="margin-top:12px;">
+        <div class="fb">Producer</div><div class="fa">→</div>
+        <div class="fb">Topic (Log)</div><div class="fa">→</div>
+        <div class="fb">N Consumers</div>
+      </div>
+      <ul style="font-size:13px;color:var(--muted);margin-top:12px;padding-left:18px;">
+        <li>Pub/Sub: many consumers, same event</li>
+        <li>Messages retained (configurable duration)</li>
+        <li>Consumers track their own offset</li>
+        <li>Great for: event sourcing, analytics, audit logs</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">Delivery Guarantees</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Guarantee</th><th>Meaning</th><th>Trade-off</th></tr></thead>
+      <tbody>
+        <tr><td><strong>At-most-once</strong></td><td>Message may be lost, never duplicated</td><td>Fastest, no redelivery on failure</td></tr>
+        <tr><td><strong>At-least-once</strong></td><td>Message delivered ≥ 1 time, may duplicate</td><td>Consumers must be idempotent</td></tr>
+        <tr><td><strong>Exactly-once</strong></td><td>Delivered precisely one time</td><td>Highest overhead, requires transactions</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:28px;">Dead Letter Queue (DLQ)</h3>
+  <div class="callout callout-tip">
+    <div class="callout-icon">📬</div>
+    <p>When a message fails processing repeatedly (exceeds retry limit), it's moved to a <strong>DLQ</strong> instead of being lost. Engineers can inspect, replay, or discard DLQ messages after investigating the root cause.</p>
+  </div>
+
+  <div class="g2" style="margin-top:20px;">
+    <div class="card"><strong>Use Queues When…</strong><br/><span style="color:var(--muted);font-size:13px;">Work must be done exactly once: order processing, payment jobs, email dispatch.</span></div>
+    <div class="card"><strong>Use Streams When…</strong><br/><span style="color:var(--muted);font-size:13px;">Multiple services react to the same event: audit logging, analytics, cache invalidation, search indexing.</span></div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 13: DB Indexing & Sharding ────────────────────────────── -->
+<section class="chapter module" id="db-indexing">
+  <div class="ch-head">
+    <div class="ch-num">13</div>
+    <div>
+      <div class="ch-title">DB Indexing &amp; Sharding</div>
+      <div class="badges"><span class="badge g">Performance</span><span class="badge b">Scale</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Finding a word in a 900-page book with no index means reading every page until you get lucky. An <strong>index</strong> is exactly what it sounds like — a separate, pre-sorted lookup structure that lets the database jump straight to the answer instead of scanning the whole table. <strong>Sharding</strong> solves a different problem: what happens when the book itself gets too big for one shelf? You split it into volumes, spread across multiple database nodes, so no single machine has to hold all the data or absorb all the writes alone.</p>
+  </div>
+
+  <h3 style="margin-top:24px;">Database Indexes</h3>
+  <div class="g2">
+    <div class="box-g">
+      <div class="box-label">B-Tree Index</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0;">Default in Postgres, MySQL. Balanced tree keeps data sorted. Excellent for range queries (<code>&gt;</code>, <code>&lt;</code>, <code>BETWEEN</code>) and equality lookups.</p>
+    </div>
+    <div class="box-b">
+      <div class="box-label">Hash Index</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0;">Maps key → bucket via hash function. O(1) equality lookups. Cannot do range queries. Used in memory stores like Redis.</p>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:12px;">
+    <div class="box-p">
+      <div class="box-label">Composite Index</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0;">Index on multiple columns <code>(user_id, created_at)</code>. Satisfies queries filtering on the leftmost prefix of the columns.</p>
+    </div>
+    <div class="box-a">
+      <div class="box-label">Covering Index</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0;">Index includes all columns the query needs. Allows <strong>index-only scans</strong> — the DB never touches the main table rows.</p>
+    </div>
+  </div>
+  <div class="callout callout-warn" style="margin-top:16px;">
+    <div class="callout-icon">⚠️</div>
+    <p>Indexes speed up reads but slow down writes — every INSERT/UPDATE/DELETE must update each index. Over-indexing is a common performance anti-pattern.</p>
+  </div>
+
+  <h3 style="margin-top:28px;">Sharding Strategies</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Strategy</th><th>How It Works</th><th>Trade-off</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Range-based</strong></td><td>Shard by value range (A–M → shard 1, N–Z → shard 2)</td><td>Simple, but uneven distribution ("hot shards")</td></tr>
+        <tr><td><strong>Hash-based</strong></td><td><code>shard = hash(key) % N</code></td><td>Even distribution, but range queries hit all shards</td></tr>
+        <tr><td><strong>Directory-based</strong></td><td>Lookup table maps key → shard</td><td>Flexible, but lookup table is a bottleneck</td></tr>
+        <tr><td><strong>Geo-based</strong></td><td>Route by user geography</td><td>Low latency, but uneven load across regions</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="g2" style="margin-top:16px;">
+    <div class="card"><strong>Connection Pooling</strong><br/><span style="color:var(--muted);font-size:13px;">Reuse DB connections instead of opening a new one per request. PgBouncer (Postgres) and ProxySQL (MySQL) are standard poolers. Reduces connection overhead by 10-100×.</span></div>
+    <div class="card"><strong>Hotspot Problem</strong><br/><span style="color:var(--muted);font-size:13px;">A shard receiving disproportionate traffic (e.g., all writes going to "user_id=1" shard). Solution: virtual nodes (consistent hashing) to rebalance without re-sharding everything.</span></div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 14: Database Replication ──────────────────────────────── -->
+<section class="chapter module" id="db-replication">
+  <div class="ch-head">
+    <div class="ch-num">14</div>
+    <div>
+      <div class="ch-title">Database Replication</div>
+      <div class="badges"><span class="badge b">Durability</span><span class="badge g">Availability</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>If sharding is splitting the book into volumes, <strong>replication</strong> is photocopying the whole book and handing copies to multiple librarians. Data flows from one <strong>primary</strong> node out to one or more <strong>replica</strong> nodes — and suddenly you've bought yourself three things at once: more librarians to handle read requests, copies sitting in different geographic locations, and a backup if any single copy gets damaged.</p>
+  </div>
+
+  <div class="g2" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">Primary-Replica (Leader-Follower)</div>
+      <div class="flow" style="margin-top:12px;">
+        <div class="fb" style="background:var(--bg3);">All Writes → Primary</div>
+      </div>
+      <div class="flow" style="margin-top:8px;">
+        <div class="fb">Replica 1</div>
+        <div class="fb">Replica 2</div>
+        <div class="fb">Replica N</div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px;">Reads can be served by any replica. Writes always go to primary. Primary failure requires promoting a replica — typically automated by tools like Patroni (Postgres) or Orchestrator (MySQL).</p>
+    </div>
+    <div class="box-p">
+      <div class="box-label">Multi-Primary (Active-Active)</div>
+      <div class="flow" style="margin-top:12px;">
+        <div class="fb">Primary 1</div><div class="fa">⇄</div>
+        <div class="fb">Primary 2</div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px;">Multiple primaries accept writes simultaneously. Enables write scalability and geographic distribution. Requires <strong>conflict resolution</strong> — two primaries might update the same row concurrently.</p>
+      <div class="callout callout-warn" style="margin-top:10px;"><div class="callout-icon">⚠️</div><p>Conflict resolution is hard. Use only when write throughput demands it.</p></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">Replication Lag</h3>
+  <div class="callout callout-warn">
+    <div class="callout-icon">⏱️</div>
+    <p><strong>Replication lag:</strong> the delay between a write on the primary and it becoming visible on replicas. A user who writes data and immediately reads it from a replica might see stale data. Solutions: <strong>read-your-writes consistency</strong> (route reads back to primary for the same session), or <strong>sticky sessions</strong> (pin a user to one replica).</p>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top:20px;">
+    <table>
+      <thead><tr><th>Replication Mode</th><th>Durability</th><th>Latency</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Synchronous</strong></td><td>Write confirmed only when replica acknowledges</td><td>Higher — replica is on the critical path</td></tr>
+        <tr><td><strong>Asynchronous</strong></td><td>Primary confirms immediately, replica catches up later</td><td>Lower — replica is off the critical path</td></tr>
+        <tr><td><strong>Semi-synchronous</strong></td><td>At least one replica must acknowledge</td><td>Middle ground</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── CHAPTER 15: CAP Theorem & Consistency ─────────────────────────── -->
+<section class="chapter module" id="cap-theorem">
+  <div class="ch-head">
+    <div class="ch-num">15</div>
+    <div>
+      <div class="ch-title">CAP Theorem &amp; Consistency Models</div>
+      <div class="badges"><span class="badge r">Distributed</span><span class="badge b">Theory</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Time for the theorem that shows up in roughly every system design interview ever conducted, so let's make sure it actually sticks. The <strong>CAP Theorem</strong> is, at its heart, a "pick two" problem — like a buffet sign that says you can only carry two of three plates at once. Across a distributed system, you can't have full Consistency, full Availability, <em>and</em> full Partition Tolerance all simultaneously. Something always gives.</p>
+  </div>
+
+  <div class="g3" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">C — Consistency</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Every read receives the most recent write or an error. All nodes see the same data at the same time.</p>
+    </div>
+    <div class="box-g">
+      <div class="box-label">A — Availability</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Every request receives a response (not an error), even if it might not be the latest data.</p>
+    </div>
+    <div class="box-r">
+      <div class="box-label">P — Partition Tolerance</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">The system continues operating even when network partitions (message loss between nodes) occur.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:20px;">
+    <div class="callout-icon">💡</div>
+    <p><strong>Partition Tolerance is not optional</strong> in real distributed systems — network failures are inevitable. You're really choosing between <strong>CP</strong> (sacrifice availability during partitions) or <strong>AP</strong> (sacrifice consistency during partitions).</p>
+  </div>
+
+  <div class="g2" style="margin-top:20px;">
+    <div class="box-b">
+      <div class="box-label">CP Systems — Consistent + Partition Tolerant</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Return errors during network partitions rather than stale data. Examples: <strong>HBase, MongoDB (with majority concern), Zookeeper</strong>. Good for: financial transactions, inventory management.</p>
+    </div>
+    <div class="box-g">
+      <div class="box-label">AP Systems — Available + Partition Tolerant</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Always respond, but data may be stale during partitions. Examples: <strong>Cassandra, DynamoDB, CouchDB</strong>. Good for: social feeds, DNS, product catalogs.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">Consistency Models</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Model</th><th>Guarantee</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Strong Consistency</strong></td><td>Read always returns latest write</td><td>Google Spanner, Zookeeper</td></tr>
+        <tr><td><strong>Eventual Consistency</strong></td><td>All nodes converge to same value <em>eventually</em></td><td>DynamoDB, Cassandra, DNS</td></tr>
+        <tr><td><strong>Causal Consistency</strong></td><td>Causally related operations seen in order by all</td><td>MongoDB (causal sessions)</td></tr>
+        <tr><td><strong>Read-Your-Writes</strong></td><td>You always see your own recent writes</td><td>Sticky session routing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:28px;">PACELC Extension</h3>
+  <div class="callout callout-tip">
+    <div class="callout-icon">📐</div>
+    <p>PACELC extends CAP: even when the network is <strong>not</strong> partitioned, there's a latency (L) vs consistency (C) trade-off. A system like Cassandra chooses low latency (eventual consistency). Spanner chooses consistency (higher latency). CAP only describes partition scenarios; PACELC describes the normal operating trade-off too.</p>
+  </div>
+</section>
+
+<!-- ── CHAPTER 16: Microservices Architecture ─────────────────────────── -->
+<section class="chapter module" id="microservices">
+  <div class="ch-head">
+    <div class="ch-num">16</div>
+    <div>
+      <div class="ch-title">Microservices Architecture</div>
+      <div class="badges"><span class="badge p">Architecture</span><span class="badge b">Scale</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Imagine one giant Swiss Army knife versus a toolbox full of separate, specialised tools. The Swiss Army knife is simple to carry around — until the screwdriver breaks and you have to send the <em>whole knife</em> in for repair. That's the monolith-versus-microservices trade-off in a nutshell. A <strong>monolith</strong> keeps all logic in one deployable unit — simple to start with. <strong>Microservices</strong> split the application into small, independently deployable services, each owning one business capability and its own data store — more moving parts, but no single broken screwdriver takes down the whole toolbox.</p>
+  </div>
+
+  <div class="g2" style="margin-top:24px;">
+    <div class="box-g">
+      <div class="box-label">Monolith</div>
+      <ul style="font-size:13px;color:var(--muted);padding-left:18px;margin-top:8px;">
+        <li>Single deployable unit</li>
+        <li>Shared database</li>
+        <li>Simple to develop and test early on</li>
+        <li>Scaling means scaling everything</li>
+        <li>One bad deploy takes down the whole app</li>
+      </ul>
+    </div>
+    <div class="box-p">
+      <div class="box-label">Microservices</div>
+      <ul style="font-size:13px;color:var(--muted);padding-left:18px;margin-top:8px;">
+        <li>Many small independent services</li>
+        <li>Each service owns its own DB</li>
+        <li>Scale individual services independently</li>
+        <li>Deploy and release independently</li>
+        <li>More operational complexity</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">Key Microservices Patterns</h3>
+  <div class="g2">
+    <div class="card">
+      <strong>API Gateway</strong>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">Single entry point for all clients. Handles auth, rate limiting, routing, and request aggregation. Clients never call internal services directly. Examples: Kong, AWS API Gateway, Nginx.</p>
+    </div>
+    <div class="card">
+      <strong>Circuit Breaker</strong>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">Detects when a downstream service is failing and stops calling it ("opens the circuit") — returning a fallback immediately. After a timeout, it probes with limited requests and "closes" if the service recovers.</p>
+    </div>
+    <div class="card">
+      <strong>Saga Pattern</strong>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">Manages distributed transactions across services. Each step publishes an event. On failure, compensating transactions undo previous steps. Two implementations: <em>Choreography</em> (event-driven) and <em>Orchestration</em> (central coordinator).</p>
+    </div>
+    <div class="card">
+      <strong>Service Mesh</strong>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 0;">Infrastructure layer that handles service-to-service communication — TLS, retries, timeouts, observability — transparently via sidecar proxies. Istio and Linkerd are common examples.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-warn" style="margin-top:20px;">
+    <div class="callout-icon">⚠️</div>
+    <p><strong>Don't start with microservices.</strong> The operational overhead (service discovery, distributed tracing, network latency, data consistency) is high. Start with a well-structured monolith and extract services only where you've identified scaling bottlenecks.</p>
+  </div>
+</section>
+
+<!-- ── CHAPTER 17: CDN ────────────────────────────────────────────────── -->
+<section class="chapter module" id="cdn">
+  <div class="ch-head">
+    <div class="ch-num">17</div>
+    <div>
+      <div class="ch-title">Content Delivery Networks (CDN)</div>
+      <div class="badges"><span class="badge b">Performance</span><span class="badge g">Global Scale</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Why should someone in Tokyo wait for a packet to physically travel to a server in Virginia and back, when a copy of that exact same file could just... live in Tokyo already? That's the whole premise of a <strong>CDN</strong> — a geographically distributed network of <strong>edge servers</strong> caching your content close to wherever your users actually are. Same content, dramatically shorter trip: latency drops from roughly 180ms down to around 5ms, just by moving the data closer to the person asking for it.</p>
+  </div>
+
+  <div class="g2" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">Push CDN</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">You push content to CDN edge nodes proactively. You control what's cached and when. Best for static assets that change infrequently (videos, software downloads, marketing images). Requires managing cache invalidation when content changes.</p>
+    </div>
+    <div class="box-g">
+      <div class="box-label">Pull CDN</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Edge servers pull content from your origin on first request, then cache it for a TTL. Simpler to configure — just point DNS to the CDN. Best for web pages, API responses, and assets that need freshness control. TTL expiry triggers a refetch.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">What CDNs Cache</h3>
+  <div class="g3">
+    <div class="card"><strong>Static Assets</strong><br/><span style="color:var(--muted);font-size:13px;">JS bundles, CSS, images, fonts, videos — long TTLs (days/weeks)</span></div>
+    <div class="card"><strong>HTML Pages</strong><br/><span style="color:var(--muted);font-size:13px;">Server-rendered pages with short TTLs (minutes) for freshness</span></div>
+    <div class="card"><strong>API Responses</strong><br/><span style="color:var(--muted);font-size:13px;">Public GET endpoints — weather data, product listings, news feeds</span></div>
+  </div>
+
+  <h3 style="margin-top:24px;">CDN Benefits Beyond Caching</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Capability</th><th>How It Helps</th></tr></thead>
+      <tbody>
+        <tr><td><strong>DDoS Mitigation</strong></td><td>Absorb and filter attack traffic at the edge before it hits origin</td></tr>
+        <tr><td><strong>SSL Termination</strong></td><td>Handle TLS handshake at edge — reduces origin CPU load</td></tr>
+        <tr><td><strong>Image Optimisation</strong></td><td>Resize, compress, convert format (WebP) on the fly at the edge</td></tr>
+        <tr><td><strong>Geo-blocking</strong></td><td>Block or redirect requests from specific countries at edge</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── CHAPTER 18: Storage Systems ───────────────────────────────────── -->
+<section class="chapter module" id="storage">
+  <div class="ch-head">
+    <div class="ch-num">18</div>
+    <div>
+      <div class="ch-title">Storage Systems</div>
+      <div class="badges"><span class="badge g">Infrastructure</span><span class="badge b">Durability</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Not all "saving a file" is the same job. Booting an operating system, storing a video upload, and sharing a folder across ten office computers are three completely different storage problems wearing the same trench coat. Pick the wrong one and you'll either overpay for speed you don't need, or underpay and watch your database crawl. The three fundamental types — <strong>Block</strong>, <strong>Object</strong>, and <strong>File</strong> storage — exist precisely because one size never fits all.</p>
+  </div>
+
+  <div class="g3" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">Block Storage</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Raw storage volumes mounted to a single server. The OS/filesystem manages the blocks. Low-latency, high-throughput.</p>
+      <p style="font-size:12px;margin-top:8px;"><strong>Use for:</strong> Database files, VM disks, operating systems</p>
+      <p style="font-size:12px;"><strong>Examples:</strong> AWS EBS, GCP Persistent Disk</p>
+    </div>
+    <div class="box-g">
+      <div class="box-label">Object Storage</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Flat namespace of objects (files + metadata). Accessed via HTTP API. Infinitely scalable. Not mountable as a filesystem.</p>
+      <p style="font-size:12px;margin-top:8px;"><strong>Use for:</strong> Images, videos, backups, logs, ML datasets</p>
+      <p style="font-size:12px;"><strong>Examples:</strong> AWS S3, GCS, Azure Blob</p>
+    </div>
+    <div class="box-p">
+      <div class="box-label">File Storage (NAS)</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Shared filesystem mountable by multiple servers simultaneously. Familiar directory/file hierarchy via NFS or SMB.</p>
+      <p style="font-size:12px;margin-top:8px;"><strong>Use for:</strong> Shared config files, CMS assets, legacy app lift-and-shift</p>
+      <p style="font-size:12px;"><strong>Examples:</strong> AWS EFS, Azure Files</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">Storage Tiers by Cost &amp; Speed</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Tier</th><th>Latency</th><th>Cost</th><th>Use Case</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Memory (RAM)</strong></td><td>~100 ns</td><td>Very high</td><td>Active computation, caches</td></tr>
+        <tr><td><strong>NVMe SSD</strong></td><td>~100 μs</td><td>High</td><td>Databases, hot data</td></tr>
+        <tr><td><strong>HDD</strong></td><td>~10 ms</td><td>Low</td><td>Warm data, logs</td></tr>
+        <tr><td><strong>Object Store (S3)</strong></td><td>~50–200 ms</td><td>Very low</td><td>Cold data, backups, archives</td></tr>
+        <tr><td><strong>Glacier / Archive</strong></td><td>Minutes–hours</td><td>Extremely low</td><td>Compliance archives, cold DR</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:16px;">
+    <div class="callout-icon">💡</div>
+    <p><strong>RAID:</strong> Redundant Array of Independent Disks. RAID-1 mirrors data across two disks (redundancy). RAID-0 stripes data across disks (performance, no redundancy). RAID-5/6 stripes with parity (balance). For cloud-native systems, RAID is largely superseded by managed replication built into cloud storage services.</p>
+  </div>
+</section>
+
+<!-- ── CHAPTER 19: Monitoring & Observability ─────────────────────────── -->
+<section class="chapter module" id="observability">
+  <div class="ch-head">
+    <div class="ch-num">19</div>
+    <div>
+      <div class="ch-title">Monitoring &amp; Observability</div>
+      <div class="badges"><span class="badge a">Operations</span><span class="badge g">Reliability</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>A system going down at 3 AM with zero clues left behind is every on-call engineer's nightmare. <strong>Observability</strong> is the practice of leaving yourself enough breadcrumbs — from the outside, without opening up the code mid-incident — to actually figure out what happened. Think of it as a doctor's three diagnostic tools: <strong>Metrics</strong> are the vital signs (heart rate, temperature), <strong>Logs</strong> are the detailed medical notes, and <strong>Traces</strong> are the full timeline of exactly where the patient went and what touched them along the way. Each answers a different question; you need all three to actually diagnose anything.</p>
+  </div>
+
+  <div class="g3" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">Metrics</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Numeric time-series data aggregated over time. Cheapest to store, great for dashboards and alerting.</p>
+      <ul style="font-size:12px;color:var(--muted);padding-left:16px;margin-top:8px;">
+        <li>CPU usage, memory, request rate</li>
+        <li>Error rate, p50/p95/p99 latency</li>
+        <li>Tools: Prometheus, Datadog, CloudWatch</li>
+      </ul>
+    </div>
+    <div class="box-g">
+      <div class="box-label">Logs</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Timestamped records of discrete events. High cardinality, expensive to store at scale — but essential for debugging.</p>
+      <ul style="font-size:12px;color:var(--muted);padding-left:16px;margin-top:8px;">
+        <li>Structured JSON logs preferred over plaintext</li>
+        <li>Include trace ID to correlate with traces</li>
+        <li>Tools: ELK Stack, Loki, Splunk, CloudWatch Logs</li>
+      </ul>
+    </div>
+    <div class="box-p">
+      <div class="box-label">Traces</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Follow a single request as it flows across multiple services. Each hop is a <em>span</em>; the full journey is a <em>trace</em>.</p>
+      <ul style="font-size:12px;color:var(--muted);padding-left:16px;margin-top:8px;">
+        <li>Essential in microservices to find bottlenecks</li>
+        <li>Propagate trace ID via HTTP headers</li>
+        <li>Tools: Jaeger, Zipkin, AWS X-Ray, OpenTelemetry</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">SLA / SLO / SLI</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Term</th><th>Definition</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SLI</strong> — Service Level Indicator</td><td>Metric you measure</td><td>Request success rate over 5 min</td></tr>
+        <tr><td><strong>SLO</strong> — Service Level Objective</td><td>Target for your SLI</td><td>≥ 99.9% success rate per month</td></tr>
+        <tr><td><strong>SLA</strong> — Service Level Agreement</td><td>Legal contract with consequences</td><td>99.9% uptime or 10% refund</td></tr>
+        <tr><td><strong>Error Budget</strong></td><td>Allowable downtime before SLO breach</td><td>43.8 min/month at 99.9% SLO</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:16px;">
+    <div class="callout-icon">🚨</div>
+    <p><strong>Alerting Rule of Thumb:</strong> Alert on <em>symptoms</em> (high error rate, slow latency), not <em>causes</em> (high CPU). Users experience symptoms — causes are for post-incident analysis. Avoid alert fatigue by ensuring every alert is actionable.</p>
+  </div>
+</section>
+
+<!-- ── CHAPTER 20: High Availability & Disaster Recovery ─────────────── -->
+<section class="chapter module" id="ha-dr">
+  <div class="ch-head">
+    <div class="ch-num">20</div>
+    <div>
+      <div class="ch-title">High Availability &amp; Disaster Recovery</div>
+      <div class="badges"><span class="badge r">Reliability</span><span class="badge b">Operations</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Remember the SPOF gut-check from Chapter 06 — "what happens if I unplug this?" <strong>High Availability (HA)</strong> is the discipline of designing systems where the answer is always "nothing bad," even when individual components fail. <strong>Disaster Recovery (DR)</strong> is the next level up: not "a server died" but "an entire data centre just caught fire" — and the question becomes how fast, and with how much data lost, can you get back on your feet.</p>
+  </div>
+
+  <h3 style="margin-top:24px;">Availability Nines</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>SLO</th><th>Annual Downtime</th><th>Monthly Downtime</th></tr></thead>
+      <tbody>
+        <tr><td><strong>99%</strong> — "two nines"</td><td>87.6 hours</td><td>7.3 hours</td></tr>
+        <tr><td><strong>99.9%</strong> — "three nines"</td><td>8.76 hours</td><td>43.8 minutes</td></tr>
+        <tr><td><strong>99.99%</strong> — "four nines"</td><td>52.6 minutes</td><td>4.4 minutes</td></tr>
+        <tr><td><strong>99.999%</strong> — "five nines"</td><td>5.26 minutes</td><td>26 seconds</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="g2" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">Active-Active (Multi-Region)</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Traffic routed to multiple regions simultaneously. All regions serve production traffic. Failover is instant — no "cold start". Higher cost: duplicate infrastructure in every region. Requires data synchronisation and conflict resolution.</p>
+      <p style="font-size:12px;margin-top:8px;"><strong>Best for:</strong> Global services needing sub-100ms RTO</p>
+    </div>
+    <div class="box-g">
+      <div class="box-label">Active-Passive (Primary + Standby)</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">One region handles all traffic. A standby region replicates data but serves no traffic. On disaster, DNS is switched to standby. Cold standby is cheaper; warm standby boots faster.</p>
+      <p style="font-size:12px;margin-top:8px;"><strong>Best for:</strong> Disaster recovery with cost constraints</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">RPO &amp; RTO</h3>
+  <div class="g2">
+    <div class="box-r">
+      <div class="box-label">RPO — Recovery Point Objective</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;"><strong>How much data can you afford to lose?</strong> If RPO = 1 hour, you must back up at least every hour. Lower RPO = more frequent backups = higher cost.</p>
+    </div>
+    <div class="box-b">
+      <div class="box-label">RTO — Recovery Time Objective</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;"><strong>How quickly must you recover?</strong> If RTO = 15 minutes, your DR plan must restore service within 15 minutes. Lower RTO = warm/hot standby = higher cost.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:20px;">
+    <div class="callout-icon">🔁</div>
+    <p><strong>Chaos Engineering:</strong> Deliberately inject failures in production (Netflix's Chaos Monkey) to verify your HA systems actually work as designed. Systems you don't test regularly will fail when you need them most.</p>
+  </div>
+</section>
+
+<!-- ── CHAPTER 21: Design Patterns ───────────────────────────────────── -->
+<section class="chapter module" id="patterns">
+  <div class="ch-head">
+    <div class="ch-num">21</div>
+    <div>
+      <div class="ch-title">Distributed System Design Patterns</div>
+      <div class="badges"><span class="badge p">Patterns</span><span class="badge b">Architecture</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Every problem you'll hit in distributed systems has almost certainly already been solved by someone, somewhere, who then gave their solution a name so the rest of us don't have to reinvent it from a blank page. That's what a <strong>design pattern</strong> really is — a labelled, battle-tested shortcut. Senior engineers don't have better imaginations; they just recognise "oh, this is a Saga problem" faster, because they've seen the shape before.</p>
+  </div>
+
+  <div class="g2" style="margin-top:24px;">
+    <div class="box-b">
+      <div class="box-label">CQRS — Command Query Responsibility Segregation</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Separate the model used to <strong>read</strong> data from the model used to <strong>write</strong> data. Commands mutate state; queries read optimised projections. Enables independent scaling of reads and writes, and different data stores per side.</p>
+      <div class="flow" style="margin-top:10px;">
+        <div class="fb">Command → Write DB</div><div class="fa"> | </div><div class="fb">Query → Read DB</div>
+      </div>
+    </div>
+    <div class="box-p">
+      <div class="box-label">Event Sourcing</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Instead of storing <em>current state</em>, store the <strong>sequence of events</strong> that led to that state. Current state is derived by replaying events. Natural audit log. Easy to rebuild projections. Pairs well with CQRS.</p>
+      <ul style="font-size:12px;color:var(--muted);padding-left:16px;margin-top:8px;">
+        <li>Events are immutable facts: <code>OrderPlaced</code>, <code>PaymentReceived</code></li>
+        <li>Rewind to any point in time by replaying</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-top:16px;">
+    <div class="box-g">
+      <div class="box-label">Strangler Fig Pattern</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Incrementally migrate a legacy monolith to microservices by routing individual features to new services one at a time, while the old monolith still handles everything else. The new system "strangles" the old one over time without a risky big-bang rewrite.</p>
+    </div>
+    <div class="box-a">
+      <div class="box-label">BFF — Backend for Frontend</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Create a dedicated API layer per client type (web BFF, mobile BFF). Each BFF aggregates calls to internal services and returns a response shaped perfectly for that client — no over-fetching, no under-fetching.</p>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-top:16px;">
+    <div class="box-r">
+      <div class="box-label">Outbox Pattern</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">When a service writes to its DB, also write the outbound event to an <em>outbox table</em> in the same transaction. A separate process reads the outbox and publishes to the message queue. Solves the "dual-write" problem — guarantees the DB write and event publish are atomic.</p>
+    </div>
+    <div class="box-b">
+      <div class="box-label">Sidecar Pattern</div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0;">Deploy a helper container alongside every service container. The sidecar handles cross-cutting concerns: logging, TLS, service discovery, health checks. The service code stays clean. Foundation of service meshes like Istio (Envoy proxy as sidecar).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 22: Real-World System Design ───────────────────────────── -->
+<section class="chapter module" id="real-world">
+  <div class="ch-head">
+    <div class="ch-num">22</div>
+    <div>
+      <div class="ch-title">Real-World System Design Examples</div>
+      <div class="badges"><span class="badge r">Interview</span><span class="badge p">Applied</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>This is the chapter where everything in this guide finally gets to play together. These four problems — a URL shortener, a rate limiter, a chat system, a notification service — are the classics that show up again and again in senior engineering interviews, and there's no single "correct" diagram for any of them. What interviewers are actually grading is whether you run the process from Chapter 00: clarify requirements, estimate scale, propose a design, dig into the hard parts, and talk through trade-offs out loud instead of silently drawing boxes.</p>
+  </div>
+
+  <h3 style="margin-top:24px;">Design a URL Shortener (e.g., bit.ly)</h3>
+  <div class="box-b" style="margin-top:12px;">
+    <div class="g2">
+      <div>
+        <div class="box-label" style="margin-bottom:8px;">Key Requirements</div>
+        <ul style="font-size:13px;color:var(--muted);padding-left:18px;">
+          <li>Given a long URL, return a short 7-char code</li>
+          <li>Redirect short URL → long URL in &lt; 10ms</li>
+          <li>100M URLs created/day, 10B redirects/day</li>
+          <li>Analytics: click count, geo, referrer</li>
+        </ul>
+      </div>
+      <div>
+        <div class="box-label" style="margin-bottom:8px;">Core Design</div>
+        <ul style="font-size:13px;color:var(--muted);padding-left:18px;">
+          <li><strong>ID generation:</strong> Base62 encode a distributed counter (Snowflake ID)</li>
+          <li><strong>Write path:</strong> API → DB (store mapping) → return short code</li>
+          <li><strong>Read path:</strong> Redis cache (hot URLs) → DB on miss → HTTP 301/302</li>
+          <li><strong>DB:</strong> Cassandra or DynamoDB (key-value, massive scale)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;">Design a Rate Limiter</h3>
+  <div class="box-p" style="margin-top:12px;">
+    <div class="g2">
+      <div>
+        <div class="box-label" style="margin-bottom:8px;">Algorithms</div>
+        <ul style="font-size:13px;color:var(--muted);padding-left:18px;">
+          <li><strong>Token Bucket:</strong> N tokens refill at rate R. Request consumes one token. Allows bursting up to N.</li>
+          <li><strong>Leaky Bucket:</strong> Requests queue, process at fixed rate. Smooths bursts completely.</li>
+          <li><strong>Fixed Window:</strong> Count per time window. Simple but allows 2× burst at window boundaries.</li>
+          <li><strong>Sliding Window Log:</strong> Store timestamp of every request. Precise, but high memory cost.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="box-label" style="margin-bottom:8px;">Implementation</div>
+        <ul style="font-size:13px;color:var(--muted);padding-left:18px;">
+          <li>Store counters in <strong>Redis</strong> with TTL (single-node latency ~1ms)</li>
+          <li>Use Redis <code>INCR</code> + <code>EXPIRE</code> atomically via Lua script</li>
+          <li>Return <code>429 Too Many Requests</code> with <code>Retry-After</code> header</li>
+          <li>Distributed: use Redis Cluster or a sliding window approximation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;">Design a Chat System (e.g., WhatsApp)</h3>
+  <div class="box-g" style="margin-top:12px;">
+    <div class="g2">
+      <div>
+        <div class="box-label" style="margin-bottom:8px;">Key Challenges</div>
+        <ul style="font-size:13px;color:var(--muted);padding-left:18px;">
+          <li>Real-time delivery (low latency)</li>
+          <li>Message ordering and delivery guarantees</li>
+          <li>Presence (online/offline status)</li>
+          <li>Push notifications for offline users</li>
+          <li>Group chats at scale</li>
+        </ul>
+      </div>
+      <div>
+        <div class="box-label" style="margin-bottom:8px;">Core Design</div>
+        <ul style="font-size:13px;color:var(--muted);padding-left:18px;">
+          <li><strong>Protocol:</strong> WebSocket for bi-directional real-time connection</li>
+          <li><strong>Chat servers:</strong> Stateful — users connect to assigned server</li>
+          <li><strong>Message store:</strong> Cassandra (wide-column, time-ordered, massive write scale)</li>
+          <li><strong>Fan-out:</strong> For group chats, fan out message to all member servers via Kafka</li>
+          <li><strong>Offline:</strong> Push via APNS (iOS) / FCM (Android)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;">Design a Notification System</h3>
+  <div class="box-a" style="margin-top:12px;">
+    <div class="g2">
+      <div>
+        <div class="box-label" style="margin-bottom:8px;">Requirements</div>
+        <ul style="font-size:13px;color:var(--muted);padding-left:18px;">
+          <li>Support push, email, SMS, in-app</li>
+          <li>10M notifications/day</li>
+          <li>At-least-once delivery</li>
+          <li>Rate limiting per user (no spam)</li>
+          <li>User preferences (opt-out per channel)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="box-label" style="margin-bottom:8px;">Core Design</div>
+        <ul style="font-size:13px;color:var(--muted);padding-left:18px;">
+          <li><strong>API layer:</strong> Accepts notification request, checks user preferences</li>
+          <li><strong>Queue per channel:</strong> Push queue, Email queue, SMS queue (Kafka topics)</li>
+          <li><strong>Workers per channel:</strong> Consume queue, call third-party (FCM/APNS/Twilio/SendGrid)</li>
+          <li><strong>Retry + DLQ:</strong> Failed deliveries retried with exponential backoff</li>
+          <li><strong>Deduplication:</strong> Idempotency key prevents duplicate delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:24px;">
+    <div class="callout-icon">🎯</div>
+    <p><strong>Interview Framework:</strong> (1) Clarify requirements — functional and non-functional. (2) Estimate scale — QPS, storage, bandwidth. (3) Propose high-level design. (4) Deep-dive on 2-3 key components. (5) Discuss trade-offs and failure modes. Rushing to draw boxes without requirements is the #1 mistake.</p>
+  </div>
+</section>
+
+<!-- ── CHAPTER 23: LLD Fundamentals — OOP, SOLID & UML ─────────────────── -->
+<section class="chapter module" id="lld-fundamentals">
+  <div class="ch-head">
+    <div class="ch-num">23</div>
+    <div>
+      <div class="ch-title">LLD Fundamentals — OOP, SOLID &amp; UML</div>
+      <div class="badges"><span class="badge badge-g">Low-Level Design</span><span class="badge badge-p">Foundations</span></div>
+    </div>
+  </div>
+
+  <p class="prose">Welcome to the microscope chapter. Everything before this point — load balancers, caching, CAP theorem — was about <em>where</em> things live and <em>how</em> they talk. This chapter is about something much smaller and, honestly, much closer to your day-to-day life as a developer: <strong>how do you write one class, one module, one function, so that it doesn't collapse into spaghetti the moment someone (probably you, in six months) has to change it?</strong> That's LLD. It's less about servers and more about discipline.</p>
+
+  <h3>The Four Pillars of OOP — With Analogies That Actually Stick</h3>
+  <p class="prose">If you've sat through an OOP lecture before, you've heard these four words. Here's the version that survives past the exam.</p>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🔒</div><div class="card-label" style="color:var(--sd)">Encapsulation</div></div>
+      <div class="card-title">The TV Remote, Not the Circuit Board</div>
+      <div class="card-body">You press a button; you don't need to know which capacitor fires. A class should hide its internal mess behind a clean set of methods — bundle data and behaviour together, expose only what's needed.</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🎭</div><div class="card-label" style="color:var(--sd2)">Abstraction</div></div>
+      <div class="card-title">Driving a Car Without Knowing the Engine</div>
+      <div class="card-body">You know <em>what</em> the accelerator does, not <em>how</em> combustion works. Abstraction defines <strong>what</strong> an object does, hiding <strong>how</strong> — usually via interfaces or abstract classes.</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">👨‍👩‍👧</div><div class="card-label" style="color:var(--emerald)">Inheritance</div></div>
+      <div class="card-title">Inheriting Your Parents' Stuff (and Adding Your Own)</div>
+      <div class="card-body">A <code>SavingsAccount</code> class can inherit everything a generic <code>Account</code> class already knows how to do, then add its own interest-calculation logic on top. Reuse without rewriting.</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🦎</div><div class="card-label" style="color:var(--amber)">Polymorphism</div></div>
+      <div class="card-title">One Command, Many Behaviours</div>
+      <div class="card-body">Calling <code>.speak()</code> on a <code>Dog</code> barks; on a <code>Cat</code>, it meows. Same method name, different behaviour depending on the actual object — the backbone of flexible, extensible code.</div>
+    </div>
+  </div>
+
+  <h3>SOLID — Five Rules That Keep Codebases From Rotting</h3>
+  <p class="prose">SOLID isn't academic trivia — it's five hard-won rules that separate code you can extend for years from code that needs a rewrite every six months. Read each one, then ask "have I broken this rule this week?" The honest answer is usually yes, and that's fine — knowing the rule is what lets you notice.</p>
+
+  <div class="g2">
+    <div class="box box-b">
+      <div class="box-title">S — Single Responsibility Principle</div>
+      <div class="box-body">A class should have <strong>one reason to change</strong>. If your <code>Order</code> class calculates totals <em>and</em> sends emails <em>and</em> writes to the database, it has three reasons to change — and three ways to break.</div>
+    </div>
+    <div class="box box-g">
+      <div class="box-title">O — Open/Closed Principle</div>
+      <div class="box-body">Code should be <strong>open for extension, closed for modification</strong>. Add a new payment method by adding a new class, not by editing a giant <code>if/else</code> chain that already works.</div>
+    </div>
+    <div class="box box-p">
+      <div class="box-title">L — Liskov Substitution Principle</div>
+      <div class="box-body">A subclass should be <strong>swappable for its parent</strong> without breaking anything. If <code>Square extends Rectangle</code> but setting width independently breaks square-ness, you've violated LSP.</div>
+    </div>
+    <div class="box box-a">
+      <div class="box-title">I — Interface Segregation Principle</div>
+      <div class="box-body">Don't force a class to implement methods it <strong>doesn't need</strong>. A <code>Robot</code> forced to implement <code>.eat()</code> because it shares an interface with <code>Worker</code> is a design smell.</div>
+    </div>
+    <div class="box box-r">
+      <div class="box-title">D — Dependency Inversion Principle</div>
+      <div class="box-body">Depend on <strong>abstractions, not concrete classes</strong>. A <code>NotificationService</code> should depend on a <code>MessageSender</code> interface, not directly on <code>EmailSender</code> — so swapping in SMS later costs you nothing.</div>
+    </div>
+  </div>
+
+  <h3>Reading UML — The Bare Minimum to Not Get Lost</h3>
+  <p class="prose">UML diagrams look intimidating until you realise they're just a more precise way of drawing the boxes-and-arrows sketch you'd doodle anyway. Here's the cheat sheet for the two diagrams you'll actually use day to day.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Class Diagram Symbol</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><strong>+</strong> before a member</td><td>Public — visible to everyone</td></tr>
+        <tr><td><strong>-</strong> before a member</td><td>Private — visible only inside the class</td></tr>
+        <tr><td><strong>#</strong> before a member</td><td>Protected — visible to the class and its subclasses</td></tr>
+        <tr><td>Solid line, hollow triangle arrow</td><td>Inheritance ("is-a") — <code>SavingsAccount</code> → <code>Account</code></td></tr>
+        <tr><td>Dashed line, hollow triangle arrow</td><td>Interface implementation</td></tr>
+        <tr><td>Line with a diamond</td><td>Aggregation ("has-a", can exist independently)</td></tr>
+        <tr><td>Line with a filled diamond</td><td>Composition ("has-a", cannot exist independently)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">🔄</div>
+    <p><strong>Sequence diagrams in one sentence:</strong> they show <em>who calls whom, in what order, over time</em> — read them top-to-bottom like a script, where each vertical line is an object and each horizontal arrow is a method call. If a class diagram is the cast list, a sequence diagram is the script for one specific scene.</p>
+  </div>
+
+  <h3>Classic Design Patterns Every Beginner Should Recognise</h3>
+  <p class="prose">Patterns are just named solutions to problems so common that someone already solved them for you. You don't need to memorise all 23 from the original "Gang of Four" book — these six will cover most interview questions and most real code you'll touch early in your career.</p>
+
+  <div class="protect">
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🔂 Singleton</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">You need <strong>exactly one</strong> instance of something — a config manager, a connection pool — and accidentally creating two causes bugs.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">The class controls its own instantiation and hands out the <strong>same instance</strong> every time it's requested.</div>
+      </div>
+    </div>
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🏭 Factory</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">Your code needs to create objects, but the <strong>exact type</strong> isn't known until runtime — e.g. <code>PaymentMethod</code> could be Card, UPI, or Wallet.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">A factory method <strong>decides which concrete class to instantiate</strong>, so calling code never needs an ugly <code>if/else</code> on type.</div>
+      </div>
+    </div>
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🧱 Builder</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">An object needs a constructor with <strong>ten optional parameters</strong>, and most callers only care about three of them.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Build the object <strong>step by step</strong> with chained, readable calls — <code>new PizzaBuilder().size(L).cheese().build()</code>.</div>
+      </div>
+    </div>
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🎯 Strategy</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">You have <strong>several interchangeable algorithms</strong> for the same job — e.g. sorting, or three different discount rules — and don't want a tangle of conditionals.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Encapsulate each algorithm behind a common interface, and <strong>swap them at runtime</strong> like interchangeable parts.</div>
+      </div>
+    </div>
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">👀 Observer</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">When one object changes state, <strong>many other objects</strong> need to know — like a YouTube channel and its subscribers.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Subscribers <strong>register interest</strong> with the publisher; the publisher notifies all of them automatically on change. This is the pattern hiding inside every event listener you've ever written.</div>
+      </div>
+    </div>
+    <div class="protect-item">
+      <div class="protect-problem">
+        <div class="protect-title">🔌 Adapter</div>
+        <div class="protect-label prob">Problem</div>
+        <div class="protect-text">You're plugging in a <strong>third-party library</strong> whose interface doesn't match what the rest of your code expects.</div>
+      </div>
+      <div>
+        <div class="protect-label sol">Solution</div>
+        <div class="protect-text">Wrap the mismatched interface in an adapter class that <strong>translates calls</strong> — exactly like a physical plug adapter for a foreign socket.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:24px;">
+    <div class="callout-icon">🎓</div>
+    <p><strong>Closing the loop:</strong> Go back to the HLD vs LLD table in <a href="#intro" style="color:var(--sd);">Chapter 00</a>. Everything in this chapter is what happens <em>after</em> the architecture diagram is approved and one specific box on that diagram becomes your responsibility to actually build. HLD draws the city map; LLD is you, personally, wiring one building to code.</p>
+  </div>
+</section>
+
+</div><!-- end #main -->
+
+<script src="../web-frameworks/shared/shared.js"></script>
+<script src="system-design.js"></script>
+</body>
+</html>

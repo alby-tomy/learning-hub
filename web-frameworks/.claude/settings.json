@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '{printf \"%-12s %s\\\\n\", $5, $9}')",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\django-reference\\\\shared\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\django-reference\\\\index\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\django-reference\\\\webdev-encyclopedia\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\django-reference\\\\django-templates\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\django-reference\\\\django-ultimate\")",
+      "PowerShell(Move-Item \"d:\\\\django-reference\\\\index\\\\index.html\" \"d:\\\\django-reference\\\\index.html\")",
+      "PowerShell(Move-Item \"d:\\\\django-reference\\\\index\\\\index.css\"  \"d:\\\\django-reference\\\\index.css\")",
+      "Bash(find d:/django-reference -not -path '*/\\\\.git/*' -not -path '*/.claude/*' -type f | sort)",
+      "Read(//d/django-reference/*/.git/**)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\Git\\\\bin\"; Set-Location d:\\\\django-reference; git status)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\Git\\\\bin\"; Set-Location d:\\\\django-reference; git remote -v)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\Git\\\\bin\"; Set-Location d:\\\\django-reference; git remote set-url origin https://github.com/alby-tomy/web-frameworks-programing-references.git; git remote -v)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\Git\\\\bin\"; Set-Location d:\\\\django-reference; git push -u origin main 2>&1)",
+      "PowerShell($lines = \\(Get-Content \"d:\\\\django-reference\\\\system-design\\\\system-design.html\"\\).Count; Write-Host \"Total lines: $lines\")",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\Git\\\\bin\"; cd \"d:\\\\django-reference\"; git add system-design/system-design.html system-design/system-design.css index.html; git status)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\Git\\\\bin\"; cd \"d:\\\\django-reference\"; git push origin main)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\Git\\\\bin\"; cd \"d:\\\\django-reference\"; git status)",
+      "Bash(python3 _build_project_page.py)",
+      "Bash(python3 _trim_main.py)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}
